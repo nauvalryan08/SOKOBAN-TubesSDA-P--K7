@@ -7,6 +7,13 @@
 
 ==> Butuh Pengoptimalan :
 
+- [31 mei 2025] Map rencana :
+--> chapter 1 : 5 level;
+--> chapter 2 : 8 Level;
+--> chapter 3 : 11 Level;
+--> chapter 4 : 12 Level;
+--> Chapter 5 : 15 Level;
+--> Bonus Arena : total 5;
 
 
 
@@ -18,4 +25,10 @@
 - [31 mei 2025] {sopian}
 --> Membuat konfigurasi dengan library curse.h
 --> commit sementara untuk modul level Facotry
-                        
+--> Membuat Method (print_arena , parsing_arena, move_player, handle_input, boolean{pemeriksaan aktivasi objek})
+--> melakukan test main
+
+
+==> RANCANGAN :
+- Arena Logic [DONE 75%]
+- GAME LOGIC MOVEMENT [DONE 90%]            
