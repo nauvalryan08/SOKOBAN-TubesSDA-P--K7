@@ -14,3 +14,8 @@
 ==> Progress :
 
 - [22 Mei 2025] {Sopian} --> Bikin noted.txt
+
+- [31 mei 2025] {sopian}
+--> Membuat konfigurasi dengan library curse.h
+--> commit sementara untuk modul level Facotry
+                        
