@@ -3,6 +3,11 @@
 
 #include "RoomFactory.h"
 
+//============================================//
+//==> MODUL INISIASI ARENA DAN LEVEL-LEVEL <==//
+//============================================//
+/* {Sopian} */
+
 extern const char *Level_1c1_map[];
 void Level_1c1 (RoomLayout *room);
 

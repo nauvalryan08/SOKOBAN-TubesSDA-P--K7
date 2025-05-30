@@ -1,5 +1,10 @@
 #include "Level.h"
 
+//====================//
+//== PEMBUATAN AREA ==//
+//====================//
+/* {Sopian} */
+
 const char *Level_1c1_map[] = {
     "####################",
     "#     @     $   .  #",
@@ -12,15 +17,19 @@ const char *Level_1c1_map[] = {
 const char *Level_1c2_map[] = {
     "####################",
     "# F            # . #",
-    "#   $   #      #   #",
+    "#   $   #   $  #   #",
     "#       #   @      #",
     "#                  #",
     "#######    #########",
-    "      #    #        ",
+    "      # .  #        ",
     "      ######        ",   
     NULL
 };
 
+//==============================================//
+//== PARSING/MENYIMMPAN DATA OBJEK KE STRUCT  ==//
+//==============================================//
+/* {Sopian} */
 
 void Level_1c1 (RoomLayout *room) {
     parse_room(Level_1c1_map, room);

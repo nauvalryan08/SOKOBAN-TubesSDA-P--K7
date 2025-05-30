@@ -1,5 +1,11 @@
 #include "RoomFactory.h"
 
+
+//===============================================================//
+//== Metod untuk parsing data objek pada Area ke dalam Struct  ==//
+//===============================================================//
+/* {Sopian} */
+
 void parse_room(const char **map, RoomLayout *room) {
     int x, y;
 
@@ -29,14 +35,22 @@ void parse_room(const char **map, RoomLayout *room) {
 }
 
 
+//===========================================================//
+//== Menghasilkan Output Arena sesuai data map dan Layout  ==//
+//===========================================================//
+/* {Sopian} */
+
 void print_room(const char **map, const RoomLayout *room) {
+    int x, y, i;
+    char tile;
+
     clear(); // Bersihkan layar
 
     // 1. Gambar arena dari map[] (tembok, lantai)
-    for (int y = 0; map[y] != NULL; y++) {
-        for (int x = 0; map[y][x] != '\0'; x++) {
-            char tile = map[y][x];
-            // Abaikan karakter dinamis dari map (optional)
+    for (y = 0; map[y] != NULL; y++) {
+        for (x = 0; map[y][x] != '\0'; x++) {
+            tile = map[y][x];
+            // Mengabaikan karakter dinamis dari map 
             if (tile == '@' || tile == '$' || tile == '.' || tile == 'F') {
                 mvaddch(y, x, ' ');
             } else {
@@ -46,20 +60,51 @@ void print_room(const char **map, const RoomLayout *room) {
     }
 
     // 2. Gambar target (.)
-    for (int i = 0; i < room->target_count; i++) {
+    for (i = 0; i < room->target_count; i++) {
         mvaddch(room->targets[i].y, room->targets[i].x, '.');
     }
 
     // 3. Gambar box ($)
-    for (int i = 0; i < room->box_count; i++) {
-        mvaddch(room->boxes[i].y, room->boxes[i].x, '$');
+    for (i = 0; i < room->box_count; i++) {
+        if (room->boxes[i].is_activated) {
+            attron(COLOR_PAIR(2) | A_BOLD);
+            mvaddch(room->boxes[i].y, room->boxes[i].x, '$');
+            attroff(COLOR_PAIR(2) | A_BOLD);
+        } else {
+            attron(COLOR_PAIR(1) | A_BOLD);
+            mvaddch(room->boxes[i].y, room->boxes[i].x, '$');
+            attroff(COLOR_PAIR(1) | A_BOLD);
+        }
     }
 
     // 4. Gambar finish (F)
-    mvaddch(room->finish.y, room->finish.x, 'F');
+    if (is_finish_activated(room)) {
+        attron(COLOR_PAIR(2) | A_BOLD);
+        mvaddch(room->finish.y, room->finish.x, 'F');
+        attroff(COLOR_PAIR(2) | A_BOLD);
+    } else {
+        attron(COLOR_PAIR(3) | A_DIM);
+        mvaddch(room->finish.y, room->finish.x, 'F');
+        attroff(COLOR_PAIR(3) | A_DIM);
+    }
 
     // 5. Gambar player (@)
     mvaddch(room->player.y, room->player.x, '@');
 
     refresh(); // Tampilkan ke layar
+}
+
+
+//=============================================//
+//== Memeriksa apakah box sudah aktif semua  ==//
+//=============================================//
+/* {Sopian} */
+
+boolean is_finish_activated(const RoomLayout *room) {
+    for (int i = 0; i < room->box_count; i++) {
+        if (!room->boxes[i].is_activated) {
+            return false;
+        }
+    }
+    return true;
 }
