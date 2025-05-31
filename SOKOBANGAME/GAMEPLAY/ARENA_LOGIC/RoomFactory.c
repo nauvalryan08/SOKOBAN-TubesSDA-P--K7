@@ -91,6 +91,8 @@ void print_room(const char **map, const RoomLayout *room) {
     // 5. Gambar player (@)
     mvaddch(room->player.y, room->player.x, '@');
 
+    mvprintw(35, 50, "%d",room->box_count);
+
     refresh(); // Tampilkan ke layar
 }
 

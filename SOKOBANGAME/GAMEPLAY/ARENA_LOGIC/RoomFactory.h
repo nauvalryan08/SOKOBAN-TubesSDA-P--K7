@@ -1,8 +1,8 @@
 #ifndef ROOMFACTORY_H
 #define ROOMFACTORY_H
 
-#include "../Utilities/include/boolean.h"
-#include "../Utilities/include/curses.h"
+#include "../../UTILS/include/boolean.h"
+#include "../../UTILS/include/curses.h"
 
 #include <stdio.h>
 #include <string.h>

@@ -6,15 +6,16 @@
       "type": "shell",
       "command": "gcc",
       "args": [
-        "SOKOBANGAME/main.c",
-        "SOKOBANGAME/ARENA_LOGIC/Level.c",
-        "SOKOBANGAME/ARENA_LOGIC/RoomFactory.c",
-        "SOKOBANGAME/GAME_LOGIC/GameLogic.c",
-        "-ISOKOBANGAME/Utilities/include",
-        "-LSOKOBANGAME/Utilities/lib",
-        "-lpdcurses",
-        "-o",
-        "SOKOBANGAME/sokoban.exe"
+          "-mconsole",
+          "SOKOBANGAME/main.c",
+          "SOKOBANGAME/GAMEPLAY/ARENA_LOGIC/Level.c",
+          "SOKOBANGAME/GAMEPLAY/ARENA_LOGIC/RoomFactory.c",
+          "SOKOBANGAME/GAMEPLAY/GAME_LOGIC/GameLogic.c",
+          "-ISOKOBANGAME/UTILS/include",
+          "-LSOKOBANGAME/UTILS/lib",
+          "-lpdcurses",
+          "-o",
+          "SOKOBANGAME/sokoban.exe"
       ],
       "options": {
         "cwd": "${workspaceFolder}"

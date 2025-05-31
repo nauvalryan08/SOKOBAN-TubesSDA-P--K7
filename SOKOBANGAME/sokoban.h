@@ -7,15 +7,15 @@
 #include <string.h>
 
 // ncurses
-#include "Utilities/include/curses.h"
+#include "UTILS/include/curses.h"
 
 // Boolean
-#include "Utilities/include/boolean.h"
+#include "UTILS/include/boolean.h"
 
 // Semua header proyek
-#include "ARENA_LOGIC/RoomFactory.h"
-#include "ARENA_LOGIC/level.h"
+#include "GAMEPLAY/ARENA_LOGIC/RoomFactory.h"
+#include "GAMEPLAY/ARENA_LOGIC/level.h"
 
-#include "GAME_LOGIC/GameLogic.h"
+#include "GAMEPLAY/GAME_LOGIC/GameLogic.h"
 
 #endif
