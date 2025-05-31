@@ -39,6 +39,10 @@ void parse_room(const char **map, RoomLayout *room) {
 //===========================================================//
 /* {Sopian} */
 
+//==>  SIMBOL OBJECT & ICON  <==//
+const char* TARGET_BOX = "\xE2\x80\xA2";
+
+
 void print_room(const char **map, const RoomLayout *room) {
     int x, y, i;
     char tile;
@@ -52,26 +56,28 @@ void print_room(const char **map, const RoomLayout *room) {
             // Mengabaikan karakter dinamis dari map 
             if (tile == '@' || tile == '$' || tile == '.' || tile == 'F') {
                 mvaddch(y, x, ' ');
-            } else {
-                mvaddch(y, x, tile);
+            } else if (tile == '#') {
+                mvaddch(y, x, '\xDB');
             }
         }
     }
 
     // 2. Gambar target (.)
     for (i = 0; i < room->target_count; i++) {
-        mvaddch(room->targets[i].y, room->targets[i].x, '.');
+        attron(COLOR_PAIR(4) | A_BOLD);
+        mvprintw(room->targets[i].y, room->targets[i].x, "\xFA");
+        attron(COLOR_PAIR(4) | A_BOLD);
     }
 
     // 3. Gambar box ($)
     for (i = 0; i < room->box_count; i++) {
         if (room->boxes[i].is_activated) {
             attron(COLOR_PAIR(2) | A_BOLD);
-            mvaddch(room->boxes[i].y, room->boxes[i].x, '$');
+            mvprintw(room->boxes[i].y, room->boxes[i].x, "\xFE");
             attroff(COLOR_PAIR(2) | A_BOLD);
         } else {
             attron(COLOR_PAIR(1) | A_BOLD);
-            mvaddch(room->boxes[i].y, room->boxes[i].x, '$');
+            mvprintw(room->boxes[i].y, room->boxes[i].x, "\xFE");
             attroff(COLOR_PAIR(1) | A_BOLD);
         }
     }

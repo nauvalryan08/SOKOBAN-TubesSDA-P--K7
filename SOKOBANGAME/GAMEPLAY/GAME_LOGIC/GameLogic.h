@@ -3,6 +3,9 @@
 
 #include "../ARENA_LOGIC/RoomFactory.h"
 
+//Pointer untuk memanggil void init parsing level
+typedef void (*InitLevel)(RoomLayout*);
+
 //===========================================================//
 //== Method untuk melakukan pemeriksaan sata akan bergerak ==//
 //===========================================================//
@@ -15,6 +18,13 @@ void move_player (RoomLayout *room, int dx, int dy, const char **map);
 //=======================================================================//
 /* {Sopian} */
 void handle_input (RoomLayout *room, const char **map);
+
+
+//==========================================================//
+//== Method untuk menjalankan Level berdasarkan Parameter ==//
+//==========================================================//
+/* {Sopian} */
+void start_level (RoomLayout *room, const char **map, InitLevel init_level);
 
 
 //=============================================================//
