@@ -21,4 +21,6 @@
 #include "GAMEPLAY/GAME_LOGIC/ButtonGame.h"
 #include "GAMEPLAY/GAME_LOGIC/GameStart.h"
 
+#include "VIEW/lobbyscreen.h"
+
 #endif
