@@ -7,9 +7,11 @@
       "command": "gcc",
       "args": [
         "SOKOBANGAME/main.c",
-        "SOKOBANGAME/GAME_LOGIC/RoomFactory.c",
-        "-Iinclude",
-        "-Llib",
+        "SOKOBANGAME/ARENA_LOGIC/Level.c",
+        "SOKOBANGAME/ARENA_LOGIC/RoomFactory.c",
+        "SOKOBANGAME/GAME_LOGIC/GameLogic.c",
+        "-ISOKOBANGAME/Utilities/include",
+        "-LSOKOBANGAME/Utilities/lib",
         "-lpdcurses",
         "-o",
         "SOKOBANGAME/sokoban.exe"

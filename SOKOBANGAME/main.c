@@ -9,7 +9,6 @@ int main() {
     init_pair(2, COLOR_GREEN, COLOR_BLACK);
     init_pair(3, COLOR_BLACK, COLOR_BLACK);
 
-
     cbreak();               //input tanpa ENTER
     noecho();               // Input tanpa melihatkan karakter
     curs_set(FALSE);        //curs_set nonaktif
