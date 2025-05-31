@@ -24,6 +24,13 @@ void handle_input (RoomLayout *room, const char **map);
 void update_box_activation_status(RoomLayout *room);
 
 
+//===============================================================//
+//== Method untuk memeriksa apakah finsih sudah diposisi aktif ==//
+//===============================================================//
+/* {Sopian} */
+void update_finish_activation_status(RoomLayout *room);
+
+
 //==================================================//
 //== Method untuk memeriksa apakah level complete ==//
 //==================================================//

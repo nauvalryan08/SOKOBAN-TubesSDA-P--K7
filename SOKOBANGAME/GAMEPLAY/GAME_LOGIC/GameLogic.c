@@ -38,12 +38,11 @@ void move_player (RoomLayout *room, int dx, int dy, const char **map) {
             room->player.y = new_y;
             return;
         }
-
-        //kalau tidak menabrak obstakel apapun
-        if (map[new_y][new_x] != '#') {
-            room->player.x = new_x;
-            room->player.y = new_y;
-        }
+    }
+    //kalau tidak menabrak obstakel apapun
+    if (map[new_y][new_x] != '#') {
+        room->player.x = new_x;
+        room->player.y = new_y;
     }
 }
 
@@ -89,6 +88,25 @@ void update_box_activation_status(RoomLayout *room) {
                 break; // Langsung keluar loop target kalau cocok
             }
         }
+    }
+}
+
+//===============================================================//
+//== Method untuk memeriksa apakah finsih sudah diposisi aktif ==//
+//===============================================================//
+/* {Sopian} */
+
+void update_finish_activation_status(RoomLayout *room) {
+    for (int i = 0; i < room->box_count; i++) {
+        room->finish.is_activated = false;  // Reset dulu status
+
+        for (int j = 0; j < room->target_count; j++) {
+            if (room->boxes[i].is_activated == false) {
+                return;
+            }
+        }
+
+        room->finish.is_activated = true;
     }
 }
 

@@ -16,11 +16,12 @@ int main() {
     timeout(0);
 
     RoomLayout room;
-    Level_1c2(&room);                    // dari level.c
+    Level_1c1(&room);                    // dari level.c
 
     while (1) {
         update_box_activation_status (&room);
-        print_room (Level_1c2_map, &room);
+        update_finish_activation_status (&room);
+        print_room (Level_1c1_map, &room);
 
         if (is_victory(&room)) {
             // Bersihkan layar dulu kalau mau
@@ -47,7 +48,7 @@ int main() {
 
             break; // Keluar dari loop game
         }
-        handle_input (&room, Level_1c2_map);
+        handle_input (&room, Level_1c1_map);
 
         // napms(30);
     }

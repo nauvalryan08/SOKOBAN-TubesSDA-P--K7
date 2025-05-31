@@ -90,7 +90,12 @@ void print_room(const char **map, const RoomLayout *room) {
     // 5. Gambar player (@)
     mvaddch(room->player.y, room->player.x, '@');
 
-    mvprintw(35, 50, "%d",room->box_count);
+    mvprintw(15, 10, "box count : %d", room->box_count);
+    mvprintw(16, 10, "box 1 activated : %d", room->boxes[0].is_activated);
+    mvprintw(17, 10, "box 2 activated : %d", room->boxes[1].is_activated);
+    mvprintw(18, 10, "finish activated : %d", room->finish.is_activated);
+
+
 
     refresh(); // Tampilkan ke layar
 }
