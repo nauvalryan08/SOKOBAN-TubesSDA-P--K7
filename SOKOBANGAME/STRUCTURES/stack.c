@@ -1,38 +1,50 @@
+#include "Stack.h"
 #include <stdlib.h>
-#include "stack.h"
 
-void initStack(Stack *stack, int capacity) {
-    stack->items = (void**)malloc(capacity * sizeof(void*));
-    stack->top = -1;
-    stack->capacity = capacity;
+void stack_init(Stack* stack) {
+    stack->top = NULL;
+    stack->size = 0;
 }
 
-void push(Stack *stack, void *data) {
-    if(stack->top < stack->capacity - 1) {
-        stack->items[++stack->top] = data;
+bool stack_isEmpty(const Stack* stack) {
+    return stack->top == NULL;
+}
+
+void stack_push(Stack* stack, StackItem item) {
+    StackNode* newNode = (StackNode*)malloc(sizeof(StackNode));
+    newNode->data = item;
+    newNode->next = stack->top;  
+    stack->top = newNode;        
+    stack->size++;
+}
+
+StackItem stack_pop(Stack* stack) {
+    if (stack_isEmpty(stack)) {
+        return NULL;  
+    }
+
+    StackNode* temp = stack->top;
+    StackItem poppedItem = temp->data;
+    stack->top = temp->next;  
+    free(temp);               
+    stack->size--;
+
+    return poppedItem;
+}
+
+StackItem stack_peek(const Stack* stack) {
+    if (stack_isEmpty(stack)) {
+        return NULL;
+    }
+    return stack->top->data;
+}
+
+void stack_clear(Stack* stack) {
+    while (!stack_isEmpty(stack)) {
+        stack_pop(stack);
     }
 }
 
-void* pop(Stack *stack) {
-    if(stack->top >= 0) {
-        return stack->items[stack->top--];
-    }
-    return NULL;
-}
-
-void* peek(Stack *stack) {
-    if(stack->top >= 0) {
-        return stack->items[stack->top];
-    }
-    return NULL;
-}
-
-int isEmpty(Stack *stack) {
-    return stack->top == -1;
-}
-
-void clearStack(Stack *stack) {
-    free(stack->items);
-    stack->top = -1;
-    stack->capacity = 0;
+int stack_size(const Stack* stack) {
+    return stack->size;
 }

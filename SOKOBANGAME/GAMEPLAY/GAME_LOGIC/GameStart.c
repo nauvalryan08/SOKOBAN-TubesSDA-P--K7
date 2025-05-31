@@ -6,7 +6,14 @@
 /* {Sopian} */
 
 void start_level (RoomLayout *room, const char **map, InitLevel init_level) {
+
+    Stack StackUndo;
+    stack_init(&StackUndo);
+
     init_level(room);                    // dari level.c
+
+    //simpan data roomLayout ke undo stack
+    save_state(&StackUndo, room);
 
     while (1) {
         update_box_activation_status (room);
@@ -38,8 +45,11 @@ void start_level (RoomLayout *room, const char **map, InitLevel init_level) {
 
             break; // Keluar dari loop game
         }
-        handle_input (room, map, init_level);
+        handle_input (room, map, init_level, &StackUndo);
 
-        // napms(30);
     }
+
+    //bersihkan chace pada stack
+    stack_clear(&StackUndo);
+
 }

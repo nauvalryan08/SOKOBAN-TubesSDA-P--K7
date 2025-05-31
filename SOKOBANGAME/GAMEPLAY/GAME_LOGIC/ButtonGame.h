@@ -18,14 +18,18 @@ typedef void (*Cur_Level)(RoomLayout*);
 //==>  RESET BUTTON  <==//
 //======================//
 /* {Sopian} */
-void reset_game(RoomLayout *room, const char **map, Cur_Level Level);
-
 boolean is_reset_pressed(int ch);
+
+//=====================//
+//==>  Undo BUTTON  <==//
+//=====================//
+/* {Sopian} */
+boolean is_Undo_pressed(int ch);
 
 //=======================================================================//
 //== Method untuk menerima input KEY ARROW dan menjalankan pemeriksaan ==//
 //=======================================================================//
 /* {Sopian} */
-void handle_input (RoomLayout *room, const char **map, Cur_Level Level);
+void handle_input (RoomLayout *room, const char **map, Cur_Level Level, Stack *StackUndo);
 
 #endif

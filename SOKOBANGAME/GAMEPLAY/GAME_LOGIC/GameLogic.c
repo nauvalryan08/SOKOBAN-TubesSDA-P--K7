@@ -2,6 +2,10 @@
 #include "../ARENA_LOGIC/Level.h"
 #include "ButtonGame.h"
 
+/*****************************************************/
+/* -->           MOVEMENT OBJECT IN GAME         <-- */
+/*****************************************************/
+
 
 //===========================================================//
 //== Method untuk melakukan pemeriksaan sata akan bergerak ==//
@@ -49,6 +53,10 @@ void move_player (RoomLayout *room, int dx, int dy, const char **map) {
 }
 
 
+/***************************************************/
+/* -->     STATUS MANAGER OBJECT IN GAME       <-- */
+/***************************************************/
+
 //=============================================================//
 //== Method untuk memeriksa apakah box sudah diposisi target ==//
 //=============================================================//
@@ -88,6 +96,54 @@ void update_finish_activation_status(RoomLayout *room) {
     }
 }
 
+
+
+/*****************************************************/
+/* -->       ACTION BUTTON LOGIC IN GAME         <-- */
+/*****************************************************/
+
+//=====================//
+//==>  RESET LOGIC  <==//
+//=====================//
+/* {Sopian} */
+
+void reset_game(RoomLayout *room, InitLevel Level) {
+    Level(room);
+}
+
+//=====================//
+//==>  UNDO LOGIC  <==//
+//=====================//
+/* {Sopian} */
+
+void save_state(GameUndo *prevMove, const RoomLayout *room) {
+    RoomLayout *roomCopy = (RoomLayout*)malloc(sizeof(RoomLayout));
+    if (!roomCopy) return;
+    //coppy data room ke roomcopy
+    memcpy(roomCopy, room, sizeof(RoomLayout));
+    //push memory ke stack
+    stack_push(prevMove, roomCopy);
+}
+
+void undo_game(GameUndo *prevMove, RoomLayout *currRoom) {
+    if (stack_isEmpty(prevMove)) {
+        printw("Undo Failed: stack empty");   
+        return;
+    }
+    //pop data dari stack
+    RoomLayout *poppedRoom = (RoomLayout*)stack_pop(prevMove);
+    // salin data ke currRoom untuk dikembalikan
+    memcpy(currRoom, poppedRoom, sizeof(RoomLayout));
+    printw("Undo berhasil");
+    //free memory;
+    free(poppedRoom);
+};
+
+
+
+/***********************************************/
+/* -->           BOOLEAN VALIDATOR         <-- */
+/***********************************************/
 
 //==================================================//
 //== Method untuk memeriksa apakah level complete ==//

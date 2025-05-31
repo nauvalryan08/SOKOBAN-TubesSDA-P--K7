@@ -2,9 +2,23 @@
 #define GAMELOGIC_H
 
 #include "../ARENA_LOGIC/RoomFactory.h"
+#include "../../STRUCTURES/stack.h"
+
+//================================//
+//==>  STRUCT OBJECT & LAYOUT  <==//
+//================================//
+/* {Sopian} */
+
+typedef Stack GameUndo;
 
 //Pointer untuk memanggil void init parsing level
 typedef void (*InitLevel)(RoomLayout*);
+
+
+
+/*****************************************************/
+/* -->           MOVEMENT OBJECT IN GAME         <-- */
+/*****************************************************/
 
 //===========================================================//
 //== Method untuk melakukan pemeriksaan sata akan bergerak ==//
@@ -12,6 +26,11 @@ typedef void (*InitLevel)(RoomLayout*);
 /* {Sopian} */
 void move_player (RoomLayout *room, int dx, int dy, const char **map);
 
+
+
+/***************************************************/
+/* -->     STATUS MANAGER OBJECT IN GAME       <-- */
+/***************************************************/
 
 //=============================================================//
 //== Method untuk memeriksa apakah box sudah diposisi target ==//
@@ -26,6 +45,29 @@ void update_box_activation_status(RoomLayout *room);
 /* {Sopian} */
 void update_finish_activation_status(RoomLayout *room);
 
+
+/*****************************************************/
+/* -->       ACTION BUTTON LOGIC IN GAME         <-- */
+/*****************************************************/
+
+//=====================//
+//==>  RESET LOGIC  <==//
+//=====================//
+/* {Sopian} */
+void reset_game(RoomLayout *room, InitLevel Level);
+
+//=====================//
+//==>  UNDO LOGIC  <==//
+//=====================//
+/* {Sopian} */
+void save_state(GameUndo *prevMove, const RoomLayout *room);
+
+void undo_game(GameUndo *prevMove, RoomLayout *currRoom);
+
+
+/***********************************************/
+/* -->           BOOLEAN VALIDATOR         <-- */
+/***********************************************/
 
 //==================================================//
 //== Method untuk memeriksa apakah level complete ==//
