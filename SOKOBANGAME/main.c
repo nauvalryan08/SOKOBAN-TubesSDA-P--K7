@@ -9,12 +9,7 @@ int main() {
     
     // Inisialisasi warna
     start_color();
-<<<<<<< Updated upstream
-    init_pair(1, COLOR_WHITE, COLOR_BLACK);
-    init_pair(2, COLOR_GREEN, COLOR_BLACK);
-    init_pair(3, COLOR_BLACK, COLOR_BLACK);
-    init_pair(4, COLOR_YELLOW, COLOR_BLACK);
-=======
+
     init_pair(1, COLOR_CYAN, COLOR_BLACK);   // Warna judul
     init_pair(2, COLOR_YELLOW, COLOR_BLACK);  // Warna animasi
     init_pair(3, COLOR_GREEN, COLOR_BLACK);   // Warna menu
@@ -23,7 +18,6 @@ int main() {
     init_pair(4, COLOR_WHITE, COLOR_BLACK);
     init_pair(5, COLOR_GREEN, COLOR_BLACK);
     init_pair(6, COLOR_BLACK, COLOR_BLACK);
->>>>>>> Stashed changes
 
     cbreak();
     noecho();
@@ -31,10 +25,6 @@ int main() {
     keypad(stdscr, TRUE);
     timeout(0);
 
-<<<<<<< Updated upstream
-    RoomLayout room;
-    start_level(&room, Level_1c4_map, Level_1c4);
-=======
     // Tampilkan lobby screen dan ambil pilihan user
     int menu_choice = show_lobby_screen();
     
@@ -43,7 +33,7 @@ int main() {
         case 0: // Play Game
         {
             RoomLayout room;
-            Level_1c2(&room);
+            start_level(&room, Level_1c4_map, Level_1c4);
 
             while (1) {
                 update_box_activation_status(&room);
@@ -68,7 +58,7 @@ int main() {
                     
                     break;
                 }
-                handle_input(&room, Level_1c2_map);
+                handle_input(&room, Level_1c2_map, Level_1c2);
             }
             break;
         }
@@ -79,7 +69,6 @@ int main() {
             endwin();
             return 0;
     }
->>>>>>> Stashed changes
 
     endwin();
     return 0;
