@@ -11,6 +11,8 @@
           "SOKOBANGAME/GAMEPLAY/ARENA_LOGIC/Level.c",
           "SOKOBANGAME/GAMEPLAY/ARENA_LOGIC/RoomFactory.c",
           "SOKOBANGAME/GAMEPLAY/GAME_LOGIC/GameLogic.c",
+          "SOKOBANGAME/GAMEPLAY/GAME_LOGIC/ButtonGame.c",
+          "SOKOBANGAME/GAMEPLAY/GAME_LOGIC/GameStart.c",
           "-ISOKOBANGAME/UTILS/include",
           "-LSOKOBANGAME/UTILS/lib",
           "-lpdcurses",

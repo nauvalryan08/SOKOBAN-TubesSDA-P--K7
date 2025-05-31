@@ -1,5 +1,6 @@
 #include "GameLogic.h"
 #include "../ARENA_LOGIC/Level.h"
+#include "ButtonGame.h"
 
 
 //===========================================================//
@@ -48,77 +49,6 @@ void move_player (RoomLayout *room, int dx, int dy, const char **map) {
 }
 
 
-//=======================================================================//
-//== Method untuk menerima input KEY ARROW dan menjalankan pemeriksaan ==//
-//=======================================================================//
-/* {Sopian} */
-
-void handle_input (RoomLayout *room, const char **map) {
-    int ch = getch();
-
-    switch (ch) {
-        case KEY_UP :
-            move_player(room, 0, -1, map);
-            break;
-        case KEY_DOWN :
-            move_player(room, 0, +1, map);
-            break;
-        case KEY_LEFT :
-            move_player(room, -1, 0, map);
-            break;
-        case KEY_RIGHT :
-            move_player(room, +1, 0, map);
-            break;
-    }
-}
-
-//==========================================================//
-//== Method untuk menjalankan Level berdasarkan Parameter ==//
-//==========================================================//
-/* {Sopian} */
-
-void start_level (RoomLayout *room, const char **map, InitLevel init_level) {
-    init_level(room);                    // dari level.c
-
-    while (1) {
-        update_box_activation_status (room);
-        update_finish_activation_status (room);
-        print_room (map, room);
-
-        if (is_victory(room)) {
-            // Bersihkan layar dulu kalau mau
-            clear();
-
-            // Ambil ukuran layar
-            int max_y, max_x;
-            getmaxyx(stdscr, max_y, max_x);
-
-            const char *msg1 = "^_^ KAMU MENANG! ^_^";
-            const char *msg2 = "Tekan ENTER untuk lanjut...";
-
-            // Tampilkan teks di tengah layar
-            mvprintw(max_y / 2 - 1, (max_x - strlen(msg1)) / 2, "%s", msg1);
-            mvprintw(max_y / 2 + 1, (max_x - strlen(msg2)) / 2, "%s", msg2);
-
-            refresh();
-
-            // Tunggu sampai user tekan ENTER
-            int ch;
-            do {
-                ch = getch();
-            } while (ch != 10 && ch != KEY_ENTER);
-
-            break; // Keluar dari loop game
-        }
-        handle_input (room, map);
-
-        // napms(30);
-    }
-}
-
-
-
-
 //=============================================================//
 //== Method untuk memeriksa apakah box sudah diposisi target ==//
 //=============================================================//
@@ -137,6 +67,7 @@ void update_box_activation_status(RoomLayout *room) {
         }
     }
 }
+
 
 //===============================================================//
 //== Method untuk memeriksa apakah finsih sudah diposisi aktif ==//

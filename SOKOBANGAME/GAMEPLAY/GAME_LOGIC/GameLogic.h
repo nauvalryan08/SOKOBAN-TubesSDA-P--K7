@@ -13,20 +13,6 @@ typedef void (*InitLevel)(RoomLayout*);
 void move_player (RoomLayout *room, int dx, int dy, const char **map);
 
 
-//=======================================================================//
-//== Method untuk menerima input KEY ARROW dan menjalankan pemeriksaan ==//
-//=======================================================================//
-/* {Sopian} */
-void handle_input (RoomLayout *room, const char **map);
-
-
-//==========================================================//
-//== Method untuk menjalankan Level berdasarkan Parameter ==//
-//==========================================================//
-/* {Sopian} */
-void start_level (RoomLayout *room, const char **map, InitLevel init_level);
-
-
 //=============================================================//
 //== Method untuk memeriksa apakah box sudah diposisi target ==//
 //=============================================================//

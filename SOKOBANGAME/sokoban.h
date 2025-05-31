@@ -18,5 +18,7 @@
 #include "GAMEPLAY/ARENA_LOGIC/level.h"
 
 #include "GAMEPLAY/GAME_LOGIC/GameLogic.h"
+#include "GAMEPLAY/GAME_LOGIC/ButtonGame.h"
+#include "GAMEPLAY/GAME_LOGIC/GameStart.h"
 
 #endif

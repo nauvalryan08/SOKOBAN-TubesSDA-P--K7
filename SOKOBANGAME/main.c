@@ -20,7 +20,7 @@ int main() {
     timeout(0);
 
     RoomLayout room;
-    start_level(&room, Level_1c3_map, Level_1c3);
+    start_level(&room, Level_1c4_map, Level_1c4);
 
     getch();
     endwin();

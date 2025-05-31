@@ -38,6 +38,17 @@ const char *Level_1c3_map[] = {
     NULL
 };
 
+const char *Level_1c4_map[] = {
+    "###################",
+    "#       #####   #.#",
+    "# ### #       # # #",
+    "#   # $ # ### # #@#",
+    "#   $ # #         #",
+    "# # ### #$####### #",
+    "#F#.#.            #",
+    "###################",   
+    NULL
+};
 
 
 
@@ -56,4 +67,8 @@ void Level_1c2 (RoomLayout *room) {
 
 void Level_1c3 (RoomLayout *room) {
     parse_room(Level_1c3_map, room);
+}
+
+void Level_1c4 (RoomLayout *room) {
+    parse_room(Level_1c4_map, room);
 }
