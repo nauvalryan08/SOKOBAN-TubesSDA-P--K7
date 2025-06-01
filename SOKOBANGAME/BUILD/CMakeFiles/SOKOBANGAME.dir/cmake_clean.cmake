@@ -1,0 +1,33 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/SOKOBANGAME.dir/GAMEPLAY/ARENA_LOGIC/Level.c.obj"
+  "CMakeFiles/SOKOBANGAME.dir/GAMEPLAY/ARENA_LOGIC/Level.c.obj.d"
+  "CMakeFiles/SOKOBANGAME.dir/GAMEPLAY/ARENA_LOGIC/RoomFactory.c.obj"
+  "CMakeFiles/SOKOBANGAME.dir/GAMEPLAY/ARENA_LOGIC/RoomFactory.c.obj.d"
+  "CMakeFiles/SOKOBANGAME.dir/GAMEPLAY/GAME_LOGIC/ButtonGame.c.obj"
+  "CMakeFiles/SOKOBANGAME.dir/GAMEPLAY/GAME_LOGIC/ButtonGame.c.obj.d"
+  "CMakeFiles/SOKOBANGAME.dir/GAMEPLAY/GAME_LOGIC/GameLogic.c.obj"
+  "CMakeFiles/SOKOBANGAME.dir/GAMEPLAY/GAME_LOGIC/GameLogic.c.obj.d"
+  "CMakeFiles/SOKOBANGAME.dir/GAMEPLAY/GAME_LOGIC/GameStart.c.obj"
+  "CMakeFiles/SOKOBANGAME.dir/GAMEPLAY/GAME_LOGIC/GameStart.c.obj.d"
+  "CMakeFiles/SOKOBANGAME.dir/STRUCTURES/list.c.obj"
+  "CMakeFiles/SOKOBANGAME.dir/STRUCTURES/list.c.obj.d"
+  "CMakeFiles/SOKOBANGAME.dir/STRUCTURES/queue.c.obj"
+  "CMakeFiles/SOKOBANGAME.dir/STRUCTURES/queue.c.obj.d"
+  "CMakeFiles/SOKOBANGAME.dir/STRUCTURES/stack.c.obj"
+  "CMakeFiles/SOKOBANGAME.dir/STRUCTURES/stack.c.obj.d"
+  "CMakeFiles/SOKOBANGAME.dir/STRUCTURES/tree.c.obj"
+  "CMakeFiles/SOKOBANGAME.dir/STRUCTURES/tree.c.obj.d"
+  "CMakeFiles/SOKOBANGAME.dir/VIEW/lobbyscreen.c.obj"
+  "CMakeFiles/SOKOBANGAME.dir/VIEW/lobbyscreen.c.obj.d"
+  "CMakeFiles/SOKOBANGAME.dir/main.c.obj"
+  "CMakeFiles/SOKOBANGAME.dir/main.c.obj.d"
+  "SOKOBANGAME.exe"
+  "SOKOBANGAME.exe.manifest"
+  "SOKOBANGAME.pdb"
+  "libSOKOBANGAME.dll.a"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang C)
+  include(CMakeFiles/SOKOBANGAME.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()
