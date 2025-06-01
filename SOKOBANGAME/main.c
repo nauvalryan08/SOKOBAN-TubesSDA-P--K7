@@ -1,3 +1,4 @@
+#include "VIEW/levelscreen.h"
 #include "sokoban.h"
 
 int main() {
@@ -22,20 +23,20 @@ int main() {
   int menu_choice = show_lobby_screen();
   RoomLayout room;
 
-    while (menu_choice != 4) {
-        // Handle pilihan menu
-        switch (menu_choice) {
-            case 0: // Play Game
-                start_level(&room, ALL_LEVELS[LEVEL_1C4].map);
-
-                break;
-            case 1: // History
-                // Implementasi fitur history
-                break;
-            case 4: // Quit Game
-                break;
-        }
+  while (menu_choice != 4) {
+    // Handle pilihan menu
+    switch (menu_choice) {
+    case 0: // Play Game
+      // start_level(&room, ALL_LEVELS[LEVEL_1C4].map);
+      print_lvl(&room);
+      break;
+    case 1: // History
+      // Implementasi fitur history
+      break;
+    case 4: // Quit Game
+      break;
     }
+  }
 
   endwin();
   return 0;
