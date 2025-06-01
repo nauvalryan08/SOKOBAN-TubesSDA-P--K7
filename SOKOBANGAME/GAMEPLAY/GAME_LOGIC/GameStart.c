@@ -5,12 +5,12 @@
 //==========================================================//
 /* {Sopian} */
 
-void start_level (RoomLayout *room, const char **map, InitLevel init_level) {
+void start_level (RoomLayout *room, const char **map) {
 
     Stack StackUndo;
     stack_init(&StackUndo);
 
-    init_level(room);                    // dari level.c
+    parse_room(room, map);      //parsing data berdasarkan map
 
     //simpan data roomLayout ke undo stack
     save_state(&StackUndo, room);
@@ -19,6 +19,8 @@ void start_level (RoomLayout *room, const char **map, InitLevel init_level) {
         update_box_activation_status (room);
         update_finish_activation_status (room);
         print_room (map, room);
+
+        handle_input (room, map, &StackUndo);
 
         if (is_victory(room)) {
             // Bersihkan layar dulu kalau mau
@@ -45,8 +47,6 @@ void start_level (RoomLayout *room, const char **map, InitLevel init_level) {
 
             break; // Keluar dari loop game
         }
-        handle_input (room, map, init_level, &StackUndo);
-
     }
 
     //bersihkan chace pada stack

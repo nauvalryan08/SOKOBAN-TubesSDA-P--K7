@@ -3,33 +3,57 @@
 
 #include "RoomFactory.h"
 
+typedef struct {
+    const char *level_id;           //Untuk traversal dan searching
+    const char *level_name;         //Display name saat runtime
+    const char **map;               //Map level
+    boolean is_unlcoked;            //Status unlocked
+    boolean is_finished;            //Status pernah diselesaikan
+}LevelData;
+
+
+typedef enum {
+    LEVEL_1C1,
+    LEVEL_1C2,
+    LEVEL_1C3,
+    LEVEL_1C4,
+    LEVEL_1C5,
+    LEVEL_1C6,
+    LEVEL_1C7,
+    LEVEL_1C8,
+    LEVEL_COUNT
+}LevelID;
+
+extern LevelData ALL_LEVELS[LEVEL_COUNT];
+
 //============================================//
-//==> MODUL INISIASI ARENA DAN LEVEL-LEVEL <==//
+//==> MODUL Definisi ARENA DAN LEVEL-LEVEL <==//
 //============================================//
 /* {Sopian} */
 
 extern const char *Level_1c1_map[];
-void Level_1c1 (RoomLayout *room);
 
 extern const char *Level_1c2_map[];
-void Level_1c2 (RoomLayout *room);
 
 extern const char *Level_1c3_map[];
-void Level_1c3 (RoomLayout *room);
 
 extern const char *Level_1c4_map[];
-void Level_1c4 (RoomLayout *room);
 
 extern const char *Level_1c5_map[];
-void Level_1c5 (RoomLayout *room);
 
 extern const char *Level_1c6_map[];
-void Level_1c6 (RoomLayout *room);
 
 extern const char *Level_1c7_map[];
-void Level_1c7 (RoomLayout *room);
 
 extern const char *Level_1c8_map[];
-void Level_1c8 (RoomLayout *room);
+
+
+//==============================================//
+//==> MODUL MANAGEMENT ARENA DAN LEVEL-LEVEL <==//
+//==============================================//
+/* {Sopian} */
+
+LevelData* get_level_by_id(const char* level_id);
+
 
 #endif

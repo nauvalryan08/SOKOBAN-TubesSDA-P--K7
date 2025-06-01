@@ -5,7 +5,7 @@
 //===============================================================//
 /* {Sopian} */
 
-void parse_room(const char **map, RoomLayout *room) {
+void parse_room(RoomLayout *room, const char **map) {
     int x, y;
 
     room->box_count = 0;
@@ -40,70 +40,83 @@ void parse_room(const char **map, RoomLayout *room) {
 /* {Sopian} */
 
 //==>  SIMBOL OBJECT & ICON  <==//
-const char* TARGET_BOX = "\xE2\x80\xA2";
 
+
+//================================>
 
 void print_room(const char **map, const RoomLayout *room) {
     int x, y, i;
     char tile;
 
-    clear(); // Bersihkan layar
+    int min_height = 20;
+    int min_width = 50;
 
-    // 1. Gambar arena dari map[] (tembok, lantai)
+    // Hitung ukuran map
+    int map_height = 0;
+    int map_width = 0;
+    for (y = 0; map[y] != NULL; y++) {
+        int row_len = strlen(map[y]);
+        if (row_len > map_width) map_width = row_len;
+        map_height++;
+    }
+
+    clear();
+
+    // Tampilkan ukuran terminal
+    char size_info[50];
+    snprintf(size_info, sizeof(size_info), "Terminal: %d x %d", COLS, LINES);
+    mvprintw(0, 0, "%s", size_info);
+
+    if (LINES < min_height || COLS < min_width || LINES < map_height || COLS < map_width) {
+        const char *msg = "Please resize terminal to fit the arena";
+        int msg_y = LINES / 2;
+        int msg_x = (COLS - strlen(msg)) / 2;
+        mvprintw(msg_y, msg_x > 0 ? msg_x : 0, "%s", msg);
+        refresh();
+        return;
+    }
+
+    int offset_y = (LINES - map_height) / 2;
+    int offset_x = (COLS - map_width) / 2;
+
+    // Gambar map
     for (y = 0; map[y] != NULL; y++) {
         for (x = 0; map[y][x] != '\0'; x++) {
             tile = map[y][x];
-            // Mengabaikan karakter dinamis dari map 
-            if (tile == '@' || tile == '$' || tile == '.' || tile == 'F') {
-                mvaddch(y, x, ' ');
-            } else if (tile == '#') {
-                mvaddch(y, x, '\xDB');
+            int dy = offset_y + y;
+            int dx = offset_x + x;
+
+            if (tile == '#') {
+                mvaddch(dy, dx, '\xDB');
             }
         }
     }
 
-    // 2. Gambar target (.)
+    // Target
     for (i = 0; i < room->target_count; i++) {
         attron(COLOR_PAIR(4) | A_BOLD);
-        mvprintw(room->targets[i].y, room->targets[i].x, "\xFA");
-        attron(COLOR_PAIR(4) | A_BOLD);
+        mvprintw(offset_y + room->targets[i].y, offset_x + room->targets[i].x, "\xFA");
+        attroff(COLOR_PAIR(4) | A_BOLD);
     }
 
-    // 3. Gambar box ($)
+    // Box
     for (i = 0; i < room->box_count; i++) {
-        if (room->boxes[i].is_activated) {
-            attron(COLOR_PAIR(2) | A_BOLD);
-            mvprintw(room->boxes[i].y, room->boxes[i].x, "\xFE");
-            attroff(COLOR_PAIR(2) | A_BOLD);
-        } else {
-            attron(COLOR_PAIR(1) | A_BOLD);
-            mvprintw(room->boxes[i].y, room->boxes[i].x, "\xFE");
-            attroff(COLOR_PAIR(1) | A_BOLD);
-        }
-    }
-
-    // 4. Gambar finish (F)
-    if (is_finish_activated(room)) {
-        attron(COLOR_PAIR(2) | A_BOLD);
-        mvaddch(room->finish.y, room->finish.x, 'F');
+        attron((room->boxes[i].is_activated ? COLOR_PAIR(2) : COLOR_PAIR(1)) | A_BOLD);
+        mvprintw(offset_y + room->boxes[i].y, offset_x + room->boxes[i].x, "\xFE");
+        attroff(COLOR_PAIR(1) | A_BOLD);
         attroff(COLOR_PAIR(2) | A_BOLD);
-    } else {
-        attron(COLOR_PAIR(3) | A_DIM);
-        mvaddch(room->finish.y, room->finish.x, 'F');
-        attroff(COLOR_PAIR(3) | A_DIM);
     }
 
-    // 5. Gambar player (@)
-    mvaddch(room->player.y, room->player.x, '@');
+    // Finish
+    attron(is_finish_activated(room) ? (COLOR_PAIR(2) | A_BOLD) : (COLOR_PAIR(3) | A_DIM));
+    mvaddch(offset_y + room->finish.y, offset_x + room->finish.x, 'F');
+    attroff(COLOR_PAIR(2) | A_BOLD);
+    attroff(COLOR_PAIR(3) | A_DIM);
 
-    mvprintw(15, 10, "box count : %d", room->box_count);
-    mvprintw(16, 10, "box 1 activated : %d", room->boxes[0].is_activated);
-    mvprintw(17, 10, "box 2 activated : %d", room->boxes[1].is_activated);
-    mvprintw(18, 10, "finish activated : %d", room->finish.is_activated);
+    // Player
+    mvaddch(offset_y + room->player.y, offset_x + room->player.x, '@');
 
-
-
-    refresh(); // Tampilkan ke layar
+    refresh();
 }
 
 

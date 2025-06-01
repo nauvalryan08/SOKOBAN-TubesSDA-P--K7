@@ -17,7 +17,7 @@
 //== Method untuk menjalankan Level berdasarkan Parameter ==//
 //==========================================================//
 /* {Sopian} */
-void start_level (RoomLayout *room, const char **map, InitLevel init_level);
+void start_level (RoomLayout *room, const char **map);
 
 
 #endif

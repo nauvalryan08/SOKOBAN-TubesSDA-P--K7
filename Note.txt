@@ -15,6 +15,14 @@
 --> Chapter 5 : 15 Level;
 --> Bonus Arena : total 5;
 
+- [1 JUNI 2025] {sopian} :
+--> Pengembangan Layar output Game start harus bisa resize layar terminal
+--> mengindahkan tampilan terminal saat game start
+--> Memperbaiki struktur data queue agar bisa dipakai baik untuk hint dan queue of tree chapter
+--> menerapkan chapter dan level saat pemilihan
+--> melanjutkan membuat 90 level
+--> refactoring penempatan file kurang tepat
+
 
 
 

@@ -27,7 +27,8 @@ int main() {
         // Handle pilihan menu
         switch (menu_choice) {
             case 0: // Play Game
-                start_level(&room, Level_1c3_map, Level_1c3);
+                start_level(&room, ALL_LEVELS[LEVEL_1C4].map);
+
                 break;
             case 1: // History
                 // Implementasi fitur history

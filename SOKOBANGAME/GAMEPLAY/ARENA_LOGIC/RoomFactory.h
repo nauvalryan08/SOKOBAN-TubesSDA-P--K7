@@ -34,7 +34,7 @@ typedef struct {
 //==>  Method untuk menyimpan data objek pad arena ke struct  <==//
 //===============================================================//
 /* {Sopian} */
-void parse_room(const char **map, RoomLayout *room);
+void parse_room(RoomLayout* room, const char **map);
 
 //===================================//
 //==>  Menghasilkan Output Arena  <==//

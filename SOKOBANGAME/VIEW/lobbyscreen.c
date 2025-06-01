@@ -297,6 +297,10 @@ int show_lobby_screen() {
     if (LINES < 25) {
         menu_start_y = 10;
     }
+
+    // Inisialisasi input non-blocking
+    nodelay(stdscr, TRUE);
+    keypad(stdscr, TRUE);
     
     while (1) {
         clear();
@@ -317,8 +321,13 @@ int show_lobby_screen() {
             if (msg_y < LINES && msg_y >= 0) {
                 mvprintw(msg_y, msg_x, "%s", msg);
             }
+            
             refresh();
-            napms(100);
+
+            ch = getch();
+            if (ch == KEY_RESIZE) {
+                resize_term(0, 0);
+            }
             continue;
         }
         
@@ -358,9 +367,12 @@ int show_lobby_screen() {
             case KEY_ENTER:
                 return selected;
             case KEY_RESIZE:
-                // Handle resize
-                clear();
-                refresh();
+                resize_term(0, 0);
+                break;
+            case ERR:
+                // Tidak ada input – tidak apa
+                break;
+            default:
                 break;
         }
         

@@ -11,7 +11,7 @@
 //== Method untuk melakukan pemeriksaan sata akan bergerak ==//
 //===========================================================//
 /* {Sopian} */
-void move_player (RoomLayout *room, int dx, int dy, const char **map) {
+boolean move_player (RoomLayout *room, int dx, int dy, const char **map) {
     int new_x = room->player.x + dx;
     int new_y = room->player.y + dy;
 
@@ -27,12 +27,12 @@ void move_player (RoomLayout *room, int dx, int dy, const char **map) {
             box_new_y = new_y + dy;
 
             if (map[box_new_y][box_new_x] == '#' || 
-                map[box_new_y][box_new_x] == '\0' ) return;
+                map[box_new_y][box_new_x] == '\0' ) return false;
 
             //memastikan tidak menabrak box lain
             for ( j = 0 ; j < room->box_count ; j++) {
                 if (room->boxes[j].x == box_new_x && 
-                    room->boxes[j].y == box_new_y) return;
+                    room->boxes[j].y == box_new_y) return false;
             }
 
             //gerakan box
@@ -42,14 +42,18 @@ void move_player (RoomLayout *room, int dx, int dy, const char **map) {
             //pindahkan posisi player
             room->player.x = new_x;
             room->player.y = new_y;
-            return;
+            return true;
         }
     }
     //kalau tidak menabrak obstakel apapun
     if (map[new_y][new_x] != '#') {
         room->player.x = new_x;
         room->player.y = new_y;
+
+        return true;
     }
+
+    return false;
 }
 
 
@@ -107,8 +111,8 @@ void update_finish_activation_status(RoomLayout *room) {
 //=====================//
 /* {Sopian} */
 
-void reset_game(RoomLayout *room, InitLevel Level) {
-    Level(room);
+void reset_game(RoomLayout *room, const char **map) {
+    parse_room(room, map);
 }
 
 //=====================//
