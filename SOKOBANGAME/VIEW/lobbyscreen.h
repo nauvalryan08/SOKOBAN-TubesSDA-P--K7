@@ -1,7 +1,7 @@
 #ifndef LOBBYSCREEN_H
 #define LOBBYSCREEN_H
 
-#include "../../UTILS/include/curses.h"
+#include "../UTILS/include/curses.h"
 
 
 #define MENU_ITEMS 5
