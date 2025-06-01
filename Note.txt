@@ -32,3 +32,6 @@
 ==> RANCANGAN :
 - Arena Logic [DONE 75%]
 - GAME LOGIC MOVEMENT [DONE 90%]            
+
+==> CATATAN :
+- [01 Juni 2025] Agar memudahkan proses compile menggunakan gcc, hanya perlu menjalankan installrequirement.ps1 di powershell (bukan di cmd.exe) dan juga menjalankan build.ps1
