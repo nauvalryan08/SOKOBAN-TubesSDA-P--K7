@@ -3,6 +3,7 @@
 
 #define maxbtn_area 50
 
+#include "../GAMEPLAY/ARENA_LOGIC/Level.h"
 #include "../GAMEPLAY/GAME_LOGIC/GameStart.h"
 #include "../UTILS/include/curses.h"
 #include <stdio.h>
