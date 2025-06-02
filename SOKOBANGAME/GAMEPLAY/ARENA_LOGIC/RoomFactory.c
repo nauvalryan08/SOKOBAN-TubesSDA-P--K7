@@ -48,6 +48,8 @@ void print_room(const char **map, const RoomLayout *room) {
     int x, y, i;
     char tile;
 
+    curs_set(0); // Hide the cursor
+
     int min_height = 20;
     int min_width = 50;
 

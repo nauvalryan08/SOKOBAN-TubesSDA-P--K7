@@ -23,7 +23,7 @@ boolean is_Undo_pressed(int ch) {
 //=======================================================================//
 /* {Sopian} */
 
-void handle_input (RoomLayout *room, const char **map, Stack *UndoStack) {
+void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, int *keyOutput) {
     int ch = getch();
     boolean valid = false;
 
@@ -63,6 +63,9 @@ void handle_input (RoomLayout *room, const char **map, Stack *UndoStack) {
         case 'u' :
         case 'U' :
             undo_game(UndoStack, room);
+            break;
+        case 27:
+            *keyOutput = 27;
             break;
     }
 }

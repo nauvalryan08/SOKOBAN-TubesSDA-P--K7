@@ -8,6 +8,7 @@
 void start_level (RoomLayout *room, const char **map) {
 
     Stack StackUndo;
+    int keyOutput = 0;
     stack_init(&StackUndo);
 
     parse_room(room, map);      //parsing data berdasarkan map
@@ -20,7 +21,11 @@ void start_level (RoomLayout *room, const char **map) {
         update_finish_activation_status (room);
         print_room (map, room);
 
-        handle_input (room, map, &StackUndo);
+        handle_input (room, map, &StackUndo, &keyOutput);
+
+        if (keyOutput == 27) { // ESC key pressed
+            break; // Exit game loop
+        }
 
         if (is_victory(room)) {
             // Bersihkan layar dulu kalau mau

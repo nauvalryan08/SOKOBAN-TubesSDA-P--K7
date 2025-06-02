@@ -1,4 +1,5 @@
 #include "sokoban.h"
+#include "VIEW/LevelScreen.h"
 
 int main() {
 
@@ -19,15 +20,23 @@ int main() {
   timeout(0);
 
   // Tampilkan lobby screen dan ambil pilihan user
-  int menu_choice = show_lobby_screen();
+  int menu_choice;
   RoomLayout room;
+  LevelData* selected_level;
 
     while (menu_choice != 4) {
         // Handle pilihan menu
+
+        menu_choice = show_lobby_screen();
+        
         switch (menu_choice) {
             case 0: // Play Game
-                start_level(&room, ALL_LEVELS[LEVEL_1C4].map);
-
+                {
+                    selected_level = select_level();
+                    if (selected_level != NULL) {
+                        run_level(selected_level);
+                    }
+                }
                 break;
             case 1: // History
                 // Implementasi fitur history

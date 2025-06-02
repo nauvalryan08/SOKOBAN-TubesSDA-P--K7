@@ -8,7 +8,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define MAX_OBJECTS 15
+#define MAX_OBJECTS 50
 
 //================================//
 //==>  STRUCT OBJECT & LAYOUT  <==//
