@@ -271,6 +271,10 @@ int show_lobby_screen() {
     menu_start_y = 10;
   }
 
+  // Inisialisasi input non-blocking
+  nodelay(stdscr, TRUE);
+  keypad(stdscr, TRUE);
+
   while (1) {
     clear();
 
@@ -279,27 +283,6 @@ int show_lobby_screen() {
     snprintf(size_info, sizeof(size_info), "Terminal: %dx%d (min %dx%d)", COLS,
              LINES, min_width, min_height);
     mvprintw(0, 0, "%s", size_info);
-
-    // Periksa ukuran terminal
-    if (LINES < min_height || COLS < min_width) {
-      char msg[100];
-      snprintf(msg, sizeof(msg), "Please resize terminal to at least %dx%d",
-               min_width, min_height);
-      int msg_y = LINES / 2;
-      int msg_x = (COLS - strlen(msg)) / 2;
-      if (msg_x < 0)
-        msg_x = 0;
-      if (msg_y < LINES && msg_y >= 0) {
-        mvprintw(msg_y, msg_x, "%s", msg);
-      }
-      refresh();
-      napms(100);
-      continue;
-    }
-
-    // Inisialisasi input non-blocking
-    nodelay(stdscr, TRUE);
-    keypad(stdscr, TRUE);
     
     while (1) {
         clear();

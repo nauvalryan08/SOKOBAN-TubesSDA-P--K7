@@ -1,16 +1,23 @@
 #ifndef LEVELSCREEN_H
-#define LOBBYSCREEN_H
+#define LEVELSCREEN_H
 
-#define maxbtn_area 50
-
+#include <curses.h>
+#include "../GAMEPLAY/ARENA_LOGIC/RoomFactory.h"
 #include "../GAMEPLAY/ARENA_LOGIC/Level.h"
-#include "../GAMEPLAY/GAME_LOGIC/GameStart.h"
-#include "../UTILS/include/curses.h"
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
 
-void print_lvl(RoomLayout *room);
-void acs_converter(char **asciiart);
+// Function to display the level selection screen
+void show_level_selection_screen();
 
-#endif // !LEVELSCREEN_H
+// Function to handle level selection using arrow keys
+LevelData* select_level();
+
+// Function to display and run the selected level
+void run_level(LevelData* selected_level);
+
+// Helper function to display level information
+void display_level_info(LevelData* level);
+
+// Helper function to handle level input
+int handle_level_input();
+
+#endif // LEVEL_SCREEN_H 
