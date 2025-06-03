@@ -9,6 +9,9 @@ void start_level (RoomLayout *room, const char **map) {
 
     Stack StackUndo;
     int keyOutput = 0;
+    int prev_lines = LINES;
+    int prev_cols = COLS;
+
     stack_init(&StackUndo);
 
     parse_room(room, map);      //parsing data berdasarkan map
@@ -17,6 +20,17 @@ void start_level (RoomLayout *room, const char **map) {
     save_state(&StackUndo, room);
 
     while (1) {
+        prev_lines = LINES;
+        prev_cols = COLS;
+
+        if (is_termresized()) {
+            // Update ukuran terminal
+            resize_term(0, 0);
+            prev_lines = LINES;
+            prev_cols = COLS;
+            clear(); // Bersihkan layar agar tidak ada artefak lama
+        }
+
         update_box_activation_status (room);
         update_finish_activation_status (room);
         print_room (map, room);

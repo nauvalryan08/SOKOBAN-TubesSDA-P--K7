@@ -260,6 +260,8 @@ int show_lobby_screen() {
   int frame = 0;
   int selected = 0;
   int ch;
+  int prev_lines = LINES;
+  int prev_cols = COLS;
 
   // Ukuran minimal yang lebih kecil
   int min_height = 20;
@@ -276,90 +278,83 @@ int show_lobby_screen() {
   keypad(stdscr, TRUE);
 
   while (1) {
+    
+    if (LINES != prev_lines || COLS != prev_cols) {
+      resize_term(0, 0); // Sync ukuran dengan terminal
+      prev_lines = LINES;
+      prev_cols = COLS;
+    }
+
     clear();
 
     // Tampilkan ukuran terminal saat ini untuk debug
     char size_info[50];
-    snprintf(size_info, sizeof(size_info), "Terminal: %dx%d (min %dx%d)", COLS,
-             LINES, min_width, min_height);
+    snprintf(size_info, sizeof(size_info), "Terminal: %dx%d (min %dx%d)", 
+    COLS, LINES, min_width, min_height);
     mvprintw(0, 0, "%s", size_info);
-    
-    while (1) {
-        clear();
         
-        // Tampilkan ukuran terminal saat ini untuk debug
-        char size_info[50];
-        snprintf(size_info, sizeof(size_info), "Terminal: %dx%d (min %dx%d)", 
-                 COLS, LINES, min_width, min_height);
-        mvprintw(0, 0, "%s", size_info);
-        
-        // Periksa ukuran terminal
-        if (LINES < min_height || COLS < min_width) {
-            char msg[100];
-            snprintf(msg, sizeof(msg), "Please resize terminal to at least %dx%d", min_width, min_height);
-            int msg_y = LINES / 2;
-            int msg_x = (COLS - strlen(msg)) / 2;
-            if (msg_x < 0) msg_x = 0;
-            if (msg_y < LINES && msg_y >= 0) {
-                mvprintw(msg_y, msg_x, "%s", msg);
-            }
-            
-            refresh();
+    // Pesan jika terlalu kecil
+    if (LINES < min_height || COLS < min_width) {
+      const char *msg = "Please resize terminal to at least 50x20";
+      int msg_y = LINES / 2;
+      int msg_x = (COLS - strlen(msg)) / 2;
+      mvprintw(msg_y, msg_x > 0 ? msg_x : 0, "%s", msg);
 
-            ch = getch();
-            if (ch == KEY_RESIZE) {
-                resize_term(0, 0);
-            }
-            continue;
-        }
+      if (KEY_RESIZE) {
+        resize_term(0,0);
+      }
+      refresh();
+      // napms(100);
+
+    } else {
         
-        // Judul game
-        attron(COLOR_PAIR(1) | A_BOLD);
-        print_sokoban_title();
-        attroff(COLOR_PAIR(1) | A_BOLD);
+      // Judul game
+      attron(COLOR_PAIR(1) | A_BOLD);
+      print_sokoban_title();
+      attroff(COLOR_PAIR(1) | A_BOLD);
         
-        // Animasi
-        if (LINES > 10) {
-            attron(COLOR_PAIR(2));
-            draw_sokoban_animation(&anim, frame);
-            attroff(COLOR_PAIR(2));
-            frame = (frame + 1) % ANIMATION_FRAMES;
-        }
+      // Animasi
+      // if (LINES > 10) {
+      //     attron(COLOR_PAIR(2));
+      //     draw_sokoban_animation(&anim, frame);
+      //     attroff(COLOR_PAIR(2));
+      //     frame = (frame + 1) % ANIMATION_FRAMES;
+      // }
         
-        // Menu dalam kotak
-        show_menu(selected, menu_start_y);
+      // Menu dalam kotak
+      show_menu(selected, menu_start_y);
         
-        // Petunjuk
-        if (LINES > menu_start_y + 10) {
-            const char *hint1 = "ARROW KEYS: Navigate";
-            const char *hint2 = "ENTER: Select";
-            mvprintw(menu_start_y + 22, (COLS - strlen(hint1)) / 2, "%s", hint1);
-            mvprintw(menu_start_y + 23, (COLS - strlen(hint2)) / 2, "%s", hint2);
-        }
+      // Petunjuk
+      if (LINES > menu_start_y + 10) {
+          const char *hint1 = "ARROW KEYS: Navigate";
+          const char *hint2 = "ENTER: Select";
+          mvprintw(menu_start_y + 22, (COLS - strlen(hint1)) / 2, "%s", hint1);
+          mvprintw(menu_start_y + 23, (COLS - strlen(hint2)) / 2, "%s", hint2);
+      }
         
-        ch = getch();
-        switch (ch) {
-            case KEY_UP:
-                selected = (selected > 0) ? selected - 1 : MENU_ITEMS - 1;
-                break;
-            case KEY_DOWN:
-                selected = (selected < MENU_ITEMS - 1) ? selected + 1 : 0;
-                break;
-            case '\n':
-            case KEY_ENTER:
-                return selected;
-            case KEY_RESIZE:
-                resize_term(0, 0);
-                break;
-            case ERR:
-                // Tidak ada input – tidak apa
-                break;
-            default:
-                break;
-        }
-        
-        refresh();
-        napms(100);
+      ch = getch();
+      switch (ch) {
+          case KEY_UP:
+              selected = (selected > 0) ? selected - 1 : MENU_ITEMS - 1;
+              break;
+          case KEY_DOWN:
+              selected = (selected < MENU_ITEMS - 1) ? selected + 1 : 0;
+              break;
+          case '\n':
+          case KEY_ENTER:
+              return selected;
+          case KEY_RESIZE:
+              resize_term(0, 0);
+              break;
+          case ERR:
+              // Tidak ada input – tidak apa
+              break;
+          default:
+              break;
+      }
+      
+      refresh();
+      // napms(100);
     }
   }
 }

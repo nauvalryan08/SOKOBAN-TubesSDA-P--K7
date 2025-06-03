@@ -22,6 +22,6 @@
 #include "GAMEPLAY/GAME_LOGIC/GameStart.h"
 
 #include "VIEW/lobbyscreen.h"
-#include "view/levelscreen.h"
+#include "VIEW/LevelScreen.h"
 
 #endif

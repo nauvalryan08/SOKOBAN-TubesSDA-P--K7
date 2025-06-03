@@ -1,7 +1,7 @@
 #ifndef LEVELSCREEN_H
 #define LEVELSCREEN_H
 
-#include <curses.h>
+#include "../UTILS/include/curses.h"
 #include "../GAMEPLAY/ARENA_LOGIC/RoomFactory.h"
 #include "../GAMEPLAY/ARENA_LOGIC/Level.h"
 
