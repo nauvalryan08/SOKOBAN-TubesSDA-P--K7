@@ -5,7 +5,7 @@
 //====================//
 /* {Sopian} */
 
-const char *Level_1c1_map[] = {
+const char *Level_1t1_map[] = {
     "####################",
     "#     @     $   .  #",
     "#                  #",
@@ -14,7 +14,7 @@ const char *Level_1c1_map[] = {
     NULL
 };
 
-const char *Level_1c2_map[] = {
+const char *Level_1t2_map[] = {
     "####################",
     "# F            # . #",
     "#   $   #   $  #   #",
@@ -26,7 +26,7 @@ const char *Level_1c2_map[] = {
     NULL
 };
 
-const char *Level_1c3_map[] = {
+const char *Level_1t3_map[] = {
     "#################",
     "#F#     .       #",
     "# #   #     $   #",
@@ -38,7 +38,7 @@ const char *Level_1c3_map[] = {
     NULL
 };
 
-const char *Level_1c4_map[] = {
+const char *Level_1t4_map[] = {
     "###################",
     "#       #####   #.#",
     "# ### #       # # #",
@@ -50,7 +50,7 @@ const char *Level_1c4_map[] = {
     NULL
 };
 
-const char *Level_1c5_map[] = {
+const char *Level_1c1_map[] = {
     "    #####         ",
     "    #   #         ",
     "    #$  #         ",
@@ -65,7 +65,7 @@ const char *Level_1c5_map[] = {
     NULL
 };
 
-const char *Level_1c6_map[] = {
+const char *Level_1c2_map[] = {
     "############",
     "#..  #     ###",
     "#..  # $  $  #",
@@ -79,7 +79,7 @@ const char *Level_1c6_map[] = {
     NULL
 };
 
-const char *Level_1c7_map[] = {
+const char *Level_1c3_map[] = {
     "        ########",
     "        #  F  @#",
     "        # $#$ ##",
@@ -93,7 +93,7 @@ const char *Level_1c7_map[] = {
     NULL
 };
 
-const char *Level_1c8_map[] = {
+const char *Level_1c4_map[] = {
     "           ########",
     "           #  ....#",
     "############  ....#",
@@ -111,7 +111,7 @@ const char *Level_1c8_map[] = {
     NULL
 };
 
-const char *Level_1c9_map[] = {
+const char *Level_1c5_map[] = {
     "        #####",
     "        #  F#####",
     "        # #$##  #",
@@ -128,7 +128,7 @@ const char *Level_1c9_map[] = {
     NULL
 };
 
-const char *Level_1c10_map[] = {
+const char *Level_1c6_map[] = {
     "######  ###",
     "#..  # ##@##",
     "#..  ###   #",
@@ -143,7 +143,7 @@ const char *Level_1c10_map[] = {
     NULL
 };
 
-const char *Level_1c11_map[] = {
+const char *Level_1c7_map[] = {
     "       #####",
     " #######   ##",
     "## # @## $$ #",
@@ -159,7 +159,7 @@ const char *Level_1c11_map[] = {
     NULL
 };
 
-const char *Level_1c12_map[] = {
+const char *Level_1c8_map[] = {
     "  ####",
     "  # F###########",
     "  #    $   $ $ #",
@@ -179,7 +179,7 @@ const char *Level_1c12_map[] = {
     NULL
 };
 
-const char *Level_1c13_map[] = {
+const char *Level_2c1_map[] = {
     "          #######",
     "          #  ...#",
     "      #####  ...#",
@@ -197,7 +197,7 @@ const char *Level_1c13_map[] = {
     NULL
 };
 
-const char *Level_1c14_map[] = {
+const char *Level_2c2_map[] = {
     " ###  #############",
     "##@####       #   #",
     "#F$$   $$  $ $ ...#",
@@ -217,7 +217,7 @@ const char *Level_1c14_map[] = {
     NULL
 };
 
-const char *Level_1c15_map[] = {
+const char *Level_2c3_map[] = {
     "          ####",
     "     #### #  #",
     "   ###F@###$ #",
@@ -236,7 +236,7 @@ const char *Level_1c15_map[] = {
     NULL
 };
 
-const char *Level_1c16_map[] = {
+const char *Level_2c4_map[] = {
     "################",
     "# F            #",
     "# # ######     #",
@@ -253,7 +253,7 @@ const char *Level_1c16_map[] = {
     NULL
 };
 
-const char *Level_1c17_map[] = {
+const char *Level_2c5_map[] = {
     "   #########",
     "  ##   ## F#####",
     "###     #  #    ###",
@@ -270,7 +270,7 @@ const char *Level_1c17_map[] = {
     NULL
 };
 
-const char *Level_1c18_map[] = {
+const char *Level_2c6_map[] = {
     "       #######",
     " #######     #",
     " #   F # $@$ #",
@@ -290,7 +290,7 @@ const char *Level_1c18_map[] = {
     NULL
 };
 
-const char *Level_1c19_map[] = {
+const char *Level_2c7_map[] = {
     "   ########",
     "   #   #  #",
     "   #  $   #",
@@ -310,7 +310,7 @@ const char *Level_1c19_map[] = {
     NULL
 };
 
-const char *Level_1c20_map[] = {
+const char *Level_2c8_map[] = {
     "#####",
     "#   ##",
     "#    #  ####",
@@ -329,7 +329,7 @@ const char *Level_1c20_map[] = {
     NULL
 };
 
-const char *Level_1c21_map[] = {
+const char *Level_2c9_map[] = {
     "   ##########",
     "   #..  #   #",
     "   #..      #",
@@ -347,7 +347,7 @@ const char *Level_1c21_map[] = {
     NULL
 };
 
-const char *Level_1c22_map[] = {
+const char *Level_2c10_map[] = {
     "     ###########",
     "     #  .  #   #",
     "     # #.    @ #",
@@ -364,7 +364,7 @@ const char *Level_1c22_map[] = {
     NULL
 };
 
-const char *Level_1c23_map[] = {
+const char *Level_2c11_map[] = {
     " ######",
     " #F  @####",
     "##### $   #",
@@ -384,7 +384,7 @@ const char *Level_1c23_map[] = {
     NULL
 };
 
-const char *Level_1c24_map[] = {
+const char *Level_3c1_map[] = {
     "    ##########",
     "#####        ####",
     "#    F#   $  #@ #",
@@ -404,7 +404,7 @@ const char *Level_1c24_map[] = {
     NULL
 };
 
-const char *Level_1c25_map[] = {
+const char *Level_3c2_map[] = {
     "#########",
     "#       #",
     "#F      ####",
@@ -423,7 +423,7 @@ const char *Level_1c25_map[] = {
     NULL
 };
 
-const char *Level_1c26_map[] = {
+const char *Level_3c3_map[] = {
     "######     ####",
     "#    #######  #####",
     "#   $#  #  $  #   #",
@@ -443,7 +443,7 @@ const char *Level_1c26_map[] = {
     NULL
 };
 
-const char *Level_1c27_map[] = {
+const char *Level_3c4_map[] = {
     "    #######",
     "    #  #  ####",
     "##### $#$ # F##",
@@ -461,7 +461,7 @@ const char *Level_1c27_map[] = {
     NULL
 };
 
-const char *Level_1c28_map[] = {
+const char *Level_3c5_map[] = {
     "###############",
     "#..........  .####",
     "#..........$$.#F #",
@@ -481,7 +481,7 @@ const char *Level_1c28_map[] = {
     NULL
 };
 
-const char *Level_1c29_map[] = {
+const char *Level_3c6_map[] = {
     "####",
     "# F##############",
     "#  #   ..#......#",
@@ -501,7 +501,7 @@ const char *Level_1c29_map[] = {
     NULL
 };
 
-const char *Level_1c30_map[] = {
+const char *Level_3c7_map[] = {
     " #######",
     " #  #  #####",
     "##  #  #...###",
@@ -517,7 +517,7 @@ const char *Level_1c30_map[] = {
     NULL
 };
 
-const char *Level_1c31_map[] = {
+const char *Level_3c8_map[] = {
     " #################",
     " #...   #    # F ##",
     "##.....  $## # #$ #",
@@ -534,7 +534,7 @@ const char *Level_1c31_map[] = {
     NULL
 };
 
-const char *Level_1c32_map[] = {
+const char *Level_3c9_map[] = {
     "         #####",
     "     #####F  #",
     "    ## $  $  ####",
@@ -553,7 +553,7 @@ const char *Level_1c32_map[] = {
     NULL
 };
 
-const char *Level_1c33_map[] = {
+const char *Level_3c10_map[] = {
     "#####",
     "#   ##",
     "# $  #########",
@@ -570,7 +570,7 @@ const char *Level_1c33_map[] = {
     NULL
 };
 
-const char *Level_1c34_map[] = {
+const char *Level_3c11_map[] = {
     "       ###########",
     "       #   #     #",
     "#####  #     $ $ #",
@@ -588,7 +588,7 @@ const char *Level_1c34_map[] = {
     NULL
 };
 
-const char *Level_1c35_map[] = {
+const char *Level_3c12_map[] = {
     "  ####",
     "  # F#########",
     " ##  ##  #   #",
@@ -608,7 +608,7 @@ const char *Level_1c35_map[] = {
     NULL
 };
 
-const char *Level_1c36_map[] = {
+const char *Level_3c13_map[] = {
     "      ####",
     "  #####F #",
     " ##     $#",
@@ -627,7 +627,7 @@ const char *Level_1c36_map[] = {
     NULL
 };
 
-const char *Level_1c37_map[] = {
+const char *Level_4c1_map[] = {
     " ###########",
     " #     ##F #",
     " #   $   $ #",
@@ -646,7 +646,7 @@ const char *Level_1c37_map[] = {
     NULL
 };
 
-const char *Level_1c38_map[] = {
+const char *Level_4c2_map[] = {
     " #########",
     " #....   ##",
     " #.#.#  $ ##",
@@ -665,7 +665,7 @@ const char *Level_1c38_map[] = {
     NULL
 };
 
-const char *Level_1c39_map[] = {
+const char *Level_4c3_map[] = {
     "############ ######",
     "#F  #    # ###....#",
     "#   $$#   @  .....#",
@@ -685,7 +685,7 @@ const char *Level_1c39_map[] = {
     NULL
 };
 
-const char *Level_1c40_map[] = {
+const char *Level_4c4_map[] = {
     "            #####",
     "#####  ######F  #",
     "#   ####  $ $ $ #",
@@ -705,7 +705,7 @@ const char *Level_1c40_map[] = {
     NULL
 };
 
-const char *Level_1c41_map[] = {
+const char *Level_4c5_map[] = {
     "###########",
     "#......   #########",
     "#......   #  ##   #",
@@ -724,7 +724,7 @@ const char *Level_1c41_map[] = {
     NULL
 };
 
-const char *Level_1c42_map[] = {
+const char *Level_4c6_map[] = {
     "      ####",
     "#######F@#",
     "#     $  #",
@@ -739,7 +739,7 @@ const char *Level_1c42_map[] = {
     NULL
 };
 
-const char *Level_1c43_map[] = {
+const char *Level_4c7_map[] = {
     "             ######",
     " #############....#",
     "##   ##     ##....#",
@@ -759,7 +759,7 @@ const char *Level_1c43_map[] = {
     NULL
 };
 
-const char *Level_1c44_map[] = {
+const char *Level_4c8_map[] = {
     "    ############",
     "    #          ##",
     "    #  # #$$ $ F#",
@@ -779,7 +779,7 @@ const char *Level_1c44_map[] = {
     NULL
 };
 
-const char *Level_1c45_map[] = {
+const char *Level_4c9_map[] = {
     "           #####",
     "          ##   ##",
     "         ##     #",
@@ -798,7 +798,7 @@ const char *Level_1c45_map[] = {
     NULL
 };
 
-const char *Level_1c46_map[] = {
+const char *Level_4c10_map[] = {
     "     ########",
     "  ####      ######",
     "  #   F## $ $   @#",
@@ -815,7 +815,7 @@ const char *Level_1c46_map[] = {
     NULL
 };
 
-const char *Level_1c47_map[] = {
+const char *Level_4c11_map[] = {
     "        #######",
     "    #####  #  ####",
     "    # F #   $    #",
@@ -830,7 +830,7 @@ const char *Level_1c47_map[] = {
     NULL
 };
 
-const char *Level_1c48_map[] = {
+const char *Level_4c12_map[] = {
     " #####",
     " # F #",
     " # # #######",
@@ -849,7 +849,7 @@ const char *Level_1c48_map[] = {
     NULL
 };
 
-const char *Level_1c49_map[] = {
+const char *Level_4c13_map[] = {
     "##### ####",
     "#...# #  ####",
     "#...###  $  #",
@@ -867,7 +867,7 @@ const char *Level_1c49_map[] = {
     NULL
 };
 
-const char *Level_1c50_map[] = {
+const char *Level_4c14_map[] = {
     "##########",
     "#        ####",
     "#F###### #  ##",
@@ -887,7 +887,7 @@ const char *Level_1c50_map[] = {
     NULL
 };
 
-const char *Level_1c51_map[] = {
+const char *Level_4c15_map[] = {
     "         ####",
     " ######### F##",
     "##  $      $ #####",
@@ -902,7 +902,7 @@ const char *Level_1c51_map[] = {
     NULL
 };
 
-const char *Level_1c52_map[] = {
+const char *Level_5c1_map[] = {
     "  #########  ",
     "  #*.*#*.*#  ",
     "  #.*.*.*.#  ",
@@ -922,7 +922,7 @@ const char *Level_1c52_map[] = {
     NULL
 };
 
-const char *Level_1c53_map[] = {
+const char *Level_5c2_map[] = {
     "       ####",
     "       #F ##",
     "       #   ##",
@@ -941,7 +941,7 @@ const char *Level_1c53_map[] = {
     NULL
 };
 
-const char *Level_1c54_map[] = {
+const char *Level_5c3_map[] = {
     "      ############",
     "     ##..    #F  #",
     "    ##..* $    $ #",
@@ -961,7 +961,7 @@ const char *Level_1c54_map[] = {
     NULL
 };
 
-const char *Level_1c55_map[] = {
+const char *Level_5c4_map[] = {
     " #########",
     " #       #",
     " # $ $$ $#",
@@ -977,7 +977,7 @@ const char *Level_1c55_map[] = {
     NULL
 };
 
-const char *Level_1c56_map[] = {
+const char *Level_5c5_map[] = {
     "           ########",
     "           #......#",
     "   ####    #......#",
@@ -998,7 +998,7 @@ const char *Level_1c56_map[] = {
     NULL
 };
 
-const char *Level_1c57_map[] = {
+const char *Level_5c6_map[] = {
     "####################",
     "#    ##   #    #   #",
     "#  $  $     ## $   #",
@@ -1017,7 +1017,7 @@ const char *Level_1c57_map[] = {
     NULL
 };
 
-const char *Level_1c58_map[] = {
+const char *Level_5c7_map[] = {
     "####################",
     "#   #    #   #   #@#",
     "# $      $   $   # #",
@@ -1033,7 +1033,7 @@ const char *Level_1c58_map[] = {
     NULL
 };
 
-const char *Level_1c59_map[] = {
+const char *Level_5c8_map[] = {
     "####################",
     "#    @##      #   ##",
     "#    ##    $    $ ##",
@@ -1049,7 +1049,7 @@ const char *Level_1c59_map[] = {
     NULL
 };
 
-const char *Level_1c60_map[] = {
+const char *Level_5c9_map[] = {
     "####################",
     "#F #  ##    #   @###",
     "##    $    # $###  #",
@@ -1065,7 +1065,7 @@ const char *Level_1c60_map[] = {
     NULL
 };
 
-const char *Level_1c61_map[] = {
+const char *Level_5c10_map[] = {
     "####################",
     "#@     ###   #  # F#",
     "# # #  #  $  $     #",
@@ -1081,7 +1081,7 @@ const char *Level_1c61_map[] = {
     NULL
 };
 
-const char *Level_1c62_map[] = {
+const char *Level_5c11_map[] = {
     "####################",
     "##...   ## #    #F #",
     "#....         $ ## #",
@@ -1097,7 +1097,7 @@ const char *Level_1c62_map[] = {
     NULL
 };
 
-const char *Level_1c63_map[] = {
+const char *Level_5c12_map[] = {
     "####################",
     "#   #  #@# ##  #####",
     "# # #  $    $  #####",
@@ -1113,7 +1113,7 @@ const char *Level_1c63_map[] = {
     NULL
 };
 
-const char *Level_1c64_map[] = {
+const char *Level_5c13_map[] = {
     "####################",
     "# #     #          #",
     "#       $  ## ### ##",
@@ -1129,7 +1129,7 @@ const char *Level_1c64_map[] = {
     NULL
 };
 
-const char *Level_1c65_map[] = {
+const char *Level_5c14_map[] = {
     "####################",
     "#     ###..###     #",
     "# $$  ###..###  $@ #",
@@ -1145,7 +1145,7 @@ const char *Level_1c65_map[] = {
     NULL
 };
 
-const char *Level_1c66_map[] = {
+const char *Level_5c15_map[] = {
     "####################",
     "#    #  # #  #  # F#",
     "# @# # ## $   $   ##",
@@ -1161,7 +1161,7 @@ const char *Level_1c66_map[] = {
     NULL
 };
 
-const char *Level_1c67_map[] = {
+const char *Level_5c16_map[] = {
     "####################",
     "#....#       #  # F#",
     "#....# # $  $      #",
@@ -1177,7 +1177,7 @@ const char *Level_1c67_map[] = {
     NULL
 };
 
-const char *Level_1c68_map[] = {
+const char *Level_5c17_map[] = {
     "####################",
     "#....###           #",
     "#....##### #  #$# ##",
@@ -1193,7 +1193,7 @@ const char *Level_1c68_map[] = {
     NULL
 };
 
-const char *Level_1c69_map[] = {
+const char *Level_6c1_map[] = {
     "####################",
     "#     #     @#...###",
     "#     #      ##...##",
@@ -1209,7 +1209,7 @@ const char *Level_1c69_map[] = {
     NULL
 };
 
-const char *Level_1c70_map[] = {
+const char *Level_6c2_map[] = {
     "####################",
     "# F   #  #...#@    #",
     "# #       ....#    #",
@@ -1225,7 +1225,7 @@ const char *Level_1c70_map[] = {
     NULL
 };
 
-const char *Level_1c71_map[] = {
+const char *Level_6c3_map[] = {
     "####################",
     "#####@###.##...##F #",
     "#####$  ..#...#    #",
@@ -1241,7 +1241,7 @@ const char *Level_1c71_map[] = {
     NULL
 };
 
-const char *Level_1c72_map[] = {
+const char *Level_6c4_map[] = {
     "####################",
     "#@     #   #       #",
     "## ### ##  #### # ##",
@@ -1257,7 +1257,7 @@ const char *Level_1c72_map[] = {
     NULL
 };
 
-const char *Level_1c73_map[] = {
+const char *Level_6c5_map[] = {
     "####################",
     "#  #      #   #   ##",
     "# $# $ $ ##...$  $ #",
@@ -1273,7 +1273,7 @@ const char *Level_1c73_map[] = {
     NULL
 };
 
-const char *Level_1c74_map[] = {
+const char *Level_6c6_map[] = {
     "####################",
     "#  #  # #    #  #F #",
     "#   $      $ $     #",
@@ -1289,7 +1289,7 @@ const char *Level_1c74_map[] = {
     NULL
 };
 
-const char *Level_1c75_map[] = {
+const char *Level_6c7_map[] = {
     "####################",
     "#  #     #  ##    ##",
     "# $#   $ #     ##  #",
@@ -1305,7 +1305,7 @@ const char *Level_1c75_map[] = {
     NULL
 };
 
-const char *Level_1c76_map[] = {
+const char *Level_6c8_map[] = {
     "####################",
     "#      ....#    ####",
     "#      ....        #",
@@ -1321,7 +1321,7 @@ const char *Level_1c76_map[] = {
     NULL
 };
 
-const char *Level_1c77_map[] = {
+const char *Level_6c9_map[] = {
     "####################",
     "#        #   #@ #  #",
     "# $$  #$$# # #  ## #",
@@ -1337,7 +1337,7 @@ const char *Level_1c77_map[] = {
     NULL
 };
 
-const char *Level_1c78_map[] = {
+const char *Level_6c10_map[] = {
     "####################",
     "#     #   #####    #",
     "## $  #   ####F $  #",
@@ -1353,7 +1353,7 @@ const char *Level_1c78_map[] = {
     NULL
 };
 
-const char *Level_1c79_map[] = {
+const char *Level_6c11_map[] = {
     "####################",
     "#   #   #    #   #@#",
     "#   $  $     # $ # #",
@@ -1369,7 +1369,7 @@ const char *Level_1c79_map[] = {
     NULL
 };
 
-const char *Level_1c80_map[] = {
+const char *Level_6c12_map[] = {
     "####################",
     "# # # #   #@##   # #",
     "#             $    #",
@@ -1385,7 +1385,7 @@ const char *Level_1c80_map[] = {
     NULL
 };
 
-const char *Level_1c81_map[] = {
+const char *Level_6c13_map[] = {
     "######  #####",
     "#    #  #   #",
     "# $  #### $ #",
@@ -1402,7 +1402,7 @@ const char *Level_1c81_map[] = {
     NULL
 };
 
-const char *Level_1c82_map[] = {
+const char *Level_6c14_map[] = {
     "       ###########",
     "       #         #",
     "       #    $ $  #",
@@ -1418,7 +1418,7 @@ const char *Level_1c82_map[] = {
     NULL
 };
 
-const char *Level_1c83_map[] = {
+const char *Level_6c15_map[] = {
     "#############",
     "#           #",
     "# ### $$    #",
@@ -1434,7 +1434,7 @@ const char *Level_1c83_map[] = {
     NULL
 };
 
-const char *Level_1c84_map[] = {
+const char *Level_6c16_map[] = {
     " #################",
     "###@##         ...#",
     "#    #         ...#",
@@ -1451,7 +1451,7 @@ const char *Level_1c84_map[] = {
     NULL
 };
 
-const char *Level_1c85_map[] = {
+const char *Level_6c17_map[] = {
     "              #####",
     "     ##########F  #",
     "     #        #   #",
@@ -1468,7 +1468,7 @@ const char *Level_1c85_map[] = {
     NULL
 };
 
-const char *Level_1c86_map[] = {
+const char *Level_6c18_map[] = {
     "    ######",
     " ####    #",
     " #    ## #",
@@ -1485,7 +1485,7 @@ const char *Level_1c86_map[] = {
     NULL
 };
 
-const char *Level_1c87_map[] = {
+const char *Level_6c19_map[] = {
     "####### #########",
     "#     # #   ##  #",
     "# ### # #   $   #",
@@ -1502,7 +1502,7 @@ const char *Level_1c87_map[] = {
     NULL
 };
 
-const char *Level_1c88_map[] = {
+const char *Level_6c20_map[] = {
     "#######",
     "#     ##########",
     "#     #    #  ##",
@@ -1518,7 +1518,7 @@ const char *Level_1c88_map[] = {
     NULL
 };
 
-const char *Level_1c89_map[] = {
+const char *Level_1b_map[] = {
     "############",
     "#      #   ##",
     "# $  $   #  ######",
@@ -1538,7 +1538,7 @@ const char *Level_1c89_map[] = {
     NULL
 };
 
-const char *Level_1c90_map[] = {
+const char *Level_2b_map[] = {
     "################",
     "#       #@ #   #",
     "# # # # # $  $$#",
@@ -1552,7 +1552,7 @@ const char *Level_1c90_map[] = {
     NULL
 };
 
-const char *Level_1c91_map[] = {
+const char *Level_3b_map[] = {
     "    #####",
     " ####   ## #####",
     " #  $    ###F  #",
@@ -1570,7 +1570,7 @@ const char *Level_1c91_map[] = {
     NULL
 };
 
-const char *Level_1c92_map[] = {
+const char *Level_4b_map[] = {
     "#############",
     "#........####",
     "#...#### #  #####",
@@ -1590,7 +1590,7 @@ const char *Level_1c92_map[] = {
     NULL
 };
 
-const char *Level_1c93_map[] = {
+const char *Level_5b_map[] = {
     " ##################",
     " #   $       ...#.##",
     " #       ####..... #",
@@ -1611,7 +1611,7 @@ const char *Level_1c93_map[] = {
     NULL
 };
 
-const char *Level_1c94_map[] = {
+const char *Level_6b_map[] = {
     "####################",
     "#..#    #         F#",
     "#.$  $  #$$  $## $##",
@@ -1642,663 +1642,664 @@ const char *Level_1c94_map[] = {
 //==============================================//
 /* {Sopian} */
 
-LevelData ALL_LEVELS[LEVEL_COUNT] = {
+LevelData ALL_LEVELS [] = {
+    
+    [LEVEL_1T1] = {
+        .level_id = "1t1",
+        .level_name = "TUTORIAL 1",
+        .map = Level_1t1_map,
+        .is_unlcoked = true,
+        .is_finished = false,
+    },
+    [LEVEL_1T2] = {
+        .level_id = "1t2",
+        .level_name = "TUTORIAL 2",
+        .map = Level_1t2_map,
+        .is_unlcoked = false,
+        .is_finished = false,
+    },
+    [LEVEL_1T3] = {
+        .level_id = "1t3",
+        .level_name = "TUTORIAL 3",
+        .map = Level_1t3_map,
+        .is_unlcoked = false,
+        .is_finished = false,
+    },
+    [LEVEL_1T4] = {
+        .level_id = "1t4",
+        .level_name = "TUTORIAL 4",
+        .map = Level_1t4_map,
+        .is_unlcoked = false,
+        .is_finished = false,
+    },
     [LEVEL_1C1] = {
         .level_id = "1c1",
-        .level_name = "LEVEL 1",
+        .level_name = "Chapter 1 - Level 1",
         .map = Level_1c1_map,
-        .is_unlcoked = true,
+        .is_unlcoked = false,
         .is_finished = false,
     },
     [LEVEL_1C2] = {
         .level_id = "1c2",
-        .level_name = "LEVEL 2",
+        .level_name = "Chapter 1 - Level 2",
         .map = Level_1c2_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
     [LEVEL_1C3] = {
         .level_id = "1c3",
-        .level_name = "LEVEL 3",
+        .level_name = "Chapter 1 - Level 3",
         .map = Level_1c3_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
     [LEVEL_1C4] = {
         .level_id = "1c4",
-        .level_name = "LEVEL 4",
+        .level_name = "Chapter 1 - Level 4",
         .map = Level_1c4_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
     [LEVEL_1C5] = {
         .level_id = "1c5",
-        .level_name = "LEVEL 5",
+        .level_name = "Chapter 1 - Level 5",
         .map = Level_1c5_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
     [LEVEL_1C6] = {
         .level_id = "1c6",
-        .level_name = "LEVEL 6",
+        .level_name = "Chapter 1 - Level 6",
         .map = Level_1c6_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
     [LEVEL_1C7] = {
         .level_id = "1c7",
-        .level_name = "LEVEL 7",
+        .level_name = "Chapter 1 - Level 7",
         .map = Level_1c7_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
     [LEVEL_1C8] = {
         .level_id = "1c8",
-        .level_name = "LEVEL 8",
+        .level_name = "Chapter 1 - Level 8",
         .map = Level_1c8_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C9] = {
-        .level_id = "1c9",
-        .level_name = "LEVEL 9",
-        .map = Level_1c9_map,
+    [LEVEL_2C1] = {
+        .level_id = "2c1",
+        .level_name = "Chapter 2 - Level 1",
+        .map = Level_2c1_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C10] = {
-        .level_id = "1c10",
-        .level_name = "LEVEL 10",
-        .map = Level_1c10_map,
+    [LEVEL_2C2] = {
+        .level_id = "2c2",
+        .level_name = "Chapter 2 - Level 2",
+        .map = Level_2c2_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C11] = {
-        .level_id = "1c11",
-        .level_name = "LEVEL 11",
-        .map = Level_1c11_map,
+    [LEVEL_2C3] = {
+        .level_id = "2c3",
+        .level_name = "Chapter 2 - Level 3",
+        .map = Level_2c3_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C12] = {
-        .level_id = "1c12",
-        .level_name = "LEVEL 12",
-        .map = Level_1c12_map,
+    [LEVEL_2C4] = {
+        .level_id = "2c4",
+        .level_name = "Chapter 2 - Level 4",
+        .map = Level_2c4_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C13] = {
-        .level_id = "1c13",
-        .level_name = "LEVEL 13",
-        .map = Level_1c13_map,
+    [LEVEL_2C5] = {
+        .level_id = "2c5",
+        .level_name = "Chapter 2 - Level 5",
+        .map = Level_2c5_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C14] = {
-        .level_id = "1c14",
-        .level_name = "LEVEL 14",
-        .map = Level_1c14_map,
+    [LEVEL_2C6] = {
+        .level_id = "2c6",
+        .level_name = "Chapter 2 - Level 6",
+        .map = Level_2c6_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C15] = {
-        .level_id = "1c15",
-        .level_name = "LEVEL 15",
-        .map = Level_1c15_map,
+    [LEVEL_2C7] = {
+        .level_id = "2c7",
+        .level_name = "Chapter 2 - Level 7",
+        .map = Level_2c7_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C16] = {
-        .level_id = "1c16",
-        .level_name = "LEVEL 16",
-        .map = Level_1c16_map,
+    [LEVEL_2C8] = {
+        .level_id = "2c8",
+        .level_name = "Chapter 2 - Level 8",
+        .map = Level_2c8_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C17] = {
-        .level_id = "1c17",
-        .level_name = "LEVEL 17",
-        .map = Level_1c17_map,
+    [LEVEL_2C9] = {
+        .level_id = "2c9",
+        .level_name = "Chapter 2 - Level 9",
+        .map = Level_2c9_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C18] = {
-        .level_id = "1c18",
-        .level_name = "LEVEL 18",
-        .map = Level_1c18_map,
+    [LEVEL_2C10] = {
+        .level_id = "2c10",
+        .level_name = "Chapter 2 - Level 10",
+        .map = Level_2c10_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C19] = {
-        .level_id = "1c19",
-        .level_name = "LEVEL 19",
-        .map = Level_1c19_map,
+    [LEVEL_2C11] = {
+        .level_id = "2c11",
+        .level_name = "Chapter 2 - Level 11",
+        .map = Level_2c11_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C20] = {
-        .level_id = "1c20",
-        .level_name = "LEVEL 20",
-        .map = Level_1c20_map,
+    [LEVEL_3C1] = {
+        .level_id = "3c1",
+        .level_name = "Chapter 3 - Level 1",
+        .map = Level_3c1_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C21] = {
-        .level_id = "1c21",
-        .level_name = "LEVEL 21",
-        .map = Level_1c21_map,
+    [LEVEL_3C2] = {
+        .level_id = "3c2",
+        .level_name = "Chapter 3 - Level 2",
+        .map = Level_3c2_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C22] = {
-        .level_id = "1c22",
-        .level_name = "LEVEL 22",
-        .map = Level_1c22_map,
+    [LEVEL_3C3] = {
+        .level_id = "3c3",
+        .level_name = "Chapter 3 - Level 3",
+        .map = Level_3c3_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C23] = {
-        .level_id = "1c23",
-        .level_name = "LEVEL 23",
-        .map = Level_1c23_map,
+    [LEVEL_3C4] = {
+        .level_id = "3c4",
+        .level_name = "Chapter 3 - Level 4",
+        .map = Level_3c4_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C24] = {
-        .level_id = "1c24",
-        .level_name = "LEVEL 24",
-        .map = Level_1c24_map,
+    [LEVEL_3C5] = {
+        .level_id = "3c5",
+        .level_name = "Chapter 3 - Level 5",
+        .map = Level_3c5_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C25] = {
-        .level_id = "1c25",
-        .level_name = "LEVEL 25",
-        .map = Level_1c25_map,
+    [LEVEL_3C6] = {
+        .level_id = "3c6",
+        .level_name = "Chapter 3 - Level 6",
+        .map = Level_3c6_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C26] = {
-        .level_id = "1c26",
-        .level_name = "LEVEL 26",
-        .map = Level_1c26_map,
+    [LEVEL_3C7] = {
+        .level_id = "3c7",
+        .level_name = "Chapter 3 - Level 7",
+        .map = Level_3c7_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C27] = {
-        .level_id = "1c27",
-        .level_name = "LEVEL 27",
-        .map = Level_1c27_map,
+    [LEVEL_3C8] = {
+        .level_id = "3c8",
+        .level_name = "Chapter 3 - Level 8",
+        .map = Level_3c8_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C28] = {
-        .level_id = "1c28",
-        .level_name = "LEVEL 28",
-        .map = Level_1c28_map,
+    [LEVEL_3C9] = {
+        .level_id = "3c9",
+        .level_name = "Chapter 3 - Level 9",
+        .map = Level_3c9_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C29] = {
-        .level_id = "1c29",
-        .level_name = "LEVEL 29",
-        .map = Level_1c29_map,
+    [LEVEL_3C10] = {
+        .level_id = "3c10",
+        .level_name = "Chapter 3 - Level 10",
+        .map = Level_3c10_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C30] = {
-        .level_id = "1c30",
-        .level_name = "LEVEL 30",
-        .map = Level_1c30_map,
+    [LEVEL_3C11] = {
+        .level_id = "3c11",
+        .level_name = "Chapter 3 - Level 11",
+        .map = Level_3c11_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C31] = {
-        .level_id = "1c31",
-        .level_name = "LEVEL 31",
-        .map = Level_1c31_map,
+    [LEVEL_3C12] = {
+        .level_id = "3c12",
+        .level_name = "Chapter 3 - Level 12",
+        .map = Level_3c12_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C32] = {
-        .level_id = "1c32",
-        .level_name = "LEVEL 32",
-        .map = Level_1c32_map,
+    [LEVEL_3C13] = {
+        .level_id = "3c13",
+        .level_name = "Chapter 3 - Level 13",
+        .map = Level_3c13_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C33] = {
-        .level_id = "1c33",
-        .level_name = "LEVEL 33",
-        .map = Level_1c33_map,
+    [LEVEL_4C1] = {
+        .level_id = "4c1",
+        .level_name = "Chapter 4 - Level 1",
+        .map = Level_4c1_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C34] = {
-        .level_id = "1c34",
-        .level_name = "LEVEL 34",
-        .map = Level_1c34_map,
+    [LEVEL_4C2] = {
+        .level_id = "4c2",
+        .level_name = "Chapter 4 - Level 2",
+        .map = Level_4c2_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C35] = {
-        .level_id = "1c35",
-        .level_name = "LEVEL 35",
-        .map = Level_1c35_map,
+    [LEVEL_4C3] = {
+        .level_id = "4c3",
+        .level_name = "Chapter 4 - Level 3",
+        .map = Level_4c3_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C36] = {
-        .level_id = "1c36",
-        .level_name = "LEVEL 36",
-        .map = Level_1c36_map,
+    [LEVEL_4C4] = {
+        .level_id = "4c4",
+        .level_name = "Chapter 4 - Level 4",
+        .map = Level_4c4_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C37] = {
-        .level_id = "1c37",
-        .level_name = "LEVEL 37",
-        .map = Level_1c37_map,
+    [LEVEL_4C5] = {
+        .level_id = "4c5",
+        .level_name = "Chapter 4 - Level 5",
+        .map = Level_4c5_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C38] = {
-        .level_id = "1c38",
-        .level_name = "LEVEL 38",
-        .map = Level_1c38_map,
+    [LEVEL_4C6] = {
+        .level_id = "4c6",
+        .level_name = "Chapter 4 - Level 6",
+        .map = Level_4c6_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C39] = {
-        .level_id = "1c39",
-        .level_name = "LEVEL 39",
-        .map = Level_1c39_map,
+    [LEVEL_4C7] = {
+        .level_id = "4c7",
+        .level_name = "Chapter 4 - Level 7",
+        .map = Level_4c7_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C40] = {
-        .level_id = "1c40",
-        .level_name = "LEVEL 40",
-        .map = Level_1c40_map,
+    [LEVEL_4C8] = {
+        .level_id = "4c8",
+        .level_name = "Chapter 4 - Level 8",
+        .map = Level_4c8_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C41] = {
-        .level_id = "1c41",
-        .level_name = "LEVEL 41",
-        .map = Level_1c41_map,
+    [LEVEL_4C9] = {
+        .level_id = "4c9",
+        .level_name = "Chapter 4 - Level 9",
+        .map = Level_4c9_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C42] = {
-        .level_id = "1c42",
-        .level_name = "LEVEL 42",
-        .map = Level_1c42_map,
+    [LEVEL_4C10] = {
+        .level_id = "4c10",
+        .level_name = "Chapter 4 - Level 10",
+        .map = Level_4c10_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C43] = {
-        .level_id = "1c43",
-        .level_name = "LEVEL 43",
-        .map = Level_1c43_map,
+    [LEVEL_4C11] = {
+        .level_id = "4c11",
+        .level_name = "Chapter 4 - Level 11",
+        .map = Level_4c11_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C44] = {
-        .level_id = "1c44",
-        .level_name = "LEVEL 44",
-        .map = Level_1c44_map,
+    [LEVEL_4C12] = {
+        .level_id = "4c12",
+        .level_name = "Chapter 4 - Level 12",
+        .map = Level_4c12_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C45] = {
-        .level_id = "1c45",
-        .level_name = "LEVEL 45",
-        .map = Level_1c45_map,
+    [LEVEL_4C13] = {
+        .level_id = "4c13",
+        .level_name = "Chapter 4 - Level 13",
+        .map = Level_4c13_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C46] = {
-        .level_id = "1c46",
-        .level_name = "LEVEL 46",
-        .map = Level_1c46_map,
+    [LEVEL_4C14] = {
+        .level_id = "4c14",
+        .level_name = "Chapter 4 - Level 14",
+        .map = Level_4c14_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C47] = {
-        .level_id = "1c47",
-        .level_name = "LEVEL 47",
-        .map = Level_1c47_map,
+    [LEVEL_4C15] = {
+        .level_id = "4c15",
+        .level_name = "Chapter 4 - Level 15",
+        .map = Level_4c15_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C48] = {
-        .level_id = "1c48",
-        .level_name = "LEVEL 48",
-        .map = Level_1c48_map,
+    [LEVEL_5C1] = {
+        .level_id = "5c1",
+        .level_name = "Chapter 5 - Level 1",
+        .map = Level_5c1_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C49] = {
-        .level_id = "1c49",
-        .level_name = "LEVEL 49",
-        .map = Level_1c49_map,
+    [LEVEL_5C2] = {
+        .level_id = "5c2",
+        .level_name = "Chapter 5 - Level 2",
+        .map = Level_5c2_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C50] = {
-        .level_id = "1c50",
-        .level_name = "LEVEL 50",
-        .map = Level_1c50_map,
+    [LEVEL_5C3] = {
+        .level_id = "5c3",
+        .level_name = "Chapter 5 - Level 3",
+        .map = Level_5c3_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C51] = {
-        .level_id = "1c51",
-        .level_name = "LEVEL 51",
-        .map = Level_1c51_map,
+    [LEVEL_5C4] = {
+        .level_id = "5c4",
+        .level_name = "Chapter 5 - Level 4",
+        .map = Level_5c4_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C52] = {
-    .level_id = "1c52",
-    .level_name = "LEVEL 52",
-    .map = Level_1c52_map,
-    .is_unlcoked = false,
-    .is_finished = false,
-    },
-    [LEVEL_1C53] = {
-        .level_id = "1c53",
-        .level_name = "LEVEL 53",
-        .map = Level_1c53_map,
-        .is_unlcoked = false,
-        .is_finished = false,
-    },
-    [LEVEL_1C54] = {
-        .level_id = "1c54",
-        .level_name = "LEVEL 54",
-        .map = Level_1c54_map,
+    [LEVEL_5C5] = {
+        .level_id = "5c5",
+        .level_name = "Chapter 5 - Level 5",
+        .map = Level_5c5_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C55] = {
-        .level_id = "1c55",
-        .level_name = "LEVEL 55",
-        .map = Level_1c55_map,
+    [LEVEL_5C6] = {
+        .level_id = "5c6",
+        .level_name = "Chapter 5 - Level 6",
+        .map = Level_5c6_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C56] = {
-        .level_id = "1c56",
-        .level_name = "LEVEL 56",
-        .map = Level_1c56_map,
+    [LEVEL_5C7] = {
+        .level_id = "5c7",
+        .level_name = "Chapter 5 - Level 7",
+        .map = Level_5c7_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C57] = {
-        .level_id = "1c57",
-        .level_name = "LEVEL 57",
-        .map = Level_1c57_map,
+    [LEVEL_5C8] = {
+        .level_id = "5c8",
+        .level_name = "Chapter 5 - Level 8",
+        .map = Level_5c8_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C58] = {
-        .level_id = "1c58",
-        .level_name = "LEVEL 58",
-        .map = Level_1c58_map,
+    [LEVEL_5C9] = {
+        .level_id = "5c9",
+        .level_name = "Chapter 5 - Level 9",
+        .map = Level_5c9_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C59] = {
-        .level_id = "1c59",
-        .level_name = "LEVEL 59",
-        .map = Level_1c59_map,
+    [LEVEL_5C10] = {
+        .level_id = "5c10",
+        .level_name = "Chapter 5 - Level 10",
+        .map = Level_5c10_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C60] = {
-        .level_id = "1c60",
-        .level_name = "LEVEL 60",
-        .map = Level_1c60_map,
+    [LEVEL_5C11] = {
+        .level_id = "5c11",
+        .level_name = "Chapter 5 - Level 11",
+        .map = Level_5c11_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C61] = {
-        .level_id = "1c61",
-        .level_name = "LEVEL 61",
-        .map = Level_1c61_map,
+    [LEVEL_5C12] = {
+        .level_id = "5c12",
+        .level_name = "Chapter 5 - Level 12",
+        .map = Level_5c12_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C62] = {
-        .level_id = "1c62",
-        .level_name = "LEVEL 62",
-        .map = Level_1c62_map,
+    [LEVEL_5C13] = {
+        .level_id = "5c13",
+        .level_name = "Chapter 5 - Level 13",
+        .map = Level_5c13_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C63] = {
-        .level_id = "1c63",
-        .level_name = "LEVEL 63",
-        .map = Level_1c63_map,
+    [LEVEL_5C14] = {
+        .level_id = "5c14",
+        .level_name = "Chapter 5 - Level 14",
+        .map = Level_5c14_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C64] = {
-        .level_id = "1c64",
-        .level_name = "LEVEL 64",
-        .map = Level_1c64_map,
+    [LEVEL_5C15] = {
+        .level_id = "5c15",
+        .level_name = "Chapter 5 - Level 15",
+        .map = Level_5c15_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C65] = {
-        .level_id = "1c65",
-        .level_name = "LEVEL 65",
-        .map = Level_1c65_map,
+    [LEVEL_5C16] = {
+        .level_id = "5c16",
+        .level_name = "Chapter 5 - Level 16",
+        .map = Level_5c16_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C66] = {
-        .level_id = "1c66",
-        .level_name = "LEVEL 66",
-        .map = Level_1c66_map,
+    [LEVEL_5C17] = {
+        .level_id = "5c17",
+        .level_name = "Chapter 5 - Level 17",
+        .map = Level_5c17_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C67] = {
-        .level_id = "1c67",
-        .level_name = "LEVEL 67",
-        .map = Level_1c67_map,
+    [LEVEL_6C1] = {
+        .level_id = "6c1",
+        .level_name = "Chapter 6 - Level 1",
+        .map = Level_6c1_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C68] = {
-        .level_id = "1c68",
-        .level_name = "LEVEL 68",
-        .map = Level_1c68_map,
+    [LEVEL_6C2] = {
+        .level_id = "6c2",
+        .level_name = "Chapter 6 - Level 2",
+        .map = Level_6c2_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C69] = {
-        .level_id = "1c69",
-        .level_name = "LEVEL 69",
-        .map = Level_1c69_map,
+    [LEVEL_6C3] = {
+        .level_id = "6c3",
+        .level_name = "Chapter 6 - Level 3",
+        .map = Level_6c3_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C70] = {
-        .level_id = "1c70",
-        .level_name = "LEVEL 70",
-        .map = Level_1c70_map,
+    [LEVEL_6C4] = {
+        .level_id = "6c4",
+        .level_name = "Chapter 6 - Level 4",
+        .map = Level_6c4_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C71] = {
-        .level_id = "1c71",
-        .level_name = "LEVEL 71",
-        .map = Level_1c71_map,
+    [LEVEL_6C5] = {
+        .level_id = "6c5",
+        .level_name = "Chapter 6 - Level 5",
+        .map = Level_6c5_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C72] = {
-        .level_id = "1c72",
-        .level_name = "LEVEL 72",
-        .map = Level_1c72_map,
+    [LEVEL_6C6] = {
+        .level_id = "6c6",
+        .level_name = "Chapter 6 - Level 6",
+        .map = Level_6c6_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C73] = {
-        .level_id = "1c73",
-        .level_name = "LEVEL 73",
-        .map = Level_1c73_map,
+    [LEVEL_6C7] = {
+        .level_id = "6c7",
+        .level_name = "Chapter 6 - Level 7",
+        .map = Level_6c7_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C74] = {
-        .level_id = "1c74",
-        .level_name = "LEVEL 74",
-        .map = Level_1c74_map,
+    [LEVEL_6C8] = {
+        .level_id = "6c8",
+        .level_name = "Chapter 6 - Level 8",
+        .map = Level_6c8_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C75] = {
-        .level_id = "1c75",
-        .level_name = "LEVEL 75",
-        .map = Level_1c75_map,
+    [LEVEL_6C9] = {
+        .level_id = "6c9",
+        .level_name = "Chapter 6 - Level 9",
+        .map = Level_6c9_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C76] = {
-        .level_id = "1c76",
-        .level_name = "LEVEL 76",
-        .map = Level_1c76_map,
+    [LEVEL_6C10] = {
+        .level_id = "6c10",
+        .level_name = "Chapter 6 - Level 10",
+        .map = Level_6c10_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C77] = {
-        .level_id = "1c77",
-        .level_name = "LEVEL 77",
-        .map = Level_1c77_map,
+    [LEVEL_6C11] = {
+        .level_id = "6c11",
+        .level_name = "Chapter 6 - Level 11",
+        .map = Level_6c11_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C78] = {
-        .level_id = "1c78",
-        .level_name = "LEVEL 78",
-        .map = Level_1c78_map,
+    [LEVEL_6C12] = {
+        .level_id = "6c12",
+        .level_name = "Chapter 6 - Level 12",
+        .map = Level_6c12_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C79] = {
-        .level_id = "1c79",
-        .level_name = "LEVEL 79",
-        .map = Level_1c79_map,
+    [LEVEL_6C13] = {
+        .level_id = "6c13",
+        .level_name = "Chapter 6 - Level 13",
+        .map = Level_6c13_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C80] = {
-        .level_id = "1c80",
-        .level_name = "LEVEL 80",
-        .map = Level_1c80_map,
+    [LEVEL_6C14] = {
+        .level_id = "6c14",
+        .level_name = "Chapter 6 - Level 14",
+        .map = Level_6c14_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C81] = {
-        .level_id = "1c81",
-        .level_name = "LEVEL 81",
-        .map = Level_1c81_map,
+    [LEVEL_6C15] = {
+        .level_id = "6c15",
+        .level_name = "Chapter 6 - Level 15",
+        .map = Level_6c15_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C82] = {
-        .level_id = "1c82",
-        .level_name = "LEVEL 82",
-        .map = Level_1c82_map,
+    [LEVEL_6C16] = {
+        .level_id = "6c16",
+        .level_name = "Chapter 6 - Level 16",
+        .map = Level_6c16_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C83] = {
-        .level_id = "1c83",
-        .level_name = "LEVEL 83",
-        .map = Level_1c83_map,
+    [LEVEL_6C17] = {
+        .level_id = "6c17",
+        .level_name = "Chapter 6 - Level 17",
+        .map = Level_6c17_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C84] = {
-        .level_id = "1c84",
-        .level_name = "LEVEL 84",
-        .map = Level_1c84_map,
+    [LEVEL_6C18] = {
+        .level_id = "6c18",
+        .level_name = "Chapter 6 - Level 18",
+        .map = Level_6c18_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C85] = {
-        .level_id = "1c85",
-        .level_name = "LEVEL 85",
-        .map = Level_1c85_map,
+    [LEVEL_6C19] = {
+        .level_id = "6c19",
+        .level_name = "Chapter 6 - Level 19",
+        .map = Level_6c19_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C86] = {
-        .level_id = "1c86",
-        .level_name = "LEVEL 86",
-        .map = Level_1c86_map,
+    [LEVEL_6C20] = {
+        .level_id = "6c20",
+        .level_name = "Chapter 6 - Level 20",
+        .map = Level_6c20_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C87] = {
-        .level_id = "1c87",
-        .level_name = "LEVEL 87",
-        .map = Level_1c87_map,
+    [LEVEL_1B] = {
+        .level_id = "1b",
+        .level_name = "Bonus Level 1",
+        .map = Level_1b_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C88] = {
-        .level_id = "1c88",
-        .level_name = "LEVEL 88",
-        .map = Level_1c88_map,
+    [LEVEL_2B] = {
+        .level_id = "2b",
+        .level_name = "Bonus Level 2",
+        .map = Level_2b_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C89] = {
-        .level_id = "1c89",
-        .level_name = "LEVEL 89",
-        .map = Level_1c89_map,
+    [LEVEL_3B] = {
+        .level_id = "3b",
+        .level_name = "Bonus Level 3",
+        .map = Level_3b_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C90] = {
-        .level_id = "1c90",
-        .level_name = "LEVEL 90",
-        .map = Level_1c90_map,
+    [LEVEL_4B] = {
+        .level_id = "4b",
+        .level_name = "Bonus Level 4",
+        .map = Level_4b_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C91] = {
-        .level_id = "1c91",
-        .level_name = "LEVEL 91",
-        .map = Level_1c91_map,
+    [LEVEL_5B] = {
+        .level_id = "5b",
+        .level_name = "Bonus Level 5",
+        .map = Level_5b_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C92] = {
-        .level_id = "1c92",
-        .level_name = "LEVEL 92",
-        .map = Level_1c92_map,
+    [LEVEL_6B] = {
+        .level_id = "6b",
+        .level_name = "Bonus Level 6",
+        .map = Level_6b_map,
         .is_unlcoked = false,
         .is_finished = false,
     },
-    [LEVEL_1C93] = {
-        .level_id = "1c93",
-        .level_name = "LEVEL 93",
-        .map = Level_1c93_map,
-        .is_unlcoked = false,
-        .is_finished = false,
-    },
-    [LEVEL_1C94] = {
-        .level_id = "1c94",
-        .level_name = "LEVEL 94",
-        .map = Level_1c94_map,
-        .is_unlcoked = false,
-        .is_finished = false,
-    }
 };

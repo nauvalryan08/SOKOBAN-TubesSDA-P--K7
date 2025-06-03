@@ -15,6 +15,10 @@ typedef struct {
 
 //==> TYPEDEF INDEKS LEVEL MENGGUNAKAN NAMA LEVEL
 typedef enum {
+    LEVEL_1T1,
+    LEVEL_1T2,
+    LEVEL_1T3,
+    LEVEL_1T4,
     LEVEL_1C1,
     LEVEL_1C2,
     LEVEL_1C3,
@@ -23,92 +27,88 @@ typedef enum {
     LEVEL_1C6,
     LEVEL_1C7,
     LEVEL_1C8,
-    LEVEL_1C9,
-    LEVEL_1C10,
-    LEVEL_1C11,
-    LEVEL_1C12,
-    LEVEL_1C13,
-    LEVEL_1C14,
-    LEVEL_1C15,
-    LEVEL_1C16,
-    LEVEL_1C17,
-    LEVEL_1C18,
-    LEVEL_1C19,
-    LEVEL_1C20,
-    LEVEL_1C21,
-    LEVEL_1C22,
-    LEVEL_1C23,
-    LEVEL_1C24,
-    LEVEL_1C25,
-    LEVEL_1C26,
-    LEVEL_1C27,
-    LEVEL_1C28,
-    LEVEL_1C29,
-    LEVEL_1C30,
-    LEVEL_1C31,
-    LEVEL_1C32,
-    LEVEL_1C33,
-    LEVEL_1C34,
-    LEVEL_1C35,
-    LEVEL_1C36,
-    LEVEL_1C37,
-    LEVEL_1C38,
-    LEVEL_1C39,
-    LEVEL_1C40,
-    LEVEL_1C41,
-    LEVEL_1C42,
-    LEVEL_1C43,
-    LEVEL_1C44,
-    LEVEL_1C45,
-    LEVEL_1C46,
-    LEVEL_1C47,
-    LEVEL_1C48,
-    LEVEL_1C49,
-    LEVEL_1C50,
-    LEVEL_1C51,
-    LEVEL_1C52,
-    LEVEL_1C53,
-    LEVEL_1C54,
-    LEVEL_1C55,
-    LEVEL_1C56,
-    LEVEL_1C57,
-    LEVEL_1C58,
-    LEVEL_1C59,
-    LEVEL_1C60,
-    LEVEL_1C61,
-    LEVEL_1C62,
-    LEVEL_1C63,
-    LEVEL_1C64,
-    LEVEL_1C65,
-    LEVEL_1C66,
-    LEVEL_1C67,
-    LEVEL_1C68,
-    LEVEL_1C69,
-    LEVEL_1C70,
-    LEVEL_1C71,
-    LEVEL_1C72,
-    LEVEL_1C73,
-    LEVEL_1C74,
-    LEVEL_1C75,
-    LEVEL_1C76,
-    LEVEL_1C77,
-    LEVEL_1C78,
-    LEVEL_1C79,
-    LEVEL_1C80,
-    LEVEL_1C81,
-    LEVEL_1C82,
-    LEVEL_1C83,
-    LEVEL_1C84,
-    LEVEL_1C85,
-    LEVEL_1C86,
-    LEVEL_1C87,
-    LEVEL_1C88,
-    LEVEL_1C89,
-    LEVEL_1C90,
-    LEVEL_1C91,
-    LEVEL_1C92,
-    LEVEL_1C93,
-    LEVEL_1C94,
+    LEVEL_2C1,
+    LEVEL_2C2,
+    LEVEL_2C3,
+    LEVEL_2C4,
+    LEVEL_2C5,
+    LEVEL_2C6,
+    LEVEL_2C7,
+    LEVEL_2C8,
+    LEVEL_2C9,
+    LEVEL_2C10,
+    LEVEL_2C11,
+    LEVEL_3C1,
+    LEVEL_3C2,
+    LEVEL_3C3,
+    LEVEL_3C4,
+    LEVEL_3C5,
+    LEVEL_3C6,
+    LEVEL_3C7,
+    LEVEL_3C8,
+    LEVEL_3C9,
+    LEVEL_3C10,
+    LEVEL_3C11,
+    LEVEL_3C12,
+    LEVEL_3C13,
+    LEVEL_4C1,
+    LEVEL_4C2,
+    LEVEL_4C3,
+    LEVEL_4C4,
+    LEVEL_4C5,
+    LEVEL_4C6,
+    LEVEL_4C7,
+    LEVEL_4C8,
+    LEVEL_4C9,
+    LEVEL_4C10,
+    LEVEL_4C11,
+    LEVEL_4C12,
+    LEVEL_4C13,
+    LEVEL_4C14,
+    LEVEL_4C15,
+    LEVEL_5C1,
+    LEVEL_5C2,
+    LEVEL_5C3,
+    LEVEL_5C4,
+    LEVEL_5C5,
+    LEVEL_5C6,
+    LEVEL_5C7,
+    LEVEL_5C8,
+    LEVEL_5C9,
+    LEVEL_5C10,
+    LEVEL_5C11,
+    LEVEL_5C12,
+    LEVEL_5C13,
+    LEVEL_5C14,
+    LEVEL_5C15,
+    LEVEL_5C16,
+    LEVEL_5C17,
+    LEVEL_6C1,
+    LEVEL_6C2,
+    LEVEL_6C3,
+    LEVEL_6C4,
+    LEVEL_6C5,
+    LEVEL_6C6,
+    LEVEL_6C7,
+    LEVEL_6C8,
+    LEVEL_6C9,
+    LEVEL_6C10,
+    LEVEL_6C11,
+    LEVEL_6C12,
+    LEVEL_6C13,
+    LEVEL_6C14,
+    LEVEL_6C15,
+    LEVEL_6C16,
+    LEVEL_6C17,
+    LEVEL_6C18,
+    LEVEL_6C19,
+    LEVEL_6C20,
+    LEVEL_1B,
+    LEVEL_2B,
+    LEVEL_3B,
+    LEVEL_4B,
+    LEVEL_5B,
+    LEVEL_6B,
     LEVEL_COUNT
 } LevelID;
 
@@ -120,6 +120,10 @@ extern LevelData ALL_LEVELS[LEVEL_COUNT];
 //============================================//
 /* {Sopian} */
 
+extern const char *Level_1t1_map[];
+extern const char *Level_1t2_map[];
+extern const char *Level_1t3_map[];
+extern const char *Level_1t4_map[];
 extern const char *Level_1c1_map[];
 extern const char *Level_1c2_map[];
 extern const char *Level_1c3_map[];
@@ -128,92 +132,88 @@ extern const char *Level_1c5_map[];
 extern const char *Level_1c6_map[];
 extern const char *Level_1c7_map[];
 extern const char *Level_1c8_map[];
-extern const char *Level_1c9_map[];
-extern const char *Level_1c10_map[];
-extern const char *Level_1c11_map[];
-extern const char *Level_1c12_map[];
-extern const char *Level_1c13_map[];
-extern const char *Level_1c14_map[];
-extern const char *Level_1c15_map[];
-extern const char *Level_1c16_map[];
-extern const char *Level_1c17_map[];
-extern const char *Level_1c18_map[];
-extern const char *Level_1c19_map[];
-extern const char *Level_1c20_map[];
-extern const char *Level_1c21_map[];
-extern const char *Level_1c22_map[];
-extern const char *Level_1c23_map[];
-extern const char *Level_1c24_map[];
-extern const char *Level_1c25_map[];
-extern const char *Level_1c26_map[];
-extern const char *Level_1c27_map[];
-extern const char *Level_1c28_map[];
-extern const char *Level_1c29_map[];
-extern const char *Level_1c30_map[];
-extern const char *Level_1c31_map[];
-extern const char *Level_1c32_map[];
-extern const char *Level_1c33_map[];
-extern const char *Level_1c34_map[];
-extern const char *Level_1c35_map[];
-extern const char *Level_1c36_map[];
-extern const char *Level_1c37_map[];
-extern const char *Level_1c38_map[];
-extern const char *Level_1c39_map[];
-extern const char *Level_1c40_map[];
-extern const char *Level_1c41_map[];
-extern const char *Level_1c42_map[];
-extern const char *Level_1c43_map[];
-extern const char *Level_1c44_map[];
-extern const char *Level_1c45_map[];
-extern const char *Level_1c46_map[];
-extern const char *Level_1c47_map[];
-extern const char *Level_1c48_map[];
-extern const char *Level_1c49_map[];
-extern const char *Level_1c50_map[];
-extern const char *Level_1c51_map[];
-extern const char *Level_1c52_map[];
-extern const char *Level_1c53_map[];
-extern const char *Level_1c54_map[];
-extern const char *Level_1c55_map[];
-extern const char *Level_1c56_map[];
-extern const char *Level_1c57_map[];
-extern const char *Level_1c58_map[];
-extern const char *Level_1c59_map[];
-extern const char *Level_1c60_map[];
-extern const char *Level_1c61_map[];
-extern const char *Level_1c62_map[];
-extern const char *Level_1c63_map[];
-extern const char *Level_1c64_map[];
-extern const char *Level_1c65_map[];
-extern const char *Level_1c66_map[];
-extern const char *Level_1c67_map[];
-extern const char *Level_1c68_map[];
-extern const char *Level_1c69_map[];
-extern const char *Level_1c70_map[];
-extern const char *Level_1c71_map[];
-extern const char *Level_1c72_map[];
-extern const char *Level_1c73_map[];
-extern const char *Level_1c74_map[];
-extern const char *Level_1c75_map[];
-extern const char *Level_1c76_map[];
-extern const char *Level_1c77_map[];
-extern const char *Level_1c78_map[];
-extern const char *Level_1c79_map[];
-extern const char *Level_1c80_map[];
-extern const char *Level_1c81_map[];
-extern const char *Level_1c82_map[];
-extern const char *Level_1c83_map[];
-extern const char *Level_1c84_map[];
-extern const char *Level_1c85_map[];
-extern const char *Level_1c86_map[];
-extern const char *Level_1c87_map[];
-extern const char *Level_1c88_map[];
-extern const char *Level_1c89_map[];
-extern const char *Level_1c90_map[];
-extern const char *Level_1c91_map[];
-extern const char *Level_1c92_map[];
-extern const char *Level_1c93_map[];
-extern const char *Level_1c94_map[];
+extern const char *Level_2c1_map[];
+extern const char *Level_2c2_map[];
+extern const char *Level_2c3_map[];
+extern const char *Level_2c4_map[];
+extern const char *Level_2c5_map[];
+extern const char *Level_2c6_map[];
+extern const char *Level_2c7_map[];
+extern const char *Level_2c8_map[];
+extern const char *Level_2c9_map[];
+extern const char *Level_2c10_map[];
+extern const char *Level_2c11_map[];
+extern const char *Level_3c1_map[];
+extern const char *Level_3c2_map[];
+extern const char *Level_3c3_map[];
+extern const char *Level_3c4_map[];
+extern const char *Level_3c5_map[];
+extern const char *Level_3c6_map[];
+extern const char *Level_3c7_map[];
+extern const char *Level_3c8_map[];
+extern const char *Level_3c9_map[];
+extern const char *Level_3c10_map[];
+extern const char *Level_3c11_map[];
+extern const char *Level_3c12_map[];
+extern const char *Level_3c13_map[];
+extern const char *Level_4c1_map[];
+extern const char *Level_4c2_map[];
+extern const char *Level_4c3_map[];
+extern const char *Level_4c4_map[];
+extern const char *Level_4c5_map[];
+extern const char *Level_4c6_map[];
+extern const char *Level_4c7_map[];
+extern const char *Level_4c8_map[];
+extern const char *Level_4c9_map[];
+extern const char *Level_4c10_map[];
+extern const char *Level_4c11_map[];
+extern const char *Level_4c12_map[];
+extern const char *Level_4c13_map[];
+extern const char *Level_4c14_map[];
+extern const char *Level_4c15_map[];
+extern const char *Level_5c1_map[];
+extern const char *Level_5c2_map[];
+extern const char *Level_5c3_map[];
+extern const char *Level_5c4_map[];
+extern const char *Level_5c5_map[];
+extern const char *Level_5c6_map[];
+extern const char *Level_5c7_map[];
+extern const char *Level_5c8_map[];
+extern const char *Level_5c9_map[];
+extern const char *Level_5c10_map[];
+extern const char *Level_5c11_map[];
+extern const char *Level_5c12_map[];
+extern const char *Level_5c13_map[];
+extern const char *Level_5c14_map[];
+extern const char *Level_5c15_map[];
+extern const char *Level_5c16_map[];
+extern const char *Level_5c17_map[];
+extern const char *Level_6c1_map[];
+extern const char *Level_6c2_map[];
+extern const char *Level_6c3_map[];
+extern const char *Level_6c4_map[];
+extern const char *Level_6c5_map[];
+extern const char *Level_6c6_map[];
+extern const char *Level_6c7_map[];
+extern const char *Level_6c8_map[];
+extern const char *Level_6c9_map[];
+extern const char *Level_6c10_map[];
+extern const char *Level_6c11_map[];
+extern const char *Level_6c12_map[];
+extern const char *Level_6c13_map[];
+extern const char *Level_6c14_map[];
+extern const char *Level_6c15_map[];
+extern const char *Level_6c16_map[];
+extern const char *Level_6c17_map[];
+extern const char *Level_6c18_map[];
+extern const char *Level_6c19_map[];
+extern const char *Level_6c20_map[];
+extern const char *Level_1b_map[];
+extern const char *Level_2b_map[];
+extern const char *Level_3b_map[];
+extern const char *Level_4b_map[];
+extern const char *Level_5b_map[];
+extern const char *Level_6b_map[];
 
 
 
