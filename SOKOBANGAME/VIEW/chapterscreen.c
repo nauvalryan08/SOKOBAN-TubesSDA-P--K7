@@ -1,10 +1,10 @@
 #ifndef CHAPTERSCREEN_H
 #define CHAPTERSCREEN_H
 #define NCURSES_MOUSE_VERSION
+#include "chapterscreen.h"
 #include "../GAMEPLAY/GAME_LOGIC/GameStart.h"
 #include "../UTILS/include/curses.h"
 #include "levelscreen.h"
-#include "chapterscreen.h"
 
 typedef struct {
   int x, y, width, height;
@@ -65,10 +65,15 @@ void print_chapter_screen(LevelData *selected_level) {
   mousemask(ALL_MOUSE_EVENTS | REPORT_MOUSE_POSITION, &old);
 
   // Buat button chapter
-  Button chapters[] = {{COLS / 2 - 6, LINES / 2 - 4, 12, 3, "Chapter 1"},
-                       {COLS / 2 - 6, LINES / 2 + 1, 12, 3, "Chapter 2"},
-                       {COLS / 2 - 6, LINES / 2 + 6, 12, 3, "Chapter 3"}};
-  int n_chapters = 3;
+  Button chapters[] = {
+      {COLS / 2 - 6, LINES / 2 - 9, 12, 3, "Chapter 1"},
+      {COLS / 2 - 6, LINES / 2 - 4, 12, 3, "Chapter 2"},
+      {COLS / 2 - 6, LINES / 2 + 1, 12, 3, "Chapter 3"},
+      {COLS / 2 - 6, LINES / 2 + 6, 12, 3, "Chapter 4"},
+      {COLS / 2 - 6, LINES / 2 + 11, 12, 3, "Chapter 5"},
+      {COLS / 2 - 6, LINES / 2 + 16, 12, 3, "Chapter 6"},
+  };
+  int n_chapters = 6;
 
   // Gambar semua button
   for (int i = 0; i < n_chapters; i++) {
@@ -103,14 +108,13 @@ void print_chapter_screen(LevelData *selected_level) {
                 if (selected_level != NULL) {
                   run_level(selected_level);
                 }
-              } 
-              else if (i == 2) {
+              } else {
                 selected_level = select_level();
                 if (selected_level != NULL) {
                   run_level(selected_level);
                 }
               }
-                return;
+              return;
             }
           }
         }
