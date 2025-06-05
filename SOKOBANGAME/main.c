@@ -24,29 +24,30 @@ int main() {
   // Tampilkan lobby screen dan ambil pilihan user
   int menu_choice;
   RoomLayout room;
-  LevelData* selected_level;
+  LevelData *selected_level;
 
-    while (menu_choice != 4) {
-        // Handle pilihan menu
+  while (menu_choice != 4) {
+    // Handle pilihan menu
 
-        menu_choice = show_lobby_screen();
-        
-        switch (menu_choice) {
-            case 0: // Play Game
-                {
-                    selected_level = select_level();
-                    if (selected_level != NULL) {
-                        run_level(selected_level);
-                    }
-                }
-                break;
-            case 1: // History
-                // Implementasi fitur history
-                break;
-            case 4: // Quit Game
-                break;
-        }
+    menu_choice = show_lobby_screen();
+
+    switch (menu_choice) {
+    case 0: // Play Game
+      /*{
+          selected_level = select_level();
+          if (selected_level != NULL) {
+              run_level(selected_level);
+          }
+      }*/
+      print_chapter_screen(selected_level);
+      break;
+    case 1: // History
+      // Implementasi fitur history
+      break;
+    case 4: // Quit Game
+      break;
     }
+  }
 
   endwin();
   return 0;
