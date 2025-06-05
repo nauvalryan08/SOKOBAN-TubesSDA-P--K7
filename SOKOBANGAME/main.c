@@ -1,4 +1,6 @@
 #include "sokoban.h"
+#include "VIEW/lobbyscreen.h"
+#include "VIEW/tutorial.h"
 
 int main() {
 
@@ -8,10 +10,15 @@ int main() {
     
     // Inisialisasi warna
     start_color();
-    init_pair(1, COLOR_WHITE, COLOR_BLACK);
-    init_pair(2, COLOR_GREEN, COLOR_BLACK);
-    init_pair(3, COLOR_BLACK, COLOR_BLACK);
-    init_pair(4, COLOR_YELLOW, COLOR_BLACK);
+
+    init_pair(1, COLOR_CYAN, COLOR_BLACK);   // Warna judul
+    init_pair(2, COLOR_YELLOW, COLOR_BLACK);  // Warna animasi
+    init_pair(3, COLOR_GREEN, COLOR_BLACK);   // Warna menu
+    
+    // Warna tambahan untuk game
+    init_pair(4, COLOR_WHITE, COLOR_BLACK);
+    init_pair(5, COLOR_GREEN, COLOR_BLACK);
+    init_pair(6, COLOR_BLACK, COLOR_BLACK);
 
     cbreak();
     noecho();
@@ -19,20 +26,28 @@ int main() {
     keypad(stdscr, TRUE);
     timeout(0);
 
-    // Tampilkan lobby screen dan ambil pilihan user
-    int menu_choice = show_lobby_screen();
+    int menu_choice;
     RoomLayout room;
 
-    while (menu_choice != 4) {
-        // Handle pilihan menu
+    while (1) {
+        menu_choice = show_lobby_screen();
+
+        if (menu_choice == 4) {
+            break;
+        }
+
         switch (menu_choice) {
-            case 0: // Play Game
+            case 0:
                 start_level(&room, Level_1c3_map, Level_1c3);
                 break;
-            case 1: // History
-                // Implementasi fitur history
+            case 1:
+                // show_history_screen();
                 break;
-            case 4: // Quit Game
+            case 2:
+                // show_leaderboard_screen();
+                break;
+            case 3:
+                show_tutorial_screen();
                 break;
         }
     }

@@ -1,7 +1,4 @@
 #include "lobbyscreen.h"
-#include <unistd.h>
-#include <string.h>
-#include <stdio.h>
 
 // Fungsi untuk menggambar kotak
 void draw_box(int y, int x, int height, int width) {
@@ -46,31 +43,31 @@ void draw_sokoban_animation(Animation *anim, int frame) {
     char frames[ANIMATION_FRAMES][5][20] = {
         { // Frame 1
             "   ___   ",
-            "  (o o)  ",
+            "  (o_o)  ",
+            " /(   )\\-",
             "   | |   ",
-            "  /   \\  ",
-            " |     | "
+            "  /   \\ "
         },
         { // Frame 2
             "   ___   ",
-            "  (o o)  ",
-            "   /_\\   ",
-            "  |   |  ",
-            "  |   |  "
+            "  (o_o)  ",
+            " /(   )\\-",
+            "   | |   ",
+            "  /|     "
         },
         { // Frame 3
             "   ___   ",
-            "  (o o)  ",
+            "  (o_o)  ",
+            " /(   )\\-",
             "   | |   ",
-            "  |   |  ",
-            "  |   |  "
+            "   | |\\  "
         },
         { // Frame 4
             "   ___   ",
-            "  (o o)  ",
-            "   /_\\   ",
-            "  /   \\  ",
-            " |     | "
+            "  (o_o)  ",
+            " /(   )\\-",
+            "   | |   ",
+            "     |\\  "
         }
     };
     
@@ -88,22 +85,12 @@ void draw_sokoban_animation(Animation *anim, int frame) {
         mvprintw(anim->y + i + 3, anim->x, "%*s", 25, " ");
     }
 
-    // Update posisi
-    anim->x += anim->direction;
-    if (anim->x <= 5 || anim->x >= COLS - 25) {
-        anim->direction *= -1;
-        
-        // Balik arah karakter
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < strlen(frames[0][i]); j++) {
-                // Balik karakter yang menghadap
-                if (frames[frame][i][j] == '\\') {
-                    frames[frame][i][j] = '/';
-                } else if (frames[frame][i][j] == '/') {
-                    frames[frame][i][j] = '\\';
-                }
-            }
-        }
+    // Pergerakan ke kanan terus
+    anim->x += 1;
+
+    // Jika sampai ujung kanan layar, reset ke kiri
+    if (anim->x >= COLS - 20) {
+        anim->x = 2; // posisi kiri awal
     }
 
     // Gambar karakter
@@ -297,6 +284,10 @@ int show_lobby_screen() {
     if (LINES < 25) {
         menu_start_y = 10;
     }
+
+    // Inisialisasi input non-blocking
+    nodelay(stdscr, TRUE);
+    keypad(stdscr, TRUE);
     
     while (1) {
         clear();
@@ -317,8 +308,13 @@ int show_lobby_screen() {
             if (msg_y < LINES && msg_y >= 0) {
                 mvprintw(msg_y, msg_x, "%s", msg);
             }
+            
             refresh();
-            napms(100);
+
+            ch = getch();
+            if (ch == KEY_RESIZE) {
+                resize_term(0, 0);
+            }
             continue;
         }
         
@@ -358,9 +354,12 @@ int show_lobby_screen() {
             case KEY_ENTER:
                 return selected;
             case KEY_RESIZE:
-                // Handle resize
-                clear();
-                refresh();
+                resize_term(0, 0);
+                break;
+            case ERR:
+                // Tidak ada input – tidak apa
+                break;
+            default:
                 break;
         }
         

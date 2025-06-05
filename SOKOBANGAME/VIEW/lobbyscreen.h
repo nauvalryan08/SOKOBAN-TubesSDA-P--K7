@@ -2,7 +2,9 @@
 #define LOBBYSCREEN_H
 
 #include "../UTILS/include/curses.h"
-
+#include <unistd.h>
+#include <string.h>
+#include <stdio.h>
 
 #define MENU_ITEMS 5
 #define ANIMATION_FRAMES 4
