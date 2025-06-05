@@ -59,6 +59,7 @@ void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, int *ke
         case 'r' :
         case 'R' :
             reset_game(room, map);
+            stack_clear(UndoStack);
             break;
         case 'u' :
         case 'U' :

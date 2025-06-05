@@ -61,6 +61,7 @@ void print_room(const char **map, const RoomLayout *room) {
         if (row_len > map_width) map_width = row_len;
         map_height++;
     }
+    map_width *= 3;
 
     clear();
 
@@ -69,7 +70,7 @@ void print_room(const char **map, const RoomLayout *room) {
     snprintf(size_info, sizeof(size_info), "Terminal: %d x %d", COLS, LINES);
     mvprintw(0, 0, "%s", size_info);
 
-    if (LINES < min_height || COLS < min_width || LINES < map_height || COLS < map_width) {
+    if (LINES < map_height || LINES < min_height || COLS < map_width || COLS < min_width) {
         const char *msg = "Please resize terminal to fit the arena";
         int msg_y = LINES / 2;
         int msg_x = (COLS - strlen(msg)) / 2;
@@ -86,10 +87,13 @@ void print_room(const char **map, const RoomLayout *room) {
         for (x = 0; map[y][x] != '\0'; x++) {
             tile = map[y][x];
             int dy = offset_y + y;
-            int dx = offset_x + x;
+            int dx = offset_x + x*3;
 
             if (tile == '#') {
-                mvaddch(dy, dx, '\xDB');
+                mvaddch(dy, dx, '\xB0');
+                mvaddch(dy, dx + 1, '\xB0');
+                mvaddch(dy, dx + 2, '\xB0');
+
             }
         }
     }
@@ -97,26 +101,28 @@ void print_room(const char **map, const RoomLayout *room) {
     // Target
     for (i = 0; i < room->target_count; i++) {
         attron(COLOR_PAIR(4) | A_BOLD);
-        mvprintw(offset_y + room->targets[i].y, offset_x + room->targets[i].x, "\xFA");
+        mvprintw(offset_y + room->targets[i].y, offset_x + room->targets[i].x*3 + 1, "\xFA");
         attroff(COLOR_PAIR(4) | A_BOLD);
     }
 
     // Box
     for (i = 0; i < room->box_count; i++) {
-        attron((room->boxes[i].is_activated ? COLOR_PAIR(2) : COLOR_PAIR(1)) | A_BOLD);
-        mvprintw(offset_y + room->boxes[i].y, offset_x + room->boxes[i].x, "\xFE");
-        attroff(COLOR_PAIR(1) | A_BOLD);
-        attroff(COLOR_PAIR(2) | A_BOLD);
+        attron((room->boxes[i].is_activated ? COLOR_PAIR(2) : COLOR_PAIR(5)));
+        mvprintw(offset_y + room->boxes[i].y, offset_x + room->boxes[i].x*3, "\xB2");
+        mvprintw(offset_y + room->boxes[i].y, offset_x + room->boxes[i].x*3 + 1, "\xB2");
+        mvprintw(offset_y + room->boxes[i].y, offset_x + room->boxes[i].x*3 + 2, "\xB2");
+        attroff(COLOR_PAIR(2));
+        attroff(COLOR_PAIR(4));
     }
 
     // Finish
     attron(is_finish_activated(room) ? (COLOR_PAIR(2) | A_BOLD) : (COLOR_PAIR(3) | A_DIM));
-    mvaddch(offset_y + room->finish.y, offset_x + room->finish.x, 'F');
+    mvaddch(offset_y + room->finish.y, offset_x + room->finish.x*3 + 1, 'F');
     attroff(COLOR_PAIR(2) | A_BOLD);
     attroff(COLOR_PAIR(3) | A_DIM);
 
     // Player
-    mvaddch(offset_y + room->player.y, offset_x + room->player.x, '@');
+    mvaddch(offset_y + room->player.y, offset_x + room->player.x*3 + 1, '@');
 
     refresh();
 }

@@ -70,5 +70,4 @@ void start_level (RoomLayout *room, const char **map) {
 
     //bersihkan chace pada stack
     stack_clear(&StackUndo);
-
 }

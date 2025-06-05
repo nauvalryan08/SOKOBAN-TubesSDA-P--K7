@@ -1,12 +1,13 @@
 #include "tree.h"
 
-Ptree createTreeNode(void *data, int level) {
+Ptree createTreeNode(void *data, DataType type) {
   Ptree node = (Ptree)malloc(sizeof(TreeNode));
   node->data = data;
+  node->Type = type;
   node->fs = NULL;
   node->nb = NULL;
   node->childCount = 0;
-  node->level = level;
+  node->level = 0;
   return node;
 }
 
@@ -154,6 +155,27 @@ void levelOrderTraversal(Ptree root, void (*visit)(void *)) {
 }
 
 //======================================================//
+// Fungsi pembantu untuk membandingkan kesamaan dua data
+boolean compareData (void *data1, void *data2, DataType type) {
+  switch (type) {
+    case TYPE_INT :
+      return *((int*) data1) == *((int*)data2);
+    case TYPE_CHAR :
+      return *((char*) data1) == *((char*)data2);
+    case TYPE_STRING :
+      return strcmp((char*) data1, (char*)data2) == 0;
+    case TYPE_LEVELDATA :
+      LevelData *temp1 = (LevelData *) data1;
+      LevelData *temp2 = (LevelData *) data2;
+      return strcmp(temp1->level_id, temp2->level_id) == 0;
+  }
+}
+
+boolean compareDataID (void *data1, void *data2) { return compareData(data1, data2, TYPE_LEVELDATA);}
+boolean compareDataINT (void *data1, void *data2) { return compareData(data1, data2, TYPE_INT);}
+boolean compareDataSTRING (void *data1, void *data2) { return compareData(data1, data2, TYPE_STRING);}
+boolean compareDataCHAR (void *data1, void *data2) { return compareData(data1, data2, TYPE_CHAR);}
+
 
 // Cari node (BFS)
 Ptree findTreeNode(Ptree root, void *target,
@@ -172,6 +194,30 @@ Ptree findTreeNode(Ptree root, void *target,
   }
   return NULL;
 }
+
+// Cari parent dari suatu Node
+Ptree findParentNode(Ptree root, void *target, boolean (*compare)(void *, void *)) {
+  if (!root || !compare) {
+    return NULL;
+  }
+  if (compare(root->data, target))
+  return NULL;    // Target merupakan root sehingga tidak ada parrent
+
+  Ptree child = root->fs;
+  while (child != NULL) {
+    if (compareDataID(child->data, target)) {
+      return root;
+    }
+    Ptree found = findParentNode(child, target, compare);
+    if (found) return found;
+
+    child = child->nb;
+  }
+
+  return NULL;
+
+}
+
 
 // Hapus
 void freeTree(Ptree root, void (*freeData)(void *)) {
