@@ -24,7 +24,7 @@ typedef void (*InitLevel)(RoomLayout*);
 //== Method untuk melakukan pemeriksaan sata akan bergerak ==//
 //===========================================================//
 /* {Sopian} */
-void move_player (RoomLayout *room, int dx, int dy, const char **map);
+boolean move_player (RoomLayout *room, int dx, int dy, const char **map); //true jika berpindah
 
 
 
@@ -54,7 +54,7 @@ void update_finish_activation_status(RoomLayout *room);
 //==>  RESET LOGIC  <==//
 //=====================//
 /* {Sopian} */
-void reset_game(RoomLayout *room, InitLevel Level);
+void reset_game(RoomLayout *room, const char **map);
 
 //=====================//
 //==>  UNDO LOGIC  <==//

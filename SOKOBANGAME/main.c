@@ -4,54 +4,53 @@
 
 int main() {
 
-    setlocale(LC_ALL, "");
+  setlocale(LC_ALL, "");
+  initscr();
 
-    initscr();
-    
-    // Inisialisasi warna
-    start_color();
+  // Inisialisasi warna
+  start_color();
+  init_pair(1, COLOR_WHITE, COLOR_BLACK);
+  init_pair(2, COLOR_GREEN, COLOR_BLACK);
+  init_pair(3, COLOR_BLACK, COLOR_BLACK);
+  init_pair(4, COLOR_YELLOW, COLOR_BLACK);
+  init_pair(5, COLOR_MAGENTA, COLOR_BLACK);
 
-    init_pair(1, COLOR_CYAN, COLOR_BLACK);   // Warna judul
-    init_pair(2, COLOR_YELLOW, COLOR_BLACK);  // Warna animasi
-    init_pair(3, COLOR_GREEN, COLOR_BLACK);   // Warna menu
-    
-    // Warna tambahan untuk game
-    init_pair(4, COLOR_WHITE, COLOR_BLACK);
-    init_pair(5, COLOR_GREEN, COLOR_BLACK);
-    init_pair(6, COLOR_BLACK, COLOR_BLACK);
+  
 
-    cbreak();
-    noecho();
-    curs_set(FALSE);
-    keypad(stdscr, TRUE);
-    timeout(0);
+  cbreak();
+  noecho();
+  curs_set(FALSE);
+  keypad(stdscr, TRUE);
+  timeout(0);
 
-    int menu_choice;
-    RoomLayout room;
+  // Tampilkan lobby screen dan ambil pilihan user
+  int menu_choice;
+  RoomLayout room;
+  LevelData *selected_level;
 
-    while (1) {
-        menu_choice = show_lobby_screen();
+  while (menu_choice != 4) {
+    // Handle pilihan menu
 
-        if (menu_choice == 4) {
-            break;
-        }
+    menu_choice = show_lobby_screen();
 
-        switch (menu_choice) {
-            case 0:
-                start_level(&room, Level_1c3_map, Level_1c3);
-                break;
-            case 1:
-                // show_history_screen();
-                break;
-            case 2:
-                // show_leaderboard_screen();
-                break;
-            case 3:
-                show_tutorial_screen();
-                break;
-        }
+    switch (menu_choice) {
+    case 0: // Play Game
+      /*{
+          selected_level = select_level();
+          if (selected_level != NULL) {
+              run_level(selected_level);
+          }
+      }*/
+      print_chapter_screen(selected_level);
+      break;
+    case 1: // History
+      // Implementasi fitur history
+      break;
+    case 4: // Quit Game
+      break;
     }
+  }
 
-    endwin();
-    return 0;
+  endwin();
+  return 0;
 }

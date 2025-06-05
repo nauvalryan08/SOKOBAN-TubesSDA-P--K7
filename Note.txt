@@ -15,6 +15,20 @@
 --> Chapter 5 : 15 Level;
 --> Bonus Arena : total 5;
 
+- [1 JUNI 2025] {sopian} :
+--> Pengembangan Layar output Game start harus bisa resize layar terminal
+--> mengindahkan tampilan terminal saat game start
+--> Memperbaiki struktur data queue agar bisa dipakai baik untuk hint dan queue of tree chapter
+--> menerapkan chapter dan level saat pemilihan
+--> melanjutkan membuat 90 level
+--> refactoring penempatan file kurang tepat
+
+- [2 JUNI 2025] {SOPIAN}
+--> BURU BIKIN TREE!!!
+--> Tampilan Choose Lvel perbaiki
+--> Termianl saat start game masih belum Resie able
+--> beri text instruction saat game start (esc kembali, r reset, u undo, arrow key move, dan H hint [ongoing]);
+
 
 
 
@@ -28,7 +42,18 @@
 --> Membuat Method (print_arena , parsing_arena, move_player, handle_input, boolean{pemeriksaan aktivasi objek})
 --> melakukan test main
 
+- [2 Juni 2025] {Sopian}
+--> Membuat seluruh level 1 - 94 (4 tutorial - 90 level utama belum chapter-chapter)
+--> Membuat halaman Choose Level sementara tanpa UI menarik (belum menerapkan tree)
+--> memperbaiki bug map level
+--> membuat esc button saat in game, dan memperbaiki while loop lobby
+
+
+
 
 ==> RANCANGAN :
 - Arena Logic [DONE 75%]
 - GAME LOGIC MOVEMENT [DONE 90%]            
+
+==> CATATAN :
+- [01 Juni 2025] Agar memudahkan proses compile menggunakan gcc, hanya perlu menjalankan installrequirement.ps1 di powershell (bukan di cmd.exe) dan juga menjalankan build.ps1

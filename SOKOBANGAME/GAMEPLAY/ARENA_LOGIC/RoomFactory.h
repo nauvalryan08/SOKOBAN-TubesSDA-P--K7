@@ -8,7 +8,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define MAX_OBJECTS 15
+#define MAX_OBJECTS 50
 
 //================================//
 //==>  STRUCT OBJECT & LAYOUT  <==//
@@ -34,7 +34,7 @@ typedef struct {
 //==>  Method untuk menyimpan data objek pad arena ke struct  <==//
 //===============================================================//
 /* {Sopian} */
-void parse_room(const char **map, RoomLayout *room);
+void parse_room(RoomLayout* room, const char **map);
 
 //===================================//
 //==>  Menghasilkan Output Arena  <==//

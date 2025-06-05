@@ -12,8 +12,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-typedef void (*Cur_Level)(RoomLayout*);
-
 //======================//
 //==>  RESET BUTTON  <==//
 //======================//
@@ -30,6 +28,6 @@ boolean is_Undo_pressed(int ch);
 //== Method untuk menerima input KEY ARROW dan menjalankan pemeriksaan ==//
 //=======================================================================//
 /* {Sopian} */
-void handle_input (RoomLayout *room, const char **map, Cur_Level Level, Stack *StackUndo);
+void handle_input (RoomLayout *room, const char **map, Stack *StackUndo, int *keyOutput);
 
 #endif

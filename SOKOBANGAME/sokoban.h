@@ -2,10 +2,10 @@
 #define SOKOBAN_H
 
 // Standar C
+#include <locale.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <locale.h>
 
 // ncurses
 #include "UTILS/include/curses.h"
@@ -17,10 +17,13 @@
 #include "GAMEPLAY/ARENA_LOGIC/RoomFactory.h"
 #include "GAMEPLAY/ARENA_LOGIC/level.h"
 
-#include "GAMEPLAY/GAME_LOGIC/GameLogic.h"
 #include "GAMEPLAY/GAME_LOGIC/ButtonGame.h"
+#include "GAMEPLAY/GAME_LOGIC/GameLogic.h"
 #include "GAMEPLAY/GAME_LOGIC/GameStart.h"
 
 #include "VIEW/lobbyscreen.h"
+#include "VIEW/LevelScreen.h"
+#include "VIEW/chapterscreen.h"
+
 
 #endif

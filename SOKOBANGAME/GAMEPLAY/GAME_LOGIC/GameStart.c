@@ -5,20 +5,41 @@
 //==========================================================//
 /* {Sopian} */
 
-void start_level (RoomLayout *room, const char **map, InitLevel init_level) {
+void start_level (RoomLayout *room, const char **map) {
 
     Stack StackUndo;
+    int keyOutput = 0;
+    int prev_lines = LINES;
+    int prev_cols = COLS;
+
     stack_init(&StackUndo);
 
-    init_level(room);                    // dari level.c
+    parse_room(room, map);      //parsing data berdasarkan map
 
     //simpan data roomLayout ke undo stack
     save_state(&StackUndo, room);
 
     while (1) {
+        prev_lines = LINES;
+        prev_cols = COLS;
+
+        if (is_termresized()) {
+            // Update ukuran terminal
+            resize_term(0, 0);
+            prev_lines = LINES;
+            prev_cols = COLS;
+            clear(); // Bersihkan layar agar tidak ada artefak lama
+        }
+
         update_box_activation_status (room);
         update_finish_activation_status (room);
         print_room (map, room);
+
+        handle_input (room, map, &StackUndo, &keyOutput);
+
+        if (keyOutput == 27) { // ESC key pressed
+            break; // Exit game loop
+        }
 
         if (is_victory(room)) {
             // Bersihkan layar dulu kalau mau
@@ -45,11 +66,8 @@ void start_level (RoomLayout *room, const char **map, InitLevel init_level) {
 
             break; // Keluar dari loop game
         }
-        handle_input (room, map, init_level, &StackUndo);
-
     }
 
     //bersihkan chace pada stack
     stack_clear(&StackUndo);
-
 }
