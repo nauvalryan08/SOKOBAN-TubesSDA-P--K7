@@ -3,44 +3,6 @@
 #include <string.h>
 #include <unistd.h>
 
-// Fungsi untuk menggambar kotak
-void draw_box(int y, int x, int height, int width) {
-  // Pastikan koordinat valid
-  if (y < 0 || x < 0 || y + height >= LINES || x + width >= COLS) {
-    return;
-  }
-
-  // Sudut kiri atas
-  mvaddch(y, x, ACS_ULCORNER);
-
-  // Sudut kanan atas
-  mvaddch(y, x + width, ACS_URCORNER);
-
-  // Sudut kiri bawah
-  mvaddch(y + height, x, ACS_LLCORNER);
-
-  // Sudut kanan bawah
-  mvaddch(y + height, x + width, ACS_LRCORNER);
-
-  // Garis horizontal atas dan bawah
-  for (int i = 1; i < width; i++) {
-    if (x + i < COLS) {
-      mvaddch(y, x + i, ACS_HLINE);
-      mvaddch(y + height, x + i, ACS_HLINE);
-    }
-  }
-
-  // Garis vertikal kiri dan kanan
-  for (int i = 1; i < height; i++) {
-    if (y + i < LINES) {
-      mvaddch(y + i, x, ACS_VLINE);
-      if (x + width < COLS) {
-        mvaddch(y + i, x + width, ACS_VLINE);
-      }
-    }
-  }
-}
-
 void draw_sokoban_animation(Animation *anim, int frame) {
   // Animasi karakter Sokoban yang lebih besar dan detail
   char frames[ANIMATION_FRAMES][5][20] = {
