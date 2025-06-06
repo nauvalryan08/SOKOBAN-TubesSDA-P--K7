@@ -1,4 +1,7 @@
 #include "lobbyscreen.h"
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
 
 // Fungsi untuk menggambar kotak
 void draw_box(int y, int x, int height, int width) {
@@ -261,8 +264,8 @@ int show_lobby_screen() {
   int prev_cols = COLS;
 
   // Ukuran minimal yang lebih kecil
-  int min_height = 20;
-  int min_width = 50;
+  int min_height = 40;
+  int min_width = 115;
   int menu_start_y = 15;
 
   // Jika terminal sangat kecil, turunkan menu
@@ -292,7 +295,7 @@ int show_lobby_screen() {
         
     // Pesan jika terlalu kecil
     if (LINES < min_height || COLS < min_width) {
-      const char *msg = "Please resize terminal to at least 50x20";
+      const char *msg = "Ubah ukuran terminal anda menjadi 115x40 agar dapat bermain!";
       int msg_y = LINES / 2;
       int msg_x = (COLS - strlen(msg)) / 2;
       mvprintw(msg_y, msg_x > 0 ? msg_x : 0, "%s", msg);

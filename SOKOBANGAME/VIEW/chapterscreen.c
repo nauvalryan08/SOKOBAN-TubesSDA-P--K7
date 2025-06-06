@@ -66,12 +66,12 @@ void print_chapter_screen(LevelData *selected_level) {
 
   // Buat button chapter
   Button chapters[] = {
-      {COLS / 2 - 6, LINES / 2 - 9, 12, 3, "Chapter 1"},
-      {COLS / 2 - 6, LINES / 2 - 4, 12, 3, "Chapter 2"},
-      {COLS / 2 - 6, LINES / 2 + 1, 12, 3, "Chapter 3"},
-      {COLS / 2 - 6, LINES / 2 + 6, 12, 3, "Chapter 4"},
-      {COLS / 2 - 6, LINES / 2 + 11, 12, 3, "Chapter 5"},
-      {COLS / 2 - 6, LINES / 2 + 16, 12, 3, "Chapter 6"},
+      {COLS / 4, LINES / 2 - 15, COLS / 2, 4, "Chapter 1"},
+      {COLS / 4, LINES / 2 - 10, COLS / 2, 4, "Chapter 2"},
+      {COLS / 4, LINES / 2 - 5, COLS / 2, 4, "Chapter 3"},
+      {COLS / 4, LINES / 2 , COLS / 2, 4, "Chapter 4"},
+      {COLS / 4, LINES / 2 + 5, COLS / 2, 4, "Chapter 5"},
+      {COLS / 4, LINES / 2 + 10, COLS / 2, 4, "Chapter 6"},
   };
   int n_chapters = 6;
 
