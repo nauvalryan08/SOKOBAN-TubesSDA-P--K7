@@ -74,45 +74,45 @@ void print_chapter_screen(LevelData *selected_level) {
       {COLS / 4, LINES / 2 + 10, COLS / 2, 4, "Chapter 6"},
   };
   int n_chapters = 6;
+  int selected = 0; // Track selected chapter
 
-  // Gambar semua button
-  for (int i = 0; i < n_chapters; i++) {
-    draw_btn(&chapters[i]);
-  }
-
-  mvprintw(1, 1, "Klik kiri pada tombol chapter untuk memilih chapter!");
-  mvprintw(2, 1, "Gunakan tombol ESC untuk kembali ke menu utama");
-  refresh();
+  // Enable keypad for arrow keys
+  keypad(stdscr, TRUE);
 
   int ch;
   MEVENT event;
   while ((ch = getch()) != 27) { // ESC untuk keluar
+    // Handle keyboard input
+    switch (ch) {
+      case KEY_UP:
+        selected = (selected > 0) ? selected - 1 : n_chapters - 1;
+        break;
+      case KEY_DOWN:
+        selected = (selected < n_chapters - 1) ? selected + 1 : 0;
+        break;
+      case '\n':
+      case KEY_ENTER:
+        // Handle chapter selection
+        if (selected >= 0 && selected < n_chapters) {
+          selected_level = select_level();
+          if (selected_level != NULL) {
+            run_level(selected_level);
+          }
+          return;
+        }
+        break;
+    }
+
+    // Handle mouse input
     if (ch == KEY_MOUSE) {
       if (getmouse(&event) == OK) {
         if (event.bstate & BUTTON1_CLICKED) {
           for (int i = 0; i < n_chapters; i++) {
             if (isbtnarea(&chapters[i], event.x, event.y)) {
-              // Highlight button yang diklik
-              attron(A_REVERSE);
-              draw_btn(&chapters[i]);
-              attroff(A_REVERSE);
-              refresh();
-
-              if (i == 0) {
-                selected_level = select_level();
-                if (selected_level != NULL) {
-                  run_level(selected_level);
-                }
-              } else if (i == 1) {
-                selected_level = select_level();
-                if (selected_level != NULL) {
-                  run_level(selected_level);
-                }
-              } else {
-                selected_level = select_level();
-                if (selected_level != NULL) {
-                  run_level(selected_level);
-                }
+              selected = i; // Update selected when clicking
+              selected_level = select_level();
+              if (selected_level != NULL) {
+                run_level(selected_level);
               }
               return;
             }
@@ -120,6 +120,28 @@ void print_chapter_screen(LevelData *selected_level) {
         }
       }
     }
+
+    // Clear screen and redraw
+    clear();
+    
+    // Draw instructions
+    mvprintw(1, 1, "Klik kiri pada tombol chapter untuk memilih chapter!");
+    mvprintw(2, 1, "Gunakan tombol ESC untuk kembali ke menu utama");
+    mvprintw(3, 1, "Gunakan tombol panah atas/bawah untuk navigasi");
+    mvprintw(4, 1, "Tekan ENTER untuk memilih chapter");
+
+    // Draw all buttons
+    for (int i = 0; i < n_chapters; i++) {
+      if (i == selected) {
+        attron(A_REVERSE); // Highlight selected button
+      }
+      draw_btn(&chapters[i]);
+      if (i == selected) {
+        attroff(A_REVERSE);
+      }
+    }
+
+    refresh();
   }
 }
 
