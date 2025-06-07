@@ -4,7 +4,7 @@
 #include "chapterscreen.h"
 #include "../GAMEPLAY/GAME_LOGIC/GameStart.h"
 #include "../UTILS/include/curses.h"
-#include "levelscreen.h"
+#include "LevelScreen.h"
 
 typedef struct {
   int x, y, width, height;
