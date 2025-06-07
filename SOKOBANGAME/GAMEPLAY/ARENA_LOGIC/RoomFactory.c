@@ -33,6 +33,19 @@ void parse_room(RoomLayout *room, const char **map) {
     }
 }
 
+//=============================================//
+//== Memeriksa apakah box sudah aktif semua  ==//
+//=============================================//
+/* {Sopian} */
+
+boolean is_finish_activated(const RoomLayout *room) {
+    for (int i = 0; i < room->box_count; i++) {
+        if (!room->boxes[i].is_activated) {
+            return false;
+        }
+    }
+    return true;
+}
 
 //===========================================================//
 //== Menghasilkan Output Arena sesuai data map dan Layout  ==//
@@ -44,7 +57,7 @@ void parse_room(RoomLayout *room, const char **map) {
 
 //================================>
 
-void print_room(const char **map, const RoomLayout *room) {
+void print_room(const char *name, const char **map, const RoomLayout *room) {
     int x, y, i;
     char tile;
 
@@ -82,6 +95,8 @@ void print_room(const char **map, const RoomLayout *room) {
     int offset_y = (LINES - map_height) / 2;
     int offset_x = (COLS - map_width) / 2;
 
+    print_room_info(name, room, offset_y, offset_x);
+
     // Gambar map
     for (y = 0; map[y] != NULL; y++) {
         for (x = 0; map[y][x] != '\0'; x++) {
@@ -108,9 +123,9 @@ void print_room(const char **map, const RoomLayout *room) {
     // Box
     for (i = 0; i < room->box_count; i++) {
         attron((room->boxes[i].is_activated ? COLOR_PAIR(2) : COLOR_PAIR(5)));
-        mvprintw(offset_y + room->boxes[i].y, offset_x + room->boxes[i].x*3, "\xB2");
-        mvprintw(offset_y + room->boxes[i].y, offset_x + room->boxes[i].x*3 + 1, "\xB2");
-        mvprintw(offset_y + room->boxes[i].y, offset_x + room->boxes[i].x*3 + 2, "\xB2");
+        // mvprintw(offset_y + room->boxes[i].y, offset_x + room->boxes[i].x*3, "\xFE");
+        mvprintw(offset_y + room->boxes[i].y, offset_x + room->boxes[i].x*3 + 1, "\xFE");
+        // mvprintw(offset_y + room->boxes[i].y, offset_x + room->boxes[i].x*3 + 2, "\xFE");
         attroff(COLOR_PAIR(2));
         attroff(COLOR_PAIR(4));
     }
@@ -127,17 +142,60 @@ void print_room(const char **map, const RoomLayout *room) {
     refresh();
 }
 
-
-//=============================================//
-//== Memeriksa apakah box sudah aktif semua  ==//
-//=============================================//
+//======================================================================//
+//== Menghasilkan Output Outer seeperti Navigasi, Hiasan, nama level  ==//
+//======================================================================//
 /* {Sopian} */
 
-boolean is_finish_activated(const RoomLayout *room) {
-    for (int i = 0; i < room->box_count; i++) {
-        if (!room->boxes[i].is_activated) {
-            return false;
-        }
+void print_centered_text(int y, const char *text) {
+    int x = (COLS - strlen(text)) / 2;
+    mvprintw(y, x, "%s", text);
+}
+
+void print_room_info(const char *name, const RoomLayout *room, int offset_y, int offset_x) {
+    const char *info1 = name;
+    char info_totalBox[50];
+    char info_BoxActivated[50];
+    char info_FinishActivated[50];
+    int i;
+
+    char stripLine[strlen(info1) + 4];
+
+    stripLine[0] = '<';
+    for (i=0;i<strlen(info1) + 2;i++){
+        stripLine[i+1] = '=' ;
     }
-    return true;
+    stripLine[strlen(info1) + 3] = '>';
+
+
+    char *boxInfo[] = {
+        "+-------------------------+",
+        "|                         |",
+        "|                         |",
+        "|                         |",
+        "|                         |",
+        "|                         |",
+        "|                         |",
+        "|                         |",
+        "|                         |",
+        "|                         |",
+        "|                         |",
+        "|                         |",
+        "|                         |",
+        "|                         |",
+        "|                         |",
+        "|                         |",
+        "|                         |",
+        "+-------------------------+",
+    } ;
+
+    print_centered_text(offset_y - 3, stripLine);
+    print_centered_text(offset_y - 4, info1);
+
+    int box_lines = sizeof(boxInfo) / sizeof(boxInfo[0]);
+    for (i = 0; i < box_lines; i++) {
+        mvprintw(offset_y + i, offset_x - strlen(boxInfo[0]) - 5, "%s", boxInfo[i]);
+    }
+
+
 }

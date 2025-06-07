@@ -9,11 +9,8 @@
 //================================//
 /* {Sopian} */
 
-typedef Stack GameUndo;
-
 //Pointer untuk memanggil void init parsing level
 typedef void (*InitLevel)(RoomLayout*);
-
 
 
 /*****************************************************/
@@ -55,14 +52,6 @@ void update_finish_activation_status(RoomLayout *room);
 //=====================//
 /* {Sopian} */
 void reset_game(RoomLayout *room, const char **map);
-
-//=====================//
-//==>  UNDO LOGIC  <==//
-//=====================//
-/* {Sopian} */
-void save_state(GameUndo *prevMove, const RoomLayout *room);
-
-void undo_game(GameUndo *prevMove, RoomLayout *currRoom);
 
 
 /***********************************************/

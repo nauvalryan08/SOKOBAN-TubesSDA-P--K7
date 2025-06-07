@@ -138,7 +138,7 @@ void run_level(LevelData* selected_level) {
     if (selected_level == NULL) return;
     
     RoomLayout room;
-    start_level(&room, selected_level->map);
+    start_level(&room, selected_level);
 }
 
 int handle_level_input() {

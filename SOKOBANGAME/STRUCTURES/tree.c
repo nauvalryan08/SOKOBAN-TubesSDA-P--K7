@@ -92,7 +92,7 @@ void postOrderTraversal(Ptree root, void (*visit)(void *)) {
 //== 4. LEVEL-ORDER  ==//
 //======================//
 // Helper: Enqueue
-void tenqueue(Queue *q, Ptree treeNode) {
+void tenqueue(QueueTree *q, Ptree treeNode) {
   QueueNode *newNode = (QueueNode *)malloc(sizeof(QueueNode));
   newNode->treeNode = treeNode;
   newNode->next = NULL;
@@ -106,7 +106,7 @@ void tenqueue(Queue *q, Ptree treeNode) {
 }
 
 // Helper: Dequeue
-TreeNode *tdequeue(Queue *q) {
+TreeNode *tdequeue(QueueTree *q) {
   if (q->front == NULL)
     return NULL;
 
@@ -123,7 +123,7 @@ TreeNode *tdequeue(Queue *q) {
 }
 
 // Helper: Proses satu level
-void processCurrentLevel(Queue *q, void (*visit)(void *)) {
+void processCurrentLevel(QueueTree *q, void (*visit)(void *)) {
   if (q->front == NULL)
     return;
 
@@ -133,7 +133,7 @@ void processCurrentLevel(Queue *q, void (*visit)(void *)) {
 
   visit(current->data);
 
-  // Enqueue semua child
+  // EnqueueTree semua child
   Ptree child = current->fs;
   while (child != NULL) {
     tenqueue(q, child);
@@ -149,7 +149,7 @@ void levelOrderTraversal(Ptree root, void (*visit)(void *)) {
   if (!root || !visit)
     return;
 
-  Queue q = {NULL, NULL};
+  QueueTree q = {NULL, NULL};
   tenqueue(&q, root);
   processCurrentLevel(&q, visit);
 }

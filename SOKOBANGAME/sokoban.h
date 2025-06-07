@@ -16,6 +16,8 @@
 // Semua header proyek
 #include "GAMEPLAY/ARENA_LOGIC/RoomFactory.h"
 #include "GAMEPLAY/ARENA_LOGIC/level.h"
+#include "GAMEPLAY/ARENA_LOGIC/ChapterManager.h"
+
 
 #include "GAMEPLAY/GAME_LOGIC/ButtonGame.h"
 #include "GAMEPLAY/GAME_LOGIC/GameLogic.h"

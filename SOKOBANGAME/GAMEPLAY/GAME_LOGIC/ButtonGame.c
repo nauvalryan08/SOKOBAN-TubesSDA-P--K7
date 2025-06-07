@@ -23,7 +23,7 @@ boolean is_Undo_pressed(int ch) {
 //=======================================================================//
 /* {Sopian} */
 
-void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, int *keyOutput) {
+void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *hintQueue, int *keyOutput) {
     int ch = getch();
     boolean valid = false;
 

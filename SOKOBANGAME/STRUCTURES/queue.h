@@ -1,16 +1,19 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
+typedef struct Node {
+    void* data;
+    struct Node * next;
+}Node;
+
 typedef struct {
-    void **items;       // Array generik
-    int front;
-    int rear;
+    Node *front;
+    Node *rear;
     int size;
-    int capacity;
 } Queue;
 
 // Inisialisasi queue
-void initQueue(Queue *queue, int capacity);
+void initQueue(Queue *queue);
 
 // Tambah elemen di belakang
 void enqueue(Queue *queue, void *data);

@@ -1,8 +1,10 @@
 #include "ChapterManager.h"
 
-void initTutorial() {
-
-}
+//=====================================================//
+//==   DEFINISI SELURUH TREE CHAPTER KE DALAM ARRAY  ==//
+//=====================================================//
+/* {Sopian} */
+ChapterData ChapterTrees[];
 
 void initChapter1() {
     Ptree n1 = createTreeNode(&ALL_LEVELS[LEVEL_1C1], TYPE_LEVELDATA);
@@ -14,17 +16,18 @@ void initChapter1() {
     Ptree n7 = createTreeNode(&ALL_LEVELS[LEVEL_1C7], TYPE_LEVELDATA);
     Ptree n8 = createTreeNode(&ALL_LEVELS[LEVEL_1C8], TYPE_LEVELDATA);
 
-    ChapterTrees[CHAPTER1].root = n1;
+    ChapterTrees[CHAPTER1].is_finished = false;
+    ChapterTrees[CHAPTER1].ChapterTree = n1;
 
     addTreeNodeChild(n1,n2);
     addTreeNodeChild(n1,n3);
 
     addTreeNodeChild(n2,n4);
-    addTreeNodeChild(n1,n5);
+    addTreeNodeChild(n2,n5);
 
-    addTreeNodeChild(n1,n6);
-    addTreeNodeChild(n1,n7);
-    addTreeNodeChild(n1,n8);
+    addTreeNodeChild(n3,n6);
+    addTreeNodeChild(n3,n7);
+    addTreeNodeChild(n3,n8);
 }
 
 void initChapter2() {
@@ -46,7 +49,8 @@ void initChapter2() {
 
     Ptree B1 = createTreeNode(&ALL_LEVELS[LEVEL_1B], TYPE_LEVELDATA);
 
-    ChapterTrees[CHAPTER2].root = n1;
+    ChapterTrees[CHAPTER2].is_finished = false;
+    ChapterTrees[CHAPTER2].ChapterTree = n1;
 
     addTreeNodeChild(n1,n2);
     addTreeNodeChild(n1,n3);
@@ -95,7 +99,8 @@ void initChapter3() {
 
     Ptree B1 = createTreeNode(&ALL_LEVELS[LEVEL_2B], TYPE_LEVELDATA);
 
-    ChapterTrees[CHAPTER3].root = n1;
+    ChapterTrees[CHAPTER3].is_finished = false;
+    ChapterTrees[CHAPTER3].ChapterTree = n1;
 
     addTreeNodeChild(n1,n2);
     addTreeNodeChild(n1,n3);
@@ -153,7 +158,8 @@ void initChapter4() {
     Ptree B1 = createTreeNode(&ALL_LEVELS[LEVEL_3B], TYPE_LEVELDATA);
 
 
-    ChapterTrees[CHAPTER4].root = n1;
+    ChapterTrees[CHAPTER4].is_finished = false;
+    ChapterTrees[CHAPTER4].ChapterTree = n1;
 
     addTreeNodeChild(n1,n2);
     addTreeNodeChild(n1,n3);
@@ -216,7 +222,9 @@ void initChapter5() {
     Ptree B1 = createTreeNode(&ALL_LEVELS[LEVEL_5B], TYPE_LEVELDATA);
     Ptree B2 = createTreeNode(&ALL_LEVELS[LEVEL_6B], TYPE_LEVELDATA);
 
-    ChapterTrees[CHAPTER5].root = n1;
+    ChapterTrees[CHAPTER5].ChapterTree = n1;
+    ChapterTrees[CHAPTER5].is_finished = false;
+
 
     addTreeNodeChild(n1,n2);
     addTreeNodeChild(n1,n3);
@@ -253,7 +261,6 @@ void initChapter5() {
 }
 
 void initAllChapters() {
-    initTutorial();
     initChapter1();
     initChapter2();
     initChapter3();
@@ -261,27 +268,42 @@ void initAllChapters() {
     initChapter5();
 }
 
+//====================================================//
+
+
+//===============================================//
+//==   ILUSTRASI TREE CHAPTER .KE BENTUK TREE  ==//
+//===============================================//
+/* {Sopian} */
 
 // ==> Print Ilustrasi Tree Section
 
-// Helper Rekursif
-void printTreeRecursive(Ptree node, void (*printID)(void *), char *prefix, bool isLast) {
+// Variable global (sesuaikan dengan posisi ujung kiri atas lokasi output)
+int cursor_y = 0;
+
+// Prosedur helper untuk pemanggilan secara rekursif
+void printTreeRecursiveNcurses(Ptree node, void (*printID)(void *, char *), char *prefix, bool isLast) {
     if (node == NULL) return;
 
-    printf("%s", prefix);
+    char line[256];
+    strcpy(line, prefix);
+
     if (isLast) {
-        printf("└── ");
+        strcat(line, "|-- ");
         strcat(prefix, "    ");
     } else {
-        printf("├── ");
-        strcat(prefix, "│   ");
+        strcat(line, "|-- ");
+        strcat(prefix, "|   ");
     }
 
-    // Cetak data
-    printID(node->data);
-    printf("\n");
+    // Cetak ID atau nama node menggunakan printID (ke string)
+    char label[128];
+    printID(node->data, label);  // Minta printID mengisi label
+    strcat(line, label);
 
-    // Hitung jumlah anak
+    mvprintw(cursor_y++, 0, "%s", line);
+
+    // Traversal ke anak-anak
     int childCount = 0;
     Ptree temp = node->fs;
     while (temp) {
@@ -289,22 +311,38 @@ void printTreeRecursive(Ptree node, void (*printID)(void *), char *prefix, bool 
         temp = temp->nb;
     }
 
-    // Rekursif ke anak-anak
     int i = 0;
     temp = node->fs;
     while (temp) {
-        printTreeRecursive(temp, printID, strdup(prefix), i == childCount - 1);
+        if (i > 0) {
+            // Tambahkan baris jarak antar subtree
+            mvprintw(cursor_y++, 0, "%s|", prefix);
+        }
+        printTreeRecursiveNcurses(temp, printID, strdup(prefix), i == childCount - 1);
         temp = temp->nb;
         i++;
     }
 }
 
-// Modul dipanaggil
-void printTreeStructure(Ptree root, void (*printID)(void *)) {
+void printTreeStructureNcurses(Ptree root, void (*printID)(void *, char *)) {
     if (root == NULL) {
-        printf("[Empty Tree]\n");
+        mvprintw(cursor_y++, 0, "[Empty Tree]");
         return;
     }
     char prefix[256] = "";
-    printTreeRecursive(root, printID, prefix, true);
+    printTreeRecursiveNcurses(root, printID, prefix, true);
 }
+
+// Prosedure helper untuk menjadi parameter void (*PrintID) pada rekursif print tree
+void printLevelName(void *data, char *output) {
+    LevelData *lvl = (LevelData *)data;
+    sprintf(output, "%s", lvl->level_name);  // Misalnya: "Chapter 1 - Level 3"
+}
+
+
+void printLevelID(void *data, char *output) {
+    LevelData *lvl = (LevelData *)data;
+    sprintf(output, "%s", lvl->level_id);  // Misalnya: "Chapter 1 - Level 3"
+}
+
+//======================================//

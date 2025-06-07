@@ -5,14 +5,18 @@
 //==========================================================//
 /* {Sopian} */
 
-void start_level (RoomLayout *room, const char **map) {
+void start_level (RoomLayout *room, LevelData *level) {
 
     Stack StackUndo;
+    Queue hintQueue;
     int keyOutput = 0;
     int prev_lines = LINES;
     int prev_cols = COLS;
 
+    const char **map = level->map;
+
     stack_init(&StackUndo);
+    initQueue(&hintQueue);
 
     parse_room(room, map);      //parsing data berdasarkan map
 
@@ -33,9 +37,9 @@ void start_level (RoomLayout *room, const char **map) {
 
         update_box_activation_status (room);
         update_finish_activation_status (room);
-        print_room (map, room);
+        print_room (level->level_name, map, room);
 
-        handle_input (room, map, &StackUndo, &keyOutput);
+        handle_input (room, map, &StackUndo, &hintQueue, &keyOutput);
 
         if (keyOutput == 27) { // ESC key pressed
             break; // Exit game loop
@@ -70,4 +74,5 @@ void start_level (RoomLayout *room, const char **map) {
 
     //bersihkan chace pada stack
     stack_clear(&StackUndo);
+    clearQueue(&hintQueue);
 }

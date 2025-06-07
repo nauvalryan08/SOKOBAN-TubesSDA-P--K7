@@ -37,7 +37,7 @@ typedef struct QueueNode {
 typedef struct {
     QueueNode *front;
     QueueNode *rear;
-}Queue;
+}QueueTree;
 
 
 // Buat node baru

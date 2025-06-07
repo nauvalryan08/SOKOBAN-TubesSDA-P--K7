@@ -1642,10 +1642,6 @@ const char *Level_6b_map[] = {
 //==============================================//
 /* {Sopian} */
 LevelData ALL_LEVELS[] = {
-// ERROR: Unable to parse LEVEL_H
-
-// ERROR: Unable to parse LEVEL_H
-
     [LEVEL_1T1] = {
         .level_id = "1t1",
         .level_name = "TUTORIAL 1",

@@ -40,7 +40,9 @@ void parse_room(RoomLayout* room, const char **map);
 //==>  Menghasilkan Output Arena  <==//
 //===================================//
 /* {Sopian} */
-void print_room(const char **map, const RoomLayout *room);
+void print_room(const char *name, const char **map, const RoomLayout *room);
+
+void print_room_info(const char *name, const RoomLayout *room, int offset_y, int offser_x);
 
 //================================================//
 //==>  Memeriksa apakah semua box sudah Aktif  <==//
