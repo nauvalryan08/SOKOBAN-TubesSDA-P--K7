@@ -3,44 +3,6 @@
 #include <string.h>
 #include <unistd.h>
 
-// Fungsi untuk menggambar kotak
-void draw_box(int y, int x, int height, int width) {
-  // Pastikan koordinat valid
-  if (y < 0 || x < 0 || y + height >= LINES || x + width >= COLS) {
-    return;
-  }
-
-  // Sudut kiri atas
-  mvaddch(y, x, ACS_ULCORNER);
-
-  // Sudut kanan atas
-  mvaddch(y, x + width, ACS_URCORNER);
-
-  // Sudut kiri bawah
-  mvaddch(y + height, x, ACS_LLCORNER);
-
-  // Sudut kanan bawah
-  mvaddch(y + height, x + width, ACS_LRCORNER);
-
-  // Garis horizontal atas dan bawah
-  for (int i = 1; i < width; i++) {
-    if (x + i < COLS) {
-      mvaddch(y, x + i, ACS_HLINE);
-      mvaddch(y + height, x + i, ACS_HLINE);
-    }
-  }
-
-  // Garis vertikal kiri dan kanan
-  for (int i = 1; i < height; i++) {
-    if (y + i < LINES) {
-      mvaddch(y + i, x, ACS_VLINE);
-      if (x + width < COLS) {
-        mvaddch(y + i, x + width, ACS_VLINE);
-      }
-    }
-  }
-}
-
 void draw_sokoban_animation(Animation *anim, int frame) {
   // Animasi karakter Sokoban yang lebih besar dan detail
   char frames[ANIMATION_FRAMES][5][20] = {
@@ -264,8 +226,8 @@ int show_lobby_screen() {
   int prev_cols = COLS;
 
   // Ukuran minimal yang lebih kecil
-  int min_height = 20;
-  int min_width = 50;
+  int min_height = 40;
+  int min_width = 115;
   int menu_start_y = 15;
 
   // Jika terminal sangat kecil, turunkan menu
@@ -295,7 +257,7 @@ int show_lobby_screen() {
         
     // Pesan jika terlalu kecil
     if (LINES < min_height || COLS < min_width) {
-      const char *msg = "Please resize terminal to at least 50x20";
+      const char *msg = "Ubah ukuran terminal anda menjadi 115x40 agar dapat bermain!";
       int msg_y = LINES / 2;
       int msg_x = (COLS - strlen(msg)) / 2;
       mvprintw(msg_y, msg_x > 0 ? msg_x : 0, "%s", msg);

@@ -1,4 +1,6 @@
 #include "sokoban.h"
+#include "VIEW/lobbyscreen.h"
+#include "VIEW/tutorial.h"
 
 int main() {
 
