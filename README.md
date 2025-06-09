@@ -15,7 +15,6 @@ Sokoban SDA adalah game puzzle klasik di mana pemain harus mendorong kotak-kotak
   - Stack
   - Queue
   - Tree
-- **Gameplay Klasik**: Mekanisme permainan Sokoban yang autentik
 
 ## Cara Bermain
 
