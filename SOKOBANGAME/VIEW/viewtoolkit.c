@@ -50,11 +50,23 @@ int isbtnarea(Button *btn, int mouse_x, int mouse_y) {
 }
 
 void handle_resize(int *prev_lines, int *prev_cols){
-    if (LINES != *prev_lines || COLS != *prev_cols) {
-      resize_term(0, 0);
-      *prev_lines = LINES;
-      *prev_cols = COLS;
-    }
+  if (LINES != *prev_lines || COLS != *prev_cols) {
+    resize_term(0, 0);
+    refresh();
+    *prev_lines = LINES;
+    *prev_cols = COLS;
+  }
+}
+
+void termsize_check(){
+      const char *msg = "Ubah ukuran terminal anda menjadi 190x47 agar dapat bermain!";
+      int msg_y = LINES / 2;
+      int msg_x = (COLS - strlen(msg)) / 2;
+      mvprintw(msg_y, msg_x > 0 ? msg_x : 0, "%s", msg);
+      if (KEY_RESIZE) {
+        resize_term(0,0);
+      }
+      refresh();
 }
 
 void draw_box(int x, int y, int width, int height) {

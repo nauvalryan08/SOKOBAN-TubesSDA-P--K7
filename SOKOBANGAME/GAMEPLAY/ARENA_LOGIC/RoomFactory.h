@@ -11,8 +11,8 @@
 
 #define MAX_OBJECTS 50
 
-#define TILE_WIDTH 5  // Ukuran horizontal setiap tile
-#define TILE_HEIGHT 3    // Tinggi vertikal 1 tile (spasi ke bawah)
+#define TILE_WIDTH 4  // Ukuran horizontal setiap tile
+#define TILE_HEIGHT 2    // Tinggi vertikal 1 tile (spasi ke bawah)
 
 //================================//
 //==>  STRUCT OBJECT & LAYOUT  <==//

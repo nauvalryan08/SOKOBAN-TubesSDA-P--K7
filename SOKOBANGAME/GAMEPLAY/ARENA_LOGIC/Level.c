@@ -1737,7 +1737,7 @@ LevelData ALL_LEVELS[] = {
         .level_id = "2c2",
         .level_name = "Chapter 2 - Level 2",
         .map = Level_2c2_map,
-        .is_unlocked = false,
+        .is_unlocked = true,
         .is_finished = false,
     },
     [LEVEL_2C3] = {
