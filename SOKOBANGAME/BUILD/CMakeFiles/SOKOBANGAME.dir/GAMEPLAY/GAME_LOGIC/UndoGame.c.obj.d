@@ -1,8 +1,8 @@
-CMakeFiles/SOKOBANGAME.dir/STRUCTURES/tree.c.obj: \
- C:\Users\Administrator\Documents\Tugas\Tambal\ Tubes\ Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\STRUCTURES\tree.c \
- C:\Users\Administrator\Documents\Tugas\Tambal\ Tubes\ Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\STRUCTURES\tree.h \
- C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/include/boolean.h \
- C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/GAMEPLAY/ARENA_LOGIC/Level.h \
+CMakeFiles/SOKOBANGAME.dir/GAMEPLAY/GAME_LOGIC/UndoGame.c.obj: \
+ C:\Users\Administrator\Documents\Tugas\Tambal\ Tubes\ Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\GAMEPLAY\GAME_LOGIC\UndoGame.c \
+ C:\Users\Administrator\Documents\Tugas\Tambal\ Tubes\ Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\GAMEPLAY\GAME_LOGIC\UndoGame.h \
+ C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/STRUCTURES/stack.h \
+ C:/ProgramData/mingw64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/stdbool.h \
  C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/GAMEPLAY/ARENA_LOGIC/RoomFactory.h \
  C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/include/boolean.h \
  C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/include/curses.h \
@@ -23,7 +23,6 @@ CMakeFiles/SOKOBANGAME.dir/STRUCTURES/tree.c.obj: \
  C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/_mingw_off_t.h \
  C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/swprintf.inl \
  C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/sec_api/stdio_s.h \
- C:/ProgramData/mingw64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/stdbool.h \
  C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/VIEW/viewtoolkit.h \
  C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/include/curses.h \
  C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/stdlib.h \

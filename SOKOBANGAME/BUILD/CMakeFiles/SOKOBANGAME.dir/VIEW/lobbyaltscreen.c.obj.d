@@ -1,10 +1,7 @@
-CMakeFiles/SOKOBANGAME.dir/STRUCTURES/tree.c.obj: \
- C:\Users\Administrator\Documents\Tugas\Tambal\ Tubes\ Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\STRUCTURES\tree.c \
- C:\Users\Administrator\Documents\Tugas\Tambal\ Tubes\ Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\STRUCTURES\tree.h \
- C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/include/boolean.h \
- C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/GAMEPLAY/ARENA_LOGIC/Level.h \
- C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/GAMEPLAY/ARENA_LOGIC/RoomFactory.h \
- C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/include/boolean.h \
+CMakeFiles/SOKOBANGAME.dir/VIEW/lobbyaltscreen.c.obj: \
+ C:\Users\Administrator\Documents\Tugas\Tambal\ Tubes\ Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\VIEW\lobbyaltscreen.c \
+ C:\Users\Administrator\Documents\Tugas\Tambal\ Tubes\ Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\VIEW\lobbyaltscreen.h \
+ C:\Users\Administrator\Documents\Tugas\Tambal\ Tubes\ Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\VIEW\viewtoolkit.h \
  C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/include/curses.h \
  C:/ProgramData/mingw64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/stdarg.h \
  C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/stdarg.h \
@@ -24,8 +21,6 @@ CMakeFiles/SOKOBANGAME.dir/STRUCTURES/tree.c.obj: \
  C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/swprintf.inl \
  C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/sec_api/stdio_s.h \
  C:/ProgramData/mingw64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/stdbool.h \
- C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/VIEW/viewtoolkit.h \
- C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/include/curses.h \
  C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/stdlib.h \
  C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/corecrt_wstdlib.h \
  C:/ProgramData/mingw64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/limits.h \
@@ -36,4 +31,12 @@ CMakeFiles/SOKOBANGAME.dir/STRUCTURES/tree.c.obj: \
  C:/ProgramData/mingw64/mingw64/lib/gcc/x86_64-w64-mingw32/13.2.0/include/mm_malloc.h \
  C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/errno.h \
  C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/string.h \
- C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/sec_api/string_s.h
+ C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/sec_api/string_s.h \
+ C:/Users/ADMINI~1/DOCUME~1/Tugas/TAMBAL~1/SOKOBA~1/SOKOBA~1/UTILS/include/../../UTILS/include/curses.h \
+ C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/unistd.h \
+ C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/io.h \
+ C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/process.h \
+ C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/corecrt_startup.h \
+ C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/sys/types.h \
+ C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/getopt.h \
+ C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/pthread_unistd.h

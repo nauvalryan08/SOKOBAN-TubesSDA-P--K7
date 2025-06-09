@@ -128,6 +128,30 @@ SOKOBANGAME/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/build
 .PHONY : SOKOBANGAME/fast
 
+GAMEPLAY/ARENA_LOGIC/ChapterManager.obj: GAMEPLAY/ARENA_LOGIC/ChapterManager.c.obj
+.PHONY : GAMEPLAY/ARENA_LOGIC/ChapterManager.obj
+
+# target to build an object file
+GAMEPLAY/ARENA_LOGIC/ChapterManager.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/GAMEPLAY/ARENA_LOGIC/ChapterManager.c.obj
+.PHONY : GAMEPLAY/ARENA_LOGIC/ChapterManager.c.obj
+
+GAMEPLAY/ARENA_LOGIC/ChapterManager.i: GAMEPLAY/ARENA_LOGIC/ChapterManager.c.i
+.PHONY : GAMEPLAY/ARENA_LOGIC/ChapterManager.i
+
+# target to preprocess a source file
+GAMEPLAY/ARENA_LOGIC/ChapterManager.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/GAMEPLAY/ARENA_LOGIC/ChapterManager.c.i
+.PHONY : GAMEPLAY/ARENA_LOGIC/ChapterManager.c.i
+
+GAMEPLAY/ARENA_LOGIC/ChapterManager.s: GAMEPLAY/ARENA_LOGIC/ChapterManager.c.s
+.PHONY : GAMEPLAY/ARENA_LOGIC/ChapterManager.s
+
+# target to generate assembly for a file
+GAMEPLAY/ARENA_LOGIC/ChapterManager.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/GAMEPLAY/ARENA_LOGIC/ChapterManager.c.s
+.PHONY : GAMEPLAY/ARENA_LOGIC/ChapterManager.c.s
+
 GAMEPLAY/ARENA_LOGIC/Level.obj: GAMEPLAY/ARENA_LOGIC/Level.c.obj
 .PHONY : GAMEPLAY/ARENA_LOGIC/Level.obj
 
@@ -248,6 +272,30 @@ GAMEPLAY/GAME_LOGIC/GameStart.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/GAMEPLAY/GAME_LOGIC/GameStart.c.s
 .PHONY : GAMEPLAY/GAME_LOGIC/GameStart.c.s
 
+GAMEPLAY/GAME_LOGIC/UndoGame.obj: GAMEPLAY/GAME_LOGIC/UndoGame.c.obj
+.PHONY : GAMEPLAY/GAME_LOGIC/UndoGame.obj
+
+# target to build an object file
+GAMEPLAY/GAME_LOGIC/UndoGame.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/GAMEPLAY/GAME_LOGIC/UndoGame.c.obj
+.PHONY : GAMEPLAY/GAME_LOGIC/UndoGame.c.obj
+
+GAMEPLAY/GAME_LOGIC/UndoGame.i: GAMEPLAY/GAME_LOGIC/UndoGame.c.i
+.PHONY : GAMEPLAY/GAME_LOGIC/UndoGame.i
+
+# target to preprocess a source file
+GAMEPLAY/GAME_LOGIC/UndoGame.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/GAMEPLAY/GAME_LOGIC/UndoGame.c.i
+.PHONY : GAMEPLAY/GAME_LOGIC/UndoGame.c.i
+
+GAMEPLAY/GAME_LOGIC/UndoGame.s: GAMEPLAY/GAME_LOGIC/UndoGame.c.s
+.PHONY : GAMEPLAY/GAME_LOGIC/UndoGame.s
+
+# target to generate assembly for a file
+GAMEPLAY/GAME_LOGIC/UndoGame.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/GAMEPLAY/GAME_LOGIC/UndoGame.c.s
+.PHONY : GAMEPLAY/GAME_LOGIC/UndoGame.c.s
+
 STRUCTURES/list.obj: STRUCTURES/list.c.obj
 .PHONY : STRUCTURES/list.obj
 
@@ -344,6 +392,78 @@ STRUCTURES/tree.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/STRUCTURES/tree.c.s
 .PHONY : STRUCTURES/tree.c.s
 
+VIEW/chapterscreen.obj: VIEW/chapterscreen.c.obj
+.PHONY : VIEW/chapterscreen.obj
+
+# target to build an object file
+VIEW/chapterscreen.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/VIEW/chapterscreen.c.obj
+.PHONY : VIEW/chapterscreen.c.obj
+
+VIEW/chapterscreen.i: VIEW/chapterscreen.c.i
+.PHONY : VIEW/chapterscreen.i
+
+# target to preprocess a source file
+VIEW/chapterscreen.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/VIEW/chapterscreen.c.i
+.PHONY : VIEW/chapterscreen.c.i
+
+VIEW/chapterscreen.s: VIEW/chapterscreen.c.s
+.PHONY : VIEW/chapterscreen.s
+
+# target to generate assembly for a file
+VIEW/chapterscreen.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/VIEW/chapterscreen.c.s
+.PHONY : VIEW/chapterscreen.c.s
+
+VIEW/levelscreen.obj: VIEW/levelscreen.c.obj
+.PHONY : VIEW/levelscreen.obj
+
+# target to build an object file
+VIEW/levelscreen.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/VIEW/levelscreen.c.obj
+.PHONY : VIEW/levelscreen.c.obj
+
+VIEW/levelscreen.i: VIEW/levelscreen.c.i
+.PHONY : VIEW/levelscreen.i
+
+# target to preprocess a source file
+VIEW/levelscreen.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/VIEW/levelscreen.c.i
+.PHONY : VIEW/levelscreen.c.i
+
+VIEW/levelscreen.s: VIEW/levelscreen.c.s
+.PHONY : VIEW/levelscreen.s
+
+# target to generate assembly for a file
+VIEW/levelscreen.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/VIEW/levelscreen.c.s
+.PHONY : VIEW/levelscreen.c.s
+
+VIEW/lobbyaltscreen.obj: VIEW/lobbyaltscreen.c.obj
+.PHONY : VIEW/lobbyaltscreen.obj
+
+# target to build an object file
+VIEW/lobbyaltscreen.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/VIEW/lobbyaltscreen.c.obj
+.PHONY : VIEW/lobbyaltscreen.c.obj
+
+VIEW/lobbyaltscreen.i: VIEW/lobbyaltscreen.c.i
+.PHONY : VIEW/lobbyaltscreen.i
+
+# target to preprocess a source file
+VIEW/lobbyaltscreen.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/VIEW/lobbyaltscreen.c.i
+.PHONY : VIEW/lobbyaltscreen.c.i
+
+VIEW/lobbyaltscreen.s: VIEW/lobbyaltscreen.c.s
+.PHONY : VIEW/lobbyaltscreen.s
+
+# target to generate assembly for a file
+VIEW/lobbyaltscreen.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/VIEW/lobbyaltscreen.c.s
+.PHONY : VIEW/lobbyaltscreen.c.s
+
 VIEW/lobbyscreen.obj: VIEW/lobbyscreen.c.obj
 .PHONY : VIEW/lobbyscreen.obj
 
@@ -367,6 +487,54 @@ VIEW/lobbyscreen.s: VIEW/lobbyscreen.c.s
 VIEW/lobbyscreen.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/VIEW/lobbyscreen.c.s
 .PHONY : VIEW/lobbyscreen.c.s
+
+VIEW/tutorial.obj: VIEW/tutorial.c.obj
+.PHONY : VIEW/tutorial.obj
+
+# target to build an object file
+VIEW/tutorial.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/VIEW/tutorial.c.obj
+.PHONY : VIEW/tutorial.c.obj
+
+VIEW/tutorial.i: VIEW/tutorial.c.i
+.PHONY : VIEW/tutorial.i
+
+# target to preprocess a source file
+VIEW/tutorial.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/VIEW/tutorial.c.i
+.PHONY : VIEW/tutorial.c.i
+
+VIEW/tutorial.s: VIEW/tutorial.c.s
+.PHONY : VIEW/tutorial.s
+
+# target to generate assembly for a file
+VIEW/tutorial.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/VIEW/tutorial.c.s
+.PHONY : VIEW/tutorial.c.s
+
+VIEW/viewtoolkit.obj: VIEW/viewtoolkit.c.obj
+.PHONY : VIEW/viewtoolkit.obj
+
+# target to build an object file
+VIEW/viewtoolkit.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/VIEW/viewtoolkit.c.obj
+.PHONY : VIEW/viewtoolkit.c.obj
+
+VIEW/viewtoolkit.i: VIEW/viewtoolkit.c.i
+.PHONY : VIEW/viewtoolkit.i
+
+# target to preprocess a source file
+VIEW/viewtoolkit.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/VIEW/viewtoolkit.c.i
+.PHONY : VIEW/viewtoolkit.c.i
+
+VIEW/viewtoolkit.s: VIEW/viewtoolkit.c.s
+.PHONY : VIEW/viewtoolkit.s
+
+# target to generate assembly for a file
+VIEW/viewtoolkit.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/VIEW/viewtoolkit.c.s
+.PHONY : VIEW/viewtoolkit.c.s
 
 main.obj: main.c.obj
 .PHONY : main.obj
@@ -401,6 +569,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... SOKOBANGAME
+	@echo ... GAMEPLAY/ARENA_LOGIC/ChapterManager.obj
+	@echo ... GAMEPLAY/ARENA_LOGIC/ChapterManager.i
+	@echo ... GAMEPLAY/ARENA_LOGIC/ChapterManager.s
 	@echo ... GAMEPLAY/ARENA_LOGIC/Level.obj
 	@echo ... GAMEPLAY/ARENA_LOGIC/Level.i
 	@echo ... GAMEPLAY/ARENA_LOGIC/Level.s
@@ -416,6 +587,9 @@ help:
 	@echo ... GAMEPLAY/GAME_LOGIC/GameStart.obj
 	@echo ... GAMEPLAY/GAME_LOGIC/GameStart.i
 	@echo ... GAMEPLAY/GAME_LOGIC/GameStart.s
+	@echo ... GAMEPLAY/GAME_LOGIC/UndoGame.obj
+	@echo ... GAMEPLAY/GAME_LOGIC/UndoGame.i
+	@echo ... GAMEPLAY/GAME_LOGIC/UndoGame.s
 	@echo ... STRUCTURES/list.obj
 	@echo ... STRUCTURES/list.i
 	@echo ... STRUCTURES/list.s
@@ -428,9 +602,24 @@ help:
 	@echo ... STRUCTURES/tree.obj
 	@echo ... STRUCTURES/tree.i
 	@echo ... STRUCTURES/tree.s
+	@echo ... VIEW/chapterscreen.obj
+	@echo ... VIEW/chapterscreen.i
+	@echo ... VIEW/chapterscreen.s
+	@echo ... VIEW/levelscreen.obj
+	@echo ... VIEW/levelscreen.i
+	@echo ... VIEW/levelscreen.s
+	@echo ... VIEW/lobbyaltscreen.obj
+	@echo ... VIEW/lobbyaltscreen.i
+	@echo ... VIEW/lobbyaltscreen.s
 	@echo ... VIEW/lobbyscreen.obj
 	@echo ... VIEW/lobbyscreen.i
 	@echo ... VIEW/lobbyscreen.s
+	@echo ... VIEW/tutorial.obj
+	@echo ... VIEW/tutorial.i
+	@echo ... VIEW/tutorial.s
+	@echo ... VIEW/viewtoolkit.obj
+	@echo ... VIEW/viewtoolkit.i
+	@echo ... VIEW/viewtoolkit.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

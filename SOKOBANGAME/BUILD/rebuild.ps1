@@ -1,2 +1,2 @@
-cd ..
+cd ../UTILS/
 .\build.ps1
