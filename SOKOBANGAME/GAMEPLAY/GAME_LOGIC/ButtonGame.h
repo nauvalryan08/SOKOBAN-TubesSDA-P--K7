@@ -4,6 +4,7 @@
 #include "../../UTILS/include/boolean.h"
 #include "../../UTILS/include/curses.h"
 #include "../../VIEW/viewtoolkit.h"
+#include "../../VIEW/chapterscreen.h"
 
 #include "../ARENA_LOGIC/RoomFactory.h"
 #include "../ARENA_LOGIC/Level.h"
