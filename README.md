@@ -1,9 +1,9 @@
 # Sokoban SDA
 [![GitHub license](https://img.shields.io/github/license/nauvalryan08/SOKOBAN-TubesSDA-P--K7?logo=opensourceinitiative&logoColor=white&style=flat-square)](https://github.com/nauvalryan08/SOKOBAN-TubesSDA-P--K7/blob/main/LICENSE)
-[![GitHub contributors](https://img.shields.io/github/contributors/nauvalryan08/SOKOBAN-TubesSDA-P--K7?logo=github&style=flat)](https://github.com/nauvalryan08/SOKOBAN-TubesSDA-P--K7/graphs/contributors)
-[![GitHub top language](https://img.shields.io/github/languages/top/nauvalryan08/SOKOBAN-TubesSDA-P--K7?logo=c&logoColor=white&style=flat)](https://github.com/nauvalryan08/SOKOBAN-TubesSDA-P--K7)
-[![GitHub commit activity](https://img.shields.io/github/commit-activity/m/nauvalryan08/SOKOBAN-TubesSDA-P--K7?logo=git&logoColor=white&style=flat)](https://github.comnauvalryan08/SOKOBAN-TubesSDA-P--K7/commits)
-[![GitHub stars](https://img.shields.io/github/stars/nauvalryan08/SOKOBAN-TubesSDA-P--K7?logo=github&style=social&style=flat)](https://github.com/nauvalryan08/SOKOBAN-TubesSDA-P--K7/stargazers)
+[![GitHub contributors](https://img.shields.io/github/contributors/nauvalryan08/SOKOBAN-TubesSDA-P--K7?logo=github&style=flat-square)](https://github.com/nauvalryan08/SOKOBAN-TubesSDA-P--K7/graphs/contributors)
+[![GitHub top language](https://img.shields.io/github/languages/top/nauvalryan08/SOKOBAN-TubesSDA-P--K7?logo=c&logoColor=white&style=flat-square)](https://github.com/nauvalryan08/SOKOBAN-TubesSDA-P--K7)
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/m/nauvalryan08/SOKOBAN-TubesSDA-P--K7?logo=git&logoColor=white&style=flat-square)](https://github.comnauvalryan08/SOKOBAN-TubesSDA-P--K7/commits)
+[![GitHub stars](https://img.shields.io/github/stars/nauvalryan08/SOKOBAN-TubesSDA-P--K7?logo=github&style=social&style=flat-square)](https://github.com/nauvalryan08/SOKOBAN-TubesSDA-P--K7/stargazers)
 
 Sebuah implementasi game Sokoban berbasis terminal yang dikembangkan sebagai tugas besar mata kuliah Struktur Data dan Algoritma.
 
@@ -36,7 +36,7 @@ Sokoban SDA adalah sebuah game berbasis terminal yang dikembangkan sebagai tugas
 - **R** - Restart level
 - **Q** - Keluar dari permainan
 
-## Instalasi [![Windows](https://custom-icon-badges.demolab.com/badge/Windows-0078D6?logo=windows11&logoColor=white)](#) [![PSH](https://img.shields.io/badge/Powershell-2CA5E0?style=flat&logo=powershell&logoColor=white)](#) [![Cmake](https://img.shields.io/badge/CMake-%23008FBA.svg?style=flat&logo=cmake&logoColor=white)](#)
+## Instalasi [![Windows](https://custom-icon-badges.demolab.com/badge/Windows-0078D6?logo=windows11&logoColor=white&style=flat-square)](#) [![PSH](https://img.shields.io/badge/Powershell-2CA5E0?style=flat-square&logo=powershell&logoColor=white)](#) [![Cmake](https://img.shields.io/badge/CMake-%23008FBA.svg?style=flat-square&logo=cmake&logoColor=white)](#)
 
 ```bash
 # Clone repository
