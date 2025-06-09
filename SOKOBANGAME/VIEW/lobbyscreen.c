@@ -1,4 +1,5 @@
 #include "lobbyscreen.h"
+#include "lobbyaltscreen.h"
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
@@ -229,7 +230,7 @@ int show_lobby_screen() {
         
       // Judul game
       attron(COLOR_PAIR(1) | A_BOLD);
-      print_sokoban_title();
+      print_alt_title();
       attroff(COLOR_PAIR(1) | A_BOLD);
         
       // Animasi
