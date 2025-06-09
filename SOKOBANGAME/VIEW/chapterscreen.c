@@ -1,55 +1,8 @@
-#include "ChapterScreen.h"
+#define NCURSES_MOUSE_VERSION
+#include "chapterscreen.h"
 
 // global state
 LevelData* global_selected_level = NULL;
-
-void draw_btn(Button *btn) {
-  // Pengecekan koordinat valid
-  if (btn->y < 0 || btn->x < 0 || btn->y + btn->height >= LINES ||
-      btn->x + btn->width >= COLS) {
-    return;
-  }
-
-  // Sudut kiri atas
-  mvaddch(btn->y, btn->x, ACS_ULCORNER);
-
-  // Sudut kanan atas
-  mvaddch(btn->y, btn->x + btn->width, ACS_URCORNER);
-
-  // Sudut kiri bawah
-  mvaddch(btn->y + btn->height, btn->x, ACS_LLCORNER);
-
-  // Sudut kanan bawah
-  mvaddch(btn->y + btn->height, btn->x + btn->width, ACS_LRCORNER);
-
-  // Garis horizontal atas dan bawah
-  for (int i = 1; i < btn->width; i++) {
-    if (btn->x + i < COLS) {
-      mvaddch(btn->y, btn->x + i, ACS_HLINE);
-      mvaddch(btn->y + btn->height, btn->x + i, ACS_HLINE);
-    }
-  }
-
-  // Garis vertikal kiri dan kanan
-  for (int i = 1; i < btn->height; i++) {
-    if (btn->y + i < LINES) {
-      mvaddch(btn->y + i, btn->x, ACS_VLINE);
-      if (btn->x + btn->width < COLS) {
-        mvaddch(btn->y + i, btn->x + btn->width, ACS_VLINE);
-      }
-    }
-  }
-
-  // Tampilkan label di tengah button
-  int label_x = btn->x + (btn->width - strlen(btn->label)) / 2;
-  int label_y = btn->y + btn->height / 2;
-  mvprintw(label_y, label_x, "%s", btn->label);
-}
-
-int isbtnarea(Button *btn, int mouse_x, int mouse_y) {
-  return (mouse_x >= btn->x && mouse_x < btn->x + btn->width &&
-          mouse_y >= btn->y && mouse_y < btn->y + btn->height);
-}
 
 LevelData* print_chapter_screen() {
   
@@ -79,11 +32,7 @@ LevelData* print_chapter_screen() {
       {COLS / 4, LINES / 2 + 10, COLS / 2, 4, "Chapter 5"},
     };
     // Handle keyboard input
-    if (LINES != prev_lines || COLS != prev_cols) {
-        resize_term(0, 0); // Sync ukuran dengan terminal
-        prev_lines = LINES;
-        prev_cols = COLS;
-    }
+    handle_resize(&prev_lines, &prev_cols);
 
     switch (ch) {
       //keyboard up
@@ -96,7 +45,7 @@ LevelData* print_chapter_screen() {
         break;
       //Highlight level jika di click sekali pada ui
       case KEY_MOUSE:
-        if (getmouse() == OK) {
+        if (getmouse(&event) == OK) {
           if (event.bstate & BUTTON1_CLICKED){
             for (int i = 0; i < n_chapters; i++) {
               if (isbtnarea(&chapters[i], event.x, event.y)) {
@@ -147,7 +96,7 @@ LevelData* print_chapter_screen() {
 
     //Pengecekan Input mouse double click untuk pemilihan level
     if (ch == KEY_MOUSE) {
-      if (getmouse() == OK) {
+      if (getmouse(&event) == OK) {
         if (event.bstate & BUTTON1_DOUBLE_CLICKED) {
           for (int i = 0; i < n_chapters; i++) {
             if (isbtnarea(&chapters[i], event.x, event.y)) {
