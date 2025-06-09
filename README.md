@@ -1,5 +1,5 @@
 # Sokoban SDA
-[![GitHub license](https://img.shields.io/github/license/nauvalryan08/SOKOBAN-TubesSDA-P--K7?logo=opensourceinitiative&logoColor=white&style=flat)](https://github.com/nauvalryan08/SOKOBAN-TubesSDA-P--K7/blob/main/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/nauvalryan08/SOKOBAN-TubesSDA-P--K7?logo=opensourceinitiative&logoColor=white&style=flat-square)](https://github.com/nauvalryan08/SOKOBAN-TubesSDA-P--K7/blob/main/LICENSE)
 [![GitHub contributors](https://img.shields.io/github/contributors/nauvalryan08/SOKOBAN-TubesSDA-P--K7?logo=github&style=flat)](https://github.com/nauvalryan08/SOKOBAN-TubesSDA-P--K7/graphs/contributors)
 [![GitHub top language](https://img.shields.io/github/languages/top/nauvalryan08/SOKOBAN-TubesSDA-P--K7?logo=c&logoColor=white&style=flat)](https://github.com/nauvalryan08/SOKOBAN-TubesSDA-P--K7)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/nauvalryan08/SOKOBAN-TubesSDA-P--K7?logo=git&logoColor=white&style=flat)](https://github.comnauvalryan08/SOKOBAN-TubesSDA-P--K7/commits)
