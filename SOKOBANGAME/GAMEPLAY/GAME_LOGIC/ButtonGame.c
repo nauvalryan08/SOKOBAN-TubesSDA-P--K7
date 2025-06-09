@@ -78,6 +78,7 @@ void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *
             if (event.bstate & BUTTON1_CLICKED){
                 if (isbtnarea(btn, event.x, event.y)) {
                     *keyOutput = 27;
+                    print_chapter_screen();
                 }
             }
         }
