@@ -49,17 +49,14 @@ cd .\UTILS\build.ps1
 -
 ```
 
-## 👥 Tim Pengembang
+## Tim Pengembang
 - **[Johan Muhammad Avicenna]** dengan NIM 241524013
 - **[Muhamad Sopiana Argiansah]** dengan NIM 241524016
 - **[Naufal Khairiyan]** dengan NIM 241524021
 
-## 📜 License
+## Lisensi
 
 Project ini dilisensikan di bawah MIT License - lihat file [LICENSE](LICENSE) untuk detail lengkap.
-
-## Lisensi
-Proyek ini didistribusikan di bawah lisensi **MIT**.
 
 ---
 
