@@ -48,6 +48,10 @@ cd .\UTILS\build.ps1
 # Compile GCC
 -
 ```
+### Requirement / Kebutuhan Instalasi
+- Cmake
+- make
+- gcc
 
 ## Tim Pengembang
 - **[Johan Muhammad Avicenna]** dengan NIM 241524013
