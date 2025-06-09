@@ -12,4 +12,6 @@ typedef struct {
   int direction;
 } Anim;
 
+void print_alt_title();
+
 #endif
