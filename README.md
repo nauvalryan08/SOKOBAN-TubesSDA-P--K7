@@ -36,7 +36,7 @@ Sokoban SDA adalah sebuah game berbasis terminal yang dikembangkan sebagai tugas
 - **R** - Restart level
 - **Q** - Keluar dari permainan
 
-## Instalasi [![Windows](https://custom-icon-badges.demolab.com/badge/Windows-0078D6?logo=windows11&logoColor=white)](#) [![PSH](https://img.shields.io/badge/Powershell-2CA5E0?style=for-the-badge&logo=powershell&logoColor=white)](#) [![Cmake](https://img.shields.io/badge/CMake-%23008FBA.svg?style=flat&logo=cmake&logoColor=white)](#)
+## Instalasi [![Windows](https://custom-icon-badges.demolab.com/badge/Windows-0078D6?logo=windows11&logoColor=white)](#) [![PSH](https://img.shields.io/badge/Powershell-2CA5E0?style=flat&logo=powershell&logoColor=white)](#) [![Cmake](https://img.shields.io/badge/CMake-%23008FBA.svg?style=flat&logo=cmake&logoColor=white)](#)
 
 ```bash
 # Clone repository
