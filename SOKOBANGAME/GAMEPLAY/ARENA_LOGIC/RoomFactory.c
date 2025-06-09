@@ -1,3 +1,4 @@
+#define NCURSES_MOUSE_VERSION
 #include "RoomFactory.h"
 
 
@@ -70,7 +71,7 @@ int count_active_box(const RoomLayout *room) {
 
 //================================>
 
-void print_room(const char *name, const char **map, const RoomLayout *room) {
+void print_room(const char *name, const char **map, const RoomLayout *room, Button *btn) {
     int x, y, i, dy, dx, dy_tile, dx_tile;
     char tile;
 
@@ -173,7 +174,7 @@ void print_room(const char *name, const char **map, const RoomLayout *room) {
     dx = offset_x + room->player.x * TILE_WIDTH + TILE_WIDTH / 2;
     dy = offset_y + room->player.y * TILE_HEIGHT + TILE_HEIGHT / 2;
     mvaddch(dy,dx, '@');
-
+    draw_btn(btn);
 
     refresh();
 }
@@ -183,11 +184,6 @@ void print_room(const char *name, const char **map, const RoomLayout *room) {
 //======================================================================//
 /* {Sopian} */
 
-void print_centered_text(int y, const char *text) {
-    int x = (COLS - strlen(text)) / 2;
-    mvprintw(y, x, "%s", text);
-}
-
 void print_header(const char *level_name) {
     char border[COLS + 1];
     memset(border, '=', COLS);
@@ -196,7 +192,7 @@ void print_header(const char *level_name) {
     attron(A_BOLD);
     mvprintw(1, 0, "%s", border);
 
-    print_centered_text(2, level_name);
+    draw_centered_text(2, 0, COLS, level_name);
 
     mvprintw(3, 0, "%s", border);
     attroff(A_BOLD);
@@ -274,18 +270,16 @@ void print_sidebar(const RoomLayout *room, int timer, int score) {
     attroff(border_color);
     
     // Tambahkan beberapa dekorasi
-    attron(COLOR_PAIR(8));
-    for (int y = start_y + 18; y < end_y - 2; y += 2) {
-        mvaddch(y, sidebar_width - 2, ACS_DIAMOND);
-    }
-    attroff(COLOR_PAIR(8));
+    // attron(COLOR_PAIR(8));
+    // for (int y = start_y + 18; y < end_y - 2; y += 2) {
+    //     mvaddch(y, sidebar_width - 2, ACS_DIAMOND);
+    // }
+    // attroff(COLOR_PAIR(8));
+
 }
-
-
-
 
 void print_bottom_bar() {
     attron(A_REVERSE | A_BOLD);
-    print_centered_text(LINES - 4, " ARROW_KEYS : Move | ESC : Quit | R : Restart | U : Undo ");
+    draw_centered_text(LINES - 4, 0, COLS, " ARROW_KEYS : Move | ESC : Quit | R : Restart | U : Undo ");
     attroff(A_REVERSE | A_BOLD);
 }

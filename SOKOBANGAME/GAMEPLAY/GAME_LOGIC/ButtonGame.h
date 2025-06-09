@@ -3,6 +3,7 @@
 
 #include "../../UTILS/include/boolean.h"
 #include "../../UTILS/include/curses.h"
+#include "../../VIEW/viewtoolkit.h"
 
 #include "../ARENA_LOGIC/RoomFactory.h"
 #include "../ARENA_LOGIC/Level.h"
@@ -30,6 +31,6 @@ boolean is_Undo_pressed(int ch);
 //== Method untuk menerima input KEY ARROW dan menjalankan pemeriksaan ==//
 //=======================================================================//
 /* {Sopian} */
-void handle_input (RoomLayout *room, const char **map, Stack *StackUndo, Queue *hintQueue, int *keyOutput);
+void handle_input (RoomLayout *room, const char **map, Stack *StackUndo, Queue *hintQueue, int *keyOutput, Button *quit);
 
 #endif

@@ -276,8 +276,8 @@ void run_level(LevelData* selected_level, ChapterData* current_chapter) {
 
     //Memeriksa apakah stage dapat di akses
     if (!selected_level->is_unlocked) {
-        print_centered_text(18, "This Stage is locked, please finish previous stage!");
-        print_centered_text(20, "[Press ENTER to continue...]");
+        draw_centered_text( LINES/2 , 0, COLS, "This Stage is locked, please finish previous stage!");
+        draw_centered_text(LINES/2 + 1, 0, COLS, "[Press ENTER to continue...]");
 
         refresh();
 

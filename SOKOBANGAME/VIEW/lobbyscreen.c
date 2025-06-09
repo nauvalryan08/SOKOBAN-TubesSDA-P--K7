@@ -123,37 +123,9 @@ int show_menu(int selected, int start_y) {
   if (box_y + box_height >= LINES)
     box_height = LINES - box_y - 1;
 
-  // Gambar kotak dengan gaya yang lebih baik
+  // Gambar kotak dengan fungsi utility
   if (box_width > 10 && box_height > 5) {
-    // Garis atas
-    for (int i = 0; i < box_width; i++) {
-      mvaddch(box_y, box_x + i, ACS_HLINE);
-    }
-
-    // Garis bawah
-    for (int i = 0; i < box_width; i++) {
-      mvaddch(box_y + box_height, box_x + i, ACS_HLINE);
-    }
-
-    // Garis vertikal dan konten
-    for (int i = 1; i < box_height; i++) {
-      // Garis kiri
-      mvaddch(box_y + i, box_x, ACS_VLINE);
-
-      // Garis kanan
-      mvaddch(box_y + i, box_x + box_width, ACS_VLINE);
-
-      // Isi spasi di antara
-      for (int j = 1; j < box_width; j++) {
-        mvaddch(box_y + i, box_x + j, ' ');
-      }
-    }
-
-    // Sudut-sudut
-    mvaddch(box_y, box_x, ACS_ULCORNER);
-    mvaddch(box_y, box_x + box_width, ACS_URCORNER);
-    mvaddch(box_y + box_height, box_x, ACS_LLCORNER);
-    mvaddch(box_y + box_height, box_x + box_width, ACS_LRCORNER);
+    draw_box(box_x, box_y, box_width, box_height);
   }
 
   // Tampilkan menu items dengan jarak vertikal yang lebih besar
@@ -161,9 +133,6 @@ int show_menu(int selected, int start_y) {
     // Hitung posisi vertikal dengan jarak tambahan
     int vertical_spacing = 2; // Jarak antar item
     int y_pos = box_y + vertical_padding / 3 + (i * vertical_spacing);
-
-    // Posisi horizontal (tengah kotak)
-    int x_pos = box_x + (box_width - strlen(menu_items[i])) / 2;
 
     // Jika posisi Y valid
     if (y_pos < LINES && y_pos >= 0) {
@@ -173,17 +142,16 @@ int show_menu(int selected, int start_y) {
 
         // Highlight bar penuh dengan padding horizontal
         int highlight_padding = 10;
-        for (int j = highlight_padding; j < box_width - highlight_padding;
-             j++) {
+        for (int j = highlight_padding; j < box_width - highlight_padding; j++) {
           mvaddch(y_pos, box_x + j, ' ');
         }
 
-        mvprintw(y_pos, x_pos, "%s", menu_items[i]);
+        draw_centered_text(y_pos, box_x, box_width, menu_items[i]);
         attroff(A_REVERSE | A_BOLD | COLOR_PAIR(1));
       } else {
         // Item tidak terpilih
         attron(COLOR_PAIR(2));
-        mvprintw(y_pos, x_pos, "%s", menu_items[i]);
+        draw_centered_text(y_pos, box_x, box_width, menu_items[i]);
         attroff(COLOR_PAIR(2));
       }
     }
@@ -195,24 +163,18 @@ int show_menu(int selected, int start_y) {
                                "                                           "};
   int num_title_lines = 3;
 
-  // Hitung lebar judul (asumsi semua baris sama panjang)
-  int title_width = strlen(title_lines[0]);
-
   // Posisi judul di dalam kotak
   int title_y = box_y + 1;
-  int title_x = box_x + (box_width - title_width) / 2;
 
-  if (title_y > 0 && title_x > 0) {
+  if (title_y > 0) {
     attron(A_BOLD | COLOR_PAIR(3));
     for (int i = 0; i < num_title_lines; i++) {
-      mvprintw(title_y + i, title_x, "%s", title_lines[i]);
+      draw_centered_text(title_y + i, box_x, box_width, title_lines[i]);
     }
     attroff(A_BOLD | COLOR_PAIR(3));
 
     // Garis pemisah di bawah judul
-    for (int j = 1; j < box_width - 1; j++) {
-      mvaddch(title_y + num_title_lines, box_x + j, ACS_HLINE);
-    }
+    draw_horizontal_line(title_y + num_title_lines, box_x + 1, box_width - 2);
   }
   return selected;
 }
@@ -241,12 +203,7 @@ int show_lobby_screen() {
 
   while (1) {
     
-    if (LINES != prev_lines || COLS != prev_cols) {
-      resize_term(0, 0); // Sync ukuran dengan terminal
-      prev_lines = LINES;
-      prev_cols = COLS;
-    }
-
+    handle_resize(&prev_lines, &prev_cols);
     clear();
 
     // Tampilkan ukuran terminal saat ini untuk debug

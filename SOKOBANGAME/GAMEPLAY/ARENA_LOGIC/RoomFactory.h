@@ -3,6 +3,7 @@
 
 #include "../../UTILS/include/boolean.h"
 #include "../../UTILS/include/curses.h"
+#include "../../VIEW/viewtoolkit.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -44,9 +45,7 @@ void parse_room(RoomLayout* room, const char **map);
 //===================================//
 /* {Sopian} */
 
-void print_centered_text(int y, const char *text);
-
-void print_room(const char *name, const char **map, const RoomLayout *room);
+void print_room(const char *name, const char **map, const RoomLayout *room, Button *btn);
 
 void print_header(const char *level_name);
 
