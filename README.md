@@ -3,7 +3,7 @@
 [![GitHub contributors](https://img.shields.io/github/contributors/nauvalryan08/SOKOBAN-TubesSDA-P--K7?logo=github&style=flat-square)](https://github.com/nauvalryan08/SOKOBAN-TubesSDA-P--K7/graphs/contributors)
 [![GitHub top language](https://img.shields.io/github/languages/top/nauvalryan08/SOKOBAN-TubesSDA-P--K7?logo=c&logoColor=white&style=flat-square)](https://github.com/nauvalryan08/SOKOBAN-TubesSDA-P--K7)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/nauvalryan08/SOKOBAN-TubesSDA-P--K7?logo=git&logoColor=white&style=flat-square)](https://github.comnauvalryan08/SOKOBAN-TubesSDA-P--K7/commits)
-[![GitHub stars](https://img.shields.io/github/stars/nauvalryan08/SOKOBAN-TubesSDA-P--K7?logo=github&style=social&style=flat-square)](https://github.com/nauvalryan08/SOKOBAN-TubesSDA-P--K7/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/nauvalryan08/SOKOBAN-TubesSDA-P--K7?logo=github&style=social)](https://github.com/nauvalryan08/SOKOBAN-TubesSDA-P--K7/stargazers)
 
 Sebuah implementasi game Sokoban berbasis terminal yang dikembangkan sebagai tugas besar mata kuliah Struktur Data dan Algoritma.
 
