@@ -13,6 +13,7 @@ typedef struct {
 
 // List chapter Tree
 typedef enum {
+    TUTORIAL,
     CHAPTER1,
     CHAPTER2,
     CHAPTER3,
@@ -26,6 +27,7 @@ extern ChapterData ChapterTrees[GroupCount];
 extern int cursor_y;
 
 // Inisiator all levels Tree
+void initTutorial();
 void initChapter1();
 void initChapter2();
 void initChapter3();

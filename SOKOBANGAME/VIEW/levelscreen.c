@@ -147,13 +147,21 @@ LevelData* select_level_from_list(LevelData* levels[], int count) {
 
 // Tutorial levels selection
 LevelData* select_level_tutorial() {
-    LevelData* tutorials[] = {
-        &ALL_LEVELS[LEVEL_1T1],
-        &ALL_LEVELS[LEVEL_1T2],
-        &ALL_LEVELS[LEVEL_1T3],
-        &ALL_LEVELS[LEVEL_1T4]
-    };
-    return select_level_from_list(tutorials, 4);
+    initTutorial();
+    LevelData* chapterTutorial[30];
+
+    // static LevelData* chapter1[30];
+    LevelCollector collector = {.count =  0};
+
+    active_collector = &collector;
+    levelOrderTraversal(ChapterTrees[TUTORIAL].ChapterTree, store_callback_wrapper);
+    active_collector = NULL;
+
+    for (int i = 0; i < collector.count; i++) {
+        chapterTutorial[i] = collector.array[i];
+    }
+
+    return select_level_from_list(chapterTutorial, collector.count);
 }
 
 // Chapter 1 levels selection

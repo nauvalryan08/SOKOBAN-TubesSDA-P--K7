@@ -69,6 +69,8 @@ ReplayStep *createStep(char move) {
 void playReplay(RoomLayout *room, LevelData level, Queue *q) {
 
     const char **map = level.map;
+    Button btn = {2, LINES - 10, 20, 4, "Exit"};
+
     while (!isQueueEmpty(q)) {
         ReplayStep *step = (ReplayStep *)dequeue(q);
         if (!step) continue;
@@ -83,7 +85,7 @@ void playReplay(RoomLayout *room, LevelData level, Queue *q) {
 
         update_box_activation_status(room);
         update_finish_activation_status(room);
-        print_room(level.level_name,map, room);
+        print_room(level.level_name,map, room, &btn);
         napms(200);
         free(step);
     }

@@ -6,6 +6,22 @@
 /* {Sopian} */
 ChapterData ChapterTrees[];
 
+
+void initTutorial() {
+    Ptree n1 = createTreeNode(&ALL_LEVELS[LEVEL_1T1], TYPE_LEVELDATA);
+    Ptree n2 = createTreeNode(&ALL_LEVELS[LEVEL_1T2], TYPE_LEVELDATA);
+    Ptree n3 = createTreeNode(&ALL_LEVELS[LEVEL_1T3], TYPE_LEVELDATA);
+    Ptree n4 = createTreeNode(&ALL_LEVELS[LEVEL_1T4], TYPE_LEVELDATA);
+
+    ChapterTrees[TUTORIAL].is_finished = false;
+    ChapterTrees[TUTORIAL].ChapterTree = n1;
+
+    addTreeNodeChild(n1,n2);
+    addTreeNodeChild(n2,n3);
+    addTreeNodeChild(n3,n4);
+
+}
+
 void initChapter1() {
     Ptree n1 = createTreeNode(&ALL_LEVELS[LEVEL_1C1], TYPE_LEVELDATA);
     Ptree n2 = createTreeNode(&ALL_LEVELS[LEVEL_1C2], TYPE_LEVELDATA);

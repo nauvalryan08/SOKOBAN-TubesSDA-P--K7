@@ -83,7 +83,7 @@ LevelData* print_chapter_screen() {
           }
           
           if (selected_level != NULL) {
-            run_level(selected_level, &ChapterTrees[selected-1]);
+            run_level(selected_level, &ChapterTrees[selected]);
             return selected_level;
           }
           return NULL;
@@ -123,7 +123,7 @@ LevelData* print_chapter_screen() {
                   break;
               }
               if (selected_level != NULL) {
-                run_level(selected_level, &ChapterTrees[selected - 1]);
+                run_level(selected_level, &ChapterTrees[selected]);
                 return selected_level;
               }
               return NULL;
