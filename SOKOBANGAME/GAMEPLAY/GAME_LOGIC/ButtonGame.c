@@ -1,3 +1,4 @@
+#define NCURSES_MOUSE_VERSION
 #include "ButtonGame.h"
 
 //======================//
@@ -23,8 +24,11 @@ boolean is_Undo_pressed(int ch) {
 //=======================================================================//
 /* {Sopian} */
 
-void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *hintQueue, int *keyOutput) {
+void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *hintQueue, int *keyOutput, Button *btn) {
     int ch = getch();
+    MEVENT event;
+    mmask_t old;
+    mousemask(ALL_MOUSE_EVENTS | REPORT_MOUSE_POSITION, &old);
     boolean valid = false;
 
     switch (ch) {
@@ -68,5 +72,15 @@ void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *
         case 27:
             *keyOutput = 27;
             break;
+        case KEY_MOUSE:
+        // Handle Quit Button
+        if (getmouse(&event) == OK) {
+            if (event.bstate & BUTTON1_CLICKED){
+                if (isbtnarea(btn, event.x, event.y)) {
+                    *keyOutput = 27;
+                }
+            }
+        }
+        break;
     }
 }

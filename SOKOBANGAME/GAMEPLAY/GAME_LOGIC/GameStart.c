@@ -13,6 +13,8 @@ void start_level (RoomLayout *room, LevelData *level, ChapterData * current_chap
     int prev_lines = LINES;
     int prev_cols = COLS;
 
+    Button btn = {2, LINES - 10, 20, 4, "Exit"};
+
     const char **map = level->map;
 
     stack_init(&StackUndo);
@@ -28,21 +30,15 @@ void start_level (RoomLayout *room, LevelData *level, ChapterData * current_chap
         prev_lines = LINES;
         prev_cols = COLS;
 
-        if (is_termresized()) {
-            // Update ukuran terminal
-            resize_term(0, 0);
-            prev_lines = LINES;
-            prev_cols = COLS;
-            clear(); // Bersihkan layar agar tidak ada artefak lama
-        }
+        handle_resize(&prev_lines, &prev_cols);
 
         update_box_activation_status (room);
         update_finish_activation_status (room);
 
         room->finish.is_activated = true;
-        print_room (level->level_name, map, room);
+        print_room (level->level_name, map, room, &btn);
 
-        handle_input (room, map, &StackUndo, &hintQueue, &keyOutput);
+        handle_input (room, map, &StackUndo, &hintQueue, &keyOutput, &btn);
 
         if (keyOutput == 27) { // ESC key pressed
             break; // Exit game loop
