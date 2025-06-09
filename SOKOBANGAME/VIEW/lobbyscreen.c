@@ -212,7 +212,6 @@ int show_lobby_screen() {
     snprintf(size_info, sizeof(size_info), "Terminal: %dx%d (min %dx%d)", 
     COLS, LINES, min_width, min_height);
     mvprintw(0, 0, "%s", size_info);
-        
     // Pesan jika terlalu kecil
     if (LINES < min_height || COLS < min_width) {
       const char *msg = "Ubah ukuran terminal anda menjadi 115x40 agar dapat bermain!";

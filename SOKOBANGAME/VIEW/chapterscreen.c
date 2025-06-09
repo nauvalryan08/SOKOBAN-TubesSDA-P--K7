@@ -144,11 +144,11 @@ LevelData* print_chapter_screen() {
     // menampilkan button
     for (int i = 0; i < n_chapters; i++) {
       if (i == selected) {
-        attron(A_REVERSE);
+        attron(A_REVERSE | COLOR_PAIR(COLOR_GREEN));
       }
       draw_btn(&chapters[i]);
       if (i == selected) {
-        attroff(A_REVERSE);
+        attroff(A_REVERSE | COLOR_PAIR(COLOR_GREEN));
       }
     }
 

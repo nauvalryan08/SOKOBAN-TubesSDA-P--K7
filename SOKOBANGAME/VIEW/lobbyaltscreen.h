@@ -13,5 +13,6 @@ typedef struct {
 } Anim;
 
 void print_alt_title();
-
+int show_alt_menu(int selected, int items, Button *btnset);
+int show_alt_lobby();
 #endif

@@ -27,7 +27,7 @@
 #include "VIEW/LevelScreen.h"
 #include "VIEW/chapterscreen.h"
 #include "VIEW/tutorial.h"
-
+#include "VIEW/lobbyaltscreen.h"
 
 
 #endif

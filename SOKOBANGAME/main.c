@@ -28,28 +28,25 @@ int main() {
 
     initAllChapters();
 
-    while (menu_choice != 4) {
+    while (menu_choice != 5) {
     // Handle pilihan menu
 
-    menu_choice = show_lobby_screen();
+    menu_choice = show_alt_lobby();
 
     switch (menu_choice) {
-    case 0: // Play Game
-        // // run_level(&ALL_LEVELS[LEVEL_2C1]);
-        // selected_level= select_level_chapter2();
-        // run_level(selected_level);
+    case 1: // Play Game
         selected_level = print_chapter_screen();
-
-
         break;
-    case 1: // History
+    case 2: // History
         // Implementasi fitur history
         break;
     case 3 :
-    
+        break;
+    case 4: // How to play
         show_tutorial_screen();
         break;
-    case 4: // Quit Game
+    case 5: // Quit Game
+        return 0;
         break;
     }
     }
