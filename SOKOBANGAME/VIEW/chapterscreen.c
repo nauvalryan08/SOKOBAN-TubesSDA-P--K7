@@ -1,15 +1,7 @@
-#ifndef CHAPTERSCREEN_H
-#define CHAPTERSCREEN_H
-#define NCURSES_MOUSE_VERSION
 #include "ChapterScreen.h"
-#include "../GAMEPLAY/GAME_LOGIC/GameStart.h"
-#include "../UTILS/include/curses.h"
-#include "LevelScreen.h"
 
-typedef struct {
-  int x, y, width, height;
-  char *label;
-} Button;
+// global state
+LevelData* global_selected_level = NULL;
 
 void draw_btn(Button *btn) {
   // Pengecekan koordinat valid
@@ -59,7 +51,10 @@ int isbtnarea(Button *btn, int mouse_x, int mouse_y) {
           mouse_y >= btn->y && mouse_y < btn->y + btn->height);
 }
 
-void print_chapter_screen(LevelData *selected_level) {
+LevelData* print_chapter_screen() {
+  
+  LevelData* selected_level = NULL;
+
   clear();
   mmask_t old;
   mousemask(ALL_MOUSE_EVENTS | REPORT_MOUSE_POSITION, &old);
@@ -76,12 +71,12 @@ void print_chapter_screen(LevelData *selected_level) {
   MEVENT event;
   while ((ch = getch()) != 27) { // ESC untuk keluar
     Button chapters[] = {
-      {COLS / 4, LINES / 2 - 15, COLS / 2, 4, "Chapter 1"},
-      {COLS / 4, LINES / 2 - 10, COLS / 2, 4, "Chapter 2"},
-      {COLS / 4, LINES / 2 - 5, COLS / 2, 4, "Chapter 3"},
-      {COLS / 4, LINES / 2 , COLS / 2, 4, "Chapter 4"},
-      {COLS / 4, LINES / 2 + 5, COLS / 2, 4, "Chapter 5"},
-      {COLS / 4, LINES / 2 + 10, COLS / 2, 4, "Chapter 6"},
+      {COLS / 4, LINES / 2 - 15, COLS / 2, 4, "Tutorial"},
+      {COLS / 4, LINES / 2 - 10, COLS / 2, 4, "Chapter 1"},
+      {COLS / 4, LINES / 2 - 5, COLS / 2, 4, "Chapter 2"},
+      {COLS / 4, LINES / 2 , COLS / 2, 4, "Chapter 3"},
+      {COLS / 4, LINES / 2 + 5, COLS / 2, 4, "Chapter 4"},
+      {COLS / 4, LINES / 2 + 10, COLS / 2, 4, "Chapter 5"},
     };
     // Handle keyboard input
     if (LINES != prev_lines || COLS != prev_cols) {
@@ -101,7 +96,7 @@ void print_chapter_screen(LevelData *selected_level) {
         break;
       //Highlight level jika di click sekali pada ui
       case KEY_MOUSE:
-        if (getmouse(&event) == OK) {
+        if (getmouse() == OK) {
           if (event.bstate & BUTTON1_CLICKED){
             for (int i = 0; i < n_chapters; i++) {
               if (isbtnarea(&chapters[i], event.x, event.y)) {
@@ -115,12 +110,34 @@ void print_chapter_screen(LevelData *selected_level) {
       case '\n':
       //Untuk memilih level menggunakan enter
       case KEY_ENTER:
-        if (selected >= 0 && selected < n_chapters) {
-          selected_level = select_level();
-          if (selected_level != NULL) {
-            run_level(selected_level);
+        if (selected >= 0 && selected <= n_chapters) {
+          // Panggil fungsi level selection yang sesuai dengan chapter yang dipilih
+          switch(selected) {
+            case 0: // Tutorial
+              selected_level = select_level_tutorial();
+              break;
+            case 1: // Chapter 1
+              selected_level = select_level_chapter1();
+              break;
+            case 2: // Chapter 2
+              selected_level = select_level_chapter2();
+              break;
+            case 3: // Chapter 3
+              selected_level = select_level_chapter3();
+              break;
+            case 4: // Chapter 4
+              selected_level = select_level_chapter4();
+              break;
+            case 5: // Chapter 5
+              selected_level = select_level_chapter5();
+              break;
           }
-          return;
+          
+          if (selected_level != NULL) {
+            run_level(selected_level, &ChapterTrees[selected-1]);
+            return selected_level;
+          }
+          return NULL;
         }
         break;
       case KEY_RESIZE:
@@ -130,16 +147,37 @@ void print_chapter_screen(LevelData *selected_level) {
 
     //Pengecekan Input mouse double click untuk pemilihan level
     if (ch == KEY_MOUSE) {
-      if (getmouse(&event) == OK) {
+      if (getmouse() == OK) {
         if (event.bstate & BUTTON1_DOUBLE_CLICKED) {
           for (int i = 0; i < n_chapters; i++) {
             if (isbtnarea(&chapters[i], event.x, event.y)) {
               selected = i;
-              selected_level = select_level();
-              if (selected_level != NULL) {
-                run_level(selected_level);
+                            // Panggil fungsi level selection yang sesuai dengan chapter yang dipilih
+              switch(selected) {
+                case 0:
+                  selected_level = select_level_tutorial();
+                  break;
+                case 1:
+                  selected_level = select_level_chapter1();
+                  break;
+                case 2:
+                  selected_level = select_level_chapter2();
+                  break;
+                case 3:
+                  selected_level = select_level_chapter3();
+                  break;
+                case 4:
+                  selected_level = select_level_chapter4();
+                  break;
+                case 5:
+                  selected_level = select_level_chapter5();
+                  break;
               }
-              return;
+              if (selected_level != NULL) {
+                run_level(selected_level, &ChapterTrees[selected - 1]);
+                return selected_level;
+              }
+              return NULL;
             }
           }
         }
@@ -168,5 +206,3 @@ void print_chapter_screen(LevelData *selected_level) {
     refresh();
   }
 }
-
-#endif // CHAPTERSCREEN_H

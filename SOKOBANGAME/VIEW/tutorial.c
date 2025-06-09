@@ -53,7 +53,7 @@ void show_tutorial_screen() {
     
     // Ganti mode input dengan timeout
     nodelay(stdscr, FALSE);  // Blocking mode untuk menunggu input
-    timeout(100);  // Timeout 100ms untuk tangkap urutan escape
+    timeout(0);  // Timeout 100ms untuk tangkap urutan escape
     
     while(1) {
         clear();

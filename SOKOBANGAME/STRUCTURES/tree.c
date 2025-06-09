@@ -167,7 +167,8 @@ boolean compareData (void *data1, void *data2, DataType type) {
     case TYPE_LEVELDATA :
       LevelData *temp1 = (LevelData *) data1;
       LevelData *temp2 = (LevelData *) data2;
-      return strcmp(temp1->level_id, temp2->level_id) == 0;
+      if (!temp1->level_id || !temp2->level_id) return false;
+      return (strcmp(temp1->level_id, temp2->level_id) == 0);
   }
 }
 
@@ -180,8 +181,9 @@ boolean compareDataCHAR (void *data1, void *data2) { return compareData(data1, d
 // Cari node (BFS)
 Ptree findTreeNode(Ptree root, void *target,
                    boolean (*compare)(void *, void *)) {
-  if (!root || !compare)
+  if (!root || !compare) {
     return NULL;
+  }
   if (compare(root->data, target))
     return root;
 

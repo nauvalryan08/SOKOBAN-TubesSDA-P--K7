@@ -10,6 +10,9 @@
 
 #define MAX_OBJECTS 50
 
+#define TILE_WIDTH 5  // Ukuran horizontal setiap tile
+#define TILE_HEIGHT 3    // Tinggi vertikal 1 tile (spasi ke bawah)
+
 //================================//
 //==>  STRUCT OBJECT & LAYOUT  <==//
 //================================//
@@ -40,15 +43,25 @@ void parse_room(RoomLayout* room, const char **map);
 //==>  Menghasilkan Output Arena  <==//
 //===================================//
 /* {Sopian} */
+
+void print_centered_text(int y, const char *text);
+
 void print_room(const char *name, const char **map, const RoomLayout *room);
 
-void print_room_info(const char *name, const RoomLayout *room, int offset_y, int offser_x);
+void print_header(const char *level_name);
+
+void print_sidebar(const RoomLayout *room, int timer, int score);
+
+void print_bottom_bar();
 
 //================================================//
 //==>  Memeriksa apakah semua box sudah Aktif  <==//
 //================================================//
 /* {Sopian} */
 boolean is_finish_activated(const RoomLayout *room);
+
+int count_active_box(const RoomLayout *room);
+
 
 
 #endif

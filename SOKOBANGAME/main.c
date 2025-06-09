@@ -26,6 +26,8 @@ int main() {
     RoomLayout room;
     LevelData *selected_level;
 
+    initAllChapters();
+
     while (menu_choice != 4) {
     // Handle pilihan menu
 
@@ -33,16 +35,19 @@ int main() {
 
     switch (menu_choice) {
     case 0: // Play Game
-        /*{
-            selected_level = select_level();
-            if (selected_level != NULL) {
-                run_level(selected_level);
-            }
-        }*/
-        print_chapter_screen(selected_level);
+        // // run_level(&ALL_LEVELS[LEVEL_2C1]);
+        // selected_level= select_level_chapter2();
+        // run_level(selected_level);
+        selected_level = print_chapter_screen();
+
+
         break;
     case 1: // History
         // Implementasi fitur history
+        break;
+    case 3 :
+    
+        show_tutorial_screen();
         break;
     case 4: // Quit Game
         break;

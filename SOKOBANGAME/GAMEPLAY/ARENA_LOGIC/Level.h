@@ -8,7 +8,7 @@ typedef struct {
     const char *level_id;           //Untuk traversal dan searching
     const char *level_name;         //Display name saat runtime
     const char **map;               //Map level
-    boolean is_unlcoked;            //Status unlocked
+    boolean is_unlocked;            //Status unlocked
     boolean is_finished;            //Status pernah diselesaikan
 }LevelData;
 
@@ -233,8 +233,6 @@ extern const char *Level_6b_map[];
 //==> MODUL MANAGEMENT ARENA DAN LEVEL-LEVEL <==//
 //==============================================//
 /* {Sopian} */
-
-LevelData* get_level_by_id(const char* level_id);
 
 
 #endif

@@ -3,6 +3,8 @@
 
 #include "../ARENA_LOGIC/RoomFactory.h"
 #include "../../STRUCTURES/stack.h"
+#include "../../STRUCTURES/tree.h"
+
 
 //================================//
 //==>  STRUCT OBJECT & LAYOUT  <==//
@@ -41,6 +43,13 @@ void update_box_activation_status(RoomLayout *room);
 //===============================================================//
 /* {Sopian} */
 void update_finish_activation_status(RoomLayout *room);
+
+
+//==========================================================================//
+//== Method untuk memeriksa apakah parent finished, dan membuak child nya ==//
+//==========================================================================//
+/* {Sopian} */
+void unlock_child_if_parent_finished (Ptree root);
 
 
 /*****************************************************/
