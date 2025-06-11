@@ -13,6 +13,7 @@ typedef enum {
     TYPE_CHAR,
     TYPE_STRING,
     TYPE_LEVELDATA,
+    TYPE_PLAYDATA,
 }DataType;
 
 typedef struct TreeNode * Ptree; 
@@ -70,7 +71,7 @@ Ptree findTreeNode(Ptree root, void *target, boolean (*compare)(void*, void*));
 Ptree findParentNode(Ptree root, void *target, boolean (*compare)(void *, void *));
 
 // Hapus 
-void freeTree(Ptree root, void (*freeData)(void*));
+void freeTree(Ptree root, void (*freeData)(void*, DataType));
 
 
 #endif

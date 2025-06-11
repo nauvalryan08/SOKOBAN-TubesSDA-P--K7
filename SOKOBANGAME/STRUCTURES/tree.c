@@ -207,7 +207,7 @@ Ptree findParentNode(Ptree root, void *target, boolean (*compare)(void *, void *
 
   Ptree child = root->fs;
   while (child != NULL) {
-    if (compareDataID(child->data, target)) {
+    if (compare(child->data, target)) {
       return root;
     }
     Ptree found = findParentNode(child, target, compare);
@@ -222,7 +222,7 @@ Ptree findParentNode(Ptree root, void *target, boolean (*compare)(void *, void *
 
 
 // Hapus
-void freeTree(Ptree root, void (*freeData)(void *)) {
+void freeTree(Ptree root, void (*freeData)(void *, DataType)) {
   if (!root)
     return;
   Ptree child = root->fs;
@@ -231,7 +231,7 @@ void freeTree(Ptree root, void (*freeData)(void *)) {
     freeTree(child, freeData);
     child = next;
   }
-  if (freeData)
-    freeData(root->data);
+  if (freeData && root->data != NULL)
+    freeData(root->data, root->Type);
   free(root);
 }

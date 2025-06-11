@@ -1,6 +1,4 @@
 #include "sokoban.h"
-#include "VIEW/lobbyscreen.h"
-#include "VIEW/tutorial.h"
 
 int main() {
 
@@ -25,6 +23,7 @@ int main() {
     int menu_choice;
     RoomLayout room;
     LevelData *selected_level;
+    Ptree PlayData = initDataHierarki();
 
     initAllChapters();
 

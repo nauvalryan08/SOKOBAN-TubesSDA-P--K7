@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
-set(CMAKE_C_COMPILER C:/ProgramData/mingw64/mingw64/bin/gcc.exe)
-set(CMAKE_CXX_COMPILER C:/ProgramData/mingw64/mingw64/bin/gcc.exe)
+set(CMAKE_C_COMPILER C:/MinGW/bin/gcc.exe)
+set(CMAKE_CXX_COMPILER C:/MinGW/bin/gcc.exe)
 
 project(SOKOBANGAME)
 

@@ -14,6 +14,8 @@
 #include "UTILS/include/boolean.h"
 
 // Semua header proyek
+#include "DATABASE/DataHierarki.h"
+
 #include "GAMEPLAY/ARENA_LOGIC/RoomFactory.h"
 #include "GAMEPLAY/ARENA_LOGIC/level.h"
 #include "GAMEPLAY/ARENA_LOGIC/ChapterManager.h"

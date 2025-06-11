@@ -1,5 +1,5 @@
 #define NCURSES_MOUSE_VERSION
-#include "chapterscreen.h"
+#include "HistoryScreen.h"
 
 // global state
 LevelData* global_selected_level = NULL;
