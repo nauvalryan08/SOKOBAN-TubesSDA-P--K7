@@ -7,14 +7,13 @@
 //==> struct definision
 typedef struct {
     char* usernamae;
-    int ID_data;
     int ID_level;
+    int ID_data;
     int score;
     int time;
     int total_move;
     ReplayStep *replay_data;
 }PlayData;
-
 
 //==> Inisiation
 

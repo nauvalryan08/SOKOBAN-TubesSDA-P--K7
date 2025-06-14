@@ -4,8 +4,10 @@ int main() {
 
     setlocale(LC_ALL, "");
     initscr();
-    threadPlayBGMusic();
 
+    threadPlayBGMusic();       // Mulai BGM
+    setBGMVolume(25); 
+    
     // Inisialisasi warna
     start_color();
     init_pair(1, COLOR_WHITE, COLOR_BLACK);
@@ -48,11 +50,16 @@ int main() {
             show_tutorial_screen();
             break;
         case 5: // Quit Game
-            stopBackgroundMusic();
-            return 0;
             break;
         }
     }
+
+    stopBackgroundMusic();
+
+    for (int i = 0; i < GroupCount; i++) {
+        freeTree(ChapterTrees[i].ChapterTree, NULL); 
+    }
+
 
     endwin();
     return 0;

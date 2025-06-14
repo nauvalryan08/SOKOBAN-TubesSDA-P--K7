@@ -56,6 +56,9 @@ void printLevelID(void *data, char *output);
 //=======================================//
 /* {Sopian} */
 
+// helper
+void isLevelFinished (void*  data);
+
 Boolean isChapterFinished (ChapterData chapter);
 
 
@@ -64,7 +67,9 @@ Boolean isChapterFinished (ChapterData chapter);
 //=======================================//
 /* {Sopian} */
 
-void chapterFinish();
+void updateAllChapterStatus();
+
+void unlockNextChapter();
 
 
 

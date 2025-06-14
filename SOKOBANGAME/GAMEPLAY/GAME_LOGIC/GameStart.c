@@ -64,10 +64,8 @@ void start_level (RoomLayout *room, LevelData *level, ChapterData * current_chap
         update_box_activation_status (room);
         update_finish_activation_status (room);
 
-
-        // print_room (level->level_name, map, room, scoreData, &btn);
-
         handle_input (room, map, &StackUndo, &replayQueue, &keyOutput, &btn, username);
+
 
         if (keyOutput == 27) { // ESC key pressed
             break; // Exit game loop
@@ -75,6 +73,7 @@ void start_level (RoomLayout *room, LevelData *level, ChapterData * current_chap
             room->finish.is_activated = true;
         }
 
+        // print_room (level->level_name, map, room, scoreData, &btn);
         print_room (level->level_name, map, room, scoreData, &btn);
 
 
@@ -159,9 +158,12 @@ void game_finished(RoomLayout *room, LevelData *level, ChapterData *current_chap
             continue;
         } else if (ch == '3' || ch == 27) {
             // kembali ke lobby
-            return;
+            break;;
         }
     }
+    updateAllChapterStatus();
+
+    unlockNextChapter();
 }
 
 

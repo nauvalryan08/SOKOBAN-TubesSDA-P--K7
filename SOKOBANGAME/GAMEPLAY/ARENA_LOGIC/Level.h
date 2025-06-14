@@ -12,7 +12,6 @@ typedef struct {
     Boolean is_finished;            //Status pernah diselesaikan
 }LevelData;
 
-
 //==> TYPEDEF INDEKS LEVEL MENGGUNAKAN NAMA LEVEL
 typedef enum {
     LEVEL_1T1,
@@ -227,12 +226,6 @@ extern const char *Level_4b_map[];
 extern const char *Level_5b_map[];
 extern const char *Level_6b_map[];
 
-
-
-//==============================================//
-//==> MODUL MANAGEMENT ARENA DAN LEVEL-LEVEL <==//
-//==============================================//
-/* {Sopian} */
 
 
 #endif

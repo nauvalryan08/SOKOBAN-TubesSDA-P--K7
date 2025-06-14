@@ -3,6 +3,8 @@
 
 #include "../../UTILS/include/boolean.h"
 #include "../../UTILS/include/curses.h"
+#include "../../UTILS/sound/soundmanager.h"
+
 #include "../../VIEW/viewtoolkit.h"
 #include "../../VIEW/chapterscreen.h"
 
@@ -14,6 +16,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <pthread.h>
 
 //======================//
 //==>  RESET BUTTON  <==//

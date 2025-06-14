@@ -369,9 +369,26 @@ void printLevelID(void *data, char *output) {
 //=======================================//
 /* {Sopian} */
 
+//-> Variabel global sementara (Traversal method tree nya menerima parameter void*/ jadi butuh Boolean external)
+static Boolean *tempBool = NULL;
+
+void isLevelFinished (void*  data) {
+    LevelData *level = (LevelData *) data;
+    if (!level->is_finished) {
+        *tempBool = false;
+    }
+}
+
 Boolean isChapterFinished (ChapterData chapter) {
     if (!chapter.ChapterTree) return false;
+    
+    Boolean isFinish = true;
+    tempBool = &isFinish;
 
+    preOrderTraversal(chapter.ChapterTree, isLevelFinished);
+
+    tempBool = NULL;    //Var global dikosongkan
+    return isFinish;
 }
 
 
@@ -380,4 +397,25 @@ Boolean isChapterFinished (ChapterData chapter) {
 //=======================================//
 /* {Sopian} */
 
-void chapterFinish();
+void updateAllChapterStatus() {
+    int i;
+    for (i=0; i<GroupCount;i++) {
+        ChapterTrees[i].is_finished = isChapterFinished(ChapterTrees[i]);
+    }  
+}
+
+
+void unlockNextChapter() {
+    int i;
+    for (i=0;i<GroupCount;i++) {
+        if (ChapterTrees[i].is_finished) {
+            Ptree nextChapterRoot = ChapterTrees[i+1].ChapterTree;      //Akses Tree pada chapter sleanjutnya
+            if (nextChapterRoot && nextChapterRoot->Type == TYPE_LEVELDATA) {
+                LevelData *firstLevel = (LevelData *)nextChapterRoot->data;     //Mengakses LevelData pada root Level
+                if (!firstLevel->is_unlocked) {
+                    firstLevel->is_unlocked = true;
+                }
+            }
+        }
+    }
+}
