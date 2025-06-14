@@ -109,6 +109,7 @@ void game_finished(RoomLayout *room, LevelData *level, ChapterData *current_chap
     int max_y, max_x;
     getmaxyx(stdscr, max_y, max_x);
 
+    playWinSound();
     const char *msg1 = "^_^ KAMU MENANG! ^_^";
     const char *msg2 = "1. Replay  | 2. Next Stage  | 3. Quit";
 

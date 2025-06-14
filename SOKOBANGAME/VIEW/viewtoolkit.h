@@ -1,7 +1,7 @@
 #ifndef VIEWTK_H
 #define VIEWTK_H
-#define MIN_Y 47
-#define MIN_X 190
+#define MIN_Y 35 // before : 47
+#define MIN_X 120 // before : 197
 #include "../UTILS/include/curses.h"
 #include <stdlib.h>
 #include <string.h>

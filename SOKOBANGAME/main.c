@@ -4,6 +4,7 @@ int main() {
 
     setlocale(LC_ALL, "");
     initscr();
+    playBackgroundMusic();
 
     // Inisialisasi warna
     start_color();
@@ -31,24 +32,25 @@ int main() {
     while (menu_choice != 5) {
     // Handle pilihan menu
 
-    menu_choice = show_alt_lobby();
+        menu_choice = show_alt_lobby();
 
-    switch (menu_choice) {
-    case 1: // Play Game
-        selected_level = print_chapter_screen(dummyUsername);
-        break;
-    case 2: // History
-        // Implementasi fitur history
-        break;
-    case 3 :
-        break;
-    case 4: // How to play
-        show_tutorial_screen();
-        break;
-    case 5: // Quit Game
-        return 0;
-        break;
-    }
+        switch (menu_choice) {
+        case 1: // Play Game
+            selected_level = print_chapter_screen(dummyUsername);
+            break;
+        case 2: // History
+            // Implementasi fitur history
+            break;
+        case 3 :
+            // Implementasi fitur leaderboard
+            break;
+        case 4: // How to play
+            show_tutorial_screen();
+            break;
+        case 5: // Quit Game
+            return 0;
+            break;
+        }
     }
 
     endwin();

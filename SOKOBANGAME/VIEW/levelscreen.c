@@ -1,4 +1,5 @@
 #include "LevelScreen.h"
+#include "levelscreen.h"
 #include <string.h>
 
 #define MAX_LEVELS_PER_COLUMN 20
