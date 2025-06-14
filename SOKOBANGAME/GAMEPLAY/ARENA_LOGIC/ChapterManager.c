@@ -404,11 +404,14 @@ void updateAllChapterStatus() {
     }  
 }
 
-
 void unlockNextChapter() {
     int i;
     for (i=0;i<GroupCount;i++) {
         if (ChapterTrees[i].is_finished) {
+            pthread_t chapterUnlockSound;
+            pthread_create(&chapterUnlockSound, NULL, playChapterUnlockSound, NULL);
+            pthread_join(chapterUnlockSound, NULL);
+
             Ptree nextChapterRoot = ChapterTrees[i+1].ChapterTree;      //Akses Tree pada chapter sleanjutnya
             if (nextChapterRoot && nextChapterRoot->Type == TYPE_LEVELDATA) {
                 LevelData *firstLevel = (LevelData *)nextChapterRoot->data;     //Mengakses LevelData pada root Level

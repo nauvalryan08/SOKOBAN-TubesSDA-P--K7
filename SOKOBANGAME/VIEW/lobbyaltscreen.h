@@ -3,6 +3,7 @@
 
 #include "viewtoolkit.h"
 #include "../../UTILS/include/curses.h"
+#include "../../UTILS/sound/soundmanager.h"
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>

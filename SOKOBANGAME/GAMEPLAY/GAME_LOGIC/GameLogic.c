@@ -143,6 +143,9 @@ void unlock_child_if_parent_finished (Ptree root) {
 /* {Sopian} */
 
 void reset_game(RoomLayout *room, const char **map) {
+    pthread_t gameResetSound;
+    pthread_create(&gameResetSound, NULL, playGameResetSound, NULL);
+    pthread_join(gameResetSound, NULL);
     parse_room(room, map);
 }
 

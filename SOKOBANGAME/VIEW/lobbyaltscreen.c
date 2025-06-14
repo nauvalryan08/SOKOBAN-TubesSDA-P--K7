@@ -85,17 +85,24 @@ int show_alt_lobby(){
             print_alt_title();
             attroff(COLOR_PAIR(1) | A_BOLD);
             show_alt_menu(selected, 5, menu_items);
+
+            pthread_t arrowSound;
+            pthread_t enterSound;
+
                 ch = getch();
                 switch (ch) {
                     case KEY_UP:
+                        pthread_create(&arrowSound, NULL, playArrowSound, NULL);
                         selected = (selected > 0) ? selected - 1 : items - 1;
                         break;
                     case KEY_DOWN:
+                        pthread_create(&arrowSound, NULL, playArrowSound, NULL);
                         selected = (selected < items - 1) ? selected + 1 : 0;
                         break;
                     case KEY_MOUSE:
                         if (getmouse(&event) == OK) {
                             if (event.bstate & BUTTON1_CLICKED) {
+                                pthread_create(&enterSound, NULL, playEnterSound, NULL);
                                 for (int i = 0; i < items; i++) {
                                     if (isbtnarea(&menu_items[i], event.x, event.y)) {
                                         selected = i;
@@ -104,7 +111,9 @@ int show_alt_lobby(){
                             }
                             else if (event.bstate & BUTTON1_DOUBLE_CLICKED) {
                             for (int i = 0; i < items; i++) {
+                                pthread_create(&enterSound, NULL, playEnterSound, NULL);
                                 if (isbtnarea(&menu_items[i], event.x, event.y)) {
+
                                     selected = i;
                                     switch(selected) {
                                         case 0: return 1;
@@ -120,6 +129,7 @@ int show_alt_lobby(){
                         break;
                     case '\n':
                     case KEY_ENTER:
+                        pthread_create(&enterSound, NULL, playEnterSound, NULL);
                         if (selected >= 0 && selected < items) {
                             switch(selected) {
                                 case 0: // PLAY GAME
@@ -141,6 +151,8 @@ int show_alt_lobby(){
                     default:
                         break;
                 }
+            pthread_join(arrowSound, NULL);
+            pthread_join(enterSound, NULL);
         refresh();
         }
     }

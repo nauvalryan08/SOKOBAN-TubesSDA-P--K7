@@ -110,24 +110,29 @@ LevelData* select_level_from_list(LevelData* levels[], int count) {
         show_level_selection_screen(levels, count);
         
         ch = wgetch(level_win);
-        
+        pthread_t arrowSound;
+
         switch (ch) {
             case KEY_LEFT:
+                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
                 if (current_selection >= MAX_LEVELS_PER_COLUMN) {
                     current_selection -= MAX_LEVELS_PER_COLUMN;
                 }
                 break;
             case KEY_RIGHT:
+                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
                 if (current_selection + MAX_LEVELS_PER_COLUMN < num_levels) {
                     current_selection += MAX_LEVELS_PER_COLUMN;
                 }
                 break;
             case KEY_UP:
+                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
                 if (current_selection > 0) {
                     current_selection--;
                 }
                 break;
             case KEY_DOWN:
+                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
                 if (current_selection < num_levels - 1) {
                     current_selection++;
                 }
@@ -143,6 +148,7 @@ LevelData* select_level_from_list(LevelData* levels[], int count) {
                 curs_set(1);
                 return NULL;
         }
+        pthread_join(arrowSound, NULL);
     }
 }
 
@@ -285,14 +291,24 @@ void run_level(LevelData* selected_level, ChapterData* current_chapter, const ch
 
     //Memeriksa apakah stage dapat di akses
     if (!selected_level->is_unlocked) {
+
         draw_centered_text( LINES/2 , 0, COLS, "This Stage is locked, please finish previous stage!");
         draw_centered_text(LINES/2 + 1, 0, COLS, "[Press ENTER to continue...]");
 
         refresh();
 
+        pthread_t invalidSound;
+        pthread_create(&invalidSound, NULL, playInvalidSound, NULL);
+        pthread_detach(invalidSound);
+
         int ch;
         do {
             ch = getch();
+            if (ch == '\n' || ch == '\r' || ch == 10) {
+                pthread_t enterSound;
+                pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                pthread_detach(enterSound);
+            }
         } while (ch != '\n' && ch != '\r' && ch != 10); // ENTER key
 
         return;

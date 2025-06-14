@@ -2,6 +2,7 @@
 #define CHAPTERMANAGER_H
 
 #include "../../UTILS/include/boolean.h"
+#include "../../UTILS/sound/soundmanager.h"
 #include "../../STRUCTURES/tree.h"
 #include "Level.h"
 

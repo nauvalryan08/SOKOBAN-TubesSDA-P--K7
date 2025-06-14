@@ -20,6 +20,10 @@ void* timer_thread(void *arg) {
 void start_level (RoomLayout *room, LevelData *level, ChapterData * current_chapter, const char *username) {
     clear();
 
+    pthread_t enterSound;
+    pthread_create(&enterSound, NULL, playEnterSound, NULL);
+    pthread_detach(enterSound);
+
     // ==> threading time
     global_timer = 0;
     timer_running = 1;
@@ -111,7 +115,7 @@ void game_finished(RoomLayout *room, LevelData *level, ChapterData *current_chap
     int max_y, max_x;
     getmaxyx(stdscr, max_y, max_x);
 
-    pthread_t winSound;
+    pthread_t winSound; // sound effect
     pthread_create(&winSound, NULL, playWinSound, NULL);
     pthread_join(winSound, NULL);
 

@@ -60,25 +60,32 @@ LevelData* print_chapter_screen(const char *username) {
       case '\n':
       //Untuk memilih level menggunakan enter
       case KEY_ENTER:
+        pthread_t enterSound;
         if (selected >= 0 && selected <= n_chapters) {
           // Panggil fungsi level selection yang sesuai dengan chapter yang dipilih
           switch(selected) {
             case 0: // Tutorial
+              pthread_create(&enterSound, NULL, playEnterSound, NULL);
               selected_level = select_level_tutorial();
               break;
             case 1: // Chapter 1
+              pthread_create(&enterSound, NULL, playEnterSound, NULL);
               selected_level = select_level_chapter1();
               break;
             case 2: // Chapter 2
+              pthread_create(&enterSound, NULL, playEnterSound, NULL);
               selected_level = select_level_chapter2();
               break;
             case 3: // Chapter 3
+              pthread_create(&enterSound, NULL, playEnterSound, NULL);
               selected_level = select_level_chapter3();
               break;
             case 4: // Chapter 4
+              pthread_create(&enterSound, NULL, playEnterSound, NULL);
               selected_level = select_level_chapter4();
               break;
             case 5: // Chapter 5
+              pthread_create(&enterSound, NULL, playEnterSound, NULL);
               selected_level = select_level_chapter5();
               break;
           }
@@ -87,6 +94,7 @@ LevelData* print_chapter_screen(const char *username) {
             run_level(selected_level, &ChapterTrees[selected], username);
             return selected_level;
           }
+          pthread_join(enterSound, NULL);
           return NULL;
         }
         break;
