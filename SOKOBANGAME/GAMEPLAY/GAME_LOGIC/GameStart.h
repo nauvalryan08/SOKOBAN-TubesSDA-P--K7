@@ -5,7 +5,7 @@
 
 #include "../../UTILS/include/boolean.h"
 #include "../../UTILS/include/curses.h"
-#include "../../UTILS/soundmanager.h"
+#include "../../UTILS/sound/soundmanager.h"
 #include "../../VIEW/viewtoolkit.h"
 
 #include "../ARENA_LOGIC/RoomFactory.h"
