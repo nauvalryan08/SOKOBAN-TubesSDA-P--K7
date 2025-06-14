@@ -23,7 +23,7 @@ typedef void (*InitLevel)(RoomLayout*);
 //== Method untuk melakukan pemeriksaan sata akan bergerak ==//
 //===========================================================//
 /* {Sopian} */
-boolean move_player (RoomLayout *room, int dx, int dy, const char **map); //true jika berpindah
+Boolean move_player (RoomLayout *room, int dx, int dy, const char **map); //true jika berpindah
 
 
 
@@ -71,21 +71,21 @@ void reset_game(RoomLayout *room, const char **map);
 //== Method untuk memeriksa apakah level complete ==//
 //==================================================//
 /* {Sopian} */
-boolean is_level_completed(RoomLayout *room);
+Boolean is_level_completed(RoomLayout *room);
 
 
 //===========================================================//
 //== Method untuk memeriksa apakah player berada di Finish ==//
 //===========================================================//
 /* {Sopian} */
-boolean is_player_at_finish (RoomLayout *room);
+Boolean is_player_at_finish (RoomLayout *room);
 
 
 //=======================================================//
 //== Method untuk memeriksa apakah Level Terselesaikan ==//
 //=======================================================//
 /* {Sopian} */
-boolean is_victory (RoomLayout *room);
+Boolean is_victory (RoomLayout *room);
 
 
 #endif

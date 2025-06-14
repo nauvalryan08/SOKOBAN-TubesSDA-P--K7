@@ -275,7 +275,7 @@ void display_level_info(LevelData* level) {
     napms(1000);
 }
 
-void run_level(LevelData* selected_level, ChapterData* current_chapter) {
+void run_level(LevelData* selected_level, ChapterData* current_chapter, const char* username) {
     if (selected_level == NULL) return;
 
     clear();
@@ -298,5 +298,5 @@ void run_level(LevelData* selected_level, ChapterData* current_chapter) {
     }
 
     //memulai jika dapat diakses
-    start_level(&room, selected_level, current_chapter);
+    start_level(&room, selected_level, current_chapter, username);
 }

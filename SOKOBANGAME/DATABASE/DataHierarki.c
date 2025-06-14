@@ -64,7 +64,7 @@ int convertStringIDtoInt(const char *IDstr) {
 
 
 //===> ID comparing
-boolean compareLevelNameByID(void* data1, void* data2) {
+Boolean compareLevelNameByID(void* data1, void* data2) {
     char* levelName = (char*)data1;
     int idTarget = *((int *)data2);
 
@@ -106,5 +106,3 @@ void addNewDataToTree(Ptree root, PlayData *data) {
     Ptree newNode = createTreeNode(data, TYPE_PLAYDATA);
     addTreeNodeChild(levelNode, newNode);
 }
-
-

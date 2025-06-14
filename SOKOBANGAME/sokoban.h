@@ -15,6 +15,8 @@
 
 // Semua header proyek
 #include "DATABASE/DataHierarki.h"
+#include "DATABASE/DatabasePath.h"
+
 
 #include "GAMEPLAY/ARENA_LOGIC/RoomFactory.h"
 #include "GAMEPLAY/ARENA_LOGIC/level.h"
@@ -24,6 +26,9 @@
 #include "GAMEPLAY/GAME_LOGIC/ButtonGame.h"
 #include "GAMEPLAY/GAME_LOGIC/GameLogic.h"
 #include "GAMEPLAY/GAME_LOGIC/GameStart.h"
+
+#include "GAMEPLAY/REPLAY_LOGIC/ReplayGame.h"
+
 
 #include "VIEW/lobbyscreen.h"
 #include "VIEW/LevelScreen.h"

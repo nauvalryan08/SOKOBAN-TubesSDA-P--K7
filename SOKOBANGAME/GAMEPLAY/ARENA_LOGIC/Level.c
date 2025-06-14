@@ -1674,7 +1674,7 @@ LevelData ALL_LEVELS[] = {
         .level_id = "1c1",
         .level_name = "Chapter 1 - Level 1",
         .map = Level_1c1_map,
-        .is_unlocked = true,
+        .is_unlocked = false,
         .is_finished = false,
     },
     [LEVEL_1C2] = {
@@ -1730,14 +1730,14 @@ LevelData ALL_LEVELS[] = {
         .level_id = "2c1",
         .level_name = "Chapter 2 - Level 1",
         .map = Level_2c1_map,
-        .is_unlocked = true,
+        .is_unlocked = false,
         .is_finished = false,
     },
     [LEVEL_2C2] = {
         .level_id = "2c2",
         .level_name = "Chapter 2 - Level 2",
         .map = Level_2c2_map,
-        .is_unlocked = true,
+        .is_unlocked = false,
         .is_finished = false,
     },
     [LEVEL_2C3] = {

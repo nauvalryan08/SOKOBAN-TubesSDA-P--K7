@@ -12,6 +12,6 @@
 #define false 0
 #define true 1
 
-typedef int boolean;
+typedef int Boolean;
 
 #endif

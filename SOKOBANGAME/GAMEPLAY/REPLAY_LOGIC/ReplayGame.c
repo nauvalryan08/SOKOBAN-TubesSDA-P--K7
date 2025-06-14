@@ -5,8 +5,13 @@
 //==>  DATABASE ACCESS  <==//
 //=========================//
 
+//Sepertinya sudah digantikan ke DATABASE ACCESS di DataHierarki
+// |
+// |
+// v
 void saveReplayForUser(Queue *q, const char *username) {
-    FILE *fp = fopen(REPLAY_FILE, "a");
+
+    FILE *fp = fopen(PLAY_DATA_PATH, "a");
     if (!fp) return;
 
     fprintf(fp, "%s:", username);
@@ -20,29 +25,40 @@ void saveReplayForUser(Queue *q, const char *username) {
     fclose(fp);
 }
 
-boolean loadReplayForUser(Queue *q, const char *username) {
-    FILE *fp = fopen(REPLAY_FILE, "r");
-    if (!fp) return 0;
+Boolean loadReplayRecord(Queue *q, const char *username, const char *dataID) {
 
-    char line[1024];
+    FILE *fp = fopen(PLAY_DATA_PATH, "r");
+    if (!fp) return false;
+
+    char line[2048];
     while (fgets(line, sizeof(line), fp)) {
-        char *colon = strchr(line, ':');
-        if (!colon) continue;
-        *colon = '\0';
+        char *copy = strdup(line);
+        char *token = strtok(copy, "|");   // username
+        char *levelID = strtok(NULL, "|");
+        char *dID = strtok(NULL, "|");     // dataID
+        strtok(NULL, "|"); // score
+        strtok(NULL, "|"); // time
+        strtok(NULL, "|"); // move
+        strtok(NULL, "|"); // undo
+        char *steps = strtok(NULL, "\n");
 
-        if (strcmp(line, username) == 0) {
-            char *moves = colon + 1;
-            while (*moves && *moves != '\n') {
-                enqueue(q, createStep(*moves));
-                moves++;
+        if (token && dID && steps &&
+            strcmp(token, username) == 0 &&
+            strcmp(dID, dataID) == 0) {
+
+            for (int i = 0; steps[i]; i++) {
+                enqueue(q, createStep(steps[i]));
             }
+
+            free(copy);
             fclose(fp);
-            return 1;
+            return true;
         }
+        free(copy);
     }
 
     fclose(fp);
-    return 0;
+    return false;
 }
 
 
@@ -60,6 +76,14 @@ ReplayStep *createStep(char move) {
     return step;
 }
 
+void clearReplayQueue(Queue *q) {
+    while (!isQueueEmpty(q)) {
+        ReplayStep *step = (ReplayStep *)dequeue(q);
+        free(step);
+    }
+}
+
+
 
 
 //=========================//
@@ -68,25 +92,65 @@ ReplayStep *createStep(char move) {
 
 void playReplay(RoomLayout *room, LevelData level, Queue *q) {
 
+    nodelay(stdscr, TRUE);
+
+    ScoreData dummyScore = {0};
+
     const char **map = level.map;
     Button btn = {2, LINES - 10, 20, 4, "Exit"};
 
+    Stack stackReplayUndo;
+    stack_init(&stackReplayUndo);
+
+    // Reset Map
+    reset_game(room, map);
+    save_state(&stackReplayUndo, room);
+    
+    int ch;
+
     while (!isQueueEmpty(q)) {
+
+        ch = getch();
+        if (ch == 27) { // ESC key
+            break;
+        }
+        if (ch == '\n') {
+            break;
+        }
+
+
         ReplayStep *step = (ReplayStep *)dequeue(q);
         if (!step) continue;
 
+
         switch (step->move) {
-            case 'U': move_player(room, 0, -1, map); break;
-            case 'D': move_player(room, 0, +1, map); break;
-            case 'L': move_player(room, -1, 0, map); break;
-            case 'R': move_player(room, +1, 0, map); break;
-            case 'Z': /* undo logic if needed */ break;
+            case 'U':
+                save_state(&stackReplayUndo, room); 
+                move_player(room, 0, -1, map); 
+                break;
+            case 'D': 
+                save_state(&stackReplayUndo, room); 
+                move_player(room, 0, +1, map); 
+                break;
+            case 'L': 
+                save_state(&stackReplayUndo, room); 
+                move_player(room, -1, 0, map); 
+                break;
+            case 'R': 
+                save_state(&stackReplayUndo, room); 
+                move_player(room, +1, 0, map); 
+                break;
+            case 'Z':
+                undo_game(&stackReplayUndo, room);
+                break;
         }
 
         update_box_activation_status(room);
         update_finish_activation_status(room);
-        print_room(level.level_name,map, room, &btn);
+        print_room(level.level_name,map, room, dummyScore, &btn);
         napms(200);
         free(step);
     }
+    nodelay(stdscr, false);
+    stack_clear(&stackReplayUndo);
 }

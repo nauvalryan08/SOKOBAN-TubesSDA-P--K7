@@ -156,7 +156,7 @@ void levelOrderTraversal(Ptree root, void (*visit)(void *)) {
 
 //======================================================//
 // Fungsi pembantu untuk membandingkan kesamaan dua data
-boolean compareData (void *data1, void *data2, DataType type) {
+Boolean compareData (void *data1, void *data2, DataType type) {
   switch (type) {
     case TYPE_INT :
       return *((int*) data1) == *((int*)data2);
@@ -172,15 +172,15 @@ boolean compareData (void *data1, void *data2, DataType type) {
   }
 }
 
-boolean compareDataID (void *data1, void *data2) { return compareData(data1, data2, TYPE_LEVELDATA);}
-boolean compareDataINT (void *data1, void *data2) { return compareData(data1, data2, TYPE_INT);}
-boolean compareDataSTRING (void *data1, void *data2) { return compareData(data1, data2, TYPE_STRING);}
-boolean compareDataCHAR (void *data1, void *data2) { return compareData(data1, data2, TYPE_CHAR);}
+Boolean compareDataID (void *data1, void *data2) { return compareData(data1, data2, TYPE_LEVELDATA);}
+Boolean compareDataINT (void *data1, void *data2) { return compareData(data1, data2, TYPE_INT);}
+Boolean compareDataSTRING (void *data1, void *data2) { return compareData(data1, data2, TYPE_STRING);}
+Boolean compareDataCHAR (void *data1, void *data2) { return compareData(data1, data2, TYPE_CHAR);}
 
 
 // Cari node (BFS)
 Ptree findTreeNode(Ptree root, void *target,
-                   boolean (*compare)(void *, void *)) {
+                   Boolean (*compare)(void *, void *)) {
   if (!root || !compare) {
     return NULL;
   }
@@ -198,7 +198,7 @@ Ptree findTreeNode(Ptree root, void *target,
 }
 
 // Cari parent dari suatu Node
-Ptree findParentNode(Ptree root, void *target, boolean (*compare)(void *, void *)) {
+Ptree findParentNode(Ptree root, void *target, Boolean (*compare)(void *, void *)) {
   if (!root || !compare) {
     return NULL;
   }

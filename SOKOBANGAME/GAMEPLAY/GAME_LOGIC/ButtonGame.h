@@ -10,7 +10,6 @@
 #include "../ARENA_LOGIC/Level.h"
 #include "GameLogic.h"
 #include "UndoGame.h"
-#include "../REPLAY_LOGIC/ReplayGame.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -20,18 +19,18 @@
 //==>  RESET BUTTON  <==//
 //======================//
 /* {Sopian} */
-boolean is_reset_pressed(int ch);
+Boolean is_reset_pressed(int ch);
 
 //=====================//
 //==>  Undo BUTTON  <==//
 //=====================//
 /* {Sopian} */
-boolean is_Undo_pressed(int ch);
+Boolean is_Undo_pressed(int ch);
 
 //=======================================================================//
 //== Method untuk menerima input KEY ARROW dan menjalankan pemeriksaan ==//
 //=======================================================================//
 /* {Sopian} */
-void handle_input (RoomLayout *room, const char **map, Stack *StackUndo, Queue *hintQueue, int *keyOutput, Button *quit);
+void handle_input (RoomLayout *room, const char **map, Stack *StackUndo, Queue *ReplayQueue, int *keyOutput, Button *quit, const char *username);
 
 #endif

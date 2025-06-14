@@ -4,7 +4,7 @@
 // global state
 LevelData* global_selected_level = NULL;
 
-LevelData* print_chapter_screen() {
+LevelData* print_chapter_screen(const char *username) {
   
   LevelData* selected_level = NULL;
 
@@ -84,7 +84,7 @@ LevelData* print_chapter_screen() {
           }
           
           if (selected_level != NULL) {
-            run_level(selected_level, &ChapterTrees[selected]);
+            run_level(selected_level, &ChapterTrees[selected], username);
             return selected_level;
           }
           return NULL;
@@ -124,7 +124,7 @@ LevelData* print_chapter_screen() {
                   break;
               }
               if (selected_level != NULL) {
-                run_level(selected_level, &ChapterTrees[selected]);
+                run_level(selected_level, &ChapterTrees[selected], username);
                 return selected_level;
               }
               return NULL;

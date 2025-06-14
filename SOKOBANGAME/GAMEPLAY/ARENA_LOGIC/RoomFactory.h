@@ -21,7 +21,7 @@
 
 typedef struct {
     int x, y;
-    boolean is_activated;
+    Boolean is_activated;
 } Object;
 
 typedef struct {
@@ -32,6 +32,13 @@ typedef struct {
     int target_count;
     Object finish;
 } RoomLayout;
+
+typedef struct{
+    int score;
+    int time;
+    int TotalMove;
+    int TotalUndo;
+}ScoreData;
 
 
 //===============================================================//
@@ -45,11 +52,11 @@ void parse_room(RoomLayout* room, const char **map);
 //===================================//
 /* {Sopian} */
 
-void print_room(const char *name, const char **map, const RoomLayout *room, Button *btn);
+void print_room(const char *name, const char **map, const RoomLayout *room, ScoreData scoreData, Button *btn);
 
 void print_header(const char *level_name);
 
-void print_sidebar(const RoomLayout *room, int timer, int score);
+void print_sidebar(const RoomLayout *room, ScoreData data);
 
 void print_bottom_bar();
 
@@ -57,7 +64,7 @@ void print_bottom_bar();
 //==>  Memeriksa apakah semua box sudah Aktif  <==//
 //================================================//
 /* {Sopian} */
-boolean is_finish_activated(const RoomLayout *room);
+Boolean is_finish_activated(const RoomLayout *room);
 
 int count_active_box(const RoomLayout *room);
 

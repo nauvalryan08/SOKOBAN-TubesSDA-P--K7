@@ -33,7 +33,7 @@ LevelData* select_level_chapter5();
 
 
 // Function to display and run the selected level
-void run_level(LevelData* selected_level, ChapterData* current_chapter);
+void run_level(LevelData* selected_level, ChapterData* current_chapter, const char *username);
 
 // Helper function to display level information
 void display_level_info(LevelData* level);

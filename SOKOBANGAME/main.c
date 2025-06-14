@@ -12,13 +12,12 @@ int main() {
     init_pair(3, COLOR_BLACK, COLOR_BLACK);
     init_pair(4, COLOR_YELLOW, COLOR_BLACK);
     init_pair(5, COLOR_MAGENTA, COLOR_BLACK);
+    init_pair(9, COLOR_BLACK, COLOR_WHITE);
 
     cbreak();
     noecho();
     curs_set(FALSE);
     keypad(stdscr, TRUE);
-    timeout(0);
-
 
     int menu_choice;
     RoomLayout room;
@@ -27,6 +26,8 @@ int main() {
 
     initAllChapters();
 
+    const char* dummyUsername = "Argiansah";
+
     while (menu_choice != 5) {
     // Handle pilihan menu
 
@@ -34,7 +35,7 @@ int main() {
 
     switch (menu_choice) {
     case 1: // Play Game
-        selected_level = print_chapter_screen();
+        selected_level = print_chapter_screen(dummyUsername);
         break;
     case 2: // History
         // Implementasi fitur history

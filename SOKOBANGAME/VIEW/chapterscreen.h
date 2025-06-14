@@ -8,6 +8,7 @@
 #include "viewtoolkit.h"
 // #include "temp.h"
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 
 
@@ -15,6 +16,6 @@
 #define NUM_CHAPTERS 6
 
 // Fungsi utama untuk menampilkan chapter screen dan menangani interaksi mouse
-LevelData* print_chapter_screen();
+LevelData* print_chapter_screen(const char *username);
 
 #endif // CHAPTERSCREEN_H

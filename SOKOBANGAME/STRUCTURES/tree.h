@@ -55,20 +55,20 @@ void postOrderTraversal(Ptree root, void (*visit)(void*));
 void levelOrderTraversal(Ptree root, void (*visit)(void*));
 
 // Data comparising
-boolean compareData (void *data1, void *data2, DataType type);
+Boolean compareData (void *data1, void *data2, DataType type);
 
-boolean compareDataID (void *data1, void *data2);
-boolean compareDataINT (void *data1, void *data2);
-boolean compareDataSTRING (void *data1, void *data2);
-boolean compareDataCHAR (void *data1, void *data2);
+Boolean compareDataID (void *data1, void *data2);
+Boolean compareDataINT (void *data1, void *data2);
+Boolean compareDataSTRING (void *data1, void *data2);
+Boolean compareDataCHAR (void *data1, void *data2);
 
 
 
 // Cari node (BFS)
-Ptree findTreeNode(Ptree root, void *target, boolean (*compare)(void*, void*));
+Ptree findTreeNode(Ptree root, void *target, Boolean (*compare)(void*, void*));
 
 // cari parent dari salah satu node
-Ptree findParentNode(Ptree root, void *target, boolean (*compare)(void *, void *));
+Ptree findParentNode(Ptree root, void *target, Boolean (*compare)(void *, void *));
 
 // Hapus 
 void freeTree(Ptree root, void (*freeData)(void*, DataType));

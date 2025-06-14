@@ -1,0 +1,6 @@
+#ifndef DATABASEPATH_H
+#define DATABASEPATH_H
+
+#define PLAY_DATA_PATH "SOKOBANGAME/DATABASE/PlayData.txt"
+
+#endif // DATABASEPATH_H

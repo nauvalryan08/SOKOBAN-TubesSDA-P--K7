@@ -11,7 +11,7 @@
 //== Method untuk melakukan pemeriksaan sata akan bergerak ==//
 //===========================================================//
 /* {Sopian} */
-boolean move_player (RoomLayout *room, int dx, int dy, const char **map) {
+Boolean move_player (RoomLayout *room, int dx, int dy, const char **map) {
     int new_x = room->player.x + dx;
     int new_y = room->player.y + dy;
 
@@ -88,7 +88,7 @@ void update_box_activation_status(RoomLayout *room) {
 
 void update_finish_activation_status(RoomLayout *room) {
     for (int i = 0; i < room->box_count; i++) {
-        room->finish.is_activated = false;  // Reset dulu status
+        // room->finish.is_activated = false;  // dipindahin ke start_level
 
         for (int j = 0; j < room->target_count; j++) {
             if (room->boxes[i].is_activated == false) {
@@ -100,8 +100,12 @@ void update_finish_activation_status(RoomLayout *room) {
     }
 }
 
+/******************************************************/
+/* -->       ARENA STATUS - LOGIC IN GAME         <-- */
+/******************************************************/
+
 //==========================================================================//
-//== Method untuk memeriksa apakah parent finished, dan membuak child nya ==//
+//== Method untuk memeriksa apakah parent finished, dan membuka child nya ==//
 //==========================================================================//
 /* {Sopian} */
 void unlock_child_if_parent_finished (Ptree root) {
@@ -120,6 +124,11 @@ void unlock_child_if_parent_finished (Ptree root) {
         }
     }
 }
+
+//==========================================================================//
+//== Method untuk memeriksa apakah parent finished, dan membuka child nya ==//
+//==========================================================================//
+/* {Sopian} */
 
 
 
@@ -147,7 +156,7 @@ void reset_game(RoomLayout *room, const char **map) {
 //==================================================//
 /* {Sopian} */
 
-boolean is_level_completed(RoomLayout *room) {
+Boolean is_level_completed(RoomLayout *room) {
     for (int i = 0; i < room->box_count; i++) {
         if (!room->boxes[i].is_activated) {
             return false;
@@ -161,7 +170,7 @@ boolean is_level_completed(RoomLayout *room) {
 //== Method untuk memeriksa apakah player berada di Finish ==//
 //===========================================================//
 /* {Sopian} */
-boolean is_player_at_finish (RoomLayout *room) {
+Boolean is_player_at_finish (RoomLayout *room) {
     return (room->player.x == room->finish.x &&
             room->player.y == room->finish.y);
 }
@@ -170,8 +179,9 @@ boolean is_player_at_finish (RoomLayout *room) {
 //== Method untuk memeriksa apakah Level Terselesaikan ==//
 //=======================================================//
 /* {Sopian} */
-boolean is_victory (RoomLayout *room) {
-    if (!is_level_completed(room)) return false;
-    if (!is_player_at_finish(room)) return false;
-    return true;
+Boolean is_victory (RoomLayout *room) {
+    if (room->finish.is_activated == true) {
+        if (!is_player_at_finish(room)) return false;
+        return true;
+    }
 }

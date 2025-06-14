@@ -362,3 +362,22 @@ void printLevelID(void *data, char *output) {
 }
 
 //======================================//
+
+
+//=======================================//
+//==       LOGIKA CHECKING STATUS      ==//
+//=======================================//
+/* {Sopian} */
+
+Boolean isChapterFinished (ChapterData chapter) {
+    if (!chapter.ChapterTree) return false;
+
+}
+
+
+//=======================================//
+//==   LOGIKA MANAGER STATUS ACCESS    ==//
+//=======================================//
+/* {Sopian} */
+
+void chapterFinish();

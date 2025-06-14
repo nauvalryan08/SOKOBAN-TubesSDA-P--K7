@@ -8,8 +8,8 @@ typedef struct {
     const char *level_id;           //Untuk traversal dan searching
     const char *level_name;         //Display name saat runtime
     const char **map;               //Map level
-    boolean is_unlocked;            //Status unlocked
-    boolean is_finished;            //Status pernah diselesaikan
+    Boolean is_unlocked;            //Status unlocked
+    Boolean is_finished;            //Status pernah diselesaikan
 }LevelData;
 
 

@@ -40,7 +40,7 @@ void parse_room(RoomLayout *room, const char **map) {
 //=============================================//
 /* {Sopian} */
 
-boolean is_finish_activated(const RoomLayout *room) {
+Boolean is_finish_activated(const RoomLayout *room) {
     int i;
     for (i = 0; i < room->box_count; i++) {
         if (!room->boxes[i].is_activated) {
@@ -71,7 +71,7 @@ int count_active_box(const RoomLayout *room) {
 
 //================================>
 
-void print_room(const char *name, const char **map, const RoomLayout *room, Button *btn) {
+void print_room(const char *name, const char **map, const RoomLayout *room, ScoreData scoreData, Button *btn) {
     int x, y, i, dy, dx, dy_tile, dx_tile;
     char tile;
 
@@ -113,7 +113,7 @@ void print_room(const char *name, const char **map, const RoomLayout *room, Butt
     int offset_x = (COLS - arena_width) / 2;
 
     print_header(name);
-    print_sidebar(room, 0, 0); // Ganti 0,0 kalau kamu punya timer dan skor sebenarnya
+    print_sidebar(room, scoreData); // Ganti 0,0 kalau kamu punya timer dan skor sebenarnya
     print_bottom_bar(); 
 
     // Gambar map
@@ -161,7 +161,7 @@ void print_room(const char *name, const char **map, const RoomLayout *room, Butt
     }
 
     // Finish
-    attron(is_finish_activated(room) ? (COLOR_PAIR(2) | A_BOLD) : (COLOR_PAIR(3) | A_DIM));
+    attron((room->finish.is_activated == true) ? (COLOR_PAIR(2) | A_BOLD) : (COLOR_PAIR(3) | A_DIM));
     // mvaddch(offset_y + room->finish.y, offset_x + room->finish.x*TILE_WIDTH + 1, 'F');
     dx = offset_x + room->finish.x * TILE_WIDTH + TILE_WIDTH / 2;
     dy = offset_y + room->finish.y * TILE_HEIGHT + TILE_HEIGHT / 2;
@@ -199,7 +199,7 @@ void print_header(const char *level_name) {
 }
 
 
-void print_sidebar(const RoomLayout *room, int timer, int score) {
+void print_sidebar(const RoomLayout *room, ScoreData data) {
     int sidebar_width = 24;
     int start_y = 4;  // Mulai di bawah header
     int end_y = LINES - 5; // Berhenti sebelum bottom bar
@@ -244,18 +244,23 @@ void print_sidebar(const RoomLayout *room, int timer, int score) {
     mvprintw(current_y++, 2, "+--------------------+");
     mvprintw(current_y, 2, "| Time  :");
     mvprintw(current_y, 23, "|");
-    mvprintw(current_y++, 12, "%02d:%02d", timer/60, timer%60);
+    mvprintw(current_y++, 12, "%02d:%02d", data.time/60, data.time%60);
     mvprintw(current_y++, 2, "+--------------------+");
     mvprintw(current_y, 2, "| Score :");
     mvprintw(current_y, 23, "|");
-    mvprintw(current_y++, 12, "%d", score);
+    mvprintw(current_y++, 12, "%d", data.score);
     mvprintw(current_y++, 2, "+--------------------+");
 
     current_y++;
     mvprintw(current_y++, 2, "+--------------------+");
-    mvprintw(current_y, 2, "| Undo :");
+    mvprintw(current_y, 2, "| Moves :");
     mvprintw(current_y, 23, "|");
-    mvprintw(current_y++, 12, "%d", score);
+    mvprintw(current_y++, 12, "%d", data.TotalMove);
+    mvprintw(current_y++, 2, "+--------------------+");
+    mvprintw(current_y++, 2, "+--------------------+");
+    mvprintw(current_y, 2, "| Undo        :");
+    mvprintw(current_y, 23, "|");
+    mvprintw(current_y++, 12, "%d", data.TotalUndo);
     mvprintw(current_y++, 2, "+--------------------+");
 
     attroff(text_color);

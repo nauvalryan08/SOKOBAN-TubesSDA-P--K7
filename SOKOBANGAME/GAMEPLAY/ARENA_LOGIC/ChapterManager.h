@@ -8,7 +8,7 @@
 //==> STRUCT CHAPTER
 typedef struct {
     Ptree ChapterTree;
-    boolean is_finished;
+    Boolean is_finished;
 }ChapterData;
 
 // List chapter Tree
@@ -51,15 +51,20 @@ void printLevelName(void *data, char *output);
 //=> print Level by ID
 void printLevelID(void *data, char *output);
 
-
-
 //=======================================//
-//==   LOGIKA AKSES LEVEL DAN CHAPTER  ==//
+//==       LOGIKA CHECKING STATUS      ==//
 //=======================================//
 /* {Sopian} */
 
-// boolean getLevelStatus;
+Boolean isChapterFinished (ChapterData chapter);
 
+
+//=======================================//
+//==   LOGIKA MANAGER STATUS ACCESS    ==//
+//=======================================//
+/* {Sopian} */
+
+void chapterFinish();
 
 
 

@@ -5,7 +5,7 @@
 //==>  RESET BUTTON  <==//
 //======================//
 /* {Sopian} */
-boolean is_reset_pressed(int ch) {
+Boolean is_reset_pressed(int ch) {
     return (ch == 'r' || ch == 'R');
 }
 
@@ -14,7 +14,7 @@ boolean is_reset_pressed(int ch) {
 //==>  Undo BUTTON  <==//
 //=====================//
 /* {Sopian} */
-boolean is_Undo_pressed(int ch) {
+Boolean is_Undo_pressed(int ch) {
     return (ch == 'u' || ch == 'U');
 }
 
@@ -24,12 +24,12 @@ boolean is_Undo_pressed(int ch) {
 //=======================================================================//
 /* {Sopian} */
 
-void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *hintQueue, int *keyOutput, Button *btn) {
+void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *ReplayQueue, int *keyOutput, Button *btn, const char *username) {
     int ch = getch();
     MEVENT event;
     mmask_t old;
     mousemask(ALL_MOUSE_EVENTS | REPORT_MOUSE_POSITION, &old);
-    boolean valid = false;
+    Boolean valid = false;
 
     switch (ch) {
         case KEY_UP :
@@ -37,6 +37,9 @@ void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *
             valid = move_player(room, 0, -1, map);
             if (!valid) {
                 undo_game(UndoStack, room);     //Memastikan tidak menyimpan data undo utnuk gerakan tidak valid 
+            } else {
+                ReplayStep* step = createStep('U');
+                enqueue(ReplayQueue, step);
             }
             break;
         case KEY_DOWN :
@@ -44,6 +47,9 @@ void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *
             valid = move_player(room, 0, +1, map);
             if (!valid) {
                 undo_game(UndoStack, room);     //Memastikan tidak menyimpan data undo utnuk gerakan tidak valid 
+            } else {
+                ReplayStep* step = createStep('D');
+                enqueue(ReplayQueue, step);
             }
             break;
         case KEY_LEFT :
@@ -51,6 +57,9 @@ void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *
             valid = move_player(room, -1, 0, map);
             if (!valid) {
                 undo_game(UndoStack, room);     //Memastikan tidak menyimpan data undo utnuk gerakan tidak valid 
+            } else {
+                ReplayStep* step = createStep('L');
+                enqueue(ReplayQueue, step);
             }
             break;
         case KEY_RIGHT :
@@ -58,27 +67,38 @@ void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *
             valid = move_player(room, +1, 0, map);
             if (!valid) {
                 undo_game(UndoStack, room);     //Memastikan tidak menyimpan data undo utnuk gerakan tidak valid 
+            } else {
+                ReplayStep* step = createStep('R');
+                enqueue(ReplayQueue, step);
             }
             break;
         case 'r' :
         case 'R' :
             reset_game(room, map);
             stack_clear(UndoStack);
+            clearQueue(ReplayQueue);
             break;
         case 'u' :
         case 'U' :
             undo_game(UndoStack, room);
+            ReplayStep* step = createStep('Z');
+            enqueue(ReplayQueue, step);
             break;
         case 27:
             *keyOutput = 27;
             break;
+        case 'F' :
+            room->finish.is_activated = true;
+            *keyOutput = 'F';
+            break;
+        
         case KEY_MOUSE:
         // Handle Quit Button
         if (getmouse(&event) == OK) {
             if (event.bstate & BUTTON1_CLICKED){
                 if (isbtnarea(btn, event.x, event.y)) {
                     *keyOutput = 27;
-                    print_chapter_screen();
+                    print_chapter_screen(username);
                 }
             }
         }
