@@ -65,7 +65,7 @@ void start_level (RoomLayout *room, LevelData *level, ChapterData * current_chap
         update_finish_activation_status (room);
 
 
-        print_room (level->level_name, map, room, scoreData, &btn);
+        // print_room (level->level_name, map, room, scoreData, &btn);
 
         handle_input (room, map, &StackUndo, &replayQueue, &keyOutput, &btn, username);
 
@@ -74,6 +74,9 @@ void start_level (RoomLayout *room, LevelData *level, ChapterData * current_chap
         } else if (keyOutput == 'F') {
             room->finish.is_activated = true;
         }
+
+        print_room (level->level_name, map, room, scoreData, &btn);
+
 
         if (is_victory(room)) {
             print_room (level->level_name, map, room, scoreData, &btn);
@@ -109,7 +112,10 @@ void game_finished(RoomLayout *room, LevelData *level, ChapterData *current_chap
     int max_y, max_x;
     getmaxyx(stdscr, max_y, max_x);
 
-    playWinSound();
+    pthread_t winSound;
+    pthread_create(&winSound, NULL, playWinSound, NULL);
+    pthread_join(winSound, NULL);
+
     const char *msg1 = "^_^ KAMU MENANG! ^_^";
     const char *msg2 = "1. Replay  | 2. Next Stage  | 3. Quit";
 

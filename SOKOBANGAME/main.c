@@ -4,7 +4,7 @@ int main() {
 
     setlocale(LC_ALL, "");
     initscr();
-    playBackgroundMusic();
+    threadPlayBGMusic();
 
     // Inisialisasi warna
     start_color();
@@ -48,6 +48,7 @@ int main() {
             show_tutorial_screen();
             break;
         case 5: // Quit Game
+            stopBackgroundMusic();
             return 0;
             break;
         }

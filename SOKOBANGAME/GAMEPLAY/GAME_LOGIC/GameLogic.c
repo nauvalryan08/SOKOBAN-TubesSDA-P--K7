@@ -88,7 +88,7 @@ void update_box_activation_status(RoomLayout *room) {
 
 void update_finish_activation_status(RoomLayout *room) {
     for (int i = 0; i < room->box_count; i++) {
-        // room->finish.is_activated = false;  // dipindahin ke start_level
+        room->finish.is_activated = false;  // dipindahin ke start_level
 
         for (int j = 0; j < room->target_count; j++) {
             if (room->boxes[i].is_activated == false) {
