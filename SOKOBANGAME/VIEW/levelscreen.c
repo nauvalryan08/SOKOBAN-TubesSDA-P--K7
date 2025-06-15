@@ -88,8 +88,6 @@ void show_level_selection_screen(LevelData* levels[], int count) {
         }
     }
     
-    mvprintw(LINES - 2, 2, "Use ARROW keys to navigate, ENTER to select, ESC to quit");
-    
     wrefresh(level_win);
     refresh();
 }
@@ -143,6 +141,7 @@ LevelData* select_level_from_list(LevelData* levels[], int count) {
                 curs_set(1);
                 return levels[current_selection];
             case 27:
+                endwin();
                 delwin(level_win);
                 level_win = NULL;
                 curs_set(1);
