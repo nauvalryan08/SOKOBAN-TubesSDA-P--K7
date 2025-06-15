@@ -20,7 +20,9 @@ void setBGMVolume(int percent);
 
 void* playBackgroundMusic(void* args);
 void stopBackgroundMusic();
+void* playStartGameSound(void* args);
 void* playMoveSound(void* args);
+void* playUndoSound(void* args);
 void* playWinSound(void* args);
 void* playArrowSound(void* args);
 void* playChapterUnlockSound(void* args);

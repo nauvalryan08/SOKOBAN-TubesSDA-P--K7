@@ -20,8 +20,13 @@ void* timer_thread(void *arg) {
 void start_level (RoomLayout *room, LevelData *level, ChapterData * current_chapter, const char *username) {
     clear();
 
+    pthread_t startSound;
     pthread_t enterSound;
-    pthread_create(&enterSound, NULL, playEnterSound, NULL);
+
+    pthread_create(&startSound, NULL, playStartGameSound, NULL);
+    pthread_create(&enterSound, NULL, playStartGameSound, NULL);
+
+    pthread_detach(startSound);
     pthread_detach(enterSound);
 
     // ==> threading time

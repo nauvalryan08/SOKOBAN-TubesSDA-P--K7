@@ -32,8 +32,16 @@ void stopBackgroundMusic() {
     mciSendString("close bgm", NULL, 0, NULL);
 }
 
+void* playStartGameSound(void* args) {
+    PlaySound(TEXT("./SOKOBANGAME/ASSETS/STARTGAME.wav"), NULL, SND_ASYNC);
+}
+
 void* playMoveSound(void* args) {
     PlaySound(TEXT("./SOKOBANGAME/ASSETS/MOVES.wav"), NULL, SND_ASYNC);
+}
+
+void* playUndoSound(void* args) {
+    PlaySound(TEXT("./SOKOBANGAME/ASSETS/UNDO.wav"), NULL, SND_ASYNC);
 }
 
 void* playWinSound(void* args) {

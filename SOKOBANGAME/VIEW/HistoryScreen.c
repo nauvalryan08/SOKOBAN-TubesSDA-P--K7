@@ -107,27 +107,34 @@ LevelData* print_chapter_screen(const char *username) {
     if (ch == KEY_MOUSE) {
       if (getmouse(&event) == OK) {
         if (event.bstate & BUTTON1_DOUBLE_CLICKED) {
+          pthread_t enterSound;
           for (int i = 0; i < n_chapters; i++) {
             if (isbtnarea(&chapters[i], event.x, event.y)) {
               selected = i;
                             // Panggil fungsi level selection yang sesuai dengan chapter yang dipilih
               switch(selected) {
                 case 0:
+                  pthread_create(&enterSound, NULL, playEnterSound, NULL);
                   selected_level = select_level_tutorial();
                   break;
                 case 1:
+                  pthread_create(&enterSound, NULL, playEnterSound, NULL);
                   selected_level = select_level_chapter1();
                   break;
                 case 2:
+                  pthread_create(&enterSound, NULL, playEnterSound, NULL);
                   selected_level = select_level_chapter2();
                   break;
                 case 3:
+                  pthread_create(&enterSound, NULL, playEnterSound, NULL);
                   selected_level = select_level_chapter3();
                   break;
                 case 4:
+                  pthread_create(&enterSound, NULL, playEnterSound, NULL);
                   selected_level = select_level_chapter4();
                   break;
                 case 5:
+                  pthread_create(&enterSound, NULL, playEnterSound, NULL);
                   selected_level = select_level_chapter5();
                   break;
               }
@@ -135,6 +142,7 @@ LevelData* print_chapter_screen(const char *username) {
                 run_level(selected_level, &ChapterTrees[selected-1], username);
                 return selected_level;
               }
+              pthread_join(enterSound, NULL);
               return NULL;
             }
           }

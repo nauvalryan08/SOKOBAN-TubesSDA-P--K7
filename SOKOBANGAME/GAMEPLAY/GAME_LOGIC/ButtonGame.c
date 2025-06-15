@@ -91,6 +91,9 @@ void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *
         case 'u' :
         case 'U' :
             undo_game(UndoStack, room);
+            pthread_t undoSound;
+            pthread_create(&undoSound, NULL, playUndoSound, NULL);
+            pthread_detach(undoSound);
             ReplayStep* step = createStep('Z');
             enqueue(ReplayQueue, step);
             break;

@@ -4,6 +4,7 @@
 
 #include "../GAMEPLAY/GAME_LOGIC/GameStart.h"
 #include "../UTILS/include/curses.h"
+#include "../UTILS/sound/soundmanager.h"
 #include "levelscreen.h"
 #include "viewtoolkit.h"
 // #include "temp.h"

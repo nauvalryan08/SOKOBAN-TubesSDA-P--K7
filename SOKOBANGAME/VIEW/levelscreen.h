@@ -2,6 +2,7 @@
 #define LEVELSCREEN_H
 
 #include "../UTILS/include/curses.h"
+#include "../UTILS/sound/soundmanager.h"
 #include "../GAMEPLAY/ARENA_LOGIC/RoomFactory.h"
 #include "../GAMEPLAY/ARENA_LOGIC/Level.h"
 #include "../GAMEPLAY/ARENA_LOGIC/ChapterManager.h"

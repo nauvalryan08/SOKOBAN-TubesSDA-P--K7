@@ -1,5 +1,6 @@
 #include "UndoGame.h"
 
+
 //=====================//
 //==>  UNDO LOGIC  <==//
 //=====================//
@@ -19,6 +20,7 @@ void undo_game(GameUndo *prevMove, RoomLayout *currRoom) {
         printw("Undo Failed: stack empty");   
         return;
     }
+
     //pop data dari stack
     RoomLayout *poppedRoom = (RoomLayout*)stack_pop(prevMove);
     // salin data ke currRoom untuk dikembalikan
