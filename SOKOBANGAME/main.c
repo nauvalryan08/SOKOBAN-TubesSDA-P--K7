@@ -26,6 +26,7 @@ int main() {
     RoomLayout room;
     LevelData *selected_level;
     Ptree PlayData = initDataHierarki();
+    pthread_t enterSound;
 
     initAllChapters();
 
@@ -39,6 +40,8 @@ int main() {
         switch (menu_choice) {
         case 1: // Play Game
             selected_level = print_chapter_screen(dummyUsername);
+            pthread_create(&enterSound, NULL, playEnterSound, NULL);
+            pthread_join(enterSound, NULL);
             break;
         case 2: // History
             // Implementasi fitur history
@@ -52,6 +55,7 @@ int main() {
         case 5: // Quit Game
             break;
         }
+
     }
 
     stopBackgroundMusic();

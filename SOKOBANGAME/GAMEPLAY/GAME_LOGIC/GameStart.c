@@ -78,9 +78,6 @@ void start_level (RoomLayout *room, LevelData *level, ChapterData * current_chap
 
         if (keyOutput == 27) {
             // ESC key pressed
-            pthread_t enterSound;
-            pthread_create(&enterSound, NULL, playEnterSound, NULL);
-            pthread_join(enterSound, NULL); 
             break; // Exit game loop
         } else if (keyOutput == 'F') {
             room->finish.is_activated = true;
@@ -125,6 +122,8 @@ void game_finished(RoomLayout *room, LevelData *level, ChapterData *current_chap
     getmaxyx(stdscr, max_y, max_x);
 
     pthread_t winSound; // sound effect
+    pthread_t enterSound;
+
     pthread_create(&winSound, NULL, playWinSound, NULL);
     pthread_join(winSound, NULL);
 
@@ -160,6 +159,8 @@ void game_finished(RoomLayout *room, LevelData *level, ChapterData *current_chap
             // Replay langkah yang baru saja dimainkan
             initReplayQueue(&q);
             if (loadReplayRecord(&q, username, dataID)) {
+                pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                pthread_join(enterSound, NULL);
                 playReplay(room, *level, &q);
             } else {
                 mvprintw(max_y / 2 + 3, (max_x - 30) / 2, "Replay tidak ditemukan!");

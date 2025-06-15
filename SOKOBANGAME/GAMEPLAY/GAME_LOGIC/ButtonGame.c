@@ -32,6 +32,9 @@ void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *
     Boolean valid = false;
 
     pthread_t moveSound;
+    pthread_t undoSound;
+    pthread_t enterSound;
+    pthread_t gameResetSound;
     
     switch (ch) {
         case KEY_UP :
@@ -84,6 +87,8 @@ void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *
             break;
         case 'r' :
         case 'R' :
+            pthread_create(&gameResetSound, NULL, playGameResetSound, NULL);
+            pthread_join(gameResetSound, NULL);
             reset_game(room, map);
             stack_clear(UndoStack);
             clearQueue(ReplayQueue);
@@ -91,7 +96,6 @@ void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *
         case 'u' :
         case 'U' :
             undo_game(UndoStack, room);
-            pthread_t undoSound;
             pthread_create(&undoSound, NULL, playUndoSound, NULL);
             pthread_detach(undoSound);
             ReplayStep* step = createStep('Z');
@@ -109,7 +113,6 @@ void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *
         // Handle Quit Button
         if (getmouse(&event) == OK) {
             if (event.bstate & BUTTON1_CLICKED){
-                pthread_t enterSound;
                 pthread_create(&enterSound, NULL, playEnterSound, NULL);
                 pthread_join(enterSound, NULL);
                 if (isbtnarea(btn, event.x, event.y)) {

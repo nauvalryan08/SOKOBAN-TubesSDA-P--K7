@@ -146,6 +146,9 @@ LevelData* select_level_from_list(LevelData* levels[], int count) {
                 delwin(level_win);
                 level_win = NULL;
                 curs_set(1);
+                pthread_t enterSound;
+                pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                pthread_join(enterSound, NULL);
                 return NULL;
         }
         pthread_join(arrowSound, NULL);
