@@ -182,3 +182,117 @@ void draw_horizontal_line(int y, int x, int width) {
     }
   }
 }
+
+// Draw a single connection between two points
+void draw_connection(Button *from, Button *to, ConnectionType type) {
+    int from_x = from->x + from->width / 2;
+    int from_y = from->y + from->height;
+    int to_x = to->x + to->width / 2;
+    int to_y = to->y;
+
+    switch (type) {
+        case CONNECTION_VERTICAL:
+            // Draw vertical line
+            for (int y = from_y; y < to_y; y++) {
+                if (y >= 0 && y < LINES) {
+                    mvaddch(y, from_x, ACS_BLOCK);
+                }
+            }
+            break;
+
+        case CONNECTION_HORIZONTAL:
+            // Draw horizontal line
+            if (from_x < to_x) {
+                for (int x = from_x; x <= to_x; x++) {
+                    if (x >= 0 && x < COLS) {
+                        mvaddch(from_y, x, ACS_BLOCK);
+                    }
+                }
+            } else {
+                for (int x = to_x; x <= from_x; x++) {
+                    if (x >= 0 && x < COLS) {
+                        mvaddch(from_y, x, ACS_BLOCK);
+                    }
+                }
+            }
+            // Draw vertical line to connect
+            for (int y = from_y; y < to_y; y++) {
+                if (y >= 0 && y < LINES) {
+                    mvaddch(y, to_x, ACS_BLOCK);
+                }
+            }
+            break;
+
+        case CONNECTION_DIAGONAL:
+            // Draw diagonal connection
+            int dx = to_x - from_x;
+            int dy = to_y - from_y;
+            int steps = abs(dx) > abs(dy) ? abs(dx) : abs(dy);
+            
+            for (int i = 0; i <= steps; i++) {
+                int x = from_x + (dx * i) / steps;
+                int y = from_y + (dy * i) / steps;
+                if (x >= 0 && x < COLS && y >= 0 && y < LINES) {
+                    if (i == 0) {
+                        mvaddch(y, x, ACS_BLOCK);
+                    } else if (i == steps) {
+                        mvaddch(y, x, ACS_BLOCK);
+                    } else {
+                        mvaddch(y, x, ACS_BLOCK);
+                    }
+                }
+            }
+            break;
+    }
+}
+
+// Draw a tree connection between parent and child buttons
+void draw_tree_connection(Button *parent, Button *child, ConnectionType type) {
+    if (!parent || !child) return;
+
+    // Calculate connection points
+    int parent_x = parent->x + parent->width / 2;
+    int parent_y = parent->y + parent->height;
+    int child_x = child->x + child->width / 2;
+    int child_y = child->y;
+
+    // Draw the connection
+    draw_connection(parent, child, type);
+
+    // Draw connection points
+    // if (parent_x >= 0 && parent_x < COLS && parent_y >= 0 && parent_y < LINES) {
+    //     mvaddch(parent_y, parent_x, ACS_TTEE);
+    // }
+    // if (child_x >= 0 && child_x < COLS && child_y >= 0 && child_y < LINES) {
+    //     mvaddch(child_y, child_x, ACS_BTEE);
+    // }
+}
+
+// Draw connections for an entire tree structure
+void draw_tree_connections(Button *buttons, int *parent_indices, int count) {
+    if (!buttons || !parent_indices || count <= 0) return;
+
+    // Draw connections for each node
+    for (int i = 0; i < count; i++) {
+        int parent_idx = parent_indices[i];
+        if (parent_idx >= 0 && parent_idx < count) {
+            // Determine connection type based on relative positions
+            Button *parent = &buttons[parent_idx];
+            Button *child = &buttons[i];
+            
+            int dx = child->x - parent->x;
+            int dy = child->y - parent->y;
+            
+            ConnectionType type;
+            if (abs(dx) < 10) {
+                type = CONNECTION_VERTICAL;
+            } else if (abs(dy) < 5) {
+                type = CONNECTION_HORIZONTAL;
+            } else {
+                type = CONNECTION_DIAGONAL;
+            }
+            
+            draw_tree_connection(parent, child, type);
+        }
+    }
+}

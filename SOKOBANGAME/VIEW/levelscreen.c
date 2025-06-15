@@ -1,3 +1,4 @@
+#define NCURSES_MOUSE_VERSION
 #include "LevelScreen.h"
 #include "levelscreen.h"
 #include <string.h>
@@ -104,10 +105,8 @@ LevelData* select_level_from_list(LevelData* levels[], int count) {
   
     show_level_selection_screen(levels, count);
     
-    while (1) {
+    while ((ch = getch()) != 27) {
         show_level_selection_screen(levels, count);
-        
-        ch = wgetch(level_win);
         pthread_t arrowSound;
 
         switch (ch) {
@@ -148,11 +147,11 @@ LevelData* select_level_from_list(LevelData* levels[], int count) {
                 pthread_t enterSound;
                 pthread_create(&enterSound, NULL, playEnterSound, NULL);
                 pthread_join(enterSound, NULL);
-                return NULL;
         }
         pthread_join(arrowSound, NULL);
         refresh();
     }
+    return NULL;
 }
 
 // Tutorial levels selection
@@ -172,25 +171,6 @@ LevelData* select_level_tutorial() {
     }
 
     return select_level_from_list(chapterTutorial, collector.count);
-}
-
-// Chapter 1 levels selection
-LevelData* select_level_chapter1() {
-    initChapter1();
-    LevelData* chapter1[30];
-
-    // static LevelData* chapter1[30];
-    LevelCollector collector = {.count =  0};
-
-    active_collector = &collector;
-    levelOrderTraversal(ChapterTrees[CHAPTER1].ChapterTree, store_callback_wrapper);
-    active_collector = NULL;
-
-    for (int i = 0; i < collector.count; i++) {
-        chapter1[i] = collector.array[i];
-    }
-
-    return select_level_from_list(chapter1, collector.count);
 }
 
 // Chapter 2 levels selection
@@ -276,6 +256,95 @@ LevelData* select_level() {
         level_ptrs[i] = &ALL_LEVELS[i];
     }
     return select_level_from_list(level_ptrs, LEVEL_COUNT);
+}
+
+LevelData* chapter1_screen(){
+    int ch;
+    mmask_t old;
+    mousemask(ALL_MOUSE_EVENTS | REPORT_MOUSE_POSITION, &old);
+    MEVENT event;
+    current_selection = 0;
+    initChapter1();
+    LevelData* chapter1[9];
+
+    LevelCollector collector = {.count = 0};
+    active_collector = &collector;
+    levelOrderTraversal(ChapterTrees[CHAPTER1].ChapterTree, store_callback_wrapper);
+    for (int i = 0; i < collector.count; i++){
+        chapter1[i] = collector.array[i];
+    }
+
+    clear();
+    curs_set(0);
+    while ((ch = getch()) != 27) {
+        pthread_t arrowSound, enterSound;
+        // Create buttons with proper proportions
+        Button levels[] = {
+            {COLS/3, LINES/2-18, 21, 4, "Level 1"},
+            {COLS/3-12, LINES/2-10, 21, 4, "Level 2"},
+            {COLS/3+12, LINES/2-10, 21, 4, "Level 3"},
+            {COLS/3-40, LINES/2, 21, 4, "Level 4"},
+            {COLS/3-12, LINES/2, 21, 4, "Level 5"},
+            {COLS/3+12, LINES/2, 21, 4, "Level 6"},
+            {COLS/3+40, LINES/2, 21, 4, "Level 7"},
+            {COLS/3+68, LINES/2, 21, 4, "Level 8"},
+        };
+
+        // Display instructions
+        mvprintw(1, 1, "Klik kiri pada tombol level untuk memilih level!");
+        mvprintw(2, 1, "Atau gunakan tombol panah kiri/kanan untuk navigasi");
+        mvprintw(3, 1, "Gunakan tombol ESC untuk kembali ke menu utama");
+        mvprintw(4, 1, "Tekan ENTER untuk memilih level");
+
+        // Display buttons
+        for (int i = 0; i < collector.count; i++) {
+            if (i == current_selection) {
+                attron(A_REVERSE | COLOR_PAIR(COLOR_GREEN));
+            }
+            draw_btn(&levels[i]);
+            if (i == current_selection) {
+                attroff(A_REVERSE | COLOR_PAIR(COLOR_GREEN));
+            }
+        }
+
+        // Draw tree connections
+        int ch1_connectorindex[] = {-1, 0, 0, 1, 1, 2, 2, 2};
+        draw_tree_connections(levels, ch1_connectorindex, collector.count);
+
+        switch (ch) {
+            case KEY_LEFT:
+                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                current_selection = (current_selection > 0) ? current_selection - 1 : collector.count - 1;
+                break;
+            case KEY_RIGHT:
+                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                current_selection = (current_selection < collector.count - 1) ? current_selection + 1 : 0;
+                break;
+            case KEY_ENTER:
+            case '\n':
+                pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                return chapter1[current_selection];
+                break;
+            case KEY_MOUSE:
+                if (getmouse(&event) == OK) {
+                    if (event.bstate & BUTTON1_CLICKED){
+                        pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                        for (int i = 0; i < collector.count; i++) {
+                            if (isbtnarea(&levels[i], event.x, event.y)) {
+                                    current_selection = i;
+                            }
+                        }
+                    }
+                }
+            case KEY_RESIZE:
+                resize_term(0,0);
+                break;
+        }
+        pthread_join(arrowSound, NULL);
+        pthread_join(enterSound, NULL);
+        refresh();
+    }
+    return NULL;
 }
 
 void display_level_info(LevelData* level) {

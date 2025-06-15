@@ -17,6 +17,13 @@ typedef struct {
   char *attr;
 } Txtbox;
 
+// Tree connection types
+typedef enum {
+    CONNECTION_VERTICAL,
+    CONNECTION_HORIZONTAL,
+    CONNECTION_DIAGONAL
+} ConnectionType;
+
 void draw_btn(Button *btn);
 int isbtnarea(Button *btn, int mouse_x, int mouse_y);
 void handle_resize(int *prev_lines, int *prev_cols);
@@ -25,5 +32,10 @@ void draw_box(int x, int y, int width, int height);
 void draw_txtbox(Txtbox *textbox);
 void draw_centered_text(int y, int x, int width, const char* text);
 void draw_horizontal_line(int y, int x, int width);
+
+// New functions for tree visualization
+void draw_connection(Button *from, Button *to, ConnectionType type);
+void draw_tree_connection(Button *parent, Button *child, ConnectionType type);
+void draw_tree_connections(Button *buttons, int *parent_indices, int count);
 
 #endif
