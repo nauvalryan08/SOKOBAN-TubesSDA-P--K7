@@ -76,7 +76,11 @@ void start_level (RoomLayout *room, LevelData *level, ChapterData * current_chap
         handle_input (room, map, &StackUndo, &replayQueue, &keyOutput, &btn, username);
 
 
-        if (keyOutput == 27) { // ESC key pressed
+        if (keyOutput == 27) {
+            // ESC key pressed
+            pthread_t enterSound;
+            pthread_create(&enterSound, NULL, playEnterSound, NULL);
+            pthread_join(enterSound, NULL); 
             break; // Exit game loop
         } else if (keyOutput == 'F') {
             room->finish.is_activated = true;
@@ -124,7 +128,7 @@ void game_finished(RoomLayout *room, LevelData *level, ChapterData *current_chap
     pthread_create(&winSound, NULL, playWinSound, NULL);
     pthread_join(winSound, NULL);
 
-    const char *msg1 = "^_^ KAMU MENANG! ^_^";
+    const char *msg1 = "^_^ CONGRATULATION. YOU WIN! ^_^";
     const char *msg2 = "1. Replay  | 2. Next Stage  | 3. Quit";
 
     // Unlock level berikutnya
