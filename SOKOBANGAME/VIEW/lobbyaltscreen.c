@@ -67,7 +67,7 @@ int show_alt_lobby(){
     MEVENT event;
     int items = 5;
     int selected = 0;
-   
+    clear();
 
     while (1) {
         clear();

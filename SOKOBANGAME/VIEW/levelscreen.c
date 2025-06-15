@@ -152,6 +152,7 @@ LevelData* select_level_from_list(LevelData* levels[], int count) {
                 return NULL;
         }
         pthread_join(arrowSound, NULL);
+        refresh();
     }
 }
 
