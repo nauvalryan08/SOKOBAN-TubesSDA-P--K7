@@ -39,5 +39,6 @@ void run_level(LevelData* selected_level, ChapterData* current_chapter, const ch
 void display_level_info(LevelData* level);
 
 LevelData* chapter1_screen();
+LevelData* chapter2_screen();
 
 #endif // LEVEL_SCREEN_H 
