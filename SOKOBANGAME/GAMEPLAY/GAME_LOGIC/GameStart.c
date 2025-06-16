@@ -36,13 +36,16 @@ void start_level (RoomLayout *room, LevelData *level, ChapterData * current_chap
     pthread_create(&tid, NULL, timer_thread, NULL);
     //=======>
 
-    nodelay(stdscr, TRUE);
+    nodelay(stdscr, FALSE);
     keypad(stdscr, TRUE);
     curs_set(0);
 
+    // --- > Inisiasi Area <---- //
+
+
     Stack StackUndo;
     Queue replayQueue;
-    int keyOutput = 0;
+    int keyOutput = 0, tempOutput;
     int prev_lines = LINES;
     int prev_cols = COLS;
 
@@ -56,11 +59,33 @@ void start_level (RoomLayout *room, LevelData *level, ChapterData * current_chap
     stack_init(&StackUndo);
     initQueue(&replayQueue);
 
-    parse_room(room, map);      //parsing data berdasarkan map
+    //-----------------------------//
 
+    // --> Parsing data untuk RoomLayout <-- //
+
+    // Cek apakah ada save untuk level ini
+    RoomLayout tempRoom;
+    if (load_game_state(username, level->level_id, &tempRoom)) {
+        if (ask_continue_save()) {
+            *room = tempRoom;
+
+            //hapus data yang dipakai
+            remove_game_state_entry(username, level->level_id);
+        } else {
+            parse_room(room, level->map);
+            remove_game_state_entry(username, level->level_id);
+        }
+    } else {
+        parse_room(room, level->map);
+    }
+    //-----------------------------//
+
+    nodelay(stdscr, TRUE);
     //simpan data roomLayout ke undo stack
     save_state(&StackUndo, room);
 
+
+    // --> Game Loop
     getch();
     while (1) {
         prev_lines = LINES;
@@ -77,8 +102,13 @@ void start_level (RoomLayout *room, LevelData *level, ChapterData * current_chap
 
 
         if (keyOutput == 27) {
-            // ESC key pressed
-            break; // Exit game loop
+            nodelay(stdscr, FALSE);
+            tempOutput = exit_game(room, username, level->level_id);
+            if (tempOutput == 0) {
+                continue;
+            } else if (tempOutput == 1) {
+                break;
+            }
         } else if (keyOutput == 'F') {
             room->finish.is_activated = true;
         }
@@ -140,7 +170,7 @@ void game_finished(RoomLayout *room, LevelData *level, ChapterData *current_chap
     // Simpan replay ke database
     char dataID[64];
     sprintf(dataID, "%s_%ld", level->level_id, time(NULL)); // Format unik ID
-    saveDataToDatabase(replayQueue, username, level->level_id, dataID, scoreData);
+    save_data_to_database(replayQueue, username, level->level_id, dataID, scoreData);
 
     // Pilihan pasca menang
     int ch;
@@ -181,12 +211,70 @@ void game_finished(RoomLayout *room, LevelData *level, ChapterData *current_chap
 }
 
 
+//===> Exiting Game (save state or no)
+
+int exit_game(RoomLayout *room, const char *username, const char *level_id) {
+    int max_y, max_x;
+    getmaxyx(stdscr, max_y, max_x);
+
+    clear();
+    mvprintw(max_y / 2 - 1, (max_x - 30) / 2, "Are you sure you want to exit? (y/n)");
+    refresh();
+
+    int ch = getch();
+    ch = tolower(ch);
+
+    if (ch == 'n') {
+        return 0; // lanjutkan game
+    } else if (ch == 'y') {
+        // Jika user memilih y
+        clear();
+        mvprintw(max_y / 2 - 1, (max_x - 35) / 2, "Do you want to save current progress? (y/n)");
+        refresh();
+
+        ch = getch();
+        ch = tolower(ch);
+
+        if (ch == 'y') {
+            save_game_state(username, level_id, room); // fungsi dari penjelasan sebelumnya
+            mvprintw(max_y / 2 + 2, (max_x - 25) / 2, "Game state saved.");
+            refresh();
+            sleep(1);
+        }
+    }
+    return 1;
+}
+
+
+//====> validator apakah ingin load game state
+
+bool ask_continue_save() {
+    int max_y, max_x;
+    getmaxyx(stdscr, max_y, max_x);
+
+    const char *msg = "Are you want to continue the previous progress? (y/n)";
+    clear();
+    attron(COLOR_PAIR(9) | A_BOLD);
+    mvprintw(max_y / 2, (max_x - strlen(msg)) / 2, "%s", msg);
+    attroff(COLOR_PAIR(9) | A_BOLD);
+    refresh();
+
+    int ch = getch();
+    ch = tolower(ch);
+
+    return ch == 'y';
+}
+
+
+
+
 //=================================================//
 //==                DATABASE ACCESS              ==//
 //=================================================//
 /* {Sopian} */
 
-void saveDataToDatabase ( Queue *q, const char *username, const char *levelID, const char *dataID, ScoreData scoreData) {
+//==> Memnyimpan Hasil data usai bermain
+void save_data_to_database ( Queue *q, const char *username, const char *levelID, const char *dataID, ScoreData scoreData) {
 
     FILE *fp = fopen(PLAY_DATA_PATH, "a");
     if (!fp) return;
@@ -215,3 +303,141 @@ void saveDataToDatabase ( Queue *q, const char *username, const char *levelID, c
 }
 
 
+//==> menyimpan State permainan saat Exit [untuk kembali dilanjutkan saat bermain lagi]
+void save_game_state (const char* username, const char* level_id, RoomLayout* room) {
+    SaveState save;
+    strncpy(save.username, username, sizeof(save.username));
+    strncpy(save.level_id, level_id, sizeof(save.level_id));
+    save.room = *room;
+
+    // Buka file index lama untuk baca
+    FILE *index_old = fopen(INDEX_DATA_STATE_PATH, "r");
+    FILE *index_new = fopen("temp_index.txt", "w"); // file index baru
+    if (!index_new) return;
+
+    char key_to_remove[64];
+    sprintf(key_to_remove, "%s-%s", username, level_id);
+
+    // Salin semua index kecuali yang ingin dihapus
+    if (index_old) {
+        char line[100], fileKey[64];
+        long offset;
+        while (fgets(line, sizeof(line), index_old)) {
+            sscanf(line, "%[^;];%ld", fileKey, &offset);
+            if (strcmp(fileKey, key_to_remove) != 0) {
+                fputs(line, index_new);
+            }
+        }
+        fclose(index_old);
+    }
+
+    // Buka data file dan tulis data baru
+    FILE *data = fopen(DATA_STATE_PATH, "ab");
+    if (!data) {
+        fclose(index_new);
+        return;
+    }
+
+    long offset = ftell(data);
+    fwrite(&save, sizeof(SaveState), 1, data);
+    fclose(data);
+
+    // Tambahkan entri index baru
+    fprintf(index_new, "%s;%ld\n", key_to_remove, offset);
+    fclose(index_new);
+
+    // Ganti file index lama dengan yang baru
+    remove(INDEX_DATA_STATE_PATH);
+    rename("temp_index.txt", INDEX_DATA_STATE_PATH);
+}
+
+
+//==> Load gameState (mengambil data RoomLayout untuk nanti dijadikan aacuan start game)
+int load_game_state (const char* username, const char* level_id, RoomLayout* room) {
+    FILE *index = fopen(INDEX_DATA_STATE_PATH, "r");    //read 
+    FILE *data = fopen(DATA_STATE_PATH, "rb");     //read Binary
+    if (!index || !data) return 0; //Gagal membuka file
+
+    char line[100], key[40];
+    sprintf(key, "%s-%s", username, level_id);
+    long offset = -1;       //
+
+    char fileKey[40];
+    long fileOffset;
+
+    while (fgets(line, sizeof(line), index)) {
+        sscanf(line, "%[^;];%ld", fileKey, &fileOffset);    //mengambil data dengamn format
+        if (strcmp(fileKey, key) == 0) {                // JIka sama key nya
+            offset = fileOffset;
+            break;
+        }
+    }
+
+    fclose(index);  //index didapatkan
+    if (offset == -1) { //data tidak dotermukan sama sekali
+        fclose(data);
+        return 0;       //tidak ditemukan
+    }
+
+    fseek(data, offset, SEEK_SET);
+    SaveState loaded;
+    fread(&loaded, sizeof(SaveState), 1, data);
+    *room = loaded.room;
+    fclose(data);
+    return 1;
+
+}
+
+// ===> menghapus data state yang sudah dipakai
+
+void remove_game_state_entry(const char* username, const char* level_id) {
+    FILE *index_old = fopen(INDEX_DATA_STATE_PATH, "r");
+    FILE *data_old = fopen(DATA_STATE_PATH, "rb");
+    FILE *index_new = fopen("temp_index.txt", "w");
+    FILE *data_new = fopen("temp_data.dat", "wb");
+
+    if (!index_old || !data_old || !index_new || !data_new) {
+        if (index_old) fclose(index_old);
+        if (data_old) fclose(data_old);
+        if (index_new) fclose(index_new);
+        if (data_new) fclose(data_new);
+        return;
+    }
+
+    char key_to_remove[64];
+    sprintf(key_to_remove, "%s-%s", username, level_id);
+
+    char line[100], fileKey[64];
+    long fileOffset;
+    SaveState buffer;
+    long new_offset = 0;
+
+    while (fgets(line, sizeof(line), index_old)) {
+        sscanf(line, "%[^;];%ld", fileKey, &fileOffset);
+
+        // Pindah ke offset di data lama
+        fseek(data_old, fileOffset, SEEK_SET);
+        fread(&buffer, sizeof(SaveState), 1, data_old);
+
+        // Jika bukan data yang ingin dihapus, tulis ulang ke file baru
+        if (strcmp(fileKey, key_to_remove) != 0) {
+            // tulis ke data baru
+            fwrite(&buffer, sizeof(SaveState), 1, data_new);
+            // tulis ke index baru dengan offset baru
+            fprintf(index_new, "%s;%ld\n", fileKey, new_offset);
+            new_offset += sizeof(SaveState);
+        }
+    }
+
+    // Tutup semua
+    fclose(index_old);
+    fclose(data_old);
+    fclose(index_new);
+    fclose(data_new);
+
+    // Replace file lama dengan yang baru
+    remove(INDEX_DATA_STATE_PATH);
+    remove(DATA_STATE_PATH);
+    rename("temp_index.txt", INDEX_DATA_STATE_PATH);
+    rename("temp_data.dat", DATA_STATE_PATH);
+}

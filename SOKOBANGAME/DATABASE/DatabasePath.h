@@ -3,4 +3,10 @@
 
 #define PLAY_DATA_PATH "SOKOBANGAME/DATABASE/PlayData.txt"
 
+#define DATA_STATE_PATH "SOKOBANGAME/DATABASE/saveState_data.dat"
+
+#define INDEX_DATA_STATE_PATH "SOKOBANGAME/DATABASE/saveState_index.txt"
+
+
+
 #endif // DATABASEPATH_H
