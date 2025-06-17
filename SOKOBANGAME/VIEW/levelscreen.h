@@ -19,25 +19,13 @@ LevelData* select_level();
 // Generic level selection function
 LevelData* select_level_from_list(LevelData* levels[], int count);
 
-// Tutorial levels selection
-LevelData* select_level_tutorial();
-
-LevelData* select_level_chapter1();
-
-LevelData* select_level_chapter2();
-
-LevelData* select_level_chapter3();
-
-LevelData* select_level_chapter4();
-
-LevelData* select_level_chapter5();
-
 // Function to display and run the selected level
 void run_level(LevelData* selected_level, ChapterData* current_chapter, const char *username);
 
 // Helper function to display level information
 void display_level_info(LevelData* level);
 
+LevelData* tutorial_screen();
 LevelData* chapter1_screen();
 LevelData* chapter2_screen();
 LevelData* chapter3_screen();

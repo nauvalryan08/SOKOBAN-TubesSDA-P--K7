@@ -72,7 +72,7 @@ LevelData* print_chapter_screen(const char *username) {
           switch(selected) {
             case 0: // Tutorial
               pthread_create(&enterSound, NULL, playEnterSound, NULL);
-              selected_level = select_level_tutorial();
+              selected_level = tutorial_screen();
               break;
             case 1: // Chapter 1
               pthread_create(&enterSound, NULL, playEnterSound, NULL);
@@ -119,7 +119,7 @@ LevelData* print_chapter_screen(const char *username) {
               switch(selected) {
                 case 0:
                   pthread_create(&enterSound, NULL, playEnterSound, NULL);
-                  selected_level = select_level_tutorial();
+                  selected_level = tutorial_screen();
                   break;
                 case 1:
                   pthread_create(&enterSound, NULL, playEnterSound, NULL);
