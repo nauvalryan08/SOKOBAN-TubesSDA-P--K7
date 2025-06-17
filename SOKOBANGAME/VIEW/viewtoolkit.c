@@ -201,6 +201,10 @@ void draw_connection(Button *from, Button *to, ConnectionType type) {
             break;
 
         case CONNECTION_HORIZONTAL:
+            to_y = to->y + to->height / 2;
+            from_y = from->y + to->height / 2;
+            to_x = to->x;
+            from_x = from->x + from->width;
             // Draw horizontal line
             if (from_x < to_x) {
                 for (int x = from_x; x <= to_x; x++) {

@@ -240,10 +240,10 @@ LevelData* tutorial_screen(){
                 attroff(COLOR_PAIR(3));
             }
         }
-
-        // Draw tree connections horizontally
-        int tutorial_connectorindex[] = {-1, 0, 1, 2}; // Each level connects to the previous one
-        draw_tree_connections(levels, tutorial_connectorindex, collector.count);
+        
+        draw_connection(&levels[0], &levels[1], CONNECTION_HORIZONTAL);
+        draw_connection(&levels[1], &levels[2], CONNECTION_HORIZONTAL);
+        draw_connection(&levels[2], &levels[3], CONNECTION_HORIZONTAL);
 
         switch (ch) {
             case KEY_LEFT:
