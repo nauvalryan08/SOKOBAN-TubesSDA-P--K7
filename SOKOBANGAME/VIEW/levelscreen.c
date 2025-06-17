@@ -288,7 +288,8 @@ LevelData* chapter1_screen(){
             {COLS/2+35, LINES/2+2, 21, 4, "Level 7"},   // n7
             {COLS/2+60, LINES/2+2, 21, 4, "Level 8"},   // n8
         };
-
+        Txtbox title = {COLS/2, 1, 21, 2, "Chapter 1", "STANDOUT"};
+        draw_txtbox(&title);
         // Display instructions
         mvprintw(1, 1, "Klik kiri pada tombol level untuk memilih level!");
         mvprintw(2, 1, "Atau gunakan tombol panah kiri/kanan untuk navigasi");
@@ -397,6 +398,8 @@ LevelData* chapter2_screen(){
             {(COLS/2+30)+23, LINES/2-2, 21, 4, "Level 15"},// n15
             {(COLS/2+60)+23, LINES/2+8, 10, 2, "Bonus"},   // B1
         };
+        Txtbox title = {COLS/2, 1, 21, 2, "Chapter 2", "STANDOUT"};
+        draw_txtbox(&title);
 
         // Display instructions
         mvprintw(1, 1, "Klik kiri pada tombol level untuk memilih level!");
@@ -527,6 +530,8 @@ LevelData* chapter3_screen(){
             {COLS/3+104, LINES/2+14, 10, 2, "Bonus"},      // B1
         };
 
+        Txtbox title = {COLS/2, 1, 21, 2, "Chapter 3", "STANDOUT"};
+        draw_txtbox(&title);
         // Display instructions
         mvprintw(1, 1, "Klik kiri pada tombol level untuk memilih level!");
         mvprintw(2, 1, "Atau gunakan tombol panah kiri/kanan untuk navigasi");
@@ -632,9 +637,9 @@ LevelData* chapter4_screen(){
         chapter4[i] = collector.array[i];
     }
 
-    clear();
     curs_set(0);
     while ((ch = getch()) != 27) {
+        clear();
         pthread_t arrowSound, enterSound;
         // Create buttons with proper proportions for 190x47 screen
         Button levels[] = {
@@ -661,6 +666,8 @@ LevelData* chapter4_screen(){
             {COLS/2+158, LINES/2+8, 21, 4, "Level 21"},   // n21
             {COLS/2+38, LINES/2+14, 10, 2, "Bonus"},      // B1
         };
+        Txtbox title = {COLS/2, 1, 21, 2, "Chapter 4", "STANDOUT"};
+        draw_txtbox(&title);
 
         // Display instructions
         mvprintw(1, 1, "Klik kiri pada tombol level untuk memilih level!");
@@ -802,6 +809,8 @@ LevelData* chapter5_screen(){
             {COLS/2+110, LINES/2+8, 10, 2, "Bonus 2"},    // B2
         };
 
+        Txtbox title = {COLS/2, 1, 21, 2, "Chapter 5", "STANDOUT"};
+        draw_txtbox(&title);
         // Display instructions
         mvprintw(1, 1, "Klik kiri pada tombol level untuk memilih level!");
         mvprintw(2, 1, "Atau gunakan tombol panah kiri/kanan untuk navigasi");
