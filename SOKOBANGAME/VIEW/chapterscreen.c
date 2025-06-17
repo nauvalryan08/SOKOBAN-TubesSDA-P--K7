@@ -84,15 +84,15 @@ LevelData* print_chapter_screen(const char *username) {
               break;
             case 3: // Chapter 3
               pthread_create(&enterSound, NULL, playEnterSound, NULL);
-              selected_level = select_level_chapter3();
+              selected_level = chapter3_screen();
               break;
             case 4: // Chapter 4
               pthread_create(&enterSound, NULL, playEnterSound, NULL);
-              selected_level = select_level_chapter4();
+              selected_level = chapter4_screen();
               break;
             case 5: // Chapter 5
               pthread_create(&enterSound, NULL, playEnterSound, NULL);
-              selected_level = select_level_chapter5();
+              selected_level = chapter5_screen();
               break;
           }
           
@@ -131,15 +131,15 @@ LevelData* print_chapter_screen(const char *username) {
                   break;
                 case 3:
                   pthread_create(&enterSound, NULL, playEnterSound, NULL);
-                  selected_level = select_level_chapter3();
+                  selected_level = chapter3_screen();
                   break;
                 case 4:
                   pthread_create(&enterSound, NULL, playEnterSound, NULL);
-                  selected_level = select_level_chapter4();
+                  selected_level = chapter4_screen();
                   break;
                 case 5:
                   pthread_create(&enterSound, NULL, playEnterSound, NULL);
-                  selected_level = select_level_chapter5();
+                  selected_level = chapter5_screen();
                   break;
               }
               if (selected_level != NULL) {

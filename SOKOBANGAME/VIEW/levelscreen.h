@@ -40,5 +40,8 @@ void display_level_info(LevelData* level);
 
 LevelData* chapter1_screen();
 LevelData* chapter2_screen();
+LevelData* chapter3_screen();
+LevelData* chapter4_screen();
+LevelData* chapter5_screen();
 
 #endif // LEVEL_SCREEN_H 
