@@ -1,7 +1,4 @@
 #include "tutorial.h"
-#include <curses.h>
-#include <string.h>
-#include <locale.h>
 
 void show_tutorial_screen() {
     // Teks tutorial dengan penomoran
@@ -109,9 +106,13 @@ void show_tutorial_screen() {
         
         // Tunggu input pengguna (blocking)
         ch = getch();
+        pthread_t enterSound;
         
         // Handle ESC dan urutan escape
         if (ch == 27 || ch == KEY_ESC) {  
+            pthread_create(&enterSound, NULL, playEnterSound, NULL);
+            pthread_join(enterSound, NULL);
+
             // Cek jika ada karakter tambahan dalam urutan escape
             int ch2 = getch();
             

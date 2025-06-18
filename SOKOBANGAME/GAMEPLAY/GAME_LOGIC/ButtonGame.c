@@ -87,11 +87,14 @@ void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *
             break;
         case 'r' :
         case 'R' :
-            pthread_create(&gameResetSound, NULL, playGameResetSound, NULL);
-            pthread_join(gameResetSound, NULL);
-            reset_game(room, map);
-            stack_clear(UndoStack);
-            clearQueue(ReplayQueue);
+            if (validate_GameReset()) {
+                pthread_create(&gameResetSound, NULL, playGameResetSound, NULL);
+                pthread_join(gameResetSound, NULL);
+                reset_game(room, map);
+                stack_clear(UndoStack);
+                clearQueue(ReplayQueue);
+                showMsg_GameReset();
+            }
             break;
         case 'u' :
         case 'U' :
@@ -105,8 +108,11 @@ void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *
             *keyOutput = 27;
             break;
         case 'F' :
-            room->finish.is_activated = true;
-            *keyOutput = 'F';
+            if (validate_CheatGame()) {
+                showMsg_CheatGame(); getchar();
+                room->finish.is_activated = true;
+                *keyOutput = 'F';
+            }
             break;
         
         case KEY_MOUSE:

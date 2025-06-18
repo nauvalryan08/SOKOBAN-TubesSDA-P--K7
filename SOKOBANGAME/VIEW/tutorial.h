@@ -5,6 +5,7 @@
 #include <curses.h>
 #include <string.h>
 #include <locale.h>
+#include "../UTILS/sound/soundmanager.h"
 
 void show_tutorial_screen();
 

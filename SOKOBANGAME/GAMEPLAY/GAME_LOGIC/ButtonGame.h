@@ -4,6 +4,7 @@
 #include "../../UTILS/include/boolean.h"
 #include "../../UTILS/include/curses.h"
 #include "../../UTILS/sound/soundmanager.h"
+#include "../../UTILS/validator/validator.h"
 
 #include "../../VIEW/viewtoolkit.h"
 #include "../../VIEW/chapterscreen.h"

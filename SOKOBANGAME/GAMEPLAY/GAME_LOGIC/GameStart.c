@@ -214,34 +214,16 @@ void game_finished(RoomLayout *room, LevelData *level, ChapterData *current_chap
 //===> Exiting Game (save state or no)
 
 int exit_game(RoomLayout *room, const char *username, const char *level_id) {
-    int max_y, max_x;
-    getmaxyx(stdscr, max_y, max_x);
-
-    clear();
-    mvprintw(max_y / 2 - 1, (max_x - 30) / 2, "Are you sure you want to exit? (y/n)");
-    refresh();
-
-    int ch = getch();
-    ch = tolower(ch);
-
-    if (ch == 'n') {
-        return 0; // lanjutkan game
-    } else if (ch == 'y') {
-        // Jika user memilih y
-        clear();
-        mvprintw(max_y / 2 - 1, (max_x - 35) / 2, "Do you want to save current progress? (y/n)");
-        refresh();
-
-        ch = getch();
-        ch = tolower(ch);
-
-        if (ch == 'y') {
-            save_game_state(username, level_id, room); // fungsi dari penjelasan sebelumnya
-            mvprintw(max_y / 2 + 2, (max_x - 25) / 2, "Game state saved.");
-            refresh();
-            sleep(1);
-        }
+    if (!validate_ExitGame()) {
+        return 0; // Lanjutkan game
     }
+
+    // Jika user memilih y untuk exit, tanyakan apakah ingin save
+    if (validate_SaveGame()) {
+        save_game_state(username, level_id, room);
+        showMsg_SaveSuccess();
+    }
+    
     return 1;
 }
 

@@ -36,7 +36,7 @@ int main() {
     // Handle pilihan menu
 
         menu_choice = show_alt_lobby();
-
+        
         switch (menu_choice) {
         case 1: // Play Game
             selected_level = print_chapter_screen(dummyUsername);
@@ -53,9 +53,13 @@ int main() {
             show_tutorial_screen();
             break;
         case 5: // Quit Game
+            if (validate_QuitGame()) {
+                showMsg_QuitGame();
+            } else {
+                menu_choice = 0;
+            }
             break;
         }
-
     }
 
     stopBackgroundMusic();

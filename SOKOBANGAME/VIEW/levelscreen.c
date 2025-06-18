@@ -1,20 +1,10 @@
-#define NCURSES_MOUSE_VERSION
 #include "LevelScreen.h"
 #include "levelscreen.h"
-#include <string.h>
-
-#define MAX_LEVELS_PER_COLUMN 20
-#define MAX_COLUMNS 5
 
 static int current_selection = 0;
 static int num_levels = 0;
 static int current_column = 0;
 static WINDOW* level_win = NULL;
-
-typedef struct{
-    LevelData *array[100];
-    int count;
-}LevelCollector;
 
 void store_level_data (void* data, LevelCollector *collector) {
     if (collector->count < 100) { // Sesuaikan batas maksimal level
