@@ -302,6 +302,10 @@ CMakeFiles/SOKOBANGAME.dir/main.c.obj: \
  C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/include/boolean.h \
  C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/include/curses.h \
  C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/sound/soundmanager.h \
+ C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/validator/validator.h \
+ C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/include/curses.h \
+ C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/include/boolean.h \
+ C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/sound/soundmanager.h \
  C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/VIEW/viewtoolkit.h \
  C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/VIEW/chapterscreen.h \
  C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/GAMEPLAY/GAME_LOGIC/GameStart.h \
@@ -348,6 +352,5 @@ CMakeFiles/SOKOBANGAME.dir/main.c.obj: \
  C:\Users\Administrator\Documents\Tugas\Tambal\ Tubes\ Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\VIEW/chapterscreen.h \
  C:\Users\Administrator\Documents\Tugas\Tambal\ Tubes\ Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\VIEW/tutorial.h \
  C:/Users/ADMINI~1/DOCUME~1/Tugas/TAMBAL~1/SOKOBA~1/SOKOBA~1/UTILS/include/curses.h \
- C:\Users\Administrator\Documents\Tugas\Tambal\ Tubes\ Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\VIEW/lobbyaltscreen.h \
- C:/Users/ADMINI~1/DOCUME~1/Tugas/TAMBAL~1/SOKOBA~1/SOKOBA~1/UTILS/sound/../../UTILS/include/curses.h \
- C:/Users/ADMINI~1/DOCUME~1/Tugas/TAMBAL~1/SOKOBA~1/SOKOBA~1/UTILS/sound/../../UTILS/sound/soundmanager.h
+ C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/sound/soundmanager.h \
+ C:\Users\Administrator\Documents\Tugas\Tambal\ Tubes\ Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\VIEW/lobbyaltscreen.h

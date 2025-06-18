@@ -1,0 +1,93 @@
+# Project: SOKOBANGAME
+# Makefile created by Embarcadero Dev-C++ 6.3
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+RES      = SOKOBANGAME_private.res
+OBJ      = main.o DATABASE/DataHierarki.o GAMEPLAY/REPLAY_LOGIC/ReplayGame.o GAMEPLAY/GAME_LOGIC/ButtonGame.o GAMEPLAY/GAME_LOGIC/GameLogic.o GAMEPLAY/GAME_LOGIC/GameStart.o GAMEPLAY/GAME_LOGIC/UndoGame.o GAMEPLAY/ARENA_LOGIC/ChapterManager.o GAMEPLAY/ARENA_LOGIC/Level.o GAMEPLAY/ARENA_LOGIC/RoomFactory.o STRUCTURES/list.o STRUCTURES/queue.o STRUCTURES/stack.o STRUCTURES/tree.o UTILS/validator/validator.o UTILS/sound/soundmanager.o VIEW/chapterscreen.o VIEW/levelscreen.o VIEW/lobbyaltscreen.o VIEW/tutorial.o VIEW/viewtoolkit.o $(RES)
+LINKOBJ  = main.o DATABASE/DataHierarki.o GAMEPLAY/REPLAY_LOGIC/ReplayGame.o GAMEPLAY/GAME_LOGIC/ButtonGame.o GAMEPLAY/GAME_LOGIC/GameLogic.o GAMEPLAY/GAME_LOGIC/GameStart.o GAMEPLAY/GAME_LOGIC/UndoGame.o GAMEPLAY/ARENA_LOGIC/ChapterManager.o GAMEPLAY/ARENA_LOGIC/Level.o GAMEPLAY/ARENA_LOGIC/RoomFactory.o STRUCTURES/list.o STRUCTURES/queue.o STRUCTURES/stack.o STRUCTURES/tree.o UTILS/validator/validator.o UTILS/sound/soundmanager.o VIEW/chapterscreen.o VIEW/levelscreen.o VIEW/lobbyaltscreen.o VIEW/tutorial.o VIEW/viewtoolkit.o $(RES)
+LIBS     = -L"C:/Users/Administrator/Documents/Tugas/Tambal Tubes Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/lib" -lpdcurses -lwinmm -L"C:/Users/Administrator/Documents/Tugas/Tambal Tubes Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/lib" UTILS/lib/libpdcurses.a
+INCS     = -I"C:/Users/Administrator/Documents/Tugas/Tambal Tubes Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/include""" -I"""C:/Users/Administrator/Documents/Tugas/Tambal Tubes Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/lib" -I"C:/Users/Administrator/Documents/Tugas/Tambal Tubes Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/include"
+CXXINCS  = -I"C:/Users/Administrator/Documents/Tugas/Tambal Tubes Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/include"
+BIN      = SOKOBANGAME.exe
+CXXFLAGS = $(CXXINCS) -lpdcurses -lwinmm
+CFLAGS   = $(INCS) -lpdcurses -lwinmm -lwinmm -lpdcurses
+DEL      = C:\Program Files (x86)\Embarcadero\Dev-Cpp\devcpp.exe INTERNAL_DEL
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${DEL} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+main.o: main.c
+	$(CC) -c main.c -o main.o $(CFLAGS)
+
+DATABASE/DataHierarki.o: DATABASE/DataHierarki.c
+	$(CC) -c DATABASE/DataHierarki.c -o DATABASE/DataHierarki.o $(CFLAGS)
+
+GAMEPLAY/REPLAY_LOGIC/ReplayGame.o: GAMEPLAY/REPLAY_LOGIC/ReplayGame.c
+	$(CC) -c GAMEPLAY/REPLAY_LOGIC/ReplayGame.c -o GAMEPLAY/REPLAY_LOGIC/ReplayGame.o $(CFLAGS)
+
+GAMEPLAY/GAME_LOGIC/ButtonGame.o: GAMEPLAY/GAME_LOGIC/ButtonGame.c
+	$(CC) -c GAMEPLAY/GAME_LOGIC/ButtonGame.c -o GAMEPLAY/GAME_LOGIC/ButtonGame.o $(CFLAGS)
+
+GAMEPLAY/GAME_LOGIC/GameLogic.o: GAMEPLAY/GAME_LOGIC/GameLogic.c
+	$(CC) -c GAMEPLAY/GAME_LOGIC/GameLogic.c -o GAMEPLAY/GAME_LOGIC/GameLogic.o $(CFLAGS)
+
+GAMEPLAY/GAME_LOGIC/GameStart.o: GAMEPLAY/GAME_LOGIC/GameStart.c
+	$(CC) -c GAMEPLAY/GAME_LOGIC/GameStart.c -o GAMEPLAY/GAME_LOGIC/GameStart.o $(CFLAGS)
+
+GAMEPLAY/GAME_LOGIC/UndoGame.o: GAMEPLAY/GAME_LOGIC/UndoGame.c
+	$(CC) -c GAMEPLAY/GAME_LOGIC/UndoGame.c -o GAMEPLAY/GAME_LOGIC/UndoGame.o $(CFLAGS)
+
+GAMEPLAY/ARENA_LOGIC/ChapterManager.o: GAMEPLAY/ARENA_LOGIC/ChapterManager.c
+	$(CC) -c GAMEPLAY/ARENA_LOGIC/ChapterManager.c -o GAMEPLAY/ARENA_LOGIC/ChapterManager.o $(CFLAGS)
+
+GAMEPLAY/ARENA_LOGIC/Level.o: GAMEPLAY/ARENA_LOGIC/Level.c
+	$(CC) -c GAMEPLAY/ARENA_LOGIC/Level.c -o GAMEPLAY/ARENA_LOGIC/Level.o $(CFLAGS)
+
+GAMEPLAY/ARENA_LOGIC/RoomFactory.o: GAMEPLAY/ARENA_LOGIC/RoomFactory.c
+	$(CC) -c GAMEPLAY/ARENA_LOGIC/RoomFactory.c -o GAMEPLAY/ARENA_LOGIC/RoomFactory.o $(CFLAGS)
+
+STRUCTURES/list.o: STRUCTURES/list.c
+	$(CC) -c STRUCTURES/list.c -o STRUCTURES/list.o $(CFLAGS)
+
+STRUCTURES/queue.o: STRUCTURES/queue.c
+	$(CC) -c STRUCTURES/queue.c -o STRUCTURES/queue.o $(CFLAGS)
+
+STRUCTURES/stack.o: STRUCTURES/stack.c
+	$(CC) -c STRUCTURES/stack.c -o STRUCTURES/stack.o $(CFLAGS)
+
+STRUCTURES/tree.o: STRUCTURES/tree.c
+	$(CC) -c STRUCTURES/tree.c -o STRUCTURES/tree.o $(CFLAGS)
+
+UTILS/validator/validator.o: UTILS/validator/validator.c
+	$(CC) -c UTILS/validator/validator.c -o UTILS/validator/validator.o $(CFLAGS)
+
+UTILS/sound/soundmanager.o: UTILS/sound/soundmanager.c
+	$(CC) -c UTILS/sound/soundmanager.c -o UTILS/sound/soundmanager.o $(CFLAGS)
+
+VIEW/chapterscreen.o: VIEW/chapterscreen.c
+	$(CC) -c VIEW/chapterscreen.c -o VIEW/chapterscreen.o $(CFLAGS)
+
+VIEW/levelscreen.o: VIEW/levelscreen.c
+	$(CC) -c VIEW/levelscreen.c -o VIEW/levelscreen.o $(CFLAGS)
+
+VIEW/lobbyaltscreen.o: VIEW/lobbyaltscreen.c
+	$(CC) -c VIEW/lobbyaltscreen.c -o VIEW/lobbyaltscreen.o $(CFLAGS)
+
+VIEW/tutorial.o: VIEW/tutorial.c
+	$(CC) -c VIEW/tutorial.c -o VIEW/tutorial.o $(CFLAGS)
+
+VIEW/viewtoolkit.o: VIEW/viewtoolkit.c
+	$(CC) -c VIEW/viewtoolkit.c -o VIEW/viewtoolkit.o $(CFLAGS)
+
+SOKOBANGAME_private.res: SOKOBANGAME_private.rc 
+	$(WINDRES) -i SOKOBANGAME_private.rc --input-format=rc -o SOKOBANGAME_private.res -O coff 
+

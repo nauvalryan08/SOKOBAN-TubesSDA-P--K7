@@ -296,6 +296,10 @@ CMakeFiles/SOKOBANGAME.dir/GAMEPLAY/REPLAY_LOGIC/ReplayGame.c.obj: \
  C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/pthread_time.h \
  C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/pthread_compat.h \
  C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/pthread_unistd.h \
+ C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/validator/validator.h \
+ C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/include/curses.h \
+ C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/include/boolean.h \
+ C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/sound/soundmanager.h \
  C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/VIEW/viewtoolkit.h \
  C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/VIEW/chapterscreen.h \
  C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/GAMEPLAY/GAME_LOGIC/GameStart.h \

@@ -464,6 +464,30 @@ UTILS/sound/soundmanager.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/UTILS/sound/soundmanager.c.s
 .PHONY : UTILS/sound/soundmanager.c.s
 
+UTILS/validator/validator.obj: UTILS/validator/validator.c.obj
+.PHONY : UTILS/validator/validator.obj
+
+# target to build an object file
+UTILS/validator/validator.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/UTILS/validator/validator.c.obj
+.PHONY : UTILS/validator/validator.c.obj
+
+UTILS/validator/validator.i: UTILS/validator/validator.c.i
+.PHONY : UTILS/validator/validator.i
+
+# target to preprocess a source file
+UTILS/validator/validator.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/UTILS/validator/validator.c.i
+.PHONY : UTILS/validator/validator.c.i
+
+UTILS/validator/validator.s: UTILS/validator/validator.c.s
+.PHONY : UTILS/validator/validator.s
+
+# target to generate assembly for a file
+UTILS/validator/validator.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/UTILS/validator/validator.c.s
+.PHONY : UTILS/validator/validator.c.s
+
 VIEW/chapterscreen.obj: VIEW/chapterscreen.c.obj
 .PHONY : VIEW/chapterscreen.obj
 
@@ -683,6 +707,9 @@ help:
 	@echo ... UTILS/sound/soundmanager.obj
 	@echo ... UTILS/sound/soundmanager.i
 	@echo ... UTILS/sound/soundmanager.s
+	@echo ... UTILS/validator/validator.obj
+	@echo ... UTILS/validator/validator.i
+	@echo ... UTILS/validator/validator.s
 	@echo ... VIEW/chapterscreen.obj
 	@echo ... VIEW/chapterscreen.i
 	@echo ... VIEW/chapterscreen.s

@@ -2,7 +2,7 @@
 #define TUTORIAL_H
 #define KEY_ESC 27
 
-#include <curses.h>
+#include "../UTILS/include/curses.h"
 #include <string.h>
 #include <locale.h>
 #include "../UTILS/sound/soundmanager.h"
