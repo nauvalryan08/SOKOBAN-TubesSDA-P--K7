@@ -189,8 +189,11 @@ const char* first_auth_screen() {
                 break;
                 
             case 27: // ESC
-                pthread_create(&enterSound, NULL, playEnterSound, NULL);
-                return NULL;
+                for (int i = 0; i < GroupCount; i++) {
+                    freeTree(ChapterTrees[i].ChapterTree, NULL); 
+                }
+                exit(0);
+                break;
                 
             case KEY_RESIZE:
                 resize_term(0, 0);

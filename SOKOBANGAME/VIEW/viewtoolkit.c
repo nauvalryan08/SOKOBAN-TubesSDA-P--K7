@@ -256,9 +256,7 @@ void draw_tree_connection(Button *parent, Button *child, ConnectionType type) {
 
     // Calculate connection points
     int parent_x = parent->x + parent->width / 2;
-    int parent_y = parent->y + parent->height;
     int child_x = child->x + child->width / 2;
-    int child_y = child->y;
 
     // Draw the connection
     draw_connection(parent, child, type);
