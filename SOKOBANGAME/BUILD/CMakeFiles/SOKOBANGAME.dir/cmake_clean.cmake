@@ -27,6 +27,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/SOKOBANGAME.dir/STRUCTURES/tree.c.obj.d"
   "CMakeFiles/SOKOBANGAME.dir/UTILS/sound/soundmanager.c.obj"
   "CMakeFiles/SOKOBANGAME.dir/UTILS/sound/soundmanager.c.obj.d"
+  "CMakeFiles/SOKOBANGAME.dir/UTILS/validator/validator.c.obj"
+  "CMakeFiles/SOKOBANGAME.dir/UTILS/validator/validator.c.obj.d"
   "CMakeFiles/SOKOBANGAME.dir/VIEW/chapterscreen.c.obj"
   "CMakeFiles/SOKOBANGAME.dir/VIEW/chapterscreen.c.obj.d"
   "CMakeFiles/SOKOBANGAME.dir/VIEW/levelscreen.c.obj"

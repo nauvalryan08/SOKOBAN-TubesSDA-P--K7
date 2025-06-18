@@ -1,6 +1,9 @@
 // { Nauval }
 // soundmanager.c
 #include "soundmanager.h"
+#include <windows.h>
+#include <mmsystem.h>
+#pragma comment(lib, "Winmm.lib")
 
 int bgm_running = 1;        // 1 mulai, 0 stop
 pthread_t bgm_thread;
@@ -19,7 +22,7 @@ void setBGMVolume(int percent) {
 
 // helper
 void* playBackgroundMusic(void *args) {
-    mciSendString("open \"./SOKOBANGAME/ASSETS/SOUNDTRACK.wav\" type mpegvideo alias bgm", NULL, 0, NULL);
+    mciSendString("open \"./ASSETS/SOUNDTRACK.wav\" type mpegvideo alias bgm", NULL, 0, NULL);
     // Set volume (0 - 1000); di sini 300 artinya 30%
     mciSendString("setaudio bgm volume to 300", NULL, 0, NULL);
     mciSendString("play bgm repeat", NULL, 0, NULL);  // Looping
@@ -33,39 +36,39 @@ void stopBackgroundMusic() {
 }
 
 void* playStartGameSound(void* args) {
-    PlaySound(TEXT("./SOKOBANGAME/ASSETS/STARTGAME.wav"), NULL, SND_ASYNC);
+    PlaySound(TEXT("./ASSETS/STARTGAME.wav"), NULL, SND_ASYNC);
 }
 
 void* playMoveSound(void* args) {
-    PlaySound(TEXT("./SOKOBANGAME/ASSETS/MOVES.wav"), NULL, SND_ASYNC);
+    PlaySound(TEXT("./ASSETS/MOVES.wav"), NULL, SND_ASYNC);
 }
 
 void* playUndoSound(void* args) {
-    PlaySound(TEXT("./SOKOBANGAME/ASSETS/UNDO.wav"), NULL, SND_ASYNC);
+    PlaySound(TEXT("./ASSETS/UNDO.wav"), NULL, SND_ASYNC);
 }
 
 void* playWinSound(void* args) {
-    PlaySound(TEXT("./SOKOBANGAME/ASSETS/WIN.wav"), NULL, SND_ASYNC);
+    PlaySound(TEXT("./ASSETS/WIN.wav"), NULL, SND_ASYNC);
 }
 
 void* playArrowSound(void* args) {
-    PlaySound(TEXT("./SOKOBANGAME/ASSETS/ARROW.wav"), NULL, SND_ASYNC);
+    PlaySound(TEXT("./ASSETS/ARROW.wav"), NULL, SND_ASYNC);
 }
 
 void* playChapterUnlockSound(void* args) {
-    PlaySound(TEXT("./SOKOBANGAME/ASSETS/CHFINISHED.wav"), NULL, SND_ASYNC);
+    PlaySound(TEXT("./ASSETS/CHFINISHED.wav"), NULL, SND_ASYNC);
 }
 
 void* playGameResetSound(void* args) {
-    PlaySound(TEXT("./SOKOBANGAME/ASSETS/GAMERESET.wav"), NULL, SND_ASYNC);
+    PlaySound(TEXT("./ASSETS/GAMERESET.wav"), NULL, SND_ASYNC);
 }
 
 void* playInvalidSound(void* args) {
-    PlaySound(TEXT("./SOKOBANGAME/ASSETS/INVALID.wav"), NULL, SND_ASYNC);
+    PlaySound(TEXT("./ASSETS/INVALID.wav"), NULL, SND_ASYNC);
 }
 
 void* playEnterSound(void* args) {
-    PlaySound(TEXT("./SOKOBANGAME/ASSETS/ENTER.wav"), NULL, SND_ASYNC);
+    PlaySound(TEXT("./ASSETS/ENTER.wav"), NULL, SND_ASYNC);
 }
 
 void threadPlayBGMusic() {    

@@ -157,8 +157,9 @@ void game_finished(RoomLayout *room, LevelData *level, ChapterData *current_chap
     pthread_create(&winSound, NULL, playWinSound, NULL);
     pthread_join(winSound, NULL);
 
-    const char *msg1 = "^_^ CONGRATULATION. YOU WIN! ^_^";
-    const char *msg2 = "1. Replay  | 2. Next Stage  | 3. Quit";
+    char *msg1 = "^_^ CONGRATULATION. YOU WIN! ^_^";
+    char *msg2 = "1. Replay  | 2. Next Stage  | 3. Quit";
+    Txtbox text[] = {{COLS / 2 - strlen(msg1)/2 - 2, LINES / 2 - 4, strlen(msg1) + 4, 2, msg1, "BOLD"},{COLS / 2 - strlen(msg1)/2 - 4, LINES / 2 - 1, strlen(msg2) + 4, 2, msg2, "BOLD"}};
 
     // Unlock level berikutnya
     level->is_finished = true;
@@ -177,10 +178,8 @@ void game_finished(RoomLayout *room, LevelData *level, ChapterData *current_chap
     while (1) {
         handle_resize(&prev_lines, &prev_cols);
 
-        attron(COLOR_PAIR(9) | A_BOLD);
-        mvprintw(max_y / 2 - 2, (max_x - strlen(msg1)) / 2, "%s", msg1);
-        mvprintw(max_y / 2, (max_x - strlen(msg2)) / 2, "%s", msg2);
-        attroff(COLOR_PAIR(9) | A_BOLD);
+        draw_txtbox(&text[0]);
+        draw_txtbox(&text[1]);
 
         refresh();
 
@@ -193,7 +192,7 @@ void game_finished(RoomLayout *room, LevelData *level, ChapterData *current_chap
                 pthread_join(enterSound, NULL);
                 playReplay(room, *level, &q);
             } else {
-                mvprintw(max_y / 2 + 3, (max_x - 30) / 2, "Replay tidak ditemukan!");
+                mvprintw(LINES / 2 + 3, COLS/2 - 9, "Replay tidak ditemukan!");
                 getch();
             }
             clearQueue(&q);

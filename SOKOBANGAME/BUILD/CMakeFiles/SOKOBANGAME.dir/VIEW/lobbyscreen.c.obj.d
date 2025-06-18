@@ -40,8 +40,7 @@ CMakeFiles/SOKOBANGAME.dir/VIEW/lobbyscreen.c.obj: \
  C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/getopt.h \
  C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/pthread_unistd.h \
  C:\Users\Administrator\Documents\Tugas\Tambal\ Tubes\ Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\VIEW\lobbyaltscreen.h \
- C:/Users/ADMINI~1/DOCUME~1/Tugas/TAMBAL~1/SOKOBA~1/SOKOBA~1/UTILS/sound/../../UTILS/include/curses.h \
- C:/Users/ADMINI~1/DOCUME~1/Tugas/TAMBAL~1/SOKOBA~1/SOKOBA~1/UTILS/sound/../../UTILS/sound/soundmanager.h \
+ C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/sound/soundmanager.h \
  C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/windows.h \
  C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/sdkddkver.h \
  C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/excpt.h \

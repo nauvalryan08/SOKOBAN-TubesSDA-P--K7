@@ -296,11 +296,26 @@ CMakeFiles/SOKOBANGAME.dir/UTILS/sound/soundmanager.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/SOKOBANGAME.dir/UTILS/sound/soundmanager.c.s"
 	C:\ProgramData\mingw64\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\UTILS\sound\soundmanager.c" -o CMakeFiles\SOKOBANGAME.dir\UTILS\sound\soundmanager.c.s
 
+CMakeFiles/SOKOBANGAME.dir/UTILS/validator/validator.c.obj: CMakeFiles/SOKOBANGAME.dir/flags.make
+CMakeFiles/SOKOBANGAME.dir/UTILS/validator/validator.c.obj: CMakeFiles/SOKOBANGAME.dir/includes_C.rsp
+CMakeFiles/SOKOBANGAME.dir/UTILS/validator/validator.c.obj: C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/validator/validator.c
+CMakeFiles/SOKOBANGAME.dir/UTILS/validator/validator.c.obj: CMakeFiles/SOKOBANGAME.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\BUILD\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Building C object CMakeFiles/SOKOBANGAME.dir/UTILS/validator/validator.c.obj"
+	C:\ProgramData\mingw64\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/SOKOBANGAME.dir/UTILS/validator/validator.c.obj -MF CMakeFiles\SOKOBANGAME.dir\UTILS\validator\validator.c.obj.d -o CMakeFiles\SOKOBANGAME.dir\UTILS\validator\validator.c.obj -c "C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\UTILS\validator\validator.c"
+
+CMakeFiles/SOKOBANGAME.dir/UTILS/validator/validator.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/SOKOBANGAME.dir/UTILS/validator/validator.c.i"
+	C:\ProgramData\mingw64\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\UTILS\validator\validator.c" > CMakeFiles\SOKOBANGAME.dir\UTILS\validator\validator.c.i
+
+CMakeFiles/SOKOBANGAME.dir/UTILS/validator/validator.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/SOKOBANGAME.dir/UTILS/validator/validator.c.s"
+	C:\ProgramData\mingw64\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\UTILS\validator\validator.c" -o CMakeFiles\SOKOBANGAME.dir\UTILS\validator\validator.c.s
+
 CMakeFiles/SOKOBANGAME.dir/VIEW/chapterscreen.c.obj: CMakeFiles/SOKOBANGAME.dir/flags.make
 CMakeFiles/SOKOBANGAME.dir/VIEW/chapterscreen.c.obj: CMakeFiles/SOKOBANGAME.dir/includes_C.rsp
 CMakeFiles/SOKOBANGAME.dir/VIEW/chapterscreen.c.obj: C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/VIEW/chapterscreen.c
 CMakeFiles/SOKOBANGAME.dir/VIEW/chapterscreen.c.obj: CMakeFiles/SOKOBANGAME.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\BUILD\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Building C object CMakeFiles/SOKOBANGAME.dir/VIEW/chapterscreen.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\BUILD\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building C object CMakeFiles/SOKOBANGAME.dir/VIEW/chapterscreen.c.obj"
 	C:\ProgramData\mingw64\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/SOKOBANGAME.dir/VIEW/chapterscreen.c.obj -MF CMakeFiles\SOKOBANGAME.dir\VIEW\chapterscreen.c.obj.d -o CMakeFiles\SOKOBANGAME.dir\VIEW\chapterscreen.c.obj -c "C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\VIEW\chapterscreen.c"
 
 CMakeFiles/SOKOBANGAME.dir/VIEW/chapterscreen.c.i: cmake_force
@@ -315,7 +330,7 @@ CMakeFiles/SOKOBANGAME.dir/VIEW/levelscreen.c.obj: CMakeFiles/SOKOBANGAME.dir/fl
 CMakeFiles/SOKOBANGAME.dir/VIEW/levelscreen.c.obj: CMakeFiles/SOKOBANGAME.dir/includes_C.rsp
 CMakeFiles/SOKOBANGAME.dir/VIEW/levelscreen.c.obj: C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/VIEW/levelscreen.c
 CMakeFiles/SOKOBANGAME.dir/VIEW/levelscreen.c.obj: CMakeFiles/SOKOBANGAME.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\BUILD\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building C object CMakeFiles/SOKOBANGAME.dir/VIEW/levelscreen.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\BUILD\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Building C object CMakeFiles/SOKOBANGAME.dir/VIEW/levelscreen.c.obj"
 	C:\ProgramData\mingw64\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/SOKOBANGAME.dir/VIEW/levelscreen.c.obj -MF CMakeFiles\SOKOBANGAME.dir\VIEW\levelscreen.c.obj.d -o CMakeFiles\SOKOBANGAME.dir\VIEW\levelscreen.c.obj -c "C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\VIEW\levelscreen.c"
 
 CMakeFiles/SOKOBANGAME.dir/VIEW/levelscreen.c.i: cmake_force
@@ -330,7 +345,7 @@ CMakeFiles/SOKOBANGAME.dir/VIEW/lobbyaltscreen.c.obj: CMakeFiles/SOKOBANGAME.dir
 CMakeFiles/SOKOBANGAME.dir/VIEW/lobbyaltscreen.c.obj: CMakeFiles/SOKOBANGAME.dir/includes_C.rsp
 CMakeFiles/SOKOBANGAME.dir/VIEW/lobbyaltscreen.c.obj: C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/VIEW/lobbyaltscreen.c
 CMakeFiles/SOKOBANGAME.dir/VIEW/lobbyaltscreen.c.obj: CMakeFiles/SOKOBANGAME.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\BUILD\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Building C object CMakeFiles/SOKOBANGAME.dir/VIEW/lobbyaltscreen.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\BUILD\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_19) "Building C object CMakeFiles/SOKOBANGAME.dir/VIEW/lobbyaltscreen.c.obj"
 	C:\ProgramData\mingw64\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/SOKOBANGAME.dir/VIEW/lobbyaltscreen.c.obj -MF CMakeFiles\SOKOBANGAME.dir\VIEW\lobbyaltscreen.c.obj.d -o CMakeFiles\SOKOBANGAME.dir\VIEW\lobbyaltscreen.c.obj -c "C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\VIEW\lobbyaltscreen.c"
 
 CMakeFiles/SOKOBANGAME.dir/VIEW/lobbyaltscreen.c.i: cmake_force
@@ -345,7 +360,7 @@ CMakeFiles/SOKOBANGAME.dir/VIEW/lobbyscreen.c.obj: CMakeFiles/SOKOBANGAME.dir/fl
 CMakeFiles/SOKOBANGAME.dir/VIEW/lobbyscreen.c.obj: CMakeFiles/SOKOBANGAME.dir/includes_C.rsp
 CMakeFiles/SOKOBANGAME.dir/VIEW/lobbyscreen.c.obj: C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/VIEW/lobbyscreen.c
 CMakeFiles/SOKOBANGAME.dir/VIEW/lobbyscreen.c.obj: CMakeFiles/SOKOBANGAME.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\BUILD\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_19) "Building C object CMakeFiles/SOKOBANGAME.dir/VIEW/lobbyscreen.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\BUILD\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_20) "Building C object CMakeFiles/SOKOBANGAME.dir/VIEW/lobbyscreen.c.obj"
 	C:\ProgramData\mingw64\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/SOKOBANGAME.dir/VIEW/lobbyscreen.c.obj -MF CMakeFiles\SOKOBANGAME.dir\VIEW\lobbyscreen.c.obj.d -o CMakeFiles\SOKOBANGAME.dir\VIEW\lobbyscreen.c.obj -c "C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\VIEW\lobbyscreen.c"
 
 CMakeFiles/SOKOBANGAME.dir/VIEW/lobbyscreen.c.i: cmake_force
@@ -360,7 +375,7 @@ CMakeFiles/SOKOBANGAME.dir/VIEW/tutorial.c.obj: CMakeFiles/SOKOBANGAME.dir/flags
 CMakeFiles/SOKOBANGAME.dir/VIEW/tutorial.c.obj: CMakeFiles/SOKOBANGAME.dir/includes_C.rsp
 CMakeFiles/SOKOBANGAME.dir/VIEW/tutorial.c.obj: C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/VIEW/tutorial.c
 CMakeFiles/SOKOBANGAME.dir/VIEW/tutorial.c.obj: CMakeFiles/SOKOBANGAME.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\BUILD\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_20) "Building C object CMakeFiles/SOKOBANGAME.dir/VIEW/tutorial.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\BUILD\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_21) "Building C object CMakeFiles/SOKOBANGAME.dir/VIEW/tutorial.c.obj"
 	C:\ProgramData\mingw64\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/SOKOBANGAME.dir/VIEW/tutorial.c.obj -MF CMakeFiles\SOKOBANGAME.dir\VIEW\tutorial.c.obj.d -o CMakeFiles\SOKOBANGAME.dir\VIEW\tutorial.c.obj -c "C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\VIEW\tutorial.c"
 
 CMakeFiles/SOKOBANGAME.dir/VIEW/tutorial.c.i: cmake_force
@@ -375,7 +390,7 @@ CMakeFiles/SOKOBANGAME.dir/VIEW/viewtoolkit.c.obj: CMakeFiles/SOKOBANGAME.dir/fl
 CMakeFiles/SOKOBANGAME.dir/VIEW/viewtoolkit.c.obj: CMakeFiles/SOKOBANGAME.dir/includes_C.rsp
 CMakeFiles/SOKOBANGAME.dir/VIEW/viewtoolkit.c.obj: C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/VIEW/viewtoolkit.c
 CMakeFiles/SOKOBANGAME.dir/VIEW/viewtoolkit.c.obj: CMakeFiles/SOKOBANGAME.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\BUILD\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_21) "Building C object CMakeFiles/SOKOBANGAME.dir/VIEW/viewtoolkit.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\BUILD\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_22) "Building C object CMakeFiles/SOKOBANGAME.dir/VIEW/viewtoolkit.c.obj"
 	C:\ProgramData\mingw64\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/SOKOBANGAME.dir/VIEW/viewtoolkit.c.obj -MF CMakeFiles\SOKOBANGAME.dir\VIEW\viewtoolkit.c.obj.d -o CMakeFiles\SOKOBANGAME.dir\VIEW\viewtoolkit.c.obj -c "C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\VIEW\viewtoolkit.c"
 
 CMakeFiles/SOKOBANGAME.dir/VIEW/viewtoolkit.c.i: cmake_force
@@ -403,6 +418,7 @@ SOKOBANGAME_OBJECTS = \
 "CMakeFiles/SOKOBANGAME.dir/STRUCTURES/stack.c.obj" \
 "CMakeFiles/SOKOBANGAME.dir/STRUCTURES/tree.c.obj" \
 "CMakeFiles/SOKOBANGAME.dir/UTILS/sound/soundmanager.c.obj" \
+"CMakeFiles/SOKOBANGAME.dir/UTILS/validator/validator.c.obj" \
 "CMakeFiles/SOKOBANGAME.dir/VIEW/chapterscreen.c.obj" \
 "CMakeFiles/SOKOBANGAME.dir/VIEW/levelscreen.c.obj" \
 "CMakeFiles/SOKOBANGAME.dir/VIEW/lobbyaltscreen.c.obj" \
@@ -428,6 +444,7 @@ SOKOBANGAME.exe: CMakeFiles/SOKOBANGAME.dir/STRUCTURES/queue.c.obj
 SOKOBANGAME.exe: CMakeFiles/SOKOBANGAME.dir/STRUCTURES/stack.c.obj
 SOKOBANGAME.exe: CMakeFiles/SOKOBANGAME.dir/STRUCTURES/tree.c.obj
 SOKOBANGAME.exe: CMakeFiles/SOKOBANGAME.dir/UTILS/sound/soundmanager.c.obj
+SOKOBANGAME.exe: CMakeFiles/SOKOBANGAME.dir/UTILS/validator/validator.c.obj
 SOKOBANGAME.exe: CMakeFiles/SOKOBANGAME.dir/VIEW/chapterscreen.c.obj
 SOKOBANGAME.exe: CMakeFiles/SOKOBANGAME.dir/VIEW/levelscreen.c.obj
 SOKOBANGAME.exe: CMakeFiles/SOKOBANGAME.dir/VIEW/lobbyaltscreen.c.obj
@@ -439,7 +456,7 @@ SOKOBANGAME.exe: C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOB
 SOKOBANGAME.exe: CMakeFiles/SOKOBANGAME.dir/linkLibs.rsp
 SOKOBANGAME.exe: CMakeFiles/SOKOBANGAME.dir/objects1.rsp
 SOKOBANGAME.exe: CMakeFiles/SOKOBANGAME.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\BUILD\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_22) "Linking C executable SOKOBANGAME.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\BUILD\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_23) "Linking C executable SOKOBANGAME.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\SOKOBANGAME.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

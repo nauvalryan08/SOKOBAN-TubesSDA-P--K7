@@ -32,8 +32,7 @@ CMakeFiles/SOKOBANGAME.dir/VIEW/lobbyaltscreen.c.obj: \
  C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/errno.h \
  C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/string.h \
  C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/sec_api/string_s.h \
- C:/Users/ADMINI~1/DOCUME~1/Tugas/TAMBAL~1/SOKOBA~1/SOKOBA~1/UTILS/sound/../../UTILS/include/curses.h \
- C:/Users/ADMINI~1/DOCUME~1/Tugas/TAMBAL~1/SOKOBA~1/SOKOBA~1/UTILS/sound/../../UTILS/sound/soundmanager.h \
+ C:/Users/Administrator/Documents/Tugas/Tambal\ Tubes\ Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/sound/soundmanager.h \
  C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/windows.h \
  C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/sdkddkver.h \
  C:/ProgramData/mingw64/mingw64/x86_64-w64-mingw32/include/excpt.h \
