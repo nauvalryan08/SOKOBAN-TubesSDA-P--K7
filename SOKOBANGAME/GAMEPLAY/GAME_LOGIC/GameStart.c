@@ -167,6 +167,19 @@ void game_finished(RoomLayout *room, LevelData *level, ChapterData *current_chap
         unlock_child_if_parent_finished(node);
     }
 
+    // SIMPAN PROGRESS PLAYER - TAMBAHAN BARU
+    // Dapatkan level ID saat ini
+    LevelID current_level_id = level_id_from_string(level->level_id);
+    
+    // Tentukan level berikutnya
+    LevelID next_level_id = current_level_id + 1;
+    
+    // Jika next_level_id valid, update progress player
+    if (next_level_id < LEVEL_COUNT) {
+        ChapterTree current_chapter_id = get_chapter_for_level(current_level_id);
+        update_player_progress(username, current_chapter_id, next_level_id);
+    }
+
     // Simpan replay ke database
     char dataID[64];
     sprintf(dataID, "%s_%ld", level->level_id, time(NULL)); // Format unik ID

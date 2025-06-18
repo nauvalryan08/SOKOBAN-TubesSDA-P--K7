@@ -3,8 +3,11 @@
 #define NCURSES_MOUSE_VERSION
 
 #include "../GAMEPLAY/GAME_LOGIC/GameStart.h"
+#include "../DATABASE/Player.h"
 #include "../UTILS/include/curses.h"
 #include "../UTILS/sound/soundmanager.h"
+#include "../UTILS/auth/authentication.h"
+
 #include "levelscreen.h"
 #include "viewtoolkit.h"
 // #include "temp.h"

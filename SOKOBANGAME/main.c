@@ -29,8 +29,9 @@ int main() {
     pthread_t enterSound;
 
     initAllChapters();
-
-    const char* dummyUsername = "Argiansah";
+    load_all_players(); // Memuat data player saat program dimulai
+    const char* current_username;
+    // const char* dummyUsername = "Argiansah";
 
     while (menu_choice != 5) {
     // Handle pilihan menu
@@ -39,9 +40,18 @@ int main() {
         
         switch (menu_choice) {
         case 1: // Play Game
-            selected_level = print_chapter_screen(dummyUsername);
-            pthread_create(&enterSound, NULL, playEnterSound, NULL);
-            pthread_join(enterSound, NULL);
+            clear();
+            current_username = authentication_screen();
+            
+            if (current_username != NULL) {
+                // Dapatkan player data
+                PlayerData* player = get_player(current_username); 
+                if (player != NULL) {
+                    // Mulai game
+                    unlock_levels_based_on_progress(current_username); 
+                    selected_level = print_chapter_screen(current_username);
+                }
+            }
             break;
         case 2: // History
             // Implementasi fitur history

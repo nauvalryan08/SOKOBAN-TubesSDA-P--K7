@@ -4,11 +4,13 @@
 
 #include "../UTILS/include/curses.h"
 #include "../UTILS/sound/soundmanager.h"
+#include "../DATABASE/Player.h"
+
 #include "../GAMEPLAY/ARENA_LOGIC/RoomFactory.h"
 #include "../GAMEPLAY/ARENA_LOGIC/Level.h"
 #include "../GAMEPLAY/ARENA_LOGIC/ChapterManager.h"
-
 #include "../GAMEPLAY/GAME_LOGIC/GameStart.h"
+
 #include "../STRUCTURES/tree.h"
 #include <string.h>
 
