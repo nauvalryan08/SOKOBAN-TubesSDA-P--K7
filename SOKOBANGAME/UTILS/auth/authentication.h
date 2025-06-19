@@ -5,6 +5,7 @@
 #include "../../DATABASE/Player.h"
 #include "../../VIEW/viewtoolkit.h"
 #include "../validator/validator.h"
+#include "../sound/soundmanager.h"
 #include <string.h>
 #include <stdlib.h>
 

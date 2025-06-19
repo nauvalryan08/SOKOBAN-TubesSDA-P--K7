@@ -116,7 +116,10 @@ const char* first_auth_screen() {
     MEVENT event;
     int items = 4;
     int selected = 0;
-    
+
+    pthread_t enterSound;
+    pthread_t arrowSound;
+
     // Muat data player terlebih dahulu
     load_all_players();
     
@@ -141,16 +144,19 @@ const char* first_auth_screen() {
         ch = getch();
         switch (ch) {
             case KEY_UP:
+                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
                 selected = (selected > 0) ? selected - 1 : items - 1;
                 break;
                 
             case KEY_DOWN:
+                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
                 selected = (selected < items - 1) ? selected + 1 : 0;
                 break;
                 
             case KEY_MOUSE:
                 getmouse();
                 if (event.bstate & BUTTON1_CLICKED) {
+                    pthread_create(&enterSound, NULL, playEnterSound, NULL);
                     for (int i = 0; i < items; i++) {
                         if (isbtnarea(&menu_items[i], event.x, event.y)) {
                             selected = i;
@@ -162,6 +168,7 @@ const char* first_auth_screen() {
                 
             case '\n':
             case KEY_ENTER:
+                pthread_create(&enterSound, NULL, playEnterSound, NULL);
                 switch (selected) {
                     case 0: // Login
                         return login_process()->username;
@@ -182,6 +189,7 @@ const char* first_auth_screen() {
                 break;
                 
             case 27: // ESC
+                pthread_create(&enterSound, NULL, playEnterSound, NULL);
                 return NULL;
                 
             case KEY_RESIZE:
@@ -189,6 +197,9 @@ const char* first_auth_screen() {
                 break;
         }
     }
+
+    pthread_join(arrowSound, NULL);
+    pthread_join(enterSound, NULL);
 }
 
 // Proses utama autentikasi
@@ -277,6 +288,9 @@ PlayerData* sign_up_process() {
     char username[MAX_USERNAME_LEN];
     int max_x = getmaxx(stdscr);
     int width = max_x > 60 ? 40 : max_x - 20;
+
+    pthread_t enterSound;
+    pthread_t invalidSound;
     
     while (1) {
         clear();
@@ -290,6 +304,9 @@ PlayerData* sign_up_process() {
         // Cek apakah username sudah ada
         PlayerData* existing = get_player(username);
         if (existing != NULL) {
+            pthread_create(&invalidSound, NULL, playInvalidSound, NULL);
+            pthread_detach(invalidSound);
+
             drawMessageBox("Username already exists!");
             Sleep(1000);
             continue;
@@ -297,6 +314,8 @@ PlayerData* sign_up_process() {
         
         // Buat player baru
         create_player(username);
+        pthread_create(&enterSound, NULL, playEnterSound, NULL);
+        pthread_detach(enterSound);
         
         // Tampilkan pesan sukses
         drawMessageBox("Account created successfully!");
@@ -324,8 +343,13 @@ PlayerData* login_process() {
         // Cek apakah username ada
         PlayerData* player = get_player(username);
         if (player == NULL) {
+            pthread_t invalidSound;
+            pthread_create(&invalidSound, NULL, playInvalidSound, NULL);
+            pthread_detach(invalidSound);
+
             drawMessageBox("Account not found!");
             Sleep(1000);
+
             continue;
         }
         
@@ -357,6 +381,10 @@ void delete_account_process() {
         // Cek apakah username ada
         PlayerData* player = get_player(username);
         if (player == NULL) {
+            pthread_t invalidSound;
+            pthread_create(&invalidSound, NULL, playInvalidSound, NULL);
+            pthread_detach(invalidSound);
+
             drawMessageBox("Account not found!");
             getch();
             continue;
