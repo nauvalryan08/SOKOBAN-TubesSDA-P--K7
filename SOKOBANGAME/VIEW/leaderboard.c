@@ -17,11 +17,11 @@ void show_leaderboard(){
         handle_resize(&prev_lines, &prev_cols);
         Txtbox title = {COLS/2 - 10, 2, strlen("LEADERBOARD") + 5, 2, "LEADERBOARD", "REVERSED"};
         Button buttons[] = {
-            {COLS / 4, LINES / 2 - 15, COLS / 2, 4, "Chapter 1"},
-            {COLS / 4, LINES / 2 - 10, COLS / 2, 4, "Chapter 2"},
-            {COLS / 4, LINES / 2 - 5, COLS / 2, 4, "Chapter 3"},
-            {COLS / 4, LINES / 2, COLS / 2, 4, "Chapter 4"},
-            {COLS / 4, LINES / 2 + 5, COLS / 2, 4, "Chapter 5"},
+        {COLS / 4, LINES / 2 - 15, COLS / 2, 4, "Chapter 1"},
+        {COLS / 4, LINES / 2 - 10, COLS / 2, 4, "Chapter 2"},
+        {COLS / 4, LINES / 2 - 5, COLS / 2, 4, "Chapter 3"},
+        {COLS / 4, LINES / 2, COLS / 2, 4, "Chapter 4"},
+        {COLS / 4, LINES / 2 + 5, COLS / 2, 4, "Chapter 5"},
         };
 
         pthread_t enterSound, arrowSound;
@@ -38,67 +38,67 @@ void show_leaderboard(){
             case KEY_ENTER:
                 switch (selected){
                     case 0: // Chapter 1
-                    pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                        pthread_create(&enterSound, NULL, playEnterSound, NULL);
                     ch1_leaderboard();
-                    break;
+                        break;
                     case 1: // Chapter 2
-                    pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                        pthread_create(&enterSound, NULL, playEnterSound, NULL);
                     ch2_leaderboard();
-                    break;
+                        break;
                     case 2: // Chapter 3
-                    pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                        pthread_create(&enterSound, NULL, playEnterSound, NULL);
                     ch3_leaderboard();
-                    break;
+                        break;
                     case 3: // Chapter 4
-                    pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                        pthread_create(&enterSound, NULL, playEnterSound, NULL);
                     ch4_leaderboard();
-                    break;
+                        break;
                     case 4: // Chapter 5
-                    pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                        pthread_create(&enterSound, NULL, playEnterSound, NULL);
                     ch5_leaderboard();
-                    break;
-                }
+                        break;
+                    }
             case KEY_MOUSE:
                 if (getmouse(&event) == OK) {
                     if (event.bstate & BUTTON1_CLICKED){
                         pthread_create(&enterSound, NULL, playEnterSound, NULL);
                         for (int i = 0; i < n_chapters; i++) {
                             if (isbtnarea(&buttons[i], event.x, event.y)) {
-                                selected = i;
+                                    selected = i;
                             }
                         }
                     }
                     else if (event.bstate & BUTTON1_DOUBLE_CLICKED){
                         for (int i = 0; i < n_chapters; i++) {
-                            if (isbtnarea(&buttons[i], event.x, event.y)) {
-                                selected = i;
-                                pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                        if (isbtnarea(&buttons[i], event.x, event.y)) {
+                        selected = i;
+                            pthread_create(&enterSound, NULL, playEnterSound, NULL);
                                     switch (selected){
                                         case 0: // Chapter 1
-                                        pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                            pthread_create(&enterSound, NULL, playEnterSound, NULL);
                                         ch1_leaderboard();
-                                        break;
+                            break;
                                         case 1: // Chapter 2
-                                        pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                            pthread_create(&enterSound, NULL, playEnterSound, NULL);
                                         ch2_leaderboard();
-                                        break;
+                            break;
                                         case 2: // Chapter 3
-                                        pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                            pthread_create(&enterSound, NULL, playEnterSound, NULL);
                                         ch3_leaderboard();
-                                        break;
+                            break;
                                         case 3: // Chapter 4
-                                        pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                            pthread_create(&enterSound, NULL, playEnterSound, NULL);
                                         ch4_leaderboard();
-                                        break;
+                            break;
                                         case 4: // Chapter 5
-                                        pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                            pthread_create(&enterSound, NULL, playEnterSound, NULL);
                                         ch5_leaderboard();
-                                        break;
-                                    }
-                            }
+                            break;
                         }
                     }
+                    }
                 }
+            }
                 break;
             case KEY_RESIZE:
                 resize_term(0,0);
@@ -117,8 +117,8 @@ void show_leaderboard(){
         mvprintw(4, 1, "Tekan ENTER untuk memilih chapter");
         draw_txtbox(&title);
 
-        // menampilkan button
-        for (int i = 0; i < n_chapters; i++) {
+            // menampilkan button
+            for (int i = 0; i < n_chapters; i++) {
             if (i == selected) {
                 attron(A_REVERSE | COLOR_PAIR(COLOR_GREEN));
             }
@@ -126,7 +126,7 @@ void show_leaderboard(){
             if (i == selected) {
                 attroff(A_REVERSE | COLOR_PAIR(COLOR_GREEN));
             }
-        }
+            }
         refresh();
     }
 }
@@ -222,16 +222,17 @@ void ch2_leaderboard() {
     int prev_cols = COLS;
 
     // Grid config
-    int cols = 4; // 4 columns for 15 levels (last row will have 3)
-    int rows = (n_levels + cols - 1) / cols;
-    int btn_width = COLS / (cols + 1); // leave some margin
-    int btn_height = 3;
-    int h_spacing = 2;
-    int v_spacing = 1;
-    int grid_width = cols * btn_width + (cols - 1) * h_spacing;
-    int grid_height = rows * btn_height + (rows - 1) * v_spacing;
-    int start_x = (COLS - grid_width) / 2;
-    int start_y = LINES / 2 - grid_height / 2;
+    btngridprop grid;
+    grid.cols = 4;
+    grid.btn_width = COLS / (grid.cols + 1);
+    grid.btn_height = 3;
+    grid.h_spacing = 2;
+    grid.v_spacing = 1;
+    int rows = (n_levels + grid.cols - 1) / grid.cols;
+    int grid_width = grid.cols * grid.btn_width + (grid.cols - 1) * grid.h_spacing;
+    int grid_height = rows * grid.btn_height + (rows - 1) * grid.v_spacing;
+    grid.start_x = (COLS - grid_width) / 2;
+    grid.start_y = LINES / 2 - grid_height / 2;
 
     while ((ch = getch()) != 27) { // ESC to exit
         clear();
@@ -239,46 +240,33 @@ void ch2_leaderboard() {
         Txtbox title = {COLS/2 - 10, 2, strlen("CHAPTER 2 LEADERBOARD") + 5, 2, "CHAPTER 2 LEADERBOARD", "REVERSED"};
         draw_txtbox(&title);
 
-        // Draw grid of buttons
-        for (int i = 0; i < n_levels; i++) {
-            int row = i / cols;
-            int col = i % cols;
-            int x = start_x + col * (btn_width + h_spacing);
-            int y = start_y + row * (btn_height + v_spacing);
-            Button btn = {x, y, btn_width, btn_height, (char*)level_names[i]};
-            if (i == selected) {
-                attron(A_REVERSE | COLOR_PAIR(COLOR_GREEN));
-            }
-            draw_btn(&btn);
-            if (i == selected) {
-                attroff(A_REVERSE | COLOR_PAIR(COLOR_GREEN));
-            }
-        }
+        // Draw grid of buttons using the new module
+        draw_button_grid(level_names, n_levels, selected, &grid);
 
-        mvprintw(start_y - 2, start_x, "Gunakan panah untuk navigasi, ESC untuk kembali");
+        mvprintw(grid.start_y - 2, grid.start_x, "Gunakan panah untuk navigasi, ESC untuk kembali");
         refresh();
 
         switch (ch) {
             case KEY_UP: {
                 pthread_create(&arrowSound, NULL, playArrowSound, NULL);
-                int row = selected / cols;
-                int col = selected % cols;
+                int row = selected / grid.cols;
+                int col = selected % grid.cols;
                 if (row > 0) {
-                    int above = selected - cols;
+                    int above = selected - grid.cols;
                     if (above < n_levels) selected = above;
                 }
                 break;
             }
             case KEY_DOWN: {
                 pthread_create(&arrowSound, NULL, playArrowSound, NULL);
-                int row = selected / cols;
-                int col = selected % cols;
-                int below = selected + cols;
+                int row = selected / grid.cols;
+                int col = selected % grid.cols;
+                int below = selected + grid.cols;
                 if (below < n_levels) {
                     selected = below;
                 } else {
                     // If last row is incomplete, stay in same column if possible
-                    int last_row_start = (rows - 1) * cols;
+                    int last_row_start = (rows - 1) * grid.cols;
                     int last_row_end = n_levels - 1;
                     int new_idx = last_row_start + col;
                     if (new_idx <= last_row_end) selected = new_idx;
@@ -287,11 +275,11 @@ void ch2_leaderboard() {
             }
             case KEY_LEFT:
                 pthread_create(&arrowSound, NULL, playArrowSound, NULL);
-                if (selected % cols > 0) selected--;
+                if (selected % grid.cols > 0) selected--;
                 break;
             case KEY_RIGHT:
                 pthread_create(&arrowSound, NULL, playArrowSound, NULL);
-                if ((selected % cols) < (cols - 1) && selected + 1 < n_levels) selected++;
+                if ((selected % grid.cols) < (grid.cols - 1) && selected + 1 < n_levels) selected++;
                 break;
             case '\n':
             case KEY_ENTER:
@@ -333,16 +321,17 @@ void ch3_leaderboard() {
     int prev_cols = COLS;
 
     // Grid config
-    int cols = 5; // 5 columns for 18 levels (last row will have 3)
-    int rows = (n_levels + cols - 1) / cols;
-    int btn_width = COLS / (cols + 1); // leave some margin
-    int btn_height = 3;
-    int h_spacing = 2;
-    int v_spacing = 1;
-    int grid_width = cols * btn_width + (cols - 1) * h_spacing;
-    int grid_height = rows * btn_height + (rows - 1) * v_spacing;
-    int start_x = (COLS - grid_width) / 2;
-    int start_y = LINES / 2 - grid_height / 2;
+    btngridprop grid;
+    grid.cols = 5;
+    grid.btn_width = COLS / (grid.cols + 1);
+    grid.btn_height = 3;
+    grid.h_spacing = 2;
+    grid.v_spacing = 1;
+    int rows = (n_levels + grid.cols - 1) / grid.cols;
+    int grid_width = grid.cols * grid.btn_width + (grid.cols - 1) * grid.h_spacing;
+    int grid_height = rows * grid.btn_height + (rows - 1) * grid.v_spacing;
+    grid.start_x = (COLS - grid_width) / 2;
+    grid.start_y = LINES / 2 - grid_height / 2;
 
     while ((ch = getch()) != 27) { // ESC to exit
         clear();
@@ -350,46 +339,31 @@ void ch3_leaderboard() {
         Txtbox title = {COLS/2 - 10, 2, strlen("CHAPTER 3 LEADERBOARD") + 5, 2, "CHAPTER 3 LEADERBOARD", "REVERSED"};
         draw_txtbox(&title);
 
-        // Draw grid of buttons
-        for (int i = 0; i < n_levels; i++) {
-            int row = i / cols;
-            int col = i % cols;
-            int x = start_x + col * (btn_width + h_spacing);
-            int y = start_y + row * (btn_height + v_spacing);
-            Button btn = {x, y, btn_width, btn_height, (char*)level_names[i]};
-            if (i == selected) {
-                attron(A_REVERSE | COLOR_PAIR(COLOR_GREEN));
-            }
-            draw_btn(&btn);
-            if (i == selected) {
-                attroff(A_REVERSE | COLOR_PAIR(COLOR_GREEN));
-            }
-        }
+        draw_button_grid(level_names, n_levels, selected, &grid);
 
-        mvprintw(start_y - 2, start_x, "Gunakan panah untuk navigasi, ESC untuk kembali");
+        mvprintw(grid.start_y - 2, grid.start_x, "Gunakan panah untuk navigasi, ESC untuk kembali");
         refresh();
 
         switch (ch) {
             case KEY_UP: {
                 pthread_create(&arrowSound, NULL, playArrowSound, NULL);
-                int row = selected / cols;
-                int col = selected % cols;
+                int row = selected / grid.cols;
+                int col = selected % grid.cols;
                 if (row > 0) {
-                    int above = selected - cols;
+                    int above = selected - grid.cols;
                     if (above < n_levels) selected = above;
                 }
                 break;
             }
             case KEY_DOWN: {
                 pthread_create(&arrowSound, NULL, playArrowSound, NULL);
-                int row = selected / cols;
-                int col = selected % cols;
-                int below = selected + cols;
+                int row = selected / grid.cols;
+                int col = selected % grid.cols;
+                int below = selected + grid.cols;
                 if (below < n_levels) {
                     selected = below;
                 } else {
-                    // If last row is incomplete, stay in same column if possible
-                    int last_row_start = (rows - 1) * cols;
+                    int last_row_start = (rows - 1) * grid.cols;
                     int last_row_end = n_levels - 1;
                     int new_idx = last_row_start + col;
                     if (new_idx <= last_row_end) selected = new_idx;
@@ -398,11 +372,11 @@ void ch3_leaderboard() {
             }
             case KEY_LEFT:
                 pthread_create(&arrowSound, NULL, playArrowSound, NULL);
-                if (selected % cols > 0) selected--;
+                if (selected % grid.cols > 0) selected--;
                 break;
             case KEY_RIGHT:
                 pthread_create(&arrowSound, NULL, playArrowSound, NULL);
-                if ((selected % cols) < (cols - 1) && selected + 1 < n_levels) selected++;
+                if ((selected % grid.cols) < (grid.cols - 1) && selected + 1 < n_levels) selected++;
                 break;
             case '\n':
             case KEY_ENTER:
@@ -447,16 +421,17 @@ void ch4_leaderboard() {
     int prev_cols = COLS;
 
     // Grid config
-    int cols = 5; // 5 columns for 21 levels (last row will have 1)
-    int rows = (n_levels + cols - 1) / cols;
-    int btn_width = COLS / (cols + 1); // leave some margin
-    int btn_height = 3;
-    int h_spacing = 2;
-    int v_spacing = 1;
-    int grid_width = cols * btn_width + (cols - 1) * h_spacing;
-    int grid_height = rows * btn_height + (rows - 1) * v_spacing;
-    int start_x = (COLS - grid_width) / 2;
-    int start_y = LINES / 2 - grid_height / 2;
+    btngridprop grid;
+    grid.cols = 5;
+    grid.btn_width = COLS / (grid.cols + 1);
+    grid.btn_height = 3;
+    grid.h_spacing = 2;
+    grid.v_spacing = 1;
+    int rows = (n_levels + grid.cols - 1) / grid.cols;
+    int grid_width = grid.cols * grid.btn_width + (grid.cols - 1) * grid.h_spacing;
+    int grid_height = rows * grid.btn_height + (rows - 1) * grid.v_spacing;
+    grid.start_x = (COLS - grid_width) / 2;
+    grid.start_y = LINES / 2 - grid_height / 2;
 
     while ((ch = getch()) != 27) { // ESC to exit
         clear();
@@ -464,46 +439,31 @@ void ch4_leaderboard() {
         Txtbox title = {COLS/2 - 10, 2, strlen("CHAPTER 4 LEADERBOARD") + 5, 2, "CHAPTER 4 LEADERBOARD", "REVERSED"};
         draw_txtbox(&title);
 
-        // Draw grid of buttons
-        for (int i = 0; i < n_levels; i++) {
-            int row = i / cols;
-            int col = i % cols;
-            int x = start_x + col * (btn_width + h_spacing);
-            int y = start_y + row * (btn_height + v_spacing);
-            Button btn = {x, y, btn_width, btn_height, (char*)level_names[i]};
-            if (i == selected) {
-                attron(A_REVERSE | COLOR_PAIR(COLOR_GREEN));
-            }
-            draw_btn(&btn);
-            if (i == selected) {
-                attroff(A_REVERSE | COLOR_PAIR(COLOR_GREEN));
-            }
-        }
+        draw_button_grid(level_names, n_levels, selected, &grid);
 
-        mvprintw(start_y - 2, start_x, "Gunakan panah untuk navigasi, ESC untuk kembali");
+        mvprintw(grid.start_y - 2, grid.start_x, "Gunakan panah untuk navigasi, ESC untuk kembali");
         refresh();
 
         switch (ch) {
             case KEY_UP: {
                 pthread_create(&arrowSound, NULL, playArrowSound, NULL);
-                int row = selected / cols;
-                int col = selected % cols;
+                int row = selected / grid.cols;
+                int col = selected % grid.cols;
                 if (row > 0) {
-                    int above = selected - cols;
+                    int above = selected - grid.cols;
                     if (above < n_levels) selected = above;
                 }
                 break;
             }
             case KEY_DOWN: {
                 pthread_create(&arrowSound, NULL, playArrowSound, NULL);
-                int row = selected / cols;
-                int col = selected % cols;
-                int below = selected + cols;
+                int row = selected / grid.cols;
+                int col = selected % grid.cols;
+                int below = selected + grid.cols;
                 if (below < n_levels) {
                     selected = below;
                 } else {
-                    // If last row is incomplete, stay in same column if possible
-                    int last_row_start = (rows - 1) * cols;
+                    int last_row_start = (rows - 1) * grid.cols;
                     int last_row_end = n_levels - 1;
                     int new_idx = last_row_start + col;
                     if (new_idx <= last_row_end) selected = new_idx;
@@ -512,11 +472,11 @@ void ch4_leaderboard() {
             }
             case KEY_LEFT:
                 pthread_create(&arrowSound, NULL, playArrowSound, NULL);
-                if (selected % cols > 0) selected--;
+                if (selected % grid.cols > 0) selected--;
                 break;
             case KEY_RIGHT:
                 pthread_create(&arrowSound, NULL, playArrowSound, NULL);
-                if ((selected % cols) < (cols - 1) && selected + 1 < n_levels) selected++;
+                if ((selected % grid.cols) < (grid.cols - 1) && selected + 1 < n_levels) selected++;
                 break;
             case '\n':
             case KEY_ENTER:
@@ -563,16 +523,17 @@ void ch5_leaderboard() {
     int prev_cols = COLS;
 
     // Grid config
-    int cols = 6; // 6 columns for 24 levels (last row will have 4)
-    int rows = (n_levels + cols - 1) / cols;
-    int btn_width = COLS / (cols + 1); // leave some margin
-    int btn_height = 3;
-    int h_spacing = 2;
-    int v_spacing = 1;
-    int grid_width = cols * btn_width + (cols - 1) * h_spacing;
-    int grid_height = rows * btn_height + (rows - 1) * v_spacing;
-    int start_x = (COLS - grid_width) / 2;
-    int start_y = LINES / 2 - grid_height / 2;
+    btngridprop grid;
+    grid.cols = 6;
+    grid.btn_width = COLS / (grid.cols + 1);
+    grid.btn_height = 3;
+    grid.h_spacing = 2;
+    grid.v_spacing = 1;
+    int rows = (n_levels + grid.cols - 1) / grid.cols;
+    int grid_width = grid.cols * grid.btn_width + (grid.cols - 1) * grid.h_spacing;
+    int grid_height = rows * grid.btn_height + (rows - 1) * grid.v_spacing;
+    grid.start_x = (COLS - grid_width) / 2;
+    grid.start_y = LINES / 2 - grid_height / 2;
 
     while ((ch = getch()) != 27) { // ESC to exit
         clear();
@@ -580,46 +541,31 @@ void ch5_leaderboard() {
         Txtbox title = {COLS/2 - 10, 2, strlen("CHAPTER 5 LEADERBOARD") + 5, 2, "CHAPTER 5 LEADERBOARD", "REVERSED"};
         draw_txtbox(&title);
 
-        // Draw grid of buttons
-        for (int i = 0; i < n_levels; i++) {
-            int row = i / cols;
-            int col = i % cols;
-            int x = start_x + col * (btn_width + h_spacing);
-            int y = start_y + row * (btn_height + v_spacing);
-            Button btn = {x, y, btn_width, btn_height, (char*)level_names[i]};
-            if (i == selected) {
-                attron(A_REVERSE | COLOR_PAIR(COLOR_GREEN));
-            }
-            draw_btn(&btn);
-            if (i == selected) {
-                attroff(A_REVERSE | COLOR_PAIR(COLOR_GREEN));
-            }
-        }
+        draw_button_grid(level_names, n_levels, selected, &grid);
 
-        mvprintw(start_y - 2, start_x, "Gunakan panah untuk navigasi, ESC untuk kembali");
+        mvprintw(grid.start_y - 2, grid.start_x, "Gunakan panah untuk navigasi, ESC untuk kembali");
         refresh();
 
         switch (ch) {
             case KEY_UP: {
                 pthread_create(&arrowSound, NULL, playArrowSound, NULL);
-                int row = selected / cols;
-                int col = selected % cols;
+                int row = selected / grid.cols;
+                int col = selected % grid.cols;
                 if (row > 0) {
-                    int above = selected - cols;
+                    int above = selected - grid.cols;
                     if (above < n_levels) selected = above;
                 }
                 break;
             }
             case KEY_DOWN: {
                 pthread_create(&arrowSound, NULL, playArrowSound, NULL);
-                int row = selected / cols;
-                int col = selected % cols;
-                int below = selected + cols;
+                int row = selected / grid.cols;
+                int col = selected % grid.cols;
+                int below = selected + grid.cols;
                 if (below < n_levels) {
                     selected = below;
                 } else {
-                    // If last row is incomplete, stay in same column if possible
-                    int last_row_start = (rows - 1) * cols;
+                    int last_row_start = (rows - 1) * grid.cols;
                     int last_row_end = n_levels - 1;
                     int new_idx = last_row_start + col;
                     if (new_idx <= last_row_end) selected = new_idx;
@@ -628,11 +574,11 @@ void ch5_leaderboard() {
             }
             case KEY_LEFT:
                 pthread_create(&arrowSound, NULL, playArrowSound, NULL);
-                if (selected % cols > 0) selected--;
+                if (selected % grid.cols > 0) selected--;
                 break;
             case KEY_RIGHT:
                 pthread_create(&arrowSound, NULL, playArrowSound, NULL);
-                if ((selected % cols) < (cols - 1) && selected + 1 < n_levels) selected++;
+                if ((selected % grid.cols) < (grid.cols - 1) && selected + 1 < n_levels) selected++;
                 break;
             case '\n':
             case KEY_ENTER:

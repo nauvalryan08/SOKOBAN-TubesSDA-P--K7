@@ -300,3 +300,20 @@ void draw_tree_connections(Button *buttons, int *parent_indices, int count) {
         }
     }
 }
+
+void draw_button_grid(const char **labels, int n_buttons, int selected, const btngridprop *prop) {
+    for (int i = 0; i < n_buttons; i++) {
+        int row = i / prop->cols;
+        int col = i % prop->cols;
+        int x = prop->start_x + col * (prop->btn_width + prop->h_spacing);
+        int y = prop->start_y + row * (prop->btn_height + prop->v_spacing);
+        Button btn = {x, y, prop->btn_width, prop->btn_height, (char*)labels[i]};
+        if (i == selected) {
+            attron(A_REVERSE | COLOR_PAIR(COLOR_GREEN));
+        }
+        draw_btn(&btn);
+        if (i == selected) {
+            attroff(A_REVERSE | COLOR_PAIR(COLOR_GREEN));
+        }
+    }
+}

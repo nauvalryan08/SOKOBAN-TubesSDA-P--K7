@@ -152,6 +152,30 @@ DATABASE/DataHierarki.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/DATABASE/DataHierarki.c.s
 .PHONY : DATABASE/DataHierarki.c.s
 
+DATABASE/Player.obj: DATABASE/Player.c.obj
+.PHONY : DATABASE/Player.obj
+
+# target to build an object file
+DATABASE/Player.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/DATABASE/Player.c.obj
+.PHONY : DATABASE/Player.c.obj
+
+DATABASE/Player.i: DATABASE/Player.c.i
+.PHONY : DATABASE/Player.i
+
+# target to preprocess a source file
+DATABASE/Player.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/DATABASE/Player.c.i
+.PHONY : DATABASE/Player.c.i
+
+DATABASE/Player.s: DATABASE/Player.c.s
+.PHONY : DATABASE/Player.s
+
+# target to generate assembly for a file
+DATABASE/Player.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/DATABASE/Player.c.s
+.PHONY : DATABASE/Player.c.s
+
 GAMEPLAY/ARENA_LOGIC/ChapterManager.obj: GAMEPLAY/ARENA_LOGIC/ChapterManager.c.obj
 .PHONY : GAMEPLAY/ARENA_LOGIC/ChapterManager.obj
 
@@ -440,6 +464,30 @@ STRUCTURES/tree.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/STRUCTURES/tree.c.s
 .PHONY : STRUCTURES/tree.c.s
 
+UTILS/auth/authentication.obj: UTILS/auth/authentication.c.obj
+.PHONY : UTILS/auth/authentication.obj
+
+# target to build an object file
+UTILS/auth/authentication.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/UTILS/auth/authentication.c.obj
+.PHONY : UTILS/auth/authentication.c.obj
+
+UTILS/auth/authentication.i: UTILS/auth/authentication.c.i
+.PHONY : UTILS/auth/authentication.i
+
+# target to preprocess a source file
+UTILS/auth/authentication.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/UTILS/auth/authentication.c.i
+.PHONY : UTILS/auth/authentication.c.i
+
+UTILS/auth/authentication.s: UTILS/auth/authentication.c.s
+.PHONY : UTILS/auth/authentication.s
+
+# target to generate assembly for a file
+UTILS/auth/authentication.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/UTILS/auth/authentication.c.s
+.PHONY : UTILS/auth/authentication.c.s
+
 UTILS/sound/soundmanager.obj: UTILS/sound/soundmanager.c.obj
 .PHONY : UTILS/sound/soundmanager.obj
 
@@ -668,6 +716,9 @@ help:
 	@echo ... DATABASE/DataHierarki.obj
 	@echo ... DATABASE/DataHierarki.i
 	@echo ... DATABASE/DataHierarki.s
+	@echo ... DATABASE/Player.obj
+	@echo ... DATABASE/Player.i
+	@echo ... DATABASE/Player.s
 	@echo ... GAMEPLAY/ARENA_LOGIC/ChapterManager.obj
 	@echo ... GAMEPLAY/ARENA_LOGIC/ChapterManager.i
 	@echo ... GAMEPLAY/ARENA_LOGIC/ChapterManager.s
@@ -704,6 +755,9 @@ help:
 	@echo ... STRUCTURES/tree.obj
 	@echo ... STRUCTURES/tree.i
 	@echo ... STRUCTURES/tree.s
+	@echo ... UTILS/auth/authentication.obj
+	@echo ... UTILS/auth/authentication.i
+	@echo ... UTILS/auth/authentication.s
 	@echo ... UTILS/sound/soundmanager.obj
 	@echo ... UTILS/sound/soundmanager.i
 	@echo ... UTILS/sound/soundmanager.s

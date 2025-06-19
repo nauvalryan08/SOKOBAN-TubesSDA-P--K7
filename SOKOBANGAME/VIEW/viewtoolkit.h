@@ -24,6 +24,17 @@ typedef enum {
     CONNECTION_DIAGONAL
 } ConnectionType;
 
+// Struct for button grid properties
+typedef struct {
+    int cols;
+    int btn_width;
+    int btn_height;
+    int h_spacing;
+    int v_spacing;
+    int start_x;
+    int start_y;
+} btngridprop;
+
 void draw_btn(Button *btn);
 int isbtnarea(Button *btn, int mouse_x, int mouse_y);
 void handle_resize(int *prev_lines, int *prev_cols);
@@ -37,5 +48,8 @@ void draw_horizontal_line(int y, int x, int width);
 void draw_connection(Button *from, Button *to, ConnectionType type);
 void draw_tree_connection(Button *parent, Button *child, ConnectionType type);
 void draw_tree_connections(Button *buttons, int *parent_indices, int count);
+
+// Draw a grid of buttons using a property struct
+void draw_button_grid(const char **labels, int n_buttons, int selected, const btngridprop *prop);
 
 #endif

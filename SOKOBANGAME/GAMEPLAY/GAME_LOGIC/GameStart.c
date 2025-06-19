@@ -210,8 +210,8 @@ void game_finished(RoomLayout *room, LevelData *level, ChapterData *current_chap
             }
             clearQueue(&q);
         } else if (ch == '2') {
-            
-            continue;
+            print_chapter_screen(username);
+            break;
         } else if (ch == '3' || ch == 27) {
             // kembali ke lobby
             break;;

@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/Administrator/Documents/Tugas/Tambal Tubes Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/DATABASE/DataHierarki.c" "CMakeFiles/SOKOBANGAME.dir/DATABASE/DataHierarki.c.obj" "gcc" "CMakeFiles/SOKOBANGAME.dir/DATABASE/DataHierarki.c.obj.d"
+  "C:/Users/Administrator/Documents/Tugas/Tambal Tubes Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/DATABASE/Player.c" "CMakeFiles/SOKOBANGAME.dir/DATABASE/Player.c.obj" "gcc" "CMakeFiles/SOKOBANGAME.dir/DATABASE/Player.c.obj.d"
   "C:/Users/Administrator/Documents/Tugas/Tambal Tubes Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/GAMEPLAY/ARENA_LOGIC/ChapterManager.c" "CMakeFiles/SOKOBANGAME.dir/GAMEPLAY/ARENA_LOGIC/ChapterManager.c.obj" "gcc" "CMakeFiles/SOKOBANGAME.dir/GAMEPLAY/ARENA_LOGIC/ChapterManager.c.obj.d"
   "C:/Users/Administrator/Documents/Tugas/Tambal Tubes Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/GAMEPLAY/ARENA_LOGIC/Level.c" "CMakeFiles/SOKOBANGAME.dir/GAMEPLAY/ARENA_LOGIC/Level.c.obj" "gcc" "CMakeFiles/SOKOBANGAME.dir/GAMEPLAY/ARENA_LOGIC/Level.c.obj.d"
   "C:/Users/Administrator/Documents/Tugas/Tambal Tubes Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/GAMEPLAY/ARENA_LOGIC/RoomFactory.c" "CMakeFiles/SOKOBANGAME.dir/GAMEPLAY/ARENA_LOGIC/RoomFactory.c.obj" "gcc" "CMakeFiles/SOKOBANGAME.dir/GAMEPLAY/ARENA_LOGIC/RoomFactory.c.obj.d"
@@ -21,6 +22,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/Administrator/Documents/Tugas/Tambal Tubes Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/STRUCTURES/queue.c" "CMakeFiles/SOKOBANGAME.dir/STRUCTURES/queue.c.obj" "gcc" "CMakeFiles/SOKOBANGAME.dir/STRUCTURES/queue.c.obj.d"
   "C:/Users/Administrator/Documents/Tugas/Tambal Tubes Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/STRUCTURES/stack.c" "CMakeFiles/SOKOBANGAME.dir/STRUCTURES/stack.c.obj" "gcc" "CMakeFiles/SOKOBANGAME.dir/STRUCTURES/stack.c.obj.d"
   "C:/Users/Administrator/Documents/Tugas/Tambal Tubes Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/STRUCTURES/tree.c" "CMakeFiles/SOKOBANGAME.dir/STRUCTURES/tree.c.obj" "gcc" "CMakeFiles/SOKOBANGAME.dir/STRUCTURES/tree.c.obj.d"
+  "C:/Users/Administrator/Documents/Tugas/Tambal Tubes Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/auth/authentication.c" "CMakeFiles/SOKOBANGAME.dir/UTILS/auth/authentication.c.obj" "gcc" "CMakeFiles/SOKOBANGAME.dir/UTILS/auth/authentication.c.obj.d"
   "C:/Users/Administrator/Documents/Tugas/Tambal Tubes Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/sound/soundmanager.c" "CMakeFiles/SOKOBANGAME.dir/UTILS/sound/soundmanager.c.obj" "gcc" "CMakeFiles/SOKOBANGAME.dir/UTILS/sound/soundmanager.c.obj.d"
   "C:/Users/Administrator/Documents/Tugas/Tambal Tubes Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/validator/validator.c" "CMakeFiles/SOKOBANGAME.dir/UTILS/validator/validator.c.obj" "gcc" "CMakeFiles/SOKOBANGAME.dir/UTILS/validator/validator.c.obj.d"
   "C:/Users/Administrator/Documents/Tugas/Tambal Tubes Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/VIEW/chapterscreen.c" "CMakeFiles/SOKOBANGAME.dir/VIEW/chapterscreen.c.obj" "gcc" "CMakeFiles/SOKOBANGAME.dir/VIEW/chapterscreen.c.obj.d"

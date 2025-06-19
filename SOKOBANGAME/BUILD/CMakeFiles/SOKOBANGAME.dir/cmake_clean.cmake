@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/SOKOBANGAME.dir/DATABASE/DataHierarki.c.obj"
   "CMakeFiles/SOKOBANGAME.dir/DATABASE/DataHierarki.c.obj.d"
+  "CMakeFiles/SOKOBANGAME.dir/DATABASE/Player.c.obj"
+  "CMakeFiles/SOKOBANGAME.dir/DATABASE/Player.c.obj.d"
   "CMakeFiles/SOKOBANGAME.dir/GAMEPLAY/ARENA_LOGIC/ChapterManager.c.obj"
   "CMakeFiles/SOKOBANGAME.dir/GAMEPLAY/ARENA_LOGIC/ChapterManager.c.obj.d"
   "CMakeFiles/SOKOBANGAME.dir/GAMEPLAY/ARENA_LOGIC/Level.c.obj"
@@ -25,6 +27,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/SOKOBANGAME.dir/STRUCTURES/stack.c.obj.d"
   "CMakeFiles/SOKOBANGAME.dir/STRUCTURES/tree.c.obj"
   "CMakeFiles/SOKOBANGAME.dir/STRUCTURES/tree.c.obj.d"
+  "CMakeFiles/SOKOBANGAME.dir/UTILS/auth/authentication.c.obj"
+  "CMakeFiles/SOKOBANGAME.dir/UTILS/auth/authentication.c.obj.d"
   "CMakeFiles/SOKOBANGAME.dir/UTILS/sound/soundmanager.c.obj"
   "CMakeFiles/SOKOBANGAME.dir/UTILS/sound/soundmanager.c.obj.d"
   "CMakeFiles/SOKOBANGAME.dir/UTILS/validator/validator.c.obj"
