@@ -58,6 +58,7 @@ int main() {
             break;
         case 3 :
             // Implementasi fitur leaderboard
+            show_leaderboard();
             break;
         case 4: // How to play
             show_tutorial_screen();

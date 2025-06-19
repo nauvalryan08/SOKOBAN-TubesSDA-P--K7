@@ -208,7 +208,7 @@ PlayerData* sign_up_process() {
         PlayerData* existing = get_player(username);
         if (existing != NULL) {
             drawMessageBox("Username already exists!");
-            getch();
+            Sleep(2000);
             continue;
         }
         
@@ -217,7 +217,7 @@ PlayerData* sign_up_process() {
         
         // Tampilkan pesan sukses
         drawMessageBox("Account created successfully!");
-        getch();
+        Sleep(2000);
         
         return get_player(username);
     }
@@ -242,7 +242,7 @@ PlayerData* login_process() {
         PlayerData* player = get_player(username);
         if (player == NULL) {
             drawMessageBox("Account not found!");
-            getch();
+            Sleep(2000);
             continue;
         }
         

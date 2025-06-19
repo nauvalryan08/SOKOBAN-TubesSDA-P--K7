@@ -25,6 +25,7 @@ LevelData* print_chapter_screen(const char *username) {
   while ((ch = getch()) != 27) { // ESC untuk keluar
     clear(); // Only clear once at the start of the loop
 
+    Txtbox title = {COLS/2 - 6, 2, strlen("Chapter") + 4, 2, "Chapter", "REVERSED"};
     Button chapters[] = {
       {COLS / 4, LINES / 2 - 15, COLS / 2, 4, "Tutorial"},
       {COLS / 4, LINES / 2 - 10, COLS / 2, 4, "Chapter 1"},
@@ -160,10 +161,12 @@ LevelData* print_chapter_screen(const char *username) {
     pthread_join(enterSound, NULL);
 
     // Instruksi
+    draw_box(0,0,strlen("Klik kiri pada tombol chapter untuk memilih chapter!") + 2, 5);
     mvprintw(1, 1, "Klik kiri pada tombol chapter untuk memilih chapter!");
     mvprintw(2, 1, "Atau gunakan tombol panah atas/bawah untuk navigasi");
     mvprintw(3, 1, "Gunakan tombol ESC untuk kembali ke menu utama");
     mvprintw(4, 1, "Tekan ENTER untuk memilih chapter");
+    draw_txtbox(&title);
 
     // menampilkan button
     for (int i = 0; i < n_chapters; i++) {
