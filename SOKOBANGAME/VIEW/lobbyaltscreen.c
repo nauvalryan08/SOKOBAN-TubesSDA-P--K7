@@ -82,7 +82,7 @@ int show_alt_lobby(const char * username){
                             {3,LINES/2 - 4, 31, 4, "LEADERBOARD"},
                             {3,LINES/2 + 1, 31, 4, "HOW TO PLAY"},
                             {3,LINES/2 + 6, 31, 4, "QUIT GAME"},
-                            {3,LINES/2 + 12, 12, 2, "AUTH PAGE"}};
+                            {3,LINES/2 + 12, strlen("AUTH PAGE") + 5, 2, "AUTH PAGE"}};
         handle_resize(&prev_lines, &prev_cols);
         if (LINES < MIN_Y || COLS < MIN_X){
             termsize_check();

@@ -173,7 +173,7 @@ const char* first_auth_screen() {
                         delete_account_process();
                         break;
                         
-                    case 3: // Back
+                    case 3: // Exit
                         for (int i = 0; i < GroupCount; i++) {
                             freeTree(ChapterTrees[i].ChapterTree, NULL); 
                         }
