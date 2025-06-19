@@ -22,7 +22,7 @@ void setBGMVolume(int percent) {
 
 // helper
 void* playBackgroundMusic(void *args) {
-    mciSendString("open \"./ASSETS/SOUNDTRACK.wav\" type mpegvideo alias bgm", NULL, 0, NULL);
+    mciSendString("open \"./SOKOBANGAME/ASSETS/SOUNDTRACK.wav\" type mpegvideo alias bgm", NULL, 0, NULL);
     // Set volume (0 - 1000); di sini 300 artinya 30%
     mciSendString("setaudio bgm volume to 300", NULL, 0, NULL);
     mciSendString("play bgm repeat", NULL, 0, NULL);  // Looping

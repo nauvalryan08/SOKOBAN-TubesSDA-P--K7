@@ -226,6 +226,4 @@ extern const char *Level_4b_map[];
 extern const char *Level_5b_map[];
 extern const char *Level_6b_map[];
 
-
-
 #endif

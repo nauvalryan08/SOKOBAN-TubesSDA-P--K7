@@ -105,9 +105,10 @@ set(CMAKE_MAKEFILE_DEPENDS
   "C:/Program Files/CMake/share/cmake-4.0/Modules/Internal/CMakeInspectCLinker.cmake"
   "C:/Program Files/CMake/share/cmake-4.0/Modules/Internal/CMakeInspectCXXLinker.cmake"
   "C:/Program Files/CMake/share/cmake-4.0/Modules/Internal/FeatureTesting.cmake"
+  "C:/Program Files/CMake/share/cmake-4.0/Modules/Linker/GNU-C.cmake"
+  "C:/Program Files/CMake/share/cmake-4.0/Modules/Linker/GNU-CXX.cmake"
+  "C:/Program Files/CMake/share/cmake-4.0/Modules/Linker/GNU.cmake"
   "C:/Program Files/CMake/share/cmake-4.0/Modules/Platform/Linker/GNU.cmake"
-  "C:/Program Files/CMake/share/cmake-4.0/Modules/Platform/Linker/Windows-C.cmake"
-  "C:/Program Files/CMake/share/cmake-4.0/Modules/Platform/Linker/Windows-CXX.cmake"
   "C:/Program Files/CMake/share/cmake-4.0/Modules/Platform/Linker/Windows-GNU-C.cmake"
   "C:/Program Files/CMake/share/cmake-4.0/Modules/Platform/Linker/Windows-GNU-CXX.cmake"
   "C:/Program Files/CMake/share/cmake-4.0/Modules/Platform/Linker/Windows-GNU.cmake"
@@ -125,7 +126,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/4.0.2/CMakeCXXCompiler.cmake"
   "CMakeFiles/4.0.2/CMakeRCCompiler.cmake"
   "CMakeFiles/4.0.2/CMakeSystem.cmake"
-  "C:/Users/Administrator/Documents/Tugas/Tambal Tubes Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/CMakeLists.txt"
+  "C:/Teknik Infomatika/StrukturDataAlgoritma/UAS/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/CMakeLists.txt"
   )
 
 # The corresponding makefile is:

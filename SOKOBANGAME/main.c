@@ -5,8 +5,8 @@ int main() {
     setlocale(LC_ALL, "");
     initscr();
 
-    threadPlayBGMusic();       // Mulai BGM
-    setBGMVolume(25); 
+    // threadPlayBGMusic();       // Mulai BGM
+    // setBGMVolume(25); 
     
     // Inisialisasi warna
     start_color();
@@ -30,12 +30,16 @@ int main() {
 
     initAllChapters();
     load_all_players(); // Memuat data player saat program dimulai
+
     const char* current_username = NULL;
     char temp[100];
     // const char* dummyUsername = "Argiansah";
     while (current_username == NULL){
         current_username = first_auth_screen();
     }
+    PlayerData* player = get_player(current_username); 
+    unlock_levels_based_on_progress(current_username); 
+    
     while (menu_choice != 5) {
     // Handle pilihan menu
 
@@ -46,10 +50,8 @@ int main() {
             clear();
             if (current_username != NULL) {
                 // Dapatkan player data
-                PlayerData* player = get_player(current_username); 
                 if (player != NULL) {
                     // Mulai game
-                    unlock_levels_based_on_progress(current_username); 
                     selected_level = print_chapter_screen(current_username);
                 }
             }
@@ -84,11 +86,15 @@ int main() {
             } else {
                 current_username = new_username;
             }
+            unlock_levels_based_on_progress(current_username);
             break;
         }
+
+        updateAllChapterStatus();
+        unlockNextChapter();
     }
 
-    stopBackgroundMusic();
+    // stopBackgroundMusic();
 
     for (int i = 0; i < GroupCount; i++) {
         freeTree(ChapterTrees[i].ChapterTree, NULL); 

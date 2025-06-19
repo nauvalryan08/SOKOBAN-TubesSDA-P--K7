@@ -108,7 +108,7 @@ void update_finish_activation_status(RoomLayout *room) {
 //== Method untuk memeriksa apakah parent finished, dan membuka child nya ==//
 //==========================================================================//
 /* {Sopian} */
-void unlock_child_if_parent_finished (Ptree root) {
+void unlock_child_if_parent_finished(Ptree root) {
     if (!root || root->Type != TYPE_LEVELDATA) return;
 
     LevelData *level = (LevelData *) root->data;
@@ -116,14 +116,22 @@ void unlock_child_if_parent_finished (Ptree root) {
     if (level->is_finished) {
         Ptree child = root->fs;
         while (child != NULL) {
-            LevelData *child_level = (LevelData*) child->data;
+            LevelData *child_level = (LevelData *) child->data;
             if (!child_level->is_unlocked) {
                 child_level->is_unlocked = true;
             }
+            unlock_child_if_parent_finished(child);
+            child = child->nb;
+        }
+    } else {
+        Ptree child = root->fs;
+        while (child != NULL) {
+            unlock_child_if_parent_finished(child);
             child = child->nb;
         }
     }
 }
+
 
 //==========================================================================//
 //== Method untuk memeriksa apakah parent finished, dan membuka child nya ==//

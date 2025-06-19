@@ -108,11 +108,13 @@ void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *
             *keyOutput = 27;
             break;
         case 'F' :
-            if (validate_CheatGame()) {
-                showMsg_CheatGame(); getchar();
-                room->finish.is_activated = true;
-                *keyOutput = 'F';
-            }
+            room->finish.is_activated = true;
+            *keyOutput = 'F';
+            // if (validate_CheatGame()) {
+            //     showMsg_CheatGame(); getchar();
+            //     room->finish.is_activated = true;
+            //     *keyOutput = 'F';
+            // }
             break;
         
         case KEY_MOUSE:

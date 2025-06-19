@@ -53,28 +53,36 @@ PlayerData* get_player(const char *username) {
 
 // Function untuk membuat data Player baru
 void create_player(const char *username) {
-    if (player_count >= MAX_PLAYERS || get_player(username) != NULL) {
-        return;
-    }
-    
+    if (player_count >= MAX_PLAYERS || get_player(username) != NULL) return;
+
     PlayerData new_player;
     strncpy(new_player.username, username, MAX_USERNAME_LEN);
     new_player.id = player_count + 1;
     new_player.current_chapter = TUTORIAL;
-    new_player.current_level = LEVEL_1T1;
-    
+    new_player.finished_count = 0;
+
     players[player_count++] = new_player;
     save_all_players();
 }
 
 // Function untuk mengupdate progress Player di game
-void update_player_progress(const char *username, ChapterTree chapter, LevelID level) {
+void update_player_progress(const char *username, LevelID level) {
     PlayerData* player = get_player(username);
-    if (player != NULL) {
+    if (!player) return;
+
+    ChapterTree chapter = get_chapter_for_level(level);
+    if (chapter > player->current_chapter) {
         player->current_chapter = chapter;
-        player->current_level = level;
-        save_all_players();
     }
+
+    for (int i = 0; i < player->finished_count; i++) {
+        if (player->finished[i] == level) return;
+    }
+    if (player->finished_count < MAX_FINISHED_PER_CHAPTER) {
+        player->finished[player->finished_count++] = level;
+    }
+
+    save_all_players();
 }
 
 
@@ -107,34 +115,66 @@ ChapterTree get_player_chapter(const char *username) {
     return player ? player->current_chapter : TUTORIAL;
 }
 
-LevelID get_player_level(const char *username) {
-    PlayerData* player = get_player(username);
-    return player ? player->current_level : LEVEL_1T1;
+
+// ------------------------------------------------------------ //
+//     Function Unlocking level dan chapter sesaui progress     //
+// ------------------------------------------------------------ //
+
+// Helper: Tandai semua level di chapter sebagai finished dan unlocked
+void mark_all_levels_finished_and_unlocked(void* data) {
+    LevelData* lvl = (LevelData*)data;
+    lvl->is_unlocked = true;
+    lvl->is_finished = true;
+}
+
+// Helper: Tandai level sebagai finished jika ada dalam daftar player->finished[]
+PlayerData* current_player_temp = NULL; // digunakan sebagai referensi global sementara
+
+void mark_finished_levels_in_current_chapter(void* data) {
+    LevelData* lvl = (LevelData*)data;
+    for (int i = 0; i < current_player_temp->finished_count; i++) {
+        if (current_player_temp->finished[i] == level_id_from_string(lvl->level_id)) {
+            lvl->is_finished = true;
+            lvl->is_unlocked = true;
+            break;
+        }
+    }
 }
 
 void unlock_levels_based_on_progress(const char *username) {
     PlayerData* player = get_player(username);
     if (!player) return;
 
-    // Reset semua level menjadi terkunci
+    // Reset semua level
     for (int i = 0; i < LEVEL_COUNT; i++) {
         ALL_LEVELS[i].is_unlocked = false;
+        ALL_LEVELS[i].is_finished = false;
     }
 
-    // Unlock semua level sampai progress terakhir
-    for (LevelID i = 0; i <= player->current_level; i++) {
-        // Hanya unlock jika chapter level <= chapter progress pemain
-        if (get_chapter_for_level(i) <= player->current_chapter) {
-            ALL_LEVELS[i].is_unlocked = true;
-        }
-    }
-
-    // Unlock semua level di chapter yang lebih rendah
+    // Tandai semua level di chapter yang sudah dilewati sebagai selesai
     for (int i = 0; i < player->current_chapter; i++) {
-        for (int j = 0; j < LEVEL_COUNT; j++) {
-            if (get_chapter_for_level(j) == i) {
-                ALL_LEVELS[j].is_unlocked = true;
-            }
-        }
+        Ptree root = ChapterTrees[i].ChapterTree;
+        preOrderTraversal(root, mark_all_levels_finished_and_unlocked);
     }
+
+    // Tandai level-level yang diselesaikan di current chapter
+    current_player_temp = player;
+    for (int i = 0; i < player->finished_count; i++) {
+        LevelID lid = player->finished[i];
+        ALL_LEVELS[lid].is_finished = true;
+        ALL_LEVELS[lid].is_unlocked = true;
+    }
+
+    // Update tree current chapter
+    Ptree current_root = ChapterTrees[player->current_chapter].ChapterTree;
+    preOrderTraversal(current_root, mark_finished_levels_in_current_chapter);
+    unlock_child_if_parent_finished(current_root);
+
+    ALL_LEVELS[LEVEL_1T1].is_unlocked = true;
+    ALL_LEVELS[LEVEL_1T2].is_unlocked = true;
+    ALL_LEVELS[LEVEL_1T3].is_unlocked = true;
+    ALL_LEVELS[LEVEL_1T4].is_unlocked = true;
+    ALL_LEVELS[LEVEL_1C1].is_unlocked = true;
+
+    current_player_temp = NULL; // Bersihkan pointer global
 }

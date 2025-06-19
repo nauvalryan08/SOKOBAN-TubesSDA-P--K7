@@ -1,11 +1,13 @@
 #ifndef DATABASEPATH_H
 #define DATABASEPATH_H
 
-#define PLAY_DATA_PATH "SOKOBANGAME/DATABASE/PlayData.txt"
+#define PLAY_DATA_PATH "./SOKOBANGAME/DATABASE/PlayData.txt"
 
-#define DATA_STATE_PATH "SOKOBANGAME/DATABASE/saveState_data.dat"
+#define DATA_STATE_PATH "./SOKOBANGAME/DATABASE/saveState_data.dat"
 
-#define INDEX_DATA_STATE_PATH "SOKOBANGAME/DATABASE/saveState_index.txt"
+#define INDEX_DATA_STATE_PATH "./SOKOBANGAME/DATABASE/saveState_index.txt"
+
+#define TEMP_INDEX_PATH "./SOKOBANGAME/DATABASE/temp_path.txt"
 
 
 
