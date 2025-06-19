@@ -35,6 +35,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/SOKOBANGAME.dir/UTILS/validator/validator.c.obj.d"
   "CMakeFiles/SOKOBANGAME.dir/VIEW/chapterscreen.c.obj"
   "CMakeFiles/SOKOBANGAME.dir/VIEW/chapterscreen.c.obj.d"
+  "CMakeFiles/SOKOBANGAME.dir/VIEW/leaderboard.c.obj"
+  "CMakeFiles/SOKOBANGAME.dir/VIEW/leaderboard.c.obj.d"
   "CMakeFiles/SOKOBANGAME.dir/VIEW/levelscreen.c.obj"
   "CMakeFiles/SOKOBANGAME.dir/VIEW/levelscreen.c.obj.d"
   "CMakeFiles/SOKOBANGAME.dir/VIEW/lobbyaltscreen.c.obj"

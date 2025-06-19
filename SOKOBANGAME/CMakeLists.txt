@@ -78,3 +78,13 @@ target_include_directories(SOKOBANGAME PRIVATE
 # Set C standard
 set_property(TARGET SOKOBANGAME PROPERTY C_STANDARD 11)
 set_property(TARGET SOKOBANGAME PROPERTY C_STANDARD_REQUIRED ON)
+
+# --- Create ASSETS and DATABASE folders to output directory after build ---
+add_custom_command(TARGET SOKOBANGAME POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "${CMAKE_CURRENT_SOURCE_DIR}/ASSETS" "$<TARGET_FILE_DIR:SOKOBANGAME>/ASSETS"
+)
+
+file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/DATABASE")
+
+# -------------------------------------------------------------

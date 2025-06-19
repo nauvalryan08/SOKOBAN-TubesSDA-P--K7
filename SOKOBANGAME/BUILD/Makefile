@@ -560,6 +560,30 @@ VIEW/chapterscreen.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/VIEW/chapterscreen.c.s
 .PHONY : VIEW/chapterscreen.c.s
 
+VIEW/leaderboard.obj: VIEW/leaderboard.c.obj
+.PHONY : VIEW/leaderboard.obj
+
+# target to build an object file
+VIEW/leaderboard.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/VIEW/leaderboard.c.obj
+.PHONY : VIEW/leaderboard.c.obj
+
+VIEW/leaderboard.i: VIEW/leaderboard.c.i
+.PHONY : VIEW/leaderboard.i
+
+# target to preprocess a source file
+VIEW/leaderboard.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/VIEW/leaderboard.c.i
+.PHONY : VIEW/leaderboard.c.i
+
+VIEW/leaderboard.s: VIEW/leaderboard.c.s
+.PHONY : VIEW/leaderboard.s
+
+# target to generate assembly for a file
+VIEW/leaderboard.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/VIEW/leaderboard.c.s
+.PHONY : VIEW/leaderboard.c.s
+
 VIEW/levelscreen.obj: VIEW/levelscreen.c.obj
 .PHONY : VIEW/levelscreen.obj
 
@@ -767,6 +791,9 @@ help:
 	@echo ... VIEW/chapterscreen.obj
 	@echo ... VIEW/chapterscreen.i
 	@echo ... VIEW/chapterscreen.s
+	@echo ... VIEW/leaderboard.obj
+	@echo ... VIEW/leaderboard.i
+	@echo ... VIEW/leaderboard.s
 	@echo ... VIEW/levelscreen.obj
 	@echo ... VIEW/levelscreen.i
 	@echo ... VIEW/levelscreen.s

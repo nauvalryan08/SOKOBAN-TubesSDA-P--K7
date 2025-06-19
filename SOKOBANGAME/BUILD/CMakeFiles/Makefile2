@@ -84,12 +84,12 @@ clean: CMakeFiles/SOKOBANGAME.dir/clean
 CMakeFiles/SOKOBANGAME.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\BUILD\CMakeFiles" --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25 "Built target SOKOBANGAME"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\BUILD\CMakeFiles" --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26 "Built target SOKOBANGAME"
 .PHONY : CMakeFiles/SOKOBANGAME.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/SOKOBANGAME.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\BUILD\CMakeFiles" 25
+	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\BUILD\CMakeFiles" 26
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/SOKOBANGAME.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\BUILD\CMakeFiles" 0
 .PHONY : CMakeFiles/SOKOBANGAME.dir/rule
@@ -101,7 +101,7 @@ SOKOBANGAME: CMakeFiles/SOKOBANGAME.dir/rule
 # codegen rule for target.
 CMakeFiles/SOKOBANGAME.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\SOKOBANGAME.dir\build.make CMakeFiles/SOKOBANGAME.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\BUILD\CMakeFiles" --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25 "Finished codegen for target SOKOBANGAME"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="C:\Users\Administrator\Documents\Tugas\Tambal Tubes Ban\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME\BUILD\CMakeFiles" --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26 "Finished codegen for target SOKOBANGAME"
 .PHONY : CMakeFiles/SOKOBANGAME.dir/codegen
 
 # clean rule for target.
