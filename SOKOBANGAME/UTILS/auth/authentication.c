@@ -86,10 +86,8 @@ int show_auth_menu(int selected, int items, Button *btnset) {
     draw_box(max_x/2 - 20, LINES/2 - 12, 40, 23);
     
     // Judul
-    Txtbox title = {LINES/2 - 11, max_x/2 - 18, 36, 3, "AUTHENTICATION MENU", "BOLD"};
-    attron(COLOR_PAIR(COLOR_CYAN));
+    Txtbox title = {max_x/2 - 15, 2, strlen("AUTHENTICATION MENU") + 10, 2, "AUTHENTICATION MENU", "UNDERLINE"};
     draw_txtbox(&title);
-    attroff(COLOR_PAIR(COLOR_CYAN));
     
     // Gambar tombol
     for (int i = 0; i < items; i++) {
