@@ -83,7 +83,7 @@ int show_auth_menu(int selected, int items, Button *btnset) {
     int max_x = getmaxx(stdscr);
     
     // Gambar box utama
-    draw_box(max_x/2 - 20, LINES/2 - 10, 40, 20);
+    draw_box(max_x/2 - 20, LINES/2 - 12, 40, 23);
     
     // Judul
     Txtbox title = {LINES/2 - 11, max_x/2 - 18, 36, 3, "AUTHENTICATION MENU", "BOLD"};
@@ -104,15 +104,14 @@ int show_auth_menu(int selected, int items, Button *btnset) {
     
     // Petunjuk
     attron(COLOR_PAIR(COLOR_YELLOW));
-    mvprintw(LINES/2 + 8, max_x/2 - 18, "Gunakan tombol panah untuk navigasi");
-    mvprintw(LINES/2 + 9, max_x/2 - 18, "Tekan ENTER untuk memilih");
-    mvprintw(LINES/2 + 10, max_x/2 - 18, "Tekan ESC untuk kembali");
+    mvprintw(LINES/2 + 12, max_x/2 - 18, "Gunakan tombol panah untuk navigasi");
+    mvprintw(LINES/2 + 13, max_x/2 - 18, "Tekan ENTER untuk memilih");
+    mvprintw(LINES/2 + 14, max_x/2 - 18, "Tekan ESC untuk kembali");
     attroff(COLOR_PAIR(COLOR_YELLOW));
 }
 
 // Proses utama autentikasi
 const char* authentication_screen() {
-    nodelay(stdscr, FALSE);
     keypad(stdscr, TRUE);
     int ch;
     int prev_lines = LINES;
@@ -130,7 +129,7 @@ const char* authentication_screen() {
         
         int max_x = getmaxx(stdscr);
         int start_x = max_x/2 - 15;
-        int start_y = LINES/2 - 5;
+        int start_y = LINES/2 - 10;
         
         Button menu_items[] = {
             {start_x, start_y, 30, 4, "LOGIN"},
@@ -253,7 +252,7 @@ PlayerData* login_process() {
         char msg[100];
         snprintf(msg, 100, "Welcome back, %s!", username);
         drawMessageBox(msg);
-        getch();
+        Sleep(5000);
         
         return player;
     }

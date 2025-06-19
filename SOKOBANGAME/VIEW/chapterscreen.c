@@ -23,6 +23,8 @@ LevelData* print_chapter_screen(const char *username) {
   int prev_cols = COLS;
   MEVENT event;
   while ((ch = getch()) != 27) { // ESC untuk keluar
+    clear(); // Only clear once at the start of the loop
+
     Button chapters[] = {
       {COLS / 4, LINES / 2 - 15, COLS / 2, 4, "Tutorial"},
       {COLS / 4, LINES / 2 - 10, COLS / 2, 4, "Chapter 1"},
@@ -157,8 +159,6 @@ LevelData* print_chapter_screen(const char *username) {
     pthread_join(arrowSound, NULL);
     pthread_join(enterSound, NULL);
 
-    clear();
-    
     // Instruksi
     mvprintw(1, 1, "Klik kiri pada tombol chapter untuk memilih chapter!");
     mvprintw(2, 1, "Atau gunakan tombol panah atas/bawah untuk navigasi");
@@ -176,6 +176,6 @@ LevelData* print_chapter_screen(const char *username) {
       }
     }
 
-    refresh();
+    refresh(); // Only call once at the end of the loop
   }
 }
