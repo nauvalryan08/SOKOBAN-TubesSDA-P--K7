@@ -1,4 +1,4 @@
-    #ifndef HISTORYSCREEN_H
+#ifndef HISTORYSCREEN_H
 #define HISTORYSCREEN_H
 
 #include "viewtoolkit.h"
@@ -6,6 +6,9 @@
 #include "../GAMEPLAY/REPLAY_LOGIC/ReplayGame.h"
 #include "../GAMEPLAY\ARENA_LOGIC\ChapterManager.h"
 #include "../UTILS/sound/soundmanager.h"
+#include "levelgridview.h"
+
+#define n_chapters 5
 
 typedef struct {
     ReplayStep ReplayData;
@@ -19,6 +22,6 @@ typedef struct {
 //===> Tree History Inisiasi
 Ptree initHistoryTree();
 
-void print_choose_chapter();
+void show_history();
 
 #endif

@@ -39,6 +39,7 @@
 #include "VIEW/LevelScreen.h"
 #include "VIEW/chapterscreen.h"
 #include "VIEW/leaderboard.h"
+#include "VIEW/HistoryScreen.h"
 #include "VIEW/tutorial.h"
 #include "VIEW/lobbyaltscreen.h"
 

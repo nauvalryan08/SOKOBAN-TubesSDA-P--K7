@@ -2,6 +2,7 @@
 #define LEADERBOARDSCREEN_H
 
 #include "viewtoolkit.h"
+#include "levelgridview.h"
 #include "../UTILS/sound/soundmanager.h"
 #include "../UTILS/include/curses.h"
 #include "../GAMEPLAY/ARENA_LOGIC/Level.h"
@@ -14,10 +15,5 @@
 #define n_chapters 5
 
 void show_leaderboard();
-void ch1_leaderboard();
-void ch2_leaderboard();
-void ch3_leaderboard();
-void ch4_leaderboard();
-void ch5_leaderboard();
 
 #endif

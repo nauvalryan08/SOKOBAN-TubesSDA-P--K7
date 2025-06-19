@@ -189,8 +189,11 @@ const char* first_auth_screen() {
                 break;
                 
             case 27: // ESC
-                pthread_create(&enterSound, NULL, playEnterSound, NULL);
-                return NULL;
+                for (int i = 0; i < GroupCount; i++) {
+                    freeTree(ChapterTrees[i].ChapterTree, NULL); 
+                }
+                exit(0);
+                break;
                 
             case KEY_RESIZE:
                 resize_term(0, 0);
@@ -286,8 +289,6 @@ const char* authentication_screen() {
 // Implementasi proses sign up
 PlayerData* sign_up_process() {
     char username[MAX_USERNAME_LEN];
-    int max_x = getmaxx(stdscr);
-    int width = max_x > 60 ? 40 : max_x - 20;
 
     pthread_t enterSound;
     pthread_t invalidSound;
@@ -328,8 +329,6 @@ PlayerData* sign_up_process() {
 // Implementasi proses login
 PlayerData* login_process() {
     char username[MAX_USERNAME_LEN];
-    int max_x = getmaxx(stdscr);
-    int width = max_x > 60 ? 40 : max_x - 20;
     
     while (1) {
         clear();
@@ -366,8 +365,6 @@ PlayerData* login_process() {
 // Implementasi proses hapus akun
 void delete_account_process() {
     char username[MAX_USERNAME_LEN];
-    int max_x = getmaxx(stdscr);
-    int width = max_x > 60 ? 40 : max_x - 20;
     
     while (1) {
         clear();

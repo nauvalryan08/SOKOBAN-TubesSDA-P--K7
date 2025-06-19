@@ -58,6 +58,7 @@ int main() {
             break;
         case 2: // History
             // Implementasi fitur history
+            show_history();
             break;
         case 3 :
             // Implementasi fitur leaderboard
