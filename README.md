@@ -46,7 +46,7 @@ cd .\SOKOBAN-TubesSDA-P--K7\SOKOBANGAME
 # Compile Cmake & make
 cd .\UTILS\build.ps1
 # Compile GCC
--
+cd .\UTILS\compilewithoutcmake.bat
 ```
 ### Requirement / Kebutuhan Instalasi
 - Cmake
