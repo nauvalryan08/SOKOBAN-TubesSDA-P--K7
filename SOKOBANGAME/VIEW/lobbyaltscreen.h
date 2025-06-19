@@ -15,5 +15,5 @@ typedef struct {
 
 void print_alt_title();
 int show_alt_menu(int selected, int items, Button *btnset);
-int show_alt_lobby();
+int show_alt_lobby(const char * username);
 #endif

@@ -26,6 +26,7 @@ int show_auth_menu(int selected, int items, Button *btnset);
 
 // Fungsi utama untuk tampilan autentikasi
 const char* authentication_screen();
+const char* first_auth_screen();
 // Fungsi untuk proses sign up
 PlayerData* sign_up_process();
 // Fungsi untuk proses login

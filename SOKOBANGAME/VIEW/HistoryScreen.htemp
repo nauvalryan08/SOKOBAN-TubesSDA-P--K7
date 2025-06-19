@@ -1,4 +1,4 @@
-#ifndef HISTORYSCREEN_H
+    #ifndef HISTORYSCREEN_H
 #define HISTORYSCREEN_H
 
 #include "viewtoolkit.h"

@@ -108,6 +108,89 @@ int show_auth_menu(int selected, int items, Button *btnset) {
     attroff(COLOR_PAIR(COLOR_YELLOW));
 }
 
+const char* first_auth_screen() {
+    keypad(stdscr, TRUE);
+    int ch;
+    int prev_lines = LINES;
+    int prev_cols = COLS;
+    MEVENT event;
+    int items = 4;
+    int selected = 0;
+    
+    // Muat data player terlebih dahulu
+    load_all_players();
+    
+    while (1) {
+        handle_resize(&prev_lines, &prev_cols);
+        clear();
+        
+        int max_x = getmaxx(stdscr);
+        int start_x = max_x/2 - 15;
+        int start_y = LINES/2 - 10;
+        
+        Button menu_items[] = {
+            {start_x, start_y, 30, 4, "LOGIN"},
+            {start_x, start_y + 5, 30, 4, "SIGN UP"},
+            {start_x, start_y + 10, 30, 4, "DELETE ACCOUNT"},
+            {start_x, start_y + 15, 30, 4, "EXIT"}
+        };
+        
+        show_auth_menu(selected, items, menu_items);
+        refresh();
+        
+        ch = getch();
+        switch (ch) {
+            case KEY_UP:
+                selected = (selected > 0) ? selected - 1 : items - 1;
+                break;
+                
+            case KEY_DOWN:
+                selected = (selected < items - 1) ? selected + 1 : 0;
+                break;
+                
+            case KEY_MOUSE:
+                getmouse();
+                if (event.bstate & BUTTON1_CLICKED) {
+                    for (int i = 0; i < items; i++) {
+                        if (isbtnarea(&menu_items[i], event.x, event.y)) {
+                            selected = i;
+                            ch = '\n'; // Simulasikan tekan ENTER
+                        }
+                    }
+                }
+                break;
+                
+            case '\n':
+            case KEY_ENTER:
+                switch (selected) {
+                    case 0: // Login
+                        return login_process()->username;
+                        
+                    case 1: // Sign Up
+                        return sign_up_process()->username;
+                        
+                    case 2: // Delete Account
+                        delete_account_process();
+                        break;
+                        
+                    case 3: // Back
+                        for (int i = 0; i < GroupCount; i++) {
+                            freeTree(ChapterTrees[i].ChapterTree, NULL); 
+                        }
+                        exit(0);
+                }
+                break;
+                
+            case 27: // ESC
+                return NULL;
+                
+            case KEY_RESIZE:
+                resize_term(0, 0);
+                break;
+        }
+    }
+}
+
 // Proses utama autentikasi
 const char* authentication_screen() {
     keypad(stdscr, TRUE);
@@ -208,7 +291,7 @@ PlayerData* sign_up_process() {
         PlayerData* existing = get_player(username);
         if (existing != NULL) {
             drawMessageBox("Username already exists!");
-            Sleep(2000);
+            Sleep(1000);
             continue;
         }
         
@@ -217,7 +300,7 @@ PlayerData* sign_up_process() {
         
         // Tampilkan pesan sukses
         drawMessageBox("Account created successfully!");
-        Sleep(2000);
+        Sleep(1000);
         
         return get_player(username);
     }
@@ -242,7 +325,7 @@ PlayerData* login_process() {
         PlayerData* player = get_player(username);
         if (player == NULL) {
             drawMessageBox("Account not found!");
-            Sleep(2000);
+            Sleep(1000);
             continue;
         }
         
@@ -250,7 +333,7 @@ PlayerData* login_process() {
         char msg[100];
         snprintf(msg, 100, "Welcome back, %s!", username);
         drawMessageBox(msg);
-        Sleep(5000);
+        Sleep(1000);
         
         return player;
     }

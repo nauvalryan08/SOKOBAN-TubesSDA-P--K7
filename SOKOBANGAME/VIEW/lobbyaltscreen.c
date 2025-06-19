@@ -56,7 +56,7 @@ int show_alt_menu(int selected, int items, Button *btnset){
     attroff(COLOR_PAIR(COLOR_YELLOW));
 }
 
-int show_alt_lobby(){
+int show_alt_lobby(const char * username){
     nodelay(stdscr, TRUE);
     keypad(stdscr, TRUE);
     int ch;
@@ -65,17 +65,24 @@ int show_alt_lobby(){
     mmask_t old;
     mousemask(ALL_MOUSE_EVENTS | REPORT_MOUSE_POSITION, &old);
     MEVENT event;
-    int items = 5;
+    int items = 6;
     int selected = 0;
+    char user[50];
+    char display[100] = "Logged As: ";
+    strcpy(user, username);
+    strcat(display, user);
+    
     clear();
 
     while (1) {
         clear();
+        Txtbox logged_as = {COLS - strlen(display) - 8, LINES - 5, strlen(display) + 3, 2, display, "DIM"};
         Button menu_items[] = {{3,LINES/2 - 14, 31, 4, "PLAY GAME"},
                             {3,LINES/2 - 9, 31, 4, "HISTORY"},
                             {3,LINES/2 - 4, 31, 4, "LEADERBOARD"},
                             {3,LINES/2 + 1, 31, 4, "HOW TO PLAY"},
-                            {3,LINES/2 + 6, 31, 4, "QUIT GAME"}};
+                            {3,LINES/2 + 6, 31, 4, "QUIT GAME"},
+                            {3,LINES/2 + 12, 12, 2, "AUTH PAGE"}};
         handle_resize(&prev_lines, &prev_cols);
         if (LINES < MIN_Y || COLS < MIN_X){
             termsize_check();
@@ -84,7 +91,8 @@ int show_alt_lobby(){
             attron(COLOR_PAIR(1) | A_BOLD);
             print_alt_title();
             attroff(COLOR_PAIR(1) | A_BOLD);
-            show_alt_menu(selected, 5, menu_items);
+            show_alt_menu(selected, items, menu_items);
+            draw_txtbox(&logged_as);
 
             pthread_t arrowSound;
             pthread_t enterSound;
@@ -121,6 +129,7 @@ int show_alt_lobby(){
                                         case 2: return 3;
                                         case 3: return 4;
                                         case 4: return 5;
+                                        case 5: return 6;
                                     }
                                 }
                             }
@@ -142,6 +151,8 @@ int show_alt_lobby(){
                                     return 4;
                                 case 4: // QUIT GAME
                                     return 5;
+                                case 5:
+                                    return 6;
                             }
                         }
                         break;

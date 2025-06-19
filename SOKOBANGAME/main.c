@@ -22,7 +22,7 @@ int main() {
     curs_set(FALSE);
     keypad(stdscr, TRUE);
 
-    int menu_choice;
+    int menu_choice = 0;
     RoomLayout room;
     LevelData *selected_level;
     Ptree PlayData = initDataHierarki();
@@ -30,19 +30,20 @@ int main() {
 
     initAllChapters();
     load_all_players(); // Memuat data player saat program dimulai
-    const char* current_username;
+    const char* current_username = NULL;
+    char temp[100];
     // const char* dummyUsername = "Argiansah";
-
+    while (current_username == NULL){
+        current_username = first_auth_screen();
+    }
     while (menu_choice != 5) {
     // Handle pilihan menu
 
-        menu_choice = show_alt_lobby();
+        menu_choice = show_alt_lobby(current_username);
         
         switch (menu_choice) {
         case 1: // Play Game
             clear();
-            current_username = authentication_screen();
-            
             if (current_username != NULL) {
                 // Dapatkan player data
                 PlayerData* player = get_player(current_username); 
@@ -68,6 +69,20 @@ int main() {
                 showMsg_QuitGame();
             } else {
                 menu_choice = 0;
+            }
+            break;
+        case 6:
+            if (current_username != NULL) {
+                strncpy(temp, current_username, sizeof(temp)-1);
+                temp[sizeof(temp)-1] = '\0';
+            } else {
+                temp[0] = '\0';
+            }
+            const char* new_username = authentication_screen();
+            if (new_username == NULL || strlen(new_username) == 0){
+                current_username = temp;
+            } else {
+                current_username = new_username;
             }
             break;
         }
