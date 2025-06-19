@@ -9,7 +9,7 @@
 #include <stdlib.h>
 
 #define MAX_PLAYERS 100
-#define PLAYER_DB_FILE "players.dat"
+#define PLAYER_DB_FILE "DATABASE/players.dat"
 #define MAX_USERNAME_LEN 50
 
 typedef struct {
