@@ -6,7 +6,7 @@ int main() {
     initscr();
 
     threadPlayBGMusic();       // Mulai BGM
-    setBGMVolume(25); 
+    setBGMVolume(25);  
     
     // Inisialisasi warna
     start_color();

@@ -1,0 +1,112 @@
+# Project: SOKOBANGAME
+# Makefile created by Embarcadero Dev-C++ 6.3
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+OBJ      = SOKOBANGAME/VIEW/chapterscreen.o SOKOBANGAME/VIEW/HistoryScreen.o SOKOBANGAME/VIEW/leaderboard.o SOKOBANGAME/VIEW/levelgridview.o SOKOBANGAME/VIEW/levelscreen.o SOKOBANGAME/VIEW/lobbyaltscreen.o SOKOBANGAME/VIEW/lobbyscreen.o SOKOBANGAME/VIEW/tutorial.o SOKOBANGAME/VIEW/viewtoolkit.o SOKOBANGAME/main.o SOKOBANGAME/UTILS/validator/validator.o SOKOBANGAME/UTILS/sound/soundmanager.o SOKOBANGAME/UTILS/auth/authentication.o SOKOBANGAME/STRUCTURES/list.o SOKOBANGAME/STRUCTURES/queue.o SOKOBANGAME/STRUCTURES/stack.o SOKOBANGAME/STRUCTURES/tree.o SOKOBANGAME/GAMEPLAY/ARENA_LOGIC/ChapterManager.o SOKOBANGAME/GAMEPLAY/ARENA_LOGIC/Level.o SOKOBANGAME/GAMEPLAY/ARENA_LOGIC/RoomFactory.o SOKOBANGAME/GAMEPLAY/DB_ACCESS/SaveState.o SOKOBANGAME/GAMEPLAY/GAME_LOGIC/ButtonGame.o SOKOBANGAME/GAMEPLAY/GAME_LOGIC/GameLogic.o SOKOBANGAME/GAMEPLAY/GAME_LOGIC/GameStart.o SOKOBANGAME/GAMEPLAY/GAME_LOGIC/ScoreGame.o SOKOBANGAME/GAMEPLAY/REPLAY_LOGIC/ReplayGame.o SOKOBANGAME/GAMEPLAY/UNDO_LOGIC/UndoGame.o SOKOBANGAME/DATABASE/DataHierarki.o SOKOBANGAME/DATABASE/Player.o
+LINKOBJ  = SOKOBANGAME/VIEW/chapterscreen.o SOKOBANGAME/VIEW/HistoryScreen.o SOKOBANGAME/VIEW/leaderboard.o SOKOBANGAME/VIEW/levelgridview.o SOKOBANGAME/VIEW/levelscreen.o SOKOBANGAME/VIEW/lobbyaltscreen.o SOKOBANGAME/VIEW/lobbyscreen.o SOKOBANGAME/VIEW/tutorial.o SOKOBANGAME/VIEW/viewtoolkit.o SOKOBANGAME/main.o SOKOBANGAME/UTILS/validator/validator.o SOKOBANGAME/UTILS/sound/soundmanager.o SOKOBANGAME/UTILS/auth/authentication.o SOKOBANGAME/STRUCTURES/list.o SOKOBANGAME/STRUCTURES/queue.o SOKOBANGAME/STRUCTURES/stack.o SOKOBANGAME/STRUCTURES/tree.o SOKOBANGAME/GAMEPLAY/ARENA_LOGIC/ChapterManager.o SOKOBANGAME/GAMEPLAY/ARENA_LOGIC/Level.o SOKOBANGAME/GAMEPLAY/ARENA_LOGIC/RoomFactory.o SOKOBANGAME/GAMEPLAY/DB_ACCESS/SaveState.o SOKOBANGAME/GAMEPLAY/GAME_LOGIC/ButtonGame.o SOKOBANGAME/GAMEPLAY/GAME_LOGIC/GameLogic.o SOKOBANGAME/GAMEPLAY/GAME_LOGIC/GameStart.o SOKOBANGAME/GAMEPLAY/GAME_LOGIC/ScoreGame.o SOKOBANGAME/GAMEPLAY/REPLAY_LOGIC/ReplayGame.o SOKOBANGAME/GAMEPLAY/UNDO_LOGIC/UndoGame.o SOKOBANGAME/DATABASE/DataHierarki.o SOKOBANGAME/DATABASE/Player.o
+LIBS     = -L"C:/Users/Administrator/Documents/Tugas/Tambal Tubes Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/lib" -lpdcurses -lwinmm -L"C:/Users/Administrator/Documents/Tugas/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/lib" SOKOBANGAME/UTILS/lib/libpdcurses.a
+INCS     = -I"C:/Users/Administrator/Documents/Tugas/Tambal Tubes Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/include""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" -I"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""C:/Users/Administrator/Documents/Tugas/Tambal Tubes Ban/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/lib" -I"C:/Users/Administrator/Documents/Tugas/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/VIEW" -I"C:/Users/Administrator/Documents/Tugas/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/auth" -I"C:/Users/Administrator/Documents/Tugas/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/include" -I"C:/Users/Administrator/Documents/Tugas/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/sound" -I"C:/Users/Administrator/Documents/Tugas/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/validator" -I"C:/Users/Administrator/Documents/Tugas/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/STRUCTURES" -I"C:/Users/Administrator/Documents/Tugas/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/GAMEPLAY/ARENA_LOGIC" -I"C:/Users/Administrator/Documents/Tugas/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/GAMEPLAY/DB_ACCESS" -I"C:/Users/Administrator/Documents/Tugas/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/GAMEPLAY/REPLAY_LOGIC" -I"C:/Users/Administrator/Documents/Tugas/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/GAMEPLAY/GAME_LOGIC" -I"C:/Users/Administrator/Documents/Tugas/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/GAMEPLAY/UNDO_LOGIC" -I"C:/Users/Administrator/Documents/Tugas/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/DATABASE" -I"C:/Users/Administrator/Documents/Tugas/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/ASSETS"
+CXXINCS  = -I"C:/Users/Administrator/Documents/Tugas/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/VIEW" -I"C:/Users/Administrator/Documents/Tugas/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/auth" -I"C:/Users/Administrator/Documents/Tugas/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/include" -I"C:/Users/Administrator/Documents/Tugas/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/sound" -I"C:/Users/Administrator/Documents/Tugas/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/UTILS/validator" -I"C:/Users/Administrator/Documents/Tugas/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/STRUCTURES" -I"C:/Users/Administrator/Documents/Tugas/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/GAMEPLAY/ARENA_LOGIC" -I"C:/Users/Administrator/Documents/Tugas/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/GAMEPLAY/DB_ACCESS" -I"C:/Users/Administrator/Documents/Tugas/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/GAMEPLAY/REPLAY_LOGIC" -I"C:/Users/Administrator/Documents/Tugas/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/GAMEPLAY/GAME_LOGIC" -I"C:/Users/Administrator/Documents/Tugas/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/GAMEPLAY/UNDO_LOGIC" -I"C:/Users/Administrator/Documents/Tugas/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/DATABASE" -I"C:/Users/Administrator/Documents/Tugas/SOKOBAN-TubesSDA-P--K7/SOKOBANGAME/ASSETS"
+BIN      = SOKOBANGAME.exe
+CXXFLAGS = $(CXXINCS) -lpdcurses -lwinmm
+CFLAGS   = $(INCS) -lpdcurses -lwinmm -lpdcurses -lwinmm
+DEL      = C:\Program Files (x86)\Embarcadero\Dev-Cpp\devcpp.exe INTERNAL_DEL
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${DEL} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+SOKOBANGAME/VIEW/chapterscreen.o: SOKOBANGAME/VIEW/chapterscreen.c
+	$(CC) -c SOKOBANGAME/VIEW/chapterscreen.c -o SOKOBANGAME/VIEW/chapterscreen.o $(CFLAGS)
+
+SOKOBANGAME/VIEW/HistoryScreen.o: SOKOBANGAME/VIEW/HistoryScreen.c
+	$(CC) -c SOKOBANGAME/VIEW/HistoryScreen.c -o SOKOBANGAME/VIEW/HistoryScreen.o $(CFLAGS)
+
+SOKOBANGAME/VIEW/leaderboard.o: SOKOBANGAME/VIEW/leaderboard.c
+	$(CC) -c SOKOBANGAME/VIEW/leaderboard.c -o SOKOBANGAME/VIEW/leaderboard.o $(CFLAGS)
+
+SOKOBANGAME/VIEW/levelgridview.o: SOKOBANGAME/VIEW/levelgridview.c
+	$(CC) -c SOKOBANGAME/VIEW/levelgridview.c -o SOKOBANGAME/VIEW/levelgridview.o $(CFLAGS)
+
+SOKOBANGAME/VIEW/levelscreen.o: SOKOBANGAME/VIEW/levelscreen.c
+	$(CC) -c SOKOBANGAME/VIEW/levelscreen.c -o SOKOBANGAME/VIEW/levelscreen.o $(CFLAGS)
+
+SOKOBANGAME/VIEW/lobbyaltscreen.o: SOKOBANGAME/VIEW/lobbyaltscreen.c
+	$(CC) -c SOKOBANGAME/VIEW/lobbyaltscreen.c -o SOKOBANGAME/VIEW/lobbyaltscreen.o $(CFLAGS)
+
+SOKOBANGAME/VIEW/lobbyscreen.o: SOKOBANGAME/VIEW/lobbyscreen.c
+	$(CC) -c SOKOBANGAME/VIEW/lobbyscreen.c -o SOKOBANGAME/VIEW/lobbyscreen.o $(CFLAGS)
+
+SOKOBANGAME/VIEW/tutorial.o: SOKOBANGAME/VIEW/tutorial.c
+	$(CC) -c SOKOBANGAME/VIEW/tutorial.c -o SOKOBANGAME/VIEW/tutorial.o $(CFLAGS)
+
+SOKOBANGAME/VIEW/viewtoolkit.o: SOKOBANGAME/VIEW/viewtoolkit.c
+	$(CC) -c SOKOBANGAME/VIEW/viewtoolkit.c -o SOKOBANGAME/VIEW/viewtoolkit.o $(CFLAGS)
+
+SOKOBANGAME/main.o: SOKOBANGAME/main.c
+	$(CC) -c SOKOBANGAME/main.c -o SOKOBANGAME/main.o $(CFLAGS)
+
+SOKOBANGAME/UTILS/validator/validator.o: SOKOBANGAME/UTILS/validator/validator.c
+	$(CC) -c SOKOBANGAME/UTILS/validator/validator.c -o SOKOBANGAME/UTILS/validator/validator.o $(CFLAGS)
+
+SOKOBANGAME/UTILS/sound/soundmanager.o: SOKOBANGAME/UTILS/sound/soundmanager.c
+	$(CC) -c SOKOBANGAME/UTILS/sound/soundmanager.c -o SOKOBANGAME/UTILS/sound/soundmanager.o $(CFLAGS)
+
+SOKOBANGAME/UTILS/auth/authentication.o: SOKOBANGAME/UTILS/auth/authentication.c
+	$(CC) -c SOKOBANGAME/UTILS/auth/authentication.c -o SOKOBANGAME/UTILS/auth/authentication.o $(CFLAGS)
+
+SOKOBANGAME/STRUCTURES/list.o: SOKOBANGAME/STRUCTURES/list.c
+	$(CC) -c SOKOBANGAME/STRUCTURES/list.c -o SOKOBANGAME/STRUCTURES/list.o $(CFLAGS)
+
+SOKOBANGAME/STRUCTURES/queue.o: SOKOBANGAME/STRUCTURES/queue.c
+	$(CC) -c SOKOBANGAME/STRUCTURES/queue.c -o SOKOBANGAME/STRUCTURES/queue.o $(CFLAGS)
+
+SOKOBANGAME/STRUCTURES/stack.o: SOKOBANGAME/STRUCTURES/stack.c
+	$(CC) -c SOKOBANGAME/STRUCTURES/stack.c -o SOKOBANGAME/STRUCTURES/stack.o $(CFLAGS)
+
+SOKOBANGAME/STRUCTURES/tree.o: SOKOBANGAME/STRUCTURES/tree.c
+	$(CC) -c SOKOBANGAME/STRUCTURES/tree.c -o SOKOBANGAME/STRUCTURES/tree.o $(CFLAGS)
+
+SOKOBANGAME/GAMEPLAY/ARENA_LOGIC/ChapterManager.o: SOKOBANGAME/GAMEPLAY/ARENA_LOGIC/ChapterManager.c
+	$(CC) -c SOKOBANGAME/GAMEPLAY/ARENA_LOGIC/ChapterManager.c -o SOKOBANGAME/GAMEPLAY/ARENA_LOGIC/ChapterManager.o $(CFLAGS)
+
+SOKOBANGAME/GAMEPLAY/ARENA_LOGIC/Level.o: SOKOBANGAME/GAMEPLAY/ARENA_LOGIC/Level.c
+	$(CC) -c SOKOBANGAME/GAMEPLAY/ARENA_LOGIC/Level.c -o SOKOBANGAME/GAMEPLAY/ARENA_LOGIC/Level.o $(CFLAGS)
+
+SOKOBANGAME/GAMEPLAY/ARENA_LOGIC/RoomFactory.o: SOKOBANGAME/GAMEPLAY/ARENA_LOGIC/RoomFactory.c
+	$(CC) -c SOKOBANGAME/GAMEPLAY/ARENA_LOGIC/RoomFactory.c -o SOKOBANGAME/GAMEPLAY/ARENA_LOGIC/RoomFactory.o $(CFLAGS)
+
+SOKOBANGAME/GAMEPLAY/DB_ACCESS/SaveState.o: SOKOBANGAME/GAMEPLAY/DB_ACCESS/SaveState.c
+	$(CC) -c SOKOBANGAME/GAMEPLAY/DB_ACCESS/SaveState.c -o SOKOBANGAME/GAMEPLAY/DB_ACCESS/SaveState.o $(CFLAGS)
+
+SOKOBANGAME/GAMEPLAY/GAME_LOGIC/ButtonGame.o: SOKOBANGAME/GAMEPLAY/GAME_LOGIC/ButtonGame.c
+	$(CC) -c SOKOBANGAME/GAMEPLAY/GAME_LOGIC/ButtonGame.c -o SOKOBANGAME/GAMEPLAY/GAME_LOGIC/ButtonGame.o $(CFLAGS)
+
+SOKOBANGAME/GAMEPLAY/GAME_LOGIC/GameLogic.o: SOKOBANGAME/GAMEPLAY/GAME_LOGIC/GameLogic.c
+	$(CC) -c SOKOBANGAME/GAMEPLAY/GAME_LOGIC/GameLogic.c -o SOKOBANGAME/GAMEPLAY/GAME_LOGIC/GameLogic.o $(CFLAGS)
+
+SOKOBANGAME/GAMEPLAY/GAME_LOGIC/GameStart.o: SOKOBANGAME/GAMEPLAY/GAME_LOGIC/GameStart.c
+	$(CC) -c SOKOBANGAME/GAMEPLAY/GAME_LOGIC/GameStart.c -o SOKOBANGAME/GAMEPLAY/GAME_LOGIC/GameStart.o $(CFLAGS)
+
+SOKOBANGAME/GAMEPLAY/GAME_LOGIC/ScoreGame.o: SOKOBANGAME/GAMEPLAY/GAME_LOGIC/ScoreGame.c
+	$(CC) -c SOKOBANGAME/GAMEPLAY/GAME_LOGIC/ScoreGame.c -o SOKOBANGAME/GAMEPLAY/GAME_LOGIC/ScoreGame.o $(CFLAGS)
+
+SOKOBANGAME/GAMEPLAY/REPLAY_LOGIC/ReplayGame.o: SOKOBANGAME/GAMEPLAY/REPLAY_LOGIC/ReplayGame.c
+	$(CC) -c SOKOBANGAME/GAMEPLAY/REPLAY_LOGIC/ReplayGame.c -o SOKOBANGAME/GAMEPLAY/REPLAY_LOGIC/ReplayGame.o $(CFLAGS)
+
+SOKOBANGAME/GAMEPLAY/UNDO_LOGIC/UndoGame.o: SOKOBANGAME/GAMEPLAY/UNDO_LOGIC/UndoGame.c
+	$(CC) -c SOKOBANGAME/GAMEPLAY/UNDO_LOGIC/UndoGame.c -o SOKOBANGAME/GAMEPLAY/UNDO_LOGIC/UndoGame.o $(CFLAGS)
+
+SOKOBANGAME/DATABASE/DataHierarki.o: SOKOBANGAME/DATABASE/DataHierarki.c
+	$(CC) -c SOKOBANGAME/DATABASE/DataHierarki.c -o SOKOBANGAME/DATABASE/DataHierarki.o $(CFLAGS)
+
+SOKOBANGAME/DATABASE/Player.o: SOKOBANGAME/DATABASE/Player.c
+	$(CC) -c SOKOBANGAME/DATABASE/Player.c -o SOKOBANGAME/DATABASE/Player.o $(CFLAGS)

@@ -151,6 +151,6 @@ void playReplay(RoomLayout *room, LevelData level, Queue *q) {
         napms(200);
         free(step);
     }
-    nodelay(stdscr, false);
+    nodelay(stdscr, true);
     stack_clear(&stackReplayUndo);
 }

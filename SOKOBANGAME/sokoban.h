@@ -26,7 +26,7 @@
 
 
 #include "GAMEPLAY/ARENA_LOGIC/RoomFactory.h"
-#include "GAMEPLAY/ARENA_LOGIC/level.h"
+#include "GAMEPLAY/ARENA_LOGIC/Level.h"
 #include "GAMEPLAY/ARENA_LOGIC/ChapterManager.h"
 
 
@@ -36,7 +36,7 @@
 #include "GAMEPLAY/REPLAY_LOGIC/ReplayGame.h"
 
 #include "VIEW/lobbyscreen.h"
-#include "VIEW/LevelScreen.h"
+#include "VIEW/levelscreen.h"
 #include "VIEW/chapterscreen.h"
 #include "VIEW/leaderboard.h"
 #include "VIEW/HistoryScreen.h"

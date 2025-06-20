@@ -1,4 +1,4 @@
-#include "player.h"
+#include "Player.h"
 
 PlayerData players[MAX_PLAYERS];
 int player_count = 0;
