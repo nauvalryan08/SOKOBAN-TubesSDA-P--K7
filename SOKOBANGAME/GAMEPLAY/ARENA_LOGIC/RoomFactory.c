@@ -1,6 +1,70 @@
 #define NCURSES_MOUSE_VERSION
 #include "RoomFactory.h"
 
+/**********************************************/
+/* -->          Getter AND Setter         <-- */
+/**********************************************/
+
+// ==> getter Objek;
+
+int getObject_X (Object object) {
+    return object.x;
+}
+
+int getObject_Y (Object object) {
+    return object.y;
+}
+
+int getObject_Status (Object object) {
+    return object.is_activated;
+}
+
+// ==> setter Objek;
+
+void setObject_X(Object *object, int x) {
+    object->x = x;
+}
+
+void setObject_Y(Object *object, int y) {
+    object->y = y;
+}
+
+void setObject_Status(Object *object, Boolean status) {
+    object->is_activated = status;
+}
+
+// Setter for all Object variables at once
+void setObject_Var(Object *object, int x, int y, Boolean status) {
+    object->x = x;
+    object->y = y;
+    object->is_activated = status;
+}
+
+// ==> getter RoomLayout
+
+Object getPlayer (RoomLayout room) {
+    return room.player;
+}
+
+Object getBoxes (RoomLayout room, int i) {
+    return room.boxes[i];
+}
+
+int getBoxCount (RoomLayout room) {
+    return room.box_count;
+}
+
+Object getTargets (RoomLayout room, int i) {
+    return room.targets[i];
+}
+
+int getTargetsCount (RoomLayout room) {
+    return room.target_count;
+}
+
+Object getFinish (RoomLayout room) {
+    return room.finish;
+}
 
 //===============================================================//
 //== Metod untuk parsing data objek pada Area ke dalam Struct  ==//
@@ -19,16 +83,16 @@ void parse_room(RoomLayout *room, const char **map) {
 
             switch (tile) {
                 case '@' :
-                    room->player = (Object){x,y, false};
+                    setObject_Var(&room->player, x, y, false);
                     break;
                 case '$' :
-                    room->boxes[room->box_count++] = (Object){x, y, false};
+                    setObject_Var(&room->boxes[room->box_count++], x, y, false);
                     break;
                 case '.' :
-                    room->targets[room->target_count++] = (Object){x,y,false};
+                    setObject_Var(&room->targets[room->target_count++], x, y, false);
                     break;
                 case 'F' :
-                    room->finish = (Object){x,y,false};
+                    setObject_Var(&room->finish, x, y, false);
                     break;
             }
         }
@@ -94,11 +158,6 @@ void print_room(const char *name, const char **map, const RoomLayout *room, Scor
     int arena_width = map_width * TILE_WIDTH;
 
     clear();
-
-    // // Tampilkan ukuran terminal
-    // char size_info[50];
-    // snprintf(size_info, sizeof(size_info), "Terminal: %d x %d", COLS, LINES);
-    // mvprintw(0, 0, "%s", size_info);
 
     if (LINES < map_height || LINES < min_height || COLS < map_width || COLS < min_width) {
         const char *msg = "Please resize terminal to fit the arena";
@@ -246,19 +305,15 @@ void print_sidebar(const RoomLayout *room, ScoreData data) {
     mvprintw(current_y, 23, "|");
     mvprintw(current_y++, 12, "%02d:%02d", data.time/60, data.time%60);
     mvprintw(current_y++, 2, "+--------------------+");
-    mvprintw(current_y, 2, "| Score :");
-    mvprintw(current_y, 23, "|");
-    mvprintw(current_y++, 12, "%d", data.score);
-    mvprintw(current_y++, 2, "+--------------------+");
 
-    current_y++;
+    current_y+= 3;
     mvprintw(current_y++, 2, "+--------------------+");
     mvprintw(current_y, 2, "| Moves :");
     mvprintw(current_y, 23, "|");
     mvprintw(current_y++, 12, "%d", data.TotalMove);
     mvprintw(current_y++, 2, "+--------------------+");
     mvprintw(current_y++, 2, "+--------------------+");
-    mvprintw(current_y, 2, "| Undo        :");
+    mvprintw(current_y, 2, "| Undo :");
     mvprintw(current_y, 23, "|");
     mvprintw(current_y++, 12, "%d", data.TotalUndo);
     mvprintw(current_y++, 2, "+--------------------+");
@@ -273,14 +328,6 @@ void print_sidebar(const RoomLayout *room, ScoreData data) {
         mvaddch(end_y, i, ACS_HLINE);
     }
     attroff(border_color);
-    
-    // Tambahkan beberapa dekorasi
-    // attron(COLOR_PAIR(8));
-    // for (int y = start_y + 18; y < end_y - 2; y += 2) {
-    //     mvaddch(y, sidebar_width - 2, ACS_DIAMOND);
-    // }
-    // attroff(COLOR_PAIR(8));
-
 }
 
 void print_bottom_bar() {

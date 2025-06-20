@@ -25,7 +25,6 @@ void start_level (RoomLayout *room, LevelData *level, ChapterData * current_chap
 
     pthread_create(&startSound, NULL, playStartGameSound, NULL);
     pthread_create(&enterSound, NULL, playStartGameSound, NULL);
-
     pthread_detach(startSound);
     pthread_detach(enterSound);
 
@@ -48,7 +47,6 @@ void start_level (RoomLayout *room, LevelData *level, ChapterData * current_chap
     int keyOutput = 0, tempOutput;
     int prev_lines = LINES;
     int prev_cols = COLS;
-
     ScoreData scoreData = {0};
 
     Button btn = {2, LINES - 10, 20, 4, "Exit"};
@@ -56,24 +54,36 @@ void start_level (RoomLayout *room, LevelData *level, ChapterData * current_chap
     const char **map = level->map;
     room->finish.is_activated = false;
 
+    // ====> INISIASI UNTUK STACK DAN QUEUE
     stack_init(&StackUndo);
     initQueue(&replayQueue);
+    //------------------------------------
 
     //-----------------------------//
 
     // --> Parsing data untuk RoomLayout <-- //
 
     // Cek apakah ada save untuk level ini
-    RoomLayout tempRoom;
-    if (load_game_state(username, level->level_id, &tempRoom)) {
-        if (ask_continue_save()) {
-            *room = tempRoom;
+    SaveState loaded;
+    int ID_data = (int)time(NULL);;
 
-            //hapus data yang dipakai
-            remove_game_state_entry(username, level->level_id);
+    if (load_game_state(username, level->level_id, &loaded)) {
+        if (ask_continue_save()) {
+            *room = loaded.room;
+            ID_data = loaded.ID_data;
+            // Coba load dari file sementara dulu
+            if (!load_temp_play_data(username, ID_data, &scoreData, &replayQueue)) {
+                load_play_data_by_id(username, ID_data, &scoreData, &replayQueue);
+            }
+            global_timer = scoreData.time;      //Melnautkan waktu pada state save
+            // remove data dari file
+            remove_game_state_entry(username, level->level_id, ID_data);
+            remove_temp_play_data_entry(username, ID_data, level->level_id);
         } else {
             parse_room(room, level->map);
-            remove_game_state_entry(username, level->level_id);
+            remove_game_state_entry(username, level->level_id, ID_data);
+            remove_temp_play_data_entry(username, ID_data, level->level_id);
+
         }
     } else {
         parse_room(room, level->map);
@@ -81,11 +91,14 @@ void start_level (RoomLayout *room, LevelData *level, ChapterData * current_chap
     //-----------------------------//
 
     nodelay(stdscr, TRUE);
+
     //simpan data roomLayout ke undo stack
     save_state(&StackUndo, room);
 
 
-    // --> Game Loop
+    //===================//
+    // --> GAME LOOP <-- //
+    //===================//
     getch();
     while (1) {
         prev_lines = LINES;
@@ -95,36 +108,51 @@ void start_level (RoomLayout *room, LevelData *level, ChapterData * current_chap
 
         scoreData.time = global_timer;
 
+        // ===>  update status objek 
         update_box_activation_status (room);
         update_finish_activation_status (room);
+        //------------------
 
+        //===> handle input :
         handle_input (room, map, &StackUndo, &replayQueue, &keyOutput, &btn, username);
+        nodelay(stdscr, TRUE);
 
 
-        if (keyOutput == 27) {
+        if (keyOutput == 27) {      //ESC button
             nodelay(stdscr, FALSE);
-            tempOutput = exit_game(room, username, level->level_id);
+            tempOutput = exit_game(room, username, level->level_id, ID_data, &replayQueue, scoreData);
             if (tempOutput == 0) {
                 nodelay(stdscr, TRUE);
-                continue;
             } else if (tempOutput == 1) {
                 break;
             }
-        } else if (keyOutput == 'F') {
+        } else if (keyOutput == 'F') {      //Cheat Button
+            nodelay(stdscr, FALSE);
             room->finish.is_activated = true;
+        }else if (keyOutput == 1) {
+            update_total_move(&scoreData, +1);
+        } else if (keyOutput == 'U') {
+            update_total_undo(&scoreData, +1);
+        } else if (keyOutput == 'R') {
+            set_score_data(&scoreData, 0,0,0,0);
+            global_timer = 0;
         }
+        keyOutput = 0;
+        //-----------------
 
-        // print_room (level->level_name, map, room, scoreData, &btn);
+        // ===> print RoomFactory [Menampilkan output tampilan ruangan sesuai data layout]
         print_room (level->level_name, map, room, scoreData, &btn);
+        //---------------------------------------------------------------------------
 
-
+        // ===> Check victory condition [Memeriksa kondisi menang]
         if (is_victory(room)) {
             print_room (level->level_name, map, room, scoreData, &btn);
-
             scoreData.time = global_timer;
-            game_finished(room, level, current_chapter, &replayQueue, scoreData, username);
+            int new_id_data = game_finished(room, level, current_chapter, &replayQueue, scoreData, username);
+            ID_data = new_id_data;
             break; // Keluar dari loop game
         }
+        //-------------------------------------------------
     }
 
     //bersihkan chace pada stack
@@ -141,45 +169,42 @@ void start_level (RoomLayout *room, LevelData *level, ChapterData * current_chap
 }
 
 // ===> Game finish logic (Save Data, input option)
-
-void game_finished(RoomLayout *room, LevelData *level, ChapterData *current_chapter, Queue *replayQueue, ScoreData scoreData, const char *username) {
-
+int game_finished(RoomLayout *room, LevelData *level, ChapterData *current_chapter, Queue *replayQueue, ScoreData scoreData, const char *username) {
     int prev_lines = LINES;
     int prev_cols = COLS;
-
     Queue q;
-
     int max_y, max_x;
     getmaxyx(stdscr, max_y, max_x);
 
-    pthread_t winSound; // sound effect
-    pthread_t enterSound;
-
+    pthread_t winSound, enterSound;
     pthread_create(&winSound, NULL, playWinSound, NULL);
     pthread_join(winSound, NULL);
 
+    calculate_score(&scoreData, room->box_count);
+
     char *msg1 = "^_^ CONGRATULATION. YOU WIN! ^_^";
     char *msg2 = "1. Replay  | 2. Next Stage  | 3. Quit";
-    Txtbox text[] = {{COLS / 2 - strlen(msg1)/2 - 2, LINES / 2 - 4, strlen(msg1) + 4, 2, msg1, "BOLD"},{COLS / 2 - strlen(msg1)/2 - 4, LINES / 2 - 1, strlen(msg2) + 4, 2, msg2, "BOLD"}};
+    Txtbox text[] = {
+        {COLS / 2 - strlen(msg1)/2 - 2, LINES / 2 - 4, strlen(msg1) + 4, 2, msg1, "BOLD"},
+        {COLS / 2 - strlen(msg1)/2 - 4, LINES / 2 - 1, strlen(msg2) + 4, 2, msg2, "BOLD"}
+    };
 
-    // Unlock level berikutnya
     level->is_finished = true;
     Ptree node = findTreeNode(current_chapter->ChapterTree, (void*)level, compareDataID);
     if (node != NULL) {
         unlock_child_if_parent_finished(node);
     }
 
-    // ==> SIMPAN PROGRESS PLAYER - TAMBAHAN BARU
     LevelID current_level_id = level_id_from_string(level->level_id);
     update_player_progress(username, current_level_id);
 
+    // === Simpan ke PLAYDATA ===
+    int data_id = (int)time(NULL);
+    save_data_to_database(username, level->level_id, data_id, scoreData, replayQueue);
 
-    // Simpan replay ke database
-    char dataID[64];
-    sprintf(dataID, "%s_%ld", level->level_id, time(NULL)); // Format unik ID
-    save_data_to_database(replayQueue, username, level->level_id, dataID, scoreData);
+    char dataIDStr[64];
+    sprintf(dataIDStr, "%d", data_id);
 
-    // Pilihan pasca menang
     int ch;
     while (1) {
         handle_resize(&prev_lines, &prev_cols);
@@ -187,48 +212,55 @@ void game_finished(RoomLayout *room, LevelData *level, ChapterData *current_chap
         draw_txtbox(&text[0]);
         draw_txtbox(&text[1]);
 
+        char scoreMsg[64];
+        sprintf(scoreMsg, "Final Score: %d", scoreData.score);
+        mvprintw((LINES / 2 - 1) + 3, COLS / 2 - (int)strlen(scoreMsg) / 2, "%s", scoreMsg);
         refresh();
 
         ch = getch();
         if (ch == '1') {
-            // Replay langkah yang baru saja dimainkan
             initReplayQueue(&q);
-            if (loadReplayRecord(&q, username, dataID)) {
+            if (loadReplayRecord(&q, username, dataIDStr)) {
                 pthread_create(&enterSound, NULL, playEnterSound, NULL);
                 pthread_join(enterSound, NULL);
                 playReplay(room, *level, &q);
             } else {
-                mvprintw(LINES / 2 + 3, COLS/2 - 9, "Replay tidak ditemukan!");
+                mvprintw(LINES / 2 + 3, COLS / 2 - 14, "Replay data not found!");
                 getch();
             }
             clearQueue(&q);
         } else if (ch == '2') {
+            clear();
             print_chapter_screen(username);
+            refresh();
             break;
         } else if (ch == '3' || ch == 27) {
-            // kembali ke lobby
-            break;;
+            clear();
+            refresh();
+            break;
         }
     }
 
     updateAllChapterStatus();
     unlockNextChapter();
+
+    return data_id;
 }
+
 
 
 //===> Exiting Game (save state or no)
 
-int exit_game(RoomLayout *room, const char *username, const char *level_id) {
-    if (!validate_ExitGame()) {
-        return 0; // Lanjutkan game
-    }
+int exit_game(RoomLayout *room, const char *username, const char *ID_level, int ID_data, Queue *replayQueue, ScoreData scoreData) {
+    Boolean result = validate_ExitGame();
+    if (!result) return 0;
 
-    // Jika user memilih y untuk exit, tanyakan apakah ingin save
     if (validate_SaveGame()) {
-        save_game_state(username, level_id, room);
+        save_game_state(username, ID_level, ID_data, room);
+        save_temp_play_data(username, ID_level, ID_data, scoreData, replayQueue);
         showMsg_SaveSuccess();
+        refresh();
     }
-    
     return 1;
 }
 
@@ -255,179 +287,3 @@ bool ask_continue_save() {
     }
 }
 
-
-
-
-// //=================================================//
-// //==                DATABASE ACCESS              ==//
-// //=================================================//
-// /* {Sopian} */
-
-// //==> Memnyimpan Hasil data usai bermain
-// void save_data_to_database ( Queue *q, const char *username, const char *levelID, const char *dataID, ScoreData scoreData) {
-
-//     FILE *fp = fopen(PLAY_DATA_PATH, "a");
-//     if (!fp) return;
-
-//     // Tulis metadata
-//     fprintf(fp, "%s|%s|%s|%d|%d|%d|%d|",
-//         username,
-//         levelID,
-//         dataID,
-//         scoreData.score,
-//         scoreData.time,
-//         scoreData.TotalMove,
-//         scoreData.TotalUndo
-//     );
-
-//     // Tulis langkah-langkah replay (UDRLZ)
-//     Node *curr = q->front;
-//     while (curr) {
-//         ReplayStep *step = (ReplayStep *) curr->data;
-//         fprintf(fp, "%c", step->move);
-//         curr = curr->next;
-//     }
-
-//     fprintf(fp, "\n");
-//     fclose(fp);
-// }
-
-
-// //==> menyimpan State permainan saat Exit [untuk kembali dilanjutkan saat bermain lagi]
-// void save_game_state (const char* username, const char* level_id, RoomLayout* room) {
-//     SaveState save;
-//     strncpy(save.username, username, sizeof(save.username));
-//     strncpy(save.level_id, level_id, sizeof(save.level_id));
-//     save.room = *room;
-
-//     // Buka file index lama untuk baca
-//     FILE *index_old = fopen(INDEX_DATA_STATE_PATH, "r");
-//     FILE *index_new = fopen("temp_index.txt", "w"); // file index baru
-//     if (!index_new) return;
-
-//     char key_to_remove[64];
-//     sprintf(key_to_remove, "%s-%s", username, level_id);
-
-//     // Salin semua index kecuali yang ingin dihapus
-//     if (index_old) {
-//         char line[100], fileKey[64];
-//         long offset;
-//         while (fgets(line, sizeof(line), index_old)) {
-//             sscanf(line, "%[^;];%ld", fileKey, &offset);
-//             if (strcmp(fileKey, key_to_remove) != 0) {
-//                 fputs(line, index_new);
-//             }
-//         }
-//         fclose(index_old);
-//     }
-
-//     // Buka data file dan tulis data baru
-//     FILE *data = fopen(DATA_STATE_PATH, "ab");
-//     if (!data) {
-//         fclose(index_new);
-//         return;
-//     }
-
-//     long offset = ftell(data);
-//     fwrite(&save, sizeof(SaveState), 1, data);
-//     fclose(data);
-
-//     // Tambahkan entri index baru
-//     fprintf(index_new, "%s;%ld\n", key_to_remove, offset);
-//     fclose(index_new);
-
-//     // Ganti file index lama dengan yang baru
-//     remove(INDEX_DATA_STATE_PATH);
-//     rename("temp_index.txt", INDEX_DATA_STATE_PATH);
-// }
-
-
-// //==> Load gameState (mengambil data RoomLayout untuk nanti dijadikan aacuan start game)
-// int load_game_state (const char* username, const char* level_id, RoomLayout* room) {
-//     FILE *index = fopen(INDEX_DATA_STATE_PATH, "r");    //read 
-//     FILE *data = fopen(DATA_STATE_PATH, "rb");     //read Binary
-//     if (!index || !data) return 0; //Gagal membuka file
-
-//     char line[100], key[40];
-//     sprintf(key, "%s-%s", username, level_id);
-//     long offset = -1;       //
-
-//     char fileKey[40];
-//     long fileOffset;
-
-//     while (fgets(line, sizeof(line), index)) {
-//         sscanf(line, "%[^;];%ld", fileKey, &fileOffset);    //mengambil data dengamn format
-//         if (strcmp(fileKey, key) == 0) {                // JIka sama key nya
-//             offset = fileOffset;
-//             break;
-//         }
-//     }
-
-//     fclose(index);  //index didapatkan
-//     if (offset == -1) { //data tidak dotermukan sama sekali
-//         fclose(data);
-//         return 0;       //tidak ditemukan
-//     }
-
-//     fseek(data, offset, SEEK_SET);
-//     SaveState loaded;
-//     fread(&loaded, sizeof(SaveState), 1, data);
-//     *room = loaded.room;
-//     fclose(data);
-//     return 1;
-
-// }
-
-// // ===> menghapus data state yang sudah dipakai
-
-// void remove_game_state_entry(const char* username, const char* level_id) {
-//     FILE *index_old = fopen(INDEX_DATA_STATE_PATH, "r");
-//     FILE *data_old = fopen(DATA_STATE_PATH, "rb");
-//     FILE *index_new = fopen("temp_index.txt", "w");
-//     FILE *data_new = fopen("temp_data.dat", "wb");
-
-//     if (!index_old || !data_old || !index_new || !data_new) {
-//         if (index_old) fclose(index_old);
-//         if (data_old) fclose(data_old);
-//         if (index_new) fclose(index_new);
-//         if (data_new) fclose(data_new);
-//         return;
-//     }
-
-//     char key_to_remove[64];
-//     sprintf(key_to_remove, "%s-%s", username, level_id);
-
-//     char line[100], fileKey[64];
-//     long fileOffset;
-//     SaveState buffer;
-//     long new_offset = 0;
-
-//     while (fgets(line, sizeof(line), index_old)) {
-//         sscanf(line, "%[^;];%ld", fileKey, &fileOffset);
-
-//         // Pindah ke offset di data lama
-//         fseek(data_old, fileOffset, SEEK_SET);
-//         fread(&buffer, sizeof(SaveState), 1, data_old);
-
-//         // Jika bukan data yang ingin dihapus, tulis ulang ke file baru
-//         if (strcmp(fileKey, key_to_remove) != 0) {
-//             // tulis ke data baru
-//             fwrite(&buffer, sizeof(SaveState), 1, data_new);
-//             // tulis ke index baru dengan offset baru
-//             fprintf(index_new, "%s;%ld\n", fileKey, new_offset);
-//             new_offset += sizeof(SaveState);
-//         }
-//     }
-
-//     // Tutup semua
-//     fclose(index_old);
-//     fclose(data_old);
-//     fclose(index_new);
-//     fclose(data_new);
-
-//     // Replace file lama dengan yang baru
-//     remove(INDEX_DATA_STATE_PATH);
-//     remove(DATA_STATE_PATH);
-//     rename("temp_index.txt", INDEX_DATA_STATE_PATH);
-//     rename("temp_data.dat", DATA_STATE_PATH);
-// }

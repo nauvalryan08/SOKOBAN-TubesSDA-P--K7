@@ -11,8 +11,8 @@
 
 #include "../ARENA_LOGIC/RoomFactory.h"
 #include "../ARENA_LOGIC/Level.h"
-#include "GameLogic.h"
 #include "../UNDO_LOGIC/UndoGame.h"
+#include "GameLogic.h"
 
 #include <stdio.h>
 #include <string.h>

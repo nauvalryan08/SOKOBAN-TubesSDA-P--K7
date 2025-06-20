@@ -46,8 +46,8 @@ void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *
             } else {
                 ReplayStep* step = createStep('U');
                 enqueue(ReplayQueue, step);
+                *keyOutput = 1;     //Indikasi menekan move button
             }
-            *keyOutput = 1;     //Indikasi menekan move button
             break;
         case KEY_DOWN :
             pthread_create(&moveSound, NULL, playMoveSound, NULL);
@@ -58,8 +58,8 @@ void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *
             } else {
                 ReplayStep* step = createStep('D');
                 enqueue(ReplayQueue, step);
+                *keyOutput = 1;     //Indikasi menekan move button
             }
-            *keyOutput = 1;     //Indikasi menekan move button
             break;
         case KEY_LEFT :
             pthread_create(&moveSound, NULL, playMoveSound, NULL);
@@ -70,8 +70,8 @@ void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *
             } else {
                 ReplayStep* step = createStep('L');
                 enqueue(ReplayQueue, step);
+                *keyOutput = 1;     //Indikasi menekan move button
             }
-            *keyOutput = 1;     //Indikasi menekan move button
             break;
         case KEY_RIGHT :
             pthread_create(&moveSound, NULL, playMoveSound, NULL);
@@ -82,8 +82,8 @@ void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *
             } else {
                 ReplayStep* step = createStep('R');
                 enqueue(ReplayQueue, step);
+                *keyOutput = 1;     //Indikasi menekan move button
             }
-            *keyOutput = 1;     //Indikasi menekan move button
             break;
         case 'r' :
         case 'R' :
@@ -94,6 +94,7 @@ void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *
                 stack_clear(UndoStack);
                 clearQueue(ReplayQueue);
                 showMsg_GameReset();
+                *keyOutput = 'R';
             }
             break;
         case 'u' :
@@ -103,6 +104,7 @@ void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *
             pthread_detach(undoSound);
             ReplayStep* step = createStep('Z');
             enqueue(ReplayQueue, step);
+            *keyOutput = 'U';     //indikasi Undo
             break;
         case 27:
             *keyOutput = 27;
