@@ -74,10 +74,15 @@ LeftChar=1
 [Editor_48]
 CursorCol=25
 CursorRow=285
-TopLine=264
+TopLine=256
 LeftChar=1
 [Editor_49]
 CursorCol=35
 CursorRow=5
 TopLine=1
+LeftChar=1
+[Editor_10]
+CursorCol=44
+CursorRow=116
+TopLine=95
 LeftChar=1

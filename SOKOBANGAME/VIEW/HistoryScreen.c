@@ -25,37 +25,44 @@ void show_history(const char username[20]){
             {COLS / 4, LINES / 2 + 5, COLS / 2, 4, "Chapter 5"},
         };
 
-        pthread_t enterSound, arrowSound;
+        pthread_t soundThread;
         switch (ch){
             case KEY_UP:
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 selected = (selected > 0) ? selected - 1 : n_chapters - 1;
                 break;
             case KEY_DOWN:
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 selected = (selected < n_chapters - 1) ? selected + 1 : 0;
                 break;
             case '\n':
             case KEY_ENTER:
                 switch (selected){
                     case 0: // Chapter 1
-                        pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                        pthread_create(&soundThread, NULL, playEnterSound, NULL);
+                        pthread_detach(soundThread);
                         ch1_grid(HISTORY, username);
                         break;
                     case 1: // Chapter 2
-                        pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                        pthread_create(&soundThread, NULL, playEnterSound, NULL);
+                        pthread_detach(soundThread);
                         ch2_grid(HISTORY, username);
                         break;
                     case 2: // Chapter 3
-                        pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                        pthread_create(&soundThread, NULL, playEnterSound, NULL);
+                        pthread_detach(soundThread);
                         ch3_grid(HISTORY, username);
                         break;
                     case 3: // Chapter 4
-                        pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                        pthread_create(&soundThread, NULL, playEnterSound, NULL);
+                        pthread_detach(soundThread);
                         ch4_grid(HISTORY, username);
                         break;
                     case 4: // Chapter 5
-                        pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                        pthread_create(&soundThread, NULL, playEnterSound, NULL);
+                        pthread_detach(soundThread);
                         ch5_grid(HISTORY, username);
                         break;
                 }
@@ -63,7 +70,8 @@ void show_history(const char username[20]){
             case KEY_MOUSE:
                 if (getmouse(&event) == OK) {
                     if (event.bstate & BUTTON1_CLICKED){
-                        pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                        pthread_create(&soundThread, NULL, playEnterSound, NULL);
+                        pthread_detach(soundThread);
                         for (int i = 0; i < n_chapters; i++) {
                             if (isbtnarea(&buttons[i], event.x, event.y)) {
                                 selected = i;
@@ -74,7 +82,8 @@ void show_history(const char username[20]){
                         for (int i = 0; i < n_chapters; i++) {
                             if (isbtnarea(&buttons[i], event.x, event.y)) {
                                 selected = i;
-                                pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                                pthread_create(&soundThread, NULL, playEnterSound, NULL);
+                                pthread_detach(soundThread);
                                 switch (selected){
                                     case 0: ch1_grid(HISTORY, username); break;
                                     case 1: ch2_grid(HISTORY, username); break;
@@ -93,8 +102,6 @@ void show_history(const char username[20]){
             default:
                 break;
         }
-        pthread_join(arrowSound, NULL);
-        pthread_join(enterSound, NULL);
 
         // Instruksi
         draw_box(0,0,strlen("Klik kiri pada tombol chapter untuk memilih chapter!") + 2, 5);

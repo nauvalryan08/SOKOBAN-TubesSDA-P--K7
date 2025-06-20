@@ -31,14 +31,12 @@ void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *
     mousemask(ALL_MOUSE_EVENTS | REPORT_MOUSE_POSITION, &old);
     Boolean valid = false;
 
-    pthread_t moveSound;
-    pthread_t undoSound;
-    pthread_t enterSound;
-    pthread_t gameResetSound;
+    pthread_t soundThread;
     
     switch (ch) {
         case KEY_UP :
-            pthread_create(&moveSound, NULL, playMoveSound, NULL);
+            pthread_create(&soundThread, NULL, playMoveSound, NULL);
+            pthread_detach(soundThread);
             save_state(UndoStack, room);
             valid = move_player(room, 0, -1, map);
             if (!valid) {
@@ -50,7 +48,8 @@ void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *
             }
             break;
         case KEY_DOWN :
-            pthread_create(&moveSound, NULL, playMoveSound, NULL);
+            pthread_create(&soundThread, NULL, playMoveSound, NULL);
+            pthread_detach(soundThread);
             save_state(UndoStack, room);
             valid = move_player(room, 0, +1, map);
             if (!valid) {
@@ -62,7 +61,8 @@ void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *
             }
             break;
         case KEY_LEFT :
-            pthread_create(&moveSound, NULL, playMoveSound, NULL);
+            pthread_create(&soundThread, NULL, playMoveSound, NULL);
+            pthread_detach(soundThread);
             save_state(UndoStack, room);
             valid = move_player(room, -1, 0, map);
             if (!valid) {
@@ -74,7 +74,8 @@ void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *
             }
             break;
         case KEY_RIGHT :
-            pthread_create(&moveSound, NULL, playMoveSound, NULL);
+            pthread_create(&soundThread, NULL, playMoveSound, NULL);
+            pthread_detach(soundThread);
             save_state(UndoStack, room);
             valid = move_player(room, +1, 0, map);
             if (!valid) {
@@ -88,8 +89,8 @@ void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *
         case 'r' :
         case 'R' :
             if (validate_GameReset()) {
-                pthread_create(&gameResetSound, NULL, playGameResetSound, NULL);
-                pthread_join(gameResetSound, NULL);
+                pthread_create(&soundThread, NULL, playGameResetSound, NULL);
+                pthread_join(soundThread, NULL);
                 reset_game(room, map);
                 stack_clear(UndoStack);
                 clearQueue(ReplayQueue);
@@ -100,8 +101,8 @@ void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *
         case 'u' :
         case 'U' :
             undo_game(UndoStack, room);
-            pthread_create(&undoSound, NULL, playUndoSound, NULL);
-            pthread_detach(undoSound);
+            pthread_create(&soundThread, NULL, playUndoSound, NULL);
+            pthread_detach(soundThread);
             ReplayStep* step = createStep('Z');
             enqueue(ReplayQueue, step);
             *keyOutput = 'U';     //indikasi Undo
@@ -123,8 +124,8 @@ void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *
         // Handle Quit Button
         if (getmouse(&event) == OK) {
             if (event.bstate & BUTTON1_CLICKED){
-                pthread_create(&enterSound, NULL, playEnterSound, NULL);
-                pthread_join(enterSound, NULL);
+                pthread_create(&soundThread, NULL, playEnterSound, NULL);
+                pthread_join(soundThread, NULL);
                 if (isbtnarea(btn, event.x, event.y)) {
                     *keyOutput = 27;
                 }
@@ -132,5 +133,4 @@ void handle_input (RoomLayout *room, const char **map, Stack *UndoStack, Queue *
         }
         break;
     }
-    pthread_join(moveSound, NULL);
 }

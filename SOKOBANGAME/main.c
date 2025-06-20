@@ -25,7 +25,6 @@ int main() {
     int menu_choice = 0;
     RoomLayout room;
     LevelData *selected_level;
-    pthread_t enterSound;
 
     initAllChapters();
     load_all_players(); // Memuat data player saat program dimulai
@@ -57,11 +56,11 @@ int main() {
             break;
         case 2: // History
             // Implementasi fitur history
-            show_history();
+            show_history(current_username);
             break;
         case 3 :
             // Implementasi fitur leaderboard
-            show_leaderboard();
+            show_leaderboard(current_username);
             break;
         case 4: // How to play
             show_tutorial_screen();

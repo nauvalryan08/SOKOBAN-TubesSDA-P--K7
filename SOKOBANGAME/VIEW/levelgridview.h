@@ -5,6 +5,11 @@
 #include "../UTILS/sound/soundmanager.h"
 #include "../UTILS/include/curses.h"
 #include "../GAMEPLAY/ARENA_LOGIC/Level.h"
+#include "../DATABASE/PlayDataAccess.h"
+#include "../GAMEPLAY/DB_ACCESS/SaveState.h"
+#include "../GAMEPLAY/GAME_LOGIC/ScoreGame.h"
+#include "../GAMEPLAY/REPLAY_LOGIC/ReplayGame.h"
+#include "../GAMEPLAY/ARENA_LOGIC/RoomFactory.h"
 
 #include <pthread.h>
 #include <stdlib.h>
@@ -28,11 +33,11 @@ typedef enum {
 
 // Mendapatkan judul untuk chapter dan konteks tertentu (LEADERBOARD/HISTORY)
 const char* get_chapter_title(chapter_index chapter, context option);
-void ch1_grid(context option);
-void ch2_grid(context option);
-void ch3_grid(context option);
-void ch4_grid(context option);
-void ch5_grid(context option);
+void ch1_grid(context option,const char username[20]);
+void ch2_grid(context option,const char username[20]);
+void ch3_grid(context option,const char username[20]);
+void ch4_grid(context option,const char username[20]);
+void ch5_grid(context option,const char username[20]);
 
 
 void show_data_table(const char* id_level);

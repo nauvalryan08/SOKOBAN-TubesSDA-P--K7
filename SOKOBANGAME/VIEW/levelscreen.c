@@ -99,31 +99,35 @@ LevelData* select_level_from_list(LevelData* levels[], int count) {
   
     show_level_selection_screen(levels, count);
     
+    pthread_t soundThread;
     while ((ch = getch()) != 27) {
         show_level_selection_screen(levels, count);
-        pthread_t arrowSound;
 
         switch (ch) {
             case KEY_LEFT:
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 if (current_selection >= MAX_LEVELS_PER_COLUMN) {
                     current_selection -= MAX_LEVELS_PER_COLUMN;
                 }
                 break;
             case KEY_RIGHT:
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 if (current_selection + MAX_LEVELS_PER_COLUMN < num_levels) {
                     current_selection += MAX_LEVELS_PER_COLUMN;
                 }
                 break;
             case KEY_UP:
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 if (current_selection > 0) {
                     current_selection--;
                 }
                 break;
             case KEY_DOWN:
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 if (current_selection < num_levels - 1) {
                     current_selection++;
                 }
@@ -138,12 +142,7 @@ LevelData* select_level_from_list(LevelData* levels[], int count) {
                 delwin(level_win);
                 level_win = NULL;
                 curs_set(1);
-                pthread_t enterSound;
-                pthread_create(&enterSound, NULL, playEnterSound, NULL);
-                pthread_join(enterSound, NULL);
         }
-        pthread_join(arrowSound, NULL);
-        refresh();
     }
     return NULL;
 }
@@ -193,9 +192,10 @@ LevelData* tutorial_screen(){
     }
 
     curs_set(0);
+    pthread_t soundThread;
     while ((ch = getch()) != 27) {
         clear();
-        pthread_t arrowSound, enterSound;
+
         // Create buttons with proper proportions in horizontal layout
         Button levels[] = {
             {COLS/2-70, LINES/2, 21, 4, "Level 1"}, // n1
@@ -242,22 +242,22 @@ LevelData* tutorial_screen(){
 
         switch (ch) {
             case KEY_LEFT:
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 current_selection = (current_selection > 0) ? current_selection - 1 : collector.count - 1;
                 break;
             case KEY_RIGHT:
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 current_selection = (current_selection < collector.count - 1) ? current_selection + 1 : 0;
                 break;
             case KEY_ENTER:
             case '\n':
-                pthread_create(&enterSound, NULL, playEnterSound, NULL);
                 return tutorial[current_selection];
                 break;
             case KEY_MOUSE:
                 if (getmouse(&event) == OK) {
                     if (event.bstate & BUTTON1_CLICKED){
-                        pthread_create(&enterSound, NULL, playEnterSound, NULL);
                         for (int i = 0; i < collector.count; i++) {
                             if (isbtnarea(&levels[i], event.x, event.y)) {
                                     current_selection = i;
@@ -269,8 +269,6 @@ LevelData* tutorial_screen(){
                 resize_term(0,0);
                 break;
         }
-        pthread_join(arrowSound, NULL);
-        pthread_join(enterSound, NULL);
         refresh();
     }
     return NULL;
@@ -293,9 +291,10 @@ LevelData* chapter1_screen(){
     }
 
     curs_set(0);
+    pthread_t soundThread;
     while ((ch = getch()) != 27) {
         clear();
-        pthread_t arrowSound, enterSound;
+
         // Create buttons with proper proportions
         Button levels[] = {
             {COLS/2-5, LINES/2-12, 21, 4, "Level 1"}, // n1
@@ -344,22 +343,22 @@ LevelData* chapter1_screen(){
 
         switch (ch) {
             case KEY_LEFT:
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 current_selection = (current_selection > 0) ? current_selection - 1 : collector.count - 1;
                 break;
             case KEY_RIGHT:
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 current_selection = (current_selection < collector.count - 1) ? current_selection + 1 : 0;
                 break;
             case KEY_ENTER:
             case '\n':
-                pthread_create(&enterSound, NULL, playEnterSound, NULL);
                 return chapter1[current_selection];
                 break;
             case KEY_MOUSE:
                 if (getmouse(&event) == OK) {
                     if (event.bstate & BUTTON1_CLICKED){
-                        pthread_create(&enterSound, NULL, playEnterSound, NULL);
                         for (int i = 0; i < collector.count; i++) {
                             if (isbtnarea(&levels[i], event.x, event.y)) {
                                     current_selection = i;
@@ -371,8 +370,6 @@ LevelData* chapter1_screen(){
                 resize_term(0,0);
                 break;
         }
-        pthread_join(arrowSound, NULL);
-        pthread_join(enterSound, NULL);
         refresh();
     }
     return NULL;
@@ -396,9 +393,10 @@ LevelData* chapter2_screen(){
     }
 
     curs_set(0);
+    pthread_t soundThread;
     while ((ch = getch()) != 27) {
         clear();
-        pthread_t arrowSound, enterSound;
+
         // Create buttons with proper proportions
         Button levels[] = {
             {COLS/2-15, LINES/2-16, 21, 4, "Level 1"},    // n1
@@ -473,22 +471,22 @@ LevelData* chapter2_screen(){
 
         switch (ch) {
             case KEY_LEFT:
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 current_selection = (current_selection > 0) ? current_selection - 1 : collector.count - 1;
                 break;
             case KEY_RIGHT:
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 current_selection = (current_selection < collector.count - 1) ? current_selection + 1 : 0;
                 break;
             case KEY_ENTER:
             case '\n':
-                pthread_create(&enterSound, NULL, playEnterSound, NULL);
                 return chapter2[current_selection];
                 break;
             case KEY_MOUSE:
                 if (getmouse(&event) == OK) {
                     if (event.bstate & BUTTON1_CLICKED){
-                        pthread_create(&enterSound, NULL, playEnterSound, NULL);
                         for (int i = 0; i < collector.count; i++) {
                             if (isbtnarea(&levels[i], event.x, event.y)) {
                                     current_selection = i;
@@ -500,8 +498,6 @@ LevelData* chapter2_screen(){
                 resize_term(0,0);
                 break;
         }
-        pthread_join(arrowSound, NULL);
-        pthread_join(enterSound, NULL);
         refresh();
     }
     return NULL;
@@ -525,9 +521,10 @@ LevelData* chapter3_screen(){
     }
 
     curs_set(0);
+    pthread_t soundThread;
     while ((ch = getch()) != 27) {
         clear();
-        pthread_t arrowSound, enterSound;
+
         // Create buttons with proper proportions for 190x47 screen
         Button levels[] = {
             {COLS/3+8, LINES/2-16, 21, 4, "Level 1"},    // n1
@@ -608,22 +605,22 @@ LevelData* chapter3_screen(){
 
         switch (ch) {
             case KEY_LEFT:
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 current_selection = (current_selection > 0) ? current_selection - 1 : collector.count - 1;
                 break;
             case KEY_RIGHT:
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 current_selection = (current_selection < collector.count - 1) ? current_selection + 1 : 0;
                 break;
             case KEY_ENTER:
             case '\n':
-                pthread_create(&enterSound, NULL, playEnterSound, NULL);
                 return chapter3[current_selection];
                 break;
             case KEY_MOUSE:
                 if (getmouse(&event) == OK) {
                     if (event.bstate & BUTTON1_CLICKED){
-                        pthread_create(&enterSound, NULL, playEnterSound, NULL);
                         for (int i = 0; i < collector.count; i++) {
                             if (isbtnarea(&levels[i], event.x, event.y)) {
                                     current_selection = i;
@@ -635,8 +632,6 @@ LevelData* chapter3_screen(){
                 resize_term(0,0);
                 break;
         }
-        pthread_join(arrowSound, NULL);
-        pthread_join(enterSound, NULL);
         refresh();
     }
     return NULL;
@@ -660,9 +655,10 @@ LevelData* chapter4_screen(){
     }
 
     curs_set(0);
+    pthread_t soundThread;
     while ((ch = getch()) != 27) {
         clear();
-        pthread_t arrowSound, enterSound;
+
         // Create buttons with proper proportions for 190x47 screen
         Button levels[] = {
             {COLS/2-10, LINES/2-16, 21, 4, "Level 1"},    // n1
@@ -749,22 +745,22 @@ LevelData* chapter4_screen(){
 
         switch (ch) {
             case KEY_LEFT:
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 current_selection = (current_selection > 0) ? current_selection - 1 : collector.count - 1;
                 break;
             case KEY_RIGHT:
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 current_selection = (current_selection < collector.count - 1) ? current_selection + 1 : 0;
                 break;
             case KEY_ENTER:
             case '\n':
-                pthread_create(&enterSound, NULL, playEnterSound, NULL);
                 return chapter4[current_selection];
                 break;
             case KEY_MOUSE:
                 if (getmouse(&event) == OK) {
                     if (event.bstate & BUTTON1_CLICKED){
-                        pthread_create(&enterSound, NULL, playEnterSound, NULL);
                         for (int i = 0; i < collector.count; i++) {
                             if (isbtnarea(&levels[i], event.x, event.y)) {
                                     current_selection = i;
@@ -776,8 +772,6 @@ LevelData* chapter4_screen(){
                 resize_term(0,0);
                 break;
         }
-        pthread_join(arrowSound, NULL);
-        pthread_join(enterSound, NULL);
         refresh();
     }
     return NULL;
@@ -801,9 +795,10 @@ LevelData* chapter5_screen(){
     }
 
     curs_set(0);
+    pthread_t soundThread;
     while ((ch = getch()) != 27) {
         clear();
-        pthread_t arrowSound, enterSound;
+
         // Create buttons with proper proportions for 190x47 screen
         Button levels[] = {
             {COLS/2-10, LINES/2-16, 21, 4, "Level 1"},    // n1
@@ -894,22 +889,22 @@ LevelData* chapter5_screen(){
 
         switch (ch) {
             case KEY_LEFT:
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 current_selection = (current_selection > 0) ? current_selection - 1 : collector.count - 1;
                 break;
             case KEY_RIGHT:
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 current_selection = (current_selection < collector.count - 1) ? current_selection + 1 : 0;
                 break;
             case KEY_ENTER:
             case '\n':
-                pthread_create(&enterSound, NULL, playEnterSound, NULL);
                 return chapter5[current_selection];
                 break;
             case KEY_MOUSE:
                 if (getmouse(&event) == OK) {
                     if (event.bstate & BUTTON1_CLICKED){
-                        pthread_create(&enterSound, NULL, playEnterSound, NULL);
                         for (int i = 0; i < collector.count; i++) {
                             if (isbtnarea(&levels[i], event.x, event.y)) {
                                     current_selection = i;
@@ -921,8 +916,6 @@ LevelData* chapter5_screen(){
                 resize_term(0,0);
                 break;
         }
-        pthread_join(arrowSound, NULL);
-        pthread_join(enterSound, NULL);
         refresh();
     }
     return NULL;

@@ -11,12 +11,12 @@
 
 #define MAX_PLAYERS 100
 #define PLAYER_DB_FILE "./SOKOBANGAME/DATABASE/players.dat"
-#define MAX_USERNAME_LEN 50
+#define MAX_USERNAME_LEN 20
 #define MAX_FINISHED_PER_CHAPTER 25
 
 
 typedef struct {
-    char username[MAX_USERNAME_LEN];
+    char username[20];
     int id;                                 
     ChapterTree current_chapter;        //chapter saat ini
     LevelID finished[LEVEL_COUNT];      //Data level yang finished di current chapter/

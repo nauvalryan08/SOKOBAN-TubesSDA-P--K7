@@ -9,7 +9,7 @@ void initList(DoublyLinkedList *list) {
 }
 
 void insertLast(DoublyLinkedList *list, void *data) {
-    Node *newNode = (Node*)malloc(sizeof(Node));
+    TableItems *newNode = (TableItems*)malloc(sizeof(TableItems));
     newNode->data = data;
     newNode->next = NULL;
     
@@ -28,7 +28,7 @@ void insertLast(DoublyLinkedList *list, void *data) {
 void deleteAt(DoublyLinkedList *list, int position) {
     if(position < 0 || position >= list->size) return;
     
-    Node *current = list->head;
+    TableItems*current = list->head;
     for(int i = 0; i < position; i++) {
         current = current->next;
     }
@@ -46,7 +46,7 @@ void deleteAt(DoublyLinkedList *list, int position) {
 void* getAt(DoublyLinkedList *list, int position) {
     if(position < 0 || position >= list->size) return NULL;
     
-    Node *current = list->head;
+    TableItems *current = list->head;
     for(int i = 0; i < position; i++) {
         current = current->next;
     }
@@ -54,7 +54,7 @@ void* getAt(DoublyLinkedList *list, int position) {
 }
 
 void printList(DoublyLinkedList *list, void (*printData)(void*)) {
-    Node *current = list->head;
+    TableItems *current = list->head;
     while(current != NULL) {
         printData(current->data);
         current = current->next;
@@ -62,9 +62,9 @@ void printList(DoublyLinkedList *list, void (*printData)(void*)) {
 }
 
 void clearList(DoublyLinkedList *list) {
-    Node *current = list->head;
+    TableItems *current = list->head;
     while(current != NULL) {
-        Node *temp = current;
+        TableItems *temp = current;
         current = current->next;
         free(temp);
     }

@@ -97,23 +97,25 @@ int show_alt_lobby(const char * username){
             show_alt_menu(selected, items, menu_items);
             draw_txtbox(&logged_as);
 
-            pthread_t arrowSound;
-            pthread_t enterSound;
+            pthread_t soundThread;
 
                 ch = getch();
                 switch (ch) {
                     case KEY_UP:
-                        pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                        pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                        pthread_detach(soundThread);
                         selected = (selected > 0) ? selected - 1 : items - 1;
                         break;
                     case KEY_DOWN:
-                        pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                        pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                        pthread_detach(soundThread);
                         selected = (selected < items - 1) ? selected + 1 : 0;
                         break;
                     case KEY_MOUSE:
                         if (getmouse(&event) == OK) {
                             if (event.bstate & BUTTON1_CLICKED) {
-                                pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                                pthread_create(&soundThread, NULL, playEnterSound, NULL);
+                                pthread_detach(soundThread);
                                 for (int i = 0; i < items; i++) {
                                     if (isbtnarea(&menu_items[i], event.x, event.y)) {
                                         selected = i;
@@ -121,11 +123,8 @@ int show_alt_lobby(const char * username){
                                 }
                             }
                             else if (event.bstate & BUTTON1_DOUBLE_CLICKED) {
-                            for (int i = 0; i < items; i++) {
-                                pthread_create(&enterSound, NULL, playEnterSound, NULL);
-                                if (isbtnarea(&menu_items[i], event.x, event.y)) {
-
-                                    selected = i;
+                                pthread_create(&soundThread, NULL, playEnterSound, NULL);
+                                pthread_detach(soundThread);
                                     switch(selected) {
                                         case 0: return 1;
                                         case 1: return 2;
@@ -136,12 +135,11 @@ int show_alt_lobby(const char * username){
                                     }
                                 }
                             }
-                        }
-                    }
-                        break;
+                    break;
                     case '\n':
                     case KEY_ENTER:
-                        pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                        pthread_create(&soundThread, NULL, playEnterSound, NULL);
+                        pthread_detach(soundThread);
                         if (selected >= 0 && selected < items) {
                             switch(selected) {
                                 case 0: // PLAY GAME
@@ -165,8 +163,6 @@ int show_alt_lobby(const char * username){
                     default:
                         break;
                 }
-            pthread_join(arrowSound, NULL);
-            pthread_join(enterSound, NULL);
         refresh();
         }
     }

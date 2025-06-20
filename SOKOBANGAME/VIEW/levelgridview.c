@@ -18,31 +18,15 @@ void display_leaderboard_or_history(context option, chapter_index chapter, int s
     LevelID start_level = get_chapter_start_level(chapter);
     LevelData current_level = ALL_LEVELS[start_level + selected_level_offset];
 
-    // // Dummy data untuk percobaan display field level tidak digunakan hanya di deklarasikan saja
-    // // Namun untuk playdata yang nyata akan di load berserta dengan replaynya juga yang bukan dummy.
-    // PlayData dummy_data[10] = {
-    //     {"Player1", "LEVEL_1C1", 1, {1000, 120, 50, 5}},
-    //     {"Player2", "LEVEL_1C1", 2, {950, 130, 55, 6}},
-    //     {"Player3", "LEVEL_1C1", 3, {900, 140, 60, 7}},
-    //     {"Player4", "LEVEL_1C1", 4, {850, 150, 65, 8}},
-    //     {"Player5", "LEVEL_1C1", 5, {800, 160, 70, 9}},
-    //     {"Player6", "LEVEL_1C1", 6, {750, 170, 75, 10}},
-    //     {"Player7", "LEVEL_1C1", 7, {700, 180, 80, 11}},
-    //     {"Player8", "LEVEL_1C1", 8, {650, 190, 85, 12}},
-    //     {"Player9", "LEVEL_1C1", 9, {600, 200, 90, 13}},
-    //     {"Player10", "LEVEL_1C1", 10, {550, 210, 95, 14}}
-    // };
-
-    PlayData display[10];
-    char levelid[20];
+    DoublyLinkedList displayList;
+    initList(&displayList);
     switch (option)
     {
     case HISTORY:
-        load_data_filter_by_name(display, current_level.level_id, username);
+        load_data_filter_by_name(&displayList, current_level.level_id, username);
         break;
-    
     case LEADERBOARD:
-        load_data_filter_by_score(display, current_level.level_id);
+        load_data_filter_by_score(&displayList, current_level.level_id);
         break;
     }
 
@@ -50,6 +34,7 @@ void display_leaderboard_or_history(context option, chapter_index chapter, int s
     int prev_lines = LINES;
     int prev_cols = COLS;
     int selected_row = 0;
+    int data_count = displayList.size;
 
     while ((ch = getch()) != 27) { // ESC to exit
         clear();
@@ -60,6 +45,8 @@ void display_leaderboard_or_history(context option, chapter_index chapter, int s
         snprintf(title_text, sizeof(title_text), "%s - %s", context_str, current_level.level_name);
 
         Txtbox title = {COLS/2 - strlen(title_text)/2, 2, strlen(title_text) + 4, 2, title_text, "REVERSED"};
+        // untuk debugging value parameter
+        //mvprintw(0, 0, "Username: %s, LevelID: %s, Records: %d", username, current_level.level_id, displayList.size);
         draw_txtbox(&title);
 
         int table_width = COLS / 2 + 30;
@@ -87,21 +74,27 @@ void display_leaderboard_or_history(context option, chapter_index chapter, int s
         
         draw_horizontal_line(header_y + 1, start_x + 1, table_width - 1);
 
-        for (int i = 0; i < 10; i++) {
-            int row_y = start_y + 3 + i;
-            mvprintw(row_y, rank_x, "%d", i + 1);
-            mvprintw(row_y, user_x, "%s", display[i].username);
-            mvprintw(row_y, score_x, "%d", display[i].scoreData.score);
-            mvprintw(row_y, moves_x, "%d", display[i].scoreData.TotalMove);
-            mvprintw(row_y, time_x, "%ds", display[i].scoreData.time);
-            mvprintw(row_y, undo_x, "%d", display[i].scoreData.TotalUndo);
+        if (displayList.size == 0) {
+            mvprintw(start_y + 4, start_x + table_width / 2 - 5, "Data Kosong");
+        } else {
+            TableItems *current = displayList.head;
+            for (int i = 0; i < 10 && current != NULL; i++, current = current->next) {
+                PlayData *pdata = (PlayData*)current->data;
+                int row_y = start_y + 3 + i;
+                mvprintw(row_y, rank_x, "%d", i + 1);
+                mvprintw(row_y, user_x, "%s", pdata->username);
+                mvprintw(row_y, score_x, "%d", pdata->scoreData.score);
+                mvprintw(row_y, moves_x, "%d", pdata->scoreData.TotalMove);
+                mvprintw(row_y, time_x, "%ds", pdata->scoreData.time);
+                mvprintw(row_y, undo_x, "%d", pdata->scoreData.TotalUndo);
 
-            if (i == selected_row) {
-                attron(A_REVERSE);
-            }
-            mvprintw(row_y, replay_x, "[ REPLAY ]");
-            if (i == selected_row) {
-                attroff(A_REVERSE);
+                if (i == selected_row) {
+                    attron(A_REVERSE);
+                }
+                mvprintw(row_y, replay_x, "[ REPLAY ]");
+                if (i == selected_row) {
+                    attroff(A_REVERSE);
+                }
             }
         }
 
@@ -110,50 +103,48 @@ void display_leaderboard_or_history(context option, chapter_index chapter, int s
 
         switch (ch) {
             case KEY_UP:
-                selected_row = (selected_row > 0) ? selected_row - 1 : 9;
+                selected_row = (selected_row > 0) ? selected_row - 1 : (displayList.size > 0 ? displayList.size - 1 : 0);
                 break;
             case KEY_DOWN:
-                selected_row = (selected_row < 9) ? selected_row + 1 : 0;
+                selected_row = (selected_row < displayList.size - 1) ? selected_row + 1 : 0;
                 break;
             case '\n':
             case KEY_ENTER:
-                if (selected_row >= 0 && selected_row < 10) {
+                if (selected_row >= 0 && selected_row < displayList.size) {
                     //parsing ruangan agar sesuai
                     char dataIDStr[64];
                     RoomLayout room;
                     parse_room(&room, current_level.map);
-                    sprintf(dataIDStr, "%d", display[selected_row].ID_data);
-                    Queue tempqueue;
-                    switch (option)
-                    {
-                    case HISTORY:
-                        loadReplayRecord(&tempqueue, username, dataIDStr);
-                        break;
-                    
-                    case LEADERBOARD:
-                        loadReplayRecord(&tempqueue, display[selected_row].username, dataIDStr);
-                        break;
+                    TableItems *current = displayList.head;
+                    for (int i = 0; i < selected_row && current != NULL; i++) current = current->next;
+                    if (current != NULL) {
+                        PlayData *pdata = (PlayData*)current->data;
+                        sprintf(dataIDStr, "%d", pdata->ID_data);
+                        Queue tempqueue;
+                        switch (option)
+                        {
+                        case HISTORY:
+                            loadReplayRecord(&tempqueue, username, dataIDStr);
+                            break;
+                        case LEADERBOARD:
+                            loadReplayRecord(&tempqueue, pdata->username, dataIDStr);
+                            break;
+                        }
+                        playReplay(&room, current_level, &tempqueue);
+                        clearReplayQueue(&tempqueue);
                     }
-                    
-                    // // data dummy juga... replaynya dummy (bisa works di semua level)
-                    // Queue replay_queue;
-                    // initQueue(&replay_queue);
-                    // enqueue(&replay_queue, createStep('R'));
-                    // enqueue(&replay_queue, createStep('R'));
-                    // enqueue(&replay_queue, createStep('D'));
-                    // enqueue(&replay_queue, createStep('D'));
-                    // enqueue(&replay_queue, createStep('L'));
-                    // enqueue(&replay_queue, createStep('L'));
-                    // enqueue(&replay_queue, createStep('U'));
-                    // enqueue(&replay_queue, createStep('U'));
-                    // enqueue(&replay_queue, createStep('Z'));
-
-                    playReplay(&room, current_level, &tempqueue);
-                    clearReplayQueue(&tempqueue);
                 }
                 break;
         }
     }
+    // Free the list and PlayData
+    TableItems *current = displayList.head;
+    while (current != NULL) {
+        TableItems *next = current->next;
+        free(current->data);
+        current = next;
+    }
+    clearList(&displayList);
 }
 
 // Mengembalikan string judul untuk chapter dan konteks tertentu (LEADERBOARD/HISTORY)
@@ -198,7 +189,7 @@ const char* get_chapter_title(chapter_index chapter, context option) {
 // Menampilkan grid level untuk Chapter 1 sesuai konteks (LEADERBOARD/HISTORY)
 void ch1_grid(context option, const char username[20]) {
     // Level names for Chapter 1 (adjust if you want to use level_id instead)
-    pthread_t enterSound, arrowSound;    
+    pthread_t soundThread;
     const char* level_names[] = {
         ALL_LEVELS[LEVEL_1C1].level_name,
         ALL_LEVELS[LEVEL_1C2].level_name,
@@ -243,16 +234,19 @@ void ch1_grid(context option, const char username[20]) {
 
         switch (ch) {
              case KEY_UP:
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 selected = (selected > 0) ? selected - 1 : n_levels - 1;
                 break;
             case KEY_DOWN:
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 selected = (selected < n_levels - 1) ? selected + 1 : 0;
                 break;
             case '\n':
             case KEY_ENTER:
-                pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                pthread_create(&soundThread, NULL, playEnterSound, NULL);
+                pthread_detach(soundThread);
                 switch(option){
                     case HISTORY:
                         display_leaderboard_or_history(option, CHAPTER_1, selected, username);
@@ -270,7 +264,7 @@ void ch1_grid(context option, const char username[20]) {
 
 // Menampilkan grid level untuk Chapter 2 sesuai konteks (LEADERBOARD/HISTORY)
 void ch2_grid(context option, const char username[20]) {
-    pthread_t enterSound, arrowSound;
+    pthread_t soundThread;
     const char* level_names[] = {
         ALL_LEVELS[LEVEL_2C1].level_name,
         ALL_LEVELS[LEVEL_2C2].level_name,
@@ -322,7 +316,8 @@ void ch2_grid(context option, const char username[20]) {
 
         switch (ch) {
             case KEY_UP: {
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 int row = selected / grid.cols;
                 int col = selected % grid.cols;
                 if (row > 0) {
@@ -332,7 +327,8 @@ void ch2_grid(context option, const char username[20]) {
                 break;
             }
             case KEY_DOWN: {
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 int row = selected / grid.cols;
                 int col = selected % grid.cols;
                 int below = selected + grid.cols;
@@ -348,16 +344,19 @@ void ch2_grid(context option, const char username[20]) {
                 break;
             }
             case KEY_LEFT:
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 if (selected % grid.cols > 0) selected--;
                 break;
             case KEY_RIGHT:
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 if ((selected % grid.cols) < (grid.cols - 1) && selected + 1 < n_levels) selected++;
                 break;
             case '\n':
             case KEY_ENTER:
-                pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                pthread_create(&soundThread, NULL, playEnterSound, NULL);
+                pthread_detach(soundThread);
                 switch(option){
                     case HISTORY:
                     case LEADERBOARD:
@@ -373,7 +372,7 @@ void ch2_grid(context option, const char username[20]) {
 
 // Menampilkan grid level untuk Chapter 3 sesuai konteks (LEADERBOARD/HISTORY)
 void ch3_grid(context option, const char username[20]) {
-    pthread_t enterSound, arrowSound;
+    pthread_t soundThread;
     const char* level_names[] = {
         ALL_LEVELS[LEVEL_3C1].level_name,
         ALL_LEVELS[LEVEL_3C2].level_name,
@@ -427,7 +426,8 @@ void ch3_grid(context option, const char username[20]) {
 
         switch (ch) {
             case KEY_UP: {
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 int row = selected / grid.cols;
                 int col = selected % grid.cols;
                 if (row > 0) {
@@ -437,7 +437,8 @@ void ch3_grid(context option, const char username[20]) {
                 break;
             }
             case KEY_DOWN: {
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 int row = selected / grid.cols;
                 int col = selected % grid.cols;
                 int below = selected + grid.cols;
@@ -452,16 +453,19 @@ void ch3_grid(context option, const char username[20]) {
                 break;
             }
             case KEY_LEFT:
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 if (selected % grid.cols > 0) selected--;
                 break;
             case KEY_RIGHT:
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 if ((selected % grid.cols) < (grid.cols - 1) && selected + 1 < n_levels) selected++;
                 break;
             case '\n':
             case KEY_ENTER:
-                pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                pthread_create(&soundThread, NULL, playEnterSound, NULL);
+                pthread_detach(soundThread);
                 switch(option){
                     case HISTORY:
                     case LEADERBOARD:
@@ -477,7 +481,7 @@ void ch3_grid(context option, const char username[20]) {
 
 // Menampilkan grid level untuk Chapter 4 sesuai konteks (LEADERBOARD/HISTORY)
 void ch4_grid(context option, const char username[20]) {
-    pthread_t enterSound, arrowSound;
+    pthread_t soundThread;
     const char* level_names[] = {
         ALL_LEVELS[LEVEL_4C1].level_name,
         ALL_LEVELS[LEVEL_4C2].level_name,
@@ -534,7 +538,8 @@ void ch4_grid(context option, const char username[20]) {
 
         switch (ch) {
             case KEY_UP: {
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 int row = selected / grid.cols;
                 int col = selected % grid.cols;
                 if (row > 0) {
@@ -544,7 +549,8 @@ void ch4_grid(context option, const char username[20]) {
                 break;
             }
             case KEY_DOWN: {
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 int row = selected / grid.cols;
                 int col = selected % grid.cols;
                 int below = selected + grid.cols;
@@ -559,16 +565,19 @@ void ch4_grid(context option, const char username[20]) {
                 break;
             }
             case KEY_LEFT:
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 if (selected % grid.cols > 0) selected--;
                 break;
             case KEY_RIGHT:
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 if ((selected % grid.cols) < (grid.cols - 1) && selected + 1 < n_levels) selected++;
                 break;
             case '\n':
             case KEY_ENTER:
-                pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                pthread_create(&soundThread, NULL, playEnterSound, NULL);
+                pthread_detach(soundThread);
                 switch(option){
                     case HISTORY:
                     case LEADERBOARD:
@@ -584,7 +593,7 @@ void ch4_grid(context option, const char username[20]) {
 
 // Menampilkan grid level untuk Chapter 5 sesuai konteks (LEADERBOARD/HISTORY)
 void ch5_grid(context option, const char username[20]) {
-    pthread_t enterSound, arrowSound;
+    pthread_t soundThread;
     const char* level_names[] = {
         ALL_LEVELS[LEVEL_5C1].level_name,
         ALL_LEVELS[LEVEL_5C2].level_name,
@@ -643,7 +652,8 @@ void ch5_grid(context option, const char username[20]) {
 
         switch (ch) {
             case KEY_UP: {
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 int row = selected / grid.cols;
                 int col = selected % grid.cols;
                 if (row > 0) {
@@ -653,7 +663,8 @@ void ch5_grid(context option, const char username[20]) {
                 break;
             }
             case KEY_DOWN: {
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 int row = selected / grid.cols;
                 int col = selected % grid.cols;
                 int below = selected + grid.cols;
@@ -668,16 +679,19 @@ void ch5_grid(context option, const char username[20]) {
                 break;
             }
             case KEY_LEFT:
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 if (selected % grid.cols > 0) selected--;
                 break;
             case KEY_RIGHT:
-                pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+                pthread_create(&soundThread, NULL, playArrowSound, NULL);
+                pthread_detach(soundThread);
                 if ((selected % grid.cols) < (grid.cols - 1) && selected + 1 < n_levels) selected++;
                 break;
             case '\n':
             case KEY_ENTER:
-                pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                pthread_create(&soundThread, NULL, playEnterSound, NULL);
+                pthread_detach(soundThread);
                 switch(option){
                     case HISTORY:
                     case LEADERBOARD:

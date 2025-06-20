@@ -1,15 +1,15 @@
 #ifndef LIST_H
 #define LIST_H
 
-typedef struct Node {
+typedef struct TableItems {
     void *data;         // Pointer generik untuk menyimpan berbagai tipe data
-    struct Node *next;
-    struct Node *prev;
-} Node;
+    struct TableItems *next;
+    struct TableItems *prev;
+} TableItems;
 
 typedef struct {
-    Node *head;
-    Node *tail;
+    TableItems *head;
+    TableItems *tail;
     int size;
 } DoublyLinkedList;
 

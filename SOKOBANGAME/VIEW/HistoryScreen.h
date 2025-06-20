@@ -4,7 +4,7 @@
 #include "viewtoolkit.h"
 #include "../STRUCTURES/tree.h"
 #include "../GAMEPLAY/REPLAY_LOGIC/ReplayGame.h"
-#include "../GAMEPLAY\ARENA_LOGIC\ChapterManager.h"
+#include "../GAMEPLAY/ARENA_LOGIC/ChapterManager.h"
 #include "../UTILS/sound/soundmanager.h"
 #include "levelgridview.h"
 

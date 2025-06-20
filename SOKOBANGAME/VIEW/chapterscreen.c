@@ -23,6 +23,7 @@ LevelData* print_chapter_screen(const char *username) {
   int prev_lines = LINES;
   int prev_cols = COLS;
   MEVENT event;
+  pthread_t soundThread;
   while ((ch = getch()) != 27) { // ESC untuk keluar
     clear(); // Hanya clear sekali di awal loop
 
@@ -39,25 +40,25 @@ LevelData* print_chapter_screen(const char *username) {
     // Penanganan input keyboard
     handle_resize(&prev_lines, &prev_cols);
 
-    pthread_t enterSound;
-    pthread_t arrowSound;
-
     switch (ch) {
       //tombol panah atas
       case KEY_UP:
-        pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+        pthread_create(&soundThread, NULL, playArrowSound, NULL);
+        pthread_detach(soundThread);
         selected = (selected > 0) ? selected - 1 : n_chapters - 1;
         break;
       //tombol panah bawah
       case KEY_DOWN:
-        pthread_create(&arrowSound, NULL, playArrowSound, NULL);
+        pthread_create(&soundThread, NULL, playArrowSound, NULL);
+        pthread_detach(soundThread);
         selected = (selected < n_chapters - 1) ? selected + 1 : 0;
         break;
       //Highlight level jika di klik sekali pada ui
       case KEY_MOUSE:
         if (getmouse(&event) == OK) {
           if (event.bstate & BUTTON1_CLICKED){
-            pthread_create(&enterSound, NULL, playEnterSound, NULL);
+            pthread_create(&soundThread, NULL, playEnterSound, NULL);
+            pthread_detach(soundThread);
             for (int i = 0; i < n_chapters; i++) {
               if (isbtnarea(&chapters[i], event.x, event.y)) {
                     selected = i;
@@ -75,27 +76,33 @@ LevelData* print_chapter_screen(const char *username) {
           // Panggil fungsi pemilihan level yang sesuai dengan chapter yang dipilih
           switch(selected) {
             case 0: // Tutorial
-              pthread_create(&enterSound, NULL, playEnterSound, NULL);
+              pthread_create(&soundThread, NULL, playEnterSound, NULL);
+              pthread_detach(soundThread);
               selected_level = tutorial_screen();
               break;
             case 1: // Chapter 1
-              pthread_create(&enterSound, NULL, playEnterSound, NULL);
+              pthread_create(&soundThread, NULL, playEnterSound, NULL);
+              pthread_detach(soundThread);
               selected_level = chapter1_screen();
               break;
             case 2: // Chapter 2
-              pthread_create(&enterSound, NULL, playEnterSound, NULL);
+              pthread_create(&soundThread, NULL, playEnterSound, NULL);
+              pthread_detach(soundThread);
               selected_level = chapter2_screen();
               break;
             case 3: // Chapter 3
-              pthread_create(&enterSound, NULL, playEnterSound, NULL);
+              pthread_create(&soundThread, NULL, playEnterSound, NULL);
+              pthread_detach(soundThread);
               selected_level = chapter3_screen();
               break;
             case 4: // Chapter 4
-              pthread_create(&enterSound, NULL, playEnterSound, NULL);
+              pthread_create(&soundThread, NULL, playEnterSound, NULL);
+              pthread_detach(soundThread);
               selected_level = chapter4_screen();
               break;
             case 5: // Chapter 5
-              pthread_create(&enterSound, NULL, playEnterSound, NULL);
+              pthread_create(&soundThread, NULL, playEnterSound, NULL);
+              pthread_detach(soundThread);
               selected_level = chapter5_screen();
               break;
           }
@@ -122,27 +129,33 @@ LevelData* print_chapter_screen(const char *username) {
                             // Panggil fungsi pemilihan level yang sesuai dengan chapter yang dipilih
               switch(selected) {
                 case 0:
-                  pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                  pthread_create(&soundThread, NULL, playEnterSound, NULL);
+                  pthread_detach(soundThread);
                   selected_level = tutorial_screen();
                   break;
                 case 1:
-                  pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                  pthread_create(&soundThread, NULL, playEnterSound, NULL);
+                  pthread_detach(soundThread);
                   selected_level = chapter1_screen();
                   break;
                 case 2:
-                  pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                  pthread_create(&soundThread, NULL, playEnterSound, NULL);
+                  pthread_detach(soundThread);
                   selected_level = chapter2_screen();
                   break;
                 case 3:
-                  pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                  pthread_create(&soundThread, NULL, playEnterSound, NULL);
+                  pthread_detach(soundThread);
                   selected_level = chapter3_screen();
                   break;
                 case 4:
-                  pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                  pthread_create(&soundThread, NULL, playEnterSound, NULL);
+                  pthread_detach(soundThread);
                   selected_level = chapter4_screen();
                   break;
                 case 5:
-                  pthread_create(&enterSound, NULL, playEnterSound, NULL);
+                  pthread_create(&soundThread, NULL, playEnterSound, NULL);
+                  pthread_detach(soundThread);
                   selected_level = chapter5_screen();
                   break;
               }
@@ -157,9 +170,6 @@ LevelData* print_chapter_screen(const char *username) {
         }
       }
     }
-
-    pthread_join(arrowSound, NULL);
-    pthread_join(enterSound, NULL);
 
     // Instruksi
     draw_box(0,0,strlen("Klik kiri pada tombol chapter untuk memilih chapter!") + 2, 5);
