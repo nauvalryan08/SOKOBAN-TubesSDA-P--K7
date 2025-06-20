@@ -33,11 +33,18 @@ typedef struct {
 //=================================================//
 /* {Sopian} */
 
+
+
 //==> Memnyimpan Hasil data usai bermain
 void save_data_to_database(const char* username, const char* ID_level, int ID_data, ScoreData scoreData, Queue *replayQueue);
 
 // ==> Load Data play berdasarakn ID
 Boolean load_play_data_by_id(const char* username, int ID_data, ScoreData* out, Queue* replay);
+
+
+
+//  =====> game state
+
 
 //==> menyimpan State permainan saat Exit [untuk kembali dilanjutkan saat bermain lagi]
 void save_game_state(const char* username, const char* ID_level, int ID_data, RoomLayout* room);

@@ -5,7 +5,6 @@
 #include "../UTILS/sound/soundmanager.h"
 #include "../UTILS/include/curses.h"
 #include "../GAMEPLAY/ARENA_LOGIC/Level.h"
-#include "../GAMEPLAY/DB_ACCESS/SaveState.h"
 
 #include <pthread.h>
 #include <stdlib.h>

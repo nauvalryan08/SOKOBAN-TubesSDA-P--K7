@@ -35,7 +35,7 @@ void start_level (RoomLayout *room, LevelData *level, ChapterData * current_chap
     pthread_create(&tid, NULL, timer_thread, NULL);
     //=======>
 
-    nodelay(stdscr, FALSE);
+    nodelay(stdscr, TRUE);
     keypad(stdscr, TRUE);
     curs_set(0);
 
@@ -127,7 +127,6 @@ void start_level (RoomLayout *room, LevelData *level, ChapterData * current_chap
                 break;
             }
         } else if (keyOutput == 'F') {      //Cheat Button
-            nodelay(stdscr, FALSE);
             room->finish.is_activated = true;
         }else if (keyOutput == 1) {
             update_total_move(&scoreData, +1);
@@ -156,8 +155,6 @@ void start_level (RoomLayout *room, LevelData *level, ChapterData * current_chap
     }
 
     //bersihkan chace pada stack
-    nodelay(stdscr, FALSE);
-
     if (timer_running) {
         timer_running = 0;
         pthread_join(tid,NULL);
