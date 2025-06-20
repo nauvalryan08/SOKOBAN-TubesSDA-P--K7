@@ -53,7 +53,19 @@ cd .\UTILS\compilewithoutcmake.bat
 - make
 - gcc
 
-## Instalasi [![Dev C++](https://img.shields.io/badge/Dev%20C++-FF2B22)](#)
+## Compile Menggunakan [![Dev C++](https://img.shields.io/badge/Dev%20C++-FF2B22?style=flat-square)](#)
+Jika Mingw64 sudah tersedia di perangkat skip saja langkah 1 - 8, menuju ke langkah 9
+1. Download Mingw64 menggunakan [Installer Berikut](https://github.com/Vuniverse0/mingwInstaller/releases/download/1.2.1/mingwInstaller.exe)
+2. Buka aplikasi installer lalu pilih versi yang terbaru(15.1.0), lalu klik next
+3. Pilih arsitektur pada installer sesuai dengan laptop yang digunakan untuk instalasi (Biasanya 64-bit), lalu klik next
+4. Pilih Posix untuk opsi thread model, lalu klik next
+5. Pilih build revision rev0 dan klik next
+6. Pilih msvcrt untuk C runtime (dikarenakan microsoft C runtime)
+7. Pilih path untuk instalasi Mingw64 sesuai keinginan (PATH HARUS DI INGAT KARENA PENTING UNTUK SETTING COMPILER DEV C++!), lalu klik process
+8. Tunggu process download
+---
+Proses Pengaturan Compiler Dev C++
+9. 
 
 ## Tim Pengembang
 - **[Johan Muhammad Avicenna]** dengan NIM 241524013
