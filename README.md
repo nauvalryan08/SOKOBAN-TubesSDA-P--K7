@@ -65,8 +65,8 @@ Jika Mingw64 sudah tersedia di perangkat skip saja langkah 1 - 8, lanjut ke bagi
 8. Tunggu process download
 ---
 ### Proses Pengaturan Compiler Dev C++
-Untuk Dev C++ menggunakan versi [berikut](https://github.com/Embarcadero/Dev-Cpp/releases/download/v6.3/Embarcadero_Dev-Cpp_6.3_TDM-GCC_9.2_Setup.exe)
-1. -
+Untuk Dev C++ menggunakan versi [berikut](https://github.com/Embarcadero/Dev-Cpp/releases/download/v6.3/Embarcadero_Dev-Cpp_6.3_No_Compiler_Setup.exe)
+1. Buka Dev C++ dan Buka opsi berikut: Tools > Compiler Options
 2. -
 3. -
 
