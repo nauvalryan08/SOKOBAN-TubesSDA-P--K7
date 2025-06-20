@@ -50,7 +50,6 @@ void show_tutorial_screen() {
     if (box_height < 20) box_height = 20;
     
     // Ganti mode input dengan timeout
-    nodelay(stdscr, FALSE);  // Blocking mode untuk menunggu input
     timeout(0);  // Timeout 100ms untuk tangkap urutan escape
     
     while(1) {
