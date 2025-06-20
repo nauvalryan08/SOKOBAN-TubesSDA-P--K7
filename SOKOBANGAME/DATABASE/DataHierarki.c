@@ -78,26 +78,34 @@ Boolean compareLevelNameByID(void* data1, void* data2) {
 
 //==> Create new Data
 
-PlayData* createPlayData(char* username, int ID_data, int ID_level, int score, int time, int total_move, ReplayStep *replay_data) {
+PlayData* createPlayData(const char* username, int ID_data, const char* ID_level,
+                         int score, int time, int total_move, int total_undo,
+                         ReplayStep *replay_data) {
     PlayData* newData = malloc(sizeof(PlayData));
-    newData->usernamae = strdup(username); 
+    if (!newData) return NULL;
+
+    strncpy(newData->username, username, sizeof(newData->username));
+    strncpy(newData->ID_level, ID_level, sizeof(newData->ID_level));
     newData->ID_data = ID_data;
-    newData->ID_level = ID_level;
-    newData->score = score;
-    newData->time = time;
-    newData->total_move = total_move;
+
+    newData->scoreData.score = score;
+    newData->scoreData.time = time;
+    newData->scoreData.TotalMove = total_move;
+    newData->scoreData.TotalUndo = total_undo;
+
     newData->replay_data = replay_data;
 
     return newData;
 }
 
 
+
 void addNewDataToTree(Ptree root, PlayData *data) {
     if (!root || !data) return;
 
-    // Mencari Node level
-    int id = data->ID_level;
-    Ptree levelNode = findTreeNode(root, &id, compareLevelNameByID);
+    // Cari berdasarkan ID_level sebagai string
+    const char *id = data->ID_level;
+    Ptree levelNode = findTreeNode(root, (void *)id, compareLevelNameByID);
 
     if (!levelNode) {
         return;

@@ -9,6 +9,6 @@
 
 #define TEMP_INDEX_PATH "./SOKOBANGAME/DATABASE/temp_path.txt"
 
-
+#define TEMP_PLAYDATA_PATH "./SOKOBANGAME/DATABASE/temp_PlayData.txt"
 
 #endif // DATABASEPATH_H

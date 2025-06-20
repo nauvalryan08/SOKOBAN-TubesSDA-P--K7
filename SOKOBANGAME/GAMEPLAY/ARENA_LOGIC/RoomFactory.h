@@ -4,6 +4,7 @@
 #include "../../UTILS/include/boolean.h"
 #include "../../UTILS/include/curses.h"
 #include "../../VIEW/viewtoolkit.h"
+#include "../GAME_LOGIC/ScoreGame.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -33,12 +34,30 @@ typedef struct {
     Object finish;
 } RoomLayout;
 
-typedef struct{
-    int score;
-    int time;
-    int TotalMove;
-    int TotalUndo;
-}ScoreData;
+/**********************************************/
+/* -->          Getter AND Setter         <-- */
+/**********************************************/
+
+// ==> getter Objek;
+
+int getObject_X (Object object);
+int getObject_Y (Object object);
+int getObject_Status (Object object);
+
+// ==> setter Objek;
+
+void setObject_X(Object *object, int x);
+void setObject_Y(Object *object, int y);
+void setObject_Status(Object *object, Boolean status);
+void setObject_Var(Object *object, int x, int y, Boolean status);
+
+// ==> getter RoomLayout
+Object getPlayer (RoomLayout room);
+Object getBoxes (RoomLayout room, int i);
+int getBoxCount (RoomLayout room);
+Object getTargets (RoomLayout room, int i);
+int getTargetsCount (RoomLayout room);
+Object getFinish (RoomLayout room);
 
 
 //===============================================================//

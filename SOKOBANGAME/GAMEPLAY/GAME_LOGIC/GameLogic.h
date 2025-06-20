@@ -88,4 +88,6 @@ Boolean is_player_at_finish (RoomLayout *room);
 Boolean is_victory (RoomLayout *room);
 
 
+
+
 #endif

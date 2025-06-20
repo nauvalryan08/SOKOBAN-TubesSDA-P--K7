@@ -5,8 +5,8 @@ int main() {
     setlocale(LC_ALL, "");
     initscr();
 
-    // threadPlayBGMusic();       // Mulai BGM
-    // setBGMVolume(25); 
+    threadPlayBGMusic();       // Mulai BGM
+    setBGMVolume(25); 
     
     // Inisialisasi warna
     start_color();
@@ -95,7 +95,7 @@ int main() {
         unlockNextChapter();
     }
 
-    // stopBackgroundMusic();
+    stopBackgroundMusic();
 
     for (int i = 0; i < GroupCount; i++) {
         freeTree(ChapterTrees[i].ChapterTree, NULL); 

@@ -16,6 +16,7 @@
 
 #include "GameLogic.h"
 #include "ButtonGame.h"
+#include "ScoreGame.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -31,27 +32,10 @@
 /* {Sopian} */
 void start_level (RoomLayout *room, LevelData *level, ChapterData * current_chapter, const char *username);
 
-void game_finished(RoomLayout *room, LevelData *level, ChapterData *current_chapter, Queue *replayQueue, ScoreData scoreData, const char *username);
+int game_finished(RoomLayout *room, LevelData *level, ChapterData *current_chapter, Queue *replayQueue, ScoreData scoreData, const char *username);
 
-int exit_game(RoomLayout *room, const char *username, const char *level_id);
+int exit_game(RoomLayout *room, const char *username, const char *ID_level, int ID_data, Queue *replayQueue, ScoreData scoreData);
 
 bool ask_continue_save();
-
-// //=================================================//
-// //==                DATABASE ACCESS              ==//
-// //=================================================//
-// /* {Sopian} */
-
-// //==> Memnyimpan Hasil data usai bermain
-// void save_data_to_database ( Queue *q, const char *username, const char *levelID, const char *dataID, ScoreData scoreData);
-
-// //==> menyimpan State permainan saat Exit [untuk kembali dilanjutkan saat bermain lagi]
-// void save_game_state (const char* username, const char* level_id, RoomLayout* room);
-
-// //==> Load gameState (mengambil data RoomLayout untuk nanti dijadikan aacuan start game)
-// int load_game_state (const char* username, const char* level_id, RoomLayout* room);
-
-// //===> menghapus game state pada database yang sudah dipakai
-// void remove_game_state_entry(const char* username, const char* level_id);
 
 #endif
