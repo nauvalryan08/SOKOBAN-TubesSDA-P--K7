@@ -5,7 +5,25 @@
 #include "../GAMEPLAY/REPLAY_LOGIC/ReplayGame.h"
 #include "../GAMEPLAY/ARENA_LOGIC/RoomFactory.h"
 
-void ch1_leaderboard_table(int selected){
+// digunakan unutk parsing level pertama agar dapat dihubungkan dengan integer selected
+LevelID get_chapter_start_level(chapter_index chapter) {
+    switch (chapter) {
+        case CHAPTER_1: return LEVEL_1C1;
+        case CHAPTER_2: return LEVEL_2C1;
+        case CHAPTER_3: return LEVEL_3C1;
+        case CHAPTER_4: return LEVEL_4C1;
+        case CHAPTER_5: return LEVEL_5C1;
+        default: return LEVEL_1C1; // Fallback
+    }
+}
+
+//dibuat agar lebih modular
+void display_leaderboard_or_history(context option, chapter_index chapter, int selected_level_offset) {
+    LevelID start_level = get_chapter_start_level(chapter);
+    LevelData current_level = ALL_LEVELS[start_level + selected_level_offset];
+
+    // Dummy data untuk percobaan display field level tidak digunakan hanya di deklarasikan saja
+    // Namun untuk playdata yang nyata akan di load berserta dengan replaynya juga yang bukan dummy.
     PlayData dummy_data[10] = {
         {"Player1", "LEVEL_1C1", 1, {1000, 120, 50, 5}},
         {"Player2", "LEVEL_1C1", 2, {950, 130, 55, 6}},
@@ -28,10 +46,9 @@ void ch1_leaderboard_table(int selected){
         clear();
         handle_resize(&prev_lines, &prev_cols);
 
-        // Get level name based on selected index
-        const char* level_name = ALL_LEVELS[LEVEL_1C1 + selected].level_name;
+        const char* context_str = (option == LEADERBOARD) ? "LEADERBOARD" : "HISTORY";
         char title_text[100];
-        snprintf(title_text, sizeof(title_text), "LEADERBOARD - %s", level_name);
+        snprintf(title_text, sizeof(title_text), "%s - %s", context_str, current_level.level_name);
 
         Txtbox title = {COLS/2 - strlen(title_text)/2, 2, strlen(title_text) + 4, 2, title_text, "REVERSED"};
         draw_txtbox(&title);
@@ -41,10 +58,8 @@ void ch1_leaderboard_table(int selected){
         int start_x = (COLS - table_width) / 2;
         int start_y = 6;
 
-        // Draw table border
         draw_box(start_x, start_y, table_width, table_height);
 
-        // Draw headers
         int header_y = start_y + 1;
         int rank_x = start_x + 2;
         int user_x = start_x + 12;
@@ -61,11 +76,8 @@ void ch1_leaderboard_table(int selected){
         mvprintw(header_y, time_x, "TIME");
         mvprintw(header_y, undo_x, "UNDO");
         
-        // Draw horizontal line under header
         draw_horizontal_line(header_y + 1, start_x + 1, table_width - 1);
 
-
-        // Draw data
         for (int i = 0; i < 10; i++) {
             int row_y = start_y + 3 + i;
             mvprintw(row_y, rank_x, "%d", i + 1);
@@ -75,7 +87,6 @@ void ch1_leaderboard_table(int selected){
             mvprintw(row_y, time_x, "%ds", dummy_data[i].scoreData.time);
             mvprintw(row_y, undo_x, "%d", dummy_data[i].scoreData.TotalUndo);
 
-            // Draw replay button
             if (i == selected_row) {
                 attron(A_REVERSE);
             }
@@ -98,133 +109,12 @@ void ch1_leaderboard_table(int selected){
             case '\n':
             case KEY_ENTER:
                 if (selected_row >= 0 && selected_row < 10) {
-                    //parsing ruangan agar ruangan sesuai
-                    LevelData current_level = ALL_LEVELS[LEVEL_1C1 + selected];
+                    //parsing ruangan agar sesuai
                     RoomLayout room;
                     parse_room(&room, current_level.map);
-
+                    // data dummy juga... replaynya dummy (bisa works di semua level)
                     Queue replay_queue;
                     initQueue(&replay_queue);
-                    //Replay dummy
-                    enqueue(&replay_queue, createStep('R'));
-                    enqueue(&replay_queue, createStep('R'));
-                    enqueue(&replay_queue, createStep('D'));
-                    enqueue(&replay_queue, createStep('D'));
-                    enqueue(&replay_queue, createStep('L'));
-                    enqueue(&replay_queue, createStep('L'));
-                    enqueue(&replay_queue, createStep('U'));
-                    enqueue(&replay_queue, createStep('U'));
-                    enqueue(&replay_queue, createStep('Z'));
-
-                    playReplay(&room, current_level, &replay_queue);
-                    clearReplayQueue(&replay_queue);
-                }
-                break;
-        }
-    }
-}
-
-void ch1_history_table(int selected){
-        PlayData dummy_data[10] = {
-        {"Player1", "LEVEL_1C1", 1, {1000, 120, 50, 5}},
-        {"Player2", "LEVEL_1C1", 2, {950, 130, 55, 6}},
-        {"Player3", "LEVEL_1C1", 3, {900, 140, 60, 7}},
-        {"Player4", "LEVEL_1C1", 4, {850, 150, 65, 8}},
-        {"Player5", "LEVEL_1C1", 5, {800, 160, 70, 9}},
-        {"Player6", "LEVEL_1C1", 6, {750, 170, 75, 10}},
-        {"Player7", "LEVEL_1C1", 7, {700, 180, 80, 11}},
-        {"Player8", "LEVEL_1C1", 8, {650, 190, 85, 12}},
-        {"Player9", "LEVEL_1C1", 9, {600, 200, 90, 13}},
-        {"Player10", "LEVEL_1C1", 10, {550, 210, 95, 14}}
-    };
-
-    int ch;
-    int prev_lines = LINES;
-    int prev_cols = COLS;
-    int selected_row = 0;
-
-    while ((ch = getch()) != 27) { // ESC to exit
-        clear();
-        handle_resize(&prev_lines, &prev_cols);
-
-        // Get level name based on selected index
-        const char* level_name = ALL_LEVELS[LEVEL_1C1 + selected].level_name;
-        char title_text[100];
-        snprintf(title_text, sizeof(title_text), "HISTORY - %s", level_name);
-
-        Txtbox title = {COLS/2 - strlen(title_text)/2, 2, strlen(title_text) + 4, 2, title_text, "REVERSED"};
-        draw_txtbox(&title);
-
-        int table_width = COLS / 2 + 30;
-        int table_height = 14;
-        int start_x = (COLS - table_width) / 2;
-        int start_y = 6;
-
-        // Draw table border
-        draw_box(start_x, start_y, table_width, table_height);
-
-        // Draw headers
-        int header_y = start_y + 1;
-        int rank_x = start_x + 2;
-        int user_x = start_x + 12;
-        int score_x = start_x + 32;
-        int moves_x = start_x + 45;
-        int time_x = start_x + 55;
-        int undo_x = start_x + 65;
-        int replay_x = start_x + 75;
-
-        mvprintw(header_y, rank_x, "RANK");
-        mvprintw(header_y, user_x, "USERNAME");
-        mvprintw(header_y, score_x, "SCORE");
-        mvprintw(header_y, moves_x, "MOVES");
-        mvprintw(header_y, time_x, "TIME");
-        mvprintw(header_y, undo_x, "UNDO");
-        
-        // Draw horizontal line under header
-        draw_horizontal_line(header_y + 1, start_x + 1, table_width - 1);
-
-
-        // Draw data
-        for (int i = 0; i < 10; i++) {
-            int row_y = start_y + 3 + i;
-            mvprintw(row_y, rank_x, "%d", i + 1);
-            mvprintw(row_y, user_x, "%s", dummy_data[i].username);
-            mvprintw(row_y, score_x, "%d", dummy_data[i].scoreData.score);
-            mvprintw(row_y, moves_x, "%d", dummy_data[i].scoreData.TotalMove);
-            mvprintw(row_y, time_x, "%ds", dummy_data[i].scoreData.time);
-            mvprintw(row_y, undo_x, "%d", dummy_data[i].scoreData.TotalUndo);
-
-            // Draw replay button
-            if (i == selected_row) {
-                attron(A_REVERSE);
-            }
-            mvprintw(row_y, replay_x, "[ REPLAY ]");
-            if (i == selected_row) {
-                attroff(A_REVERSE);
-            }
-        }
-
-        mvprintw(start_y + table_height + 2, start_x, "Gunakan key tanda panah untuk navigasi, ENTER untuk menonton replay, ESC untuk kembali");
-        refresh();
-
-        switch (ch) {
-            case KEY_UP:
-                selected_row = (selected_row > 0) ? selected_row - 1 : 9;
-                break;
-            case KEY_DOWN:
-                selected_row = (selected_row < 9) ? selected_row + 1 : 0;
-                break;
-            case '\n':
-            case KEY_ENTER:
-                if (selected_row >= 0 && selected_row < 10) {
-                    //parsing ruangan agar ruangan sesuai
-                    LevelData current_level = ALL_LEVELS[LEVEL_1C1 + selected];
-                    RoomLayout room;
-                    parse_room(&room, current_level.map);
-
-                    Queue replay_queue;
-                    initQueue(&replay_queue);
-                    //Replay dummy
                     enqueue(&replay_queue, createStep('R'));
                     enqueue(&replay_queue, createStep('R'));
                     enqueue(&replay_queue, createStep('D'));
@@ -342,10 +232,10 @@ void ch1_grid(context option) {
                 pthread_create(&enterSound, NULL, playEnterSound, NULL);
                 switch(option){
                     case HISTORY:
-                        ch1_history_table(selected);
+                        display_leaderboard_or_history(option, CHAPTER_1, selected);
                         break;
                     case LEADERBOARD:
-                        ch1_leaderboard_table(selected);
+                        display_leaderboard_or_history(option, CHAPTER_1, selected);
                         break;
                 }
                 break;
@@ -448,6 +338,8 @@ void ch2_grid(context option) {
                 switch(option){
                     case HISTORY:
                     case LEADERBOARD:
+                        display_leaderboard_or_history(option, CHAPTER_2, selected);
+                        break;
                 }
                 break;
             default:
@@ -550,6 +442,8 @@ void ch3_grid(context option) {
                 switch(option){
                     case HISTORY:
                     case LEADERBOARD:
+                        display_leaderboard_or_history(option, CHAPTER_3, selected);
+                        break;
                 }
                 break;
             default:
@@ -655,6 +549,8 @@ void ch4_grid(context option) {
                 switch(option){
                     case HISTORY:
                     case LEADERBOARD:
+                        display_leaderboard_or_history(option, CHAPTER_4, selected);
+                        break;
                 }
                 break;
             default:
@@ -762,6 +658,8 @@ void ch5_grid(context option) {
                 switch(option){
                     case HISTORY:
                     case LEADERBOARD:
+                        display_leaderboard_or_history(option, CHAPTER_5, selected);
+                        break;
                 }
                 break;
             default:
