@@ -65,7 +65,8 @@ Jika Mingw64 sudah tersedia di perangkat skip saja langkah 1 - 8, menuju ke lang
 8. Tunggu process download
 ---
 Proses Pengaturan Compiler Dev C++
-9. 
+9.
+10.
 
 ## Tim Pengembang
 - **[Johan Muhammad Avicenna]** dengan NIM 241524013
