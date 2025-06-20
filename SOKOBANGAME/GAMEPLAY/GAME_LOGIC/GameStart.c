@@ -7,6 +7,7 @@
 
 volatile int global_timer = 0;   // waktu dalam detik
 volatile int timer_running = 1;  // flag kontrol
+static pthread_t tid;
 
 // thread Time
 void* timer_thread(void *arg) {
@@ -27,9 +28,14 @@ void start_level (RoomLayout *room, LevelData *level, ChapterData * current_chap
     pthread_detach(soundThread);
 
     // ==> threading time
+    if (timer_running) {
+        timer_running = 0;
+        pthread_detach(tid);
+    }
+
+    // Now start the timer thread as usual
     global_timer = 0;
     timer_running = 1;
-    pthread_t tid;
     pthread_create(&tid, NULL, timer_thread, NULL);
     //=======>
 
@@ -155,7 +161,7 @@ void start_level (RoomLayout *room, LevelData *level, ChapterData * current_chap
     //bersihkan chace pada stack
     if (timer_running) {
         timer_running = 0;
-        pthread_join(tid,NULL);
+        pthread_detach(tid);
         scoreData.time = global_timer; // sementara (jaga2)
     }
 
@@ -173,7 +179,7 @@ int game_finished(RoomLayout *room, LevelData *level, ChapterData *current_chapt
 
     pthread_t winSound, enterSound;
     pthread_create(&winSound, NULL, playWinSound, NULL);
-    pthread_join(winSound, NULL);
+    pthread_detach(winSound);
 
     calculate_score(&scoreData, room->box_count);
 
@@ -218,7 +224,7 @@ int game_finished(RoomLayout *room, LevelData *level, ChapterData *current_chapt
             initReplayQueue(&q);
             if (loadReplayRecord(&q, username, dataIDStr)) {
                 pthread_create(&enterSound, NULL, playEnterSound, NULL);
-                pthread_join(enterSound, NULL);
+                pthread_detach(enterSound);
                 playReplay(room, *level, &q);
             } else {
                 mvprintw(LINES / 2 + 3, COLS / 2 - 14, "Replay data not found!");
@@ -226,6 +232,8 @@ int game_finished(RoomLayout *room, LevelData *level, ChapterData *current_chapt
             }
             clearQueue(&q);
         } else if (ch == '2') {
+            pthread_detach(tid);
+            timer_running = 0;
             print_chapter_screen(username);
             refresh();
             break;
