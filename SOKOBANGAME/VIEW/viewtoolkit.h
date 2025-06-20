@@ -1,7 +1,7 @@
 #ifndef VIEWTK_H
 #define VIEWTK_H
-#define MIN_Y 35 // before : 47
-#define MIN_X 120 // before : 197
+#define MIN_Y 35 // sebelumnya : 47
+#define MIN_X 120 // sebelumnya : 197
 #include "../UTILS/include/curses.h"
 #include <stdlib.h>
 #include <string.h>
@@ -17,14 +17,14 @@ typedef struct {
   char *attr;
 } Txtbox;
 
-// Tree connection types
+// Jenis koneksi pohon
 typedef enum {
     CONNECTION_VERTICAL,
     CONNECTION_HORIZONTAL,
     CONNECTION_DIAGONAL
 } ConnectionType;
 
-// Struct for button grid properties
+// Struct untuk properti grid tombol
 typedef struct {
     int cols;
     int btn_width;
@@ -44,12 +44,12 @@ void draw_txtbox(Txtbox *textbox);
 void draw_centered_text(int y, int x, int width, const char* text);
 void draw_horizontal_line(int y, int x, int width);
 
-// New functions for tree visualization
+// Fungsi baru untuk visualisasi pohon
 void draw_connection(Button *from, Button *to, ConnectionType type);
 void draw_tree_connection(Button *parent, Button *child, ConnectionType type);
 void draw_tree_connections(Button *buttons, int *parent_indices, int count);
 
-// Draw a grid of buttons using a property struct
+// Menggambar grid tombol menggunakan struct properti
 void draw_button_grid(const char **labels, int n_buttons, int selected, const btngridprop *prop);
 
 #endif

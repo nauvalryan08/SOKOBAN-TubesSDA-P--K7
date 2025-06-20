@@ -229,7 +229,6 @@ const char* authentication_screen() {
         Button menu_items[] = {
             {start_x, start_y, 30, 4, "LOGIN"},
             {start_x, start_y + 5, 30, 4, "SIGN UP"},
-            {start_x, start_y + 10, 30, 4, "DELETE ACCOUNT"},
             {start_x, start_y + 15, 30, 4, "BACK TO LOBBY"}
         };
         
@@ -267,11 +266,7 @@ const char* authentication_screen() {
                     case 1: // Sign Up
                         return sign_up_process()->username;
                         
-                    case 2: // Delete Account
-                        delete_account_process();
-                        break;
-                        
-                    case 3: // Back
+                    case 2: // Back
                         return NULL;
                 }
                 break;

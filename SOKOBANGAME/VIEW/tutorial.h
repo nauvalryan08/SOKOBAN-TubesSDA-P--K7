@@ -7,6 +7,7 @@
 #include <locale.h>
 #include "../UTILS/sound/soundmanager.h"
 
+// Fungsi untuk menampilkan layar tutorial
 void show_tutorial_screen();
 
 #endif

@@ -1,9 +1,10 @@
 #define NCURSES_MOUSE_VERSION
 #include "chapterscreen.h"
 
-// global state
+// status global
 LevelData* global_selected_level = NULL;
 
+// Fungsi utama untuk menampilkan layar pemilihan chapter dan menangani interaksi pengguna (keyboard/mouse)
 LevelData* print_chapter_screen(const char *username) {
   
   LevelData* selected_level = NULL;
@@ -13,9 +14,9 @@ LevelData* print_chapter_screen(const char *username) {
   mousemask(ALL_MOUSE_EVENTS | REPORT_MOUSE_POSITION, &old);
 
   int n_chapters = 6;
-  int selected = 0; // Track selected chapter
+  int selected = 0; // Menyimpan chapter yang dipilih
 
-  // Enable keypad for arrow keys
+  // Aktifkan keypad untuk tombol panah
   keypad(stdscr, TRUE);
 
   int ch;
@@ -23,7 +24,7 @@ LevelData* print_chapter_screen(const char *username) {
   int prev_cols = COLS;
   MEVENT event;
   while ((ch = getch()) != 27) { // ESC untuk keluar
-    clear(); // Only clear once at the start of the loop
+    clear(); // Hanya clear sekali di awal loop
 
     Txtbox title = {COLS/2 - 6, 2, strlen("Chapter") + 4, 2, "Chapter", "REVERSED"};
     Button chapters[] = {
@@ -35,24 +36,24 @@ LevelData* print_chapter_screen(const char *username) {
       {COLS / 4, LINES / 2 + 10, COLS / 2, 4, "Chapter 5"},
     };
 
-    // Handle keyboard input
+    // Penanganan input keyboard
     handle_resize(&prev_lines, &prev_cols);
 
     pthread_t enterSound;
     pthread_t arrowSound;
 
     switch (ch) {
-      //keyboard up
+      //tombol panah atas
       case KEY_UP:
         pthread_create(&arrowSound, NULL, playArrowSound, NULL);
         selected = (selected > 0) ? selected - 1 : n_chapters - 1;
         break;
-      //keyboard down
+      //tombol panah bawah
       case KEY_DOWN:
         pthread_create(&arrowSound, NULL, playArrowSound, NULL);
         selected = (selected < n_chapters - 1) ? selected + 1 : 0;
         break;
-      //Highlight level jika di click sekali pada ui
+      //Highlight level jika di klik sekali pada ui
       case KEY_MOUSE:
         if (getmouse(&event) == OK) {
           if (event.bstate & BUTTON1_CLICKED){
@@ -71,7 +72,7 @@ LevelData* print_chapter_screen(const char *username) {
       case KEY_ENTER:
         
         if (selected >= 0 && selected <= n_chapters) {
-          // Panggil fungsi level selection yang sesuai dengan chapter yang dipilih
+          // Panggil fungsi pemilihan level yang sesuai dengan chapter yang dipilih
           switch(selected) {
             case 0: // Tutorial
               pthread_create(&enterSound, NULL, playEnterSound, NULL);
@@ -118,7 +119,7 @@ LevelData* print_chapter_screen(const char *username) {
           for (int i = 0; i < n_chapters; i++) {
             if (isbtnarea(&chapters[i], event.x, event.y)) {
               selected = i;
-                            // Panggil fungsi level selection yang sesuai dengan chapter yang dipilih
+                            // Panggil fungsi pemilihan level yang sesuai dengan chapter yang dipilih
               switch(selected) {
                 case 0:
                   pthread_create(&enterSound, NULL, playEnterSound, NULL);
@@ -179,6 +180,6 @@ LevelData* print_chapter_screen(const char *username) {
       }
     }
 
-    refresh(); // Only call once at the end of the loop
+    refresh(); // Hanya dipanggil sekali di akhir loop
   }
 }

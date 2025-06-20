@@ -1,6 +1,7 @@
 #define NCURSES_MOUSE_VERSION
 #include "leaderboard.h"
 
+// Fungsi untuk menampilkan layar leaderboard dan menangani interaksi pengguna
 void show_leaderboard(){
     mmask_t old;
     mousemask(ALL_MOUSE_EVENTS | REPORT_MOUSE_POSITION, &old);

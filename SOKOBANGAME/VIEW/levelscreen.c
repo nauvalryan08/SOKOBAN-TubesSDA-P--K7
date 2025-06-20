@@ -1,24 +1,28 @@
 #include "levelscreen.h"
 #include "levelscreen.h"
 
+// Variabel global untuk menyimpan status pemilihan level
 static int current_selection = 0;
 static int num_levels = 0;
 static int current_column = 0;
 static WINDOW* level_win = NULL;
 
+// Menyimpan data level ke dalam LevelCollector
 void store_level_data (void* data, LevelCollector *collector) {
     if (collector->count < 100) { // Sesuaikan batas maksimal level
         collector->array[collector->count++] = (LevelData *)data;
     }
 }
 
+// Variabel global untuk LevelCollector aktif
 static LevelCollector *active_collector = NULL;
 
+// Wrapper untuk callback penyimpanan level
 void store_callback_wrapper (void* data) {
     store_level_data(data, active_collector);
 }
 
-// Helper function to display level selection screen
+// Fungsi bantu untuk menampilkan layar pemilihan level
 void show_level_selection_screen(LevelData* levels[], int count) {
     if (level_win == NULL) {
         int height = LINES - 4;
@@ -83,7 +87,7 @@ void show_level_selection_screen(LevelData* levels[], int count) {
     refresh();
 }
 
-// Generic level selection function
+// Fungsi pemilihan level dari daftar level
 LevelData* select_level_from_list(LevelData* levels[], int count) {
     int ch;
     num_levels = count;
@@ -144,7 +148,7 @@ LevelData* select_level_from_list(LevelData* levels[], int count) {
     return NULL;
 }
 
-// Tutorial levels selection
+// Fungsi untuk menampilkan dan memilih level tutorial
 LevelData* select_level_tutorial() {
     initTutorial();
     LevelData* chapterTutorial[30];
@@ -163,7 +167,7 @@ LevelData* select_level_tutorial() {
     return select_level_from_list(chapterTutorial, collector.count);
 }
 
-// Original select_level function (all levels)
+// Fungsi pemilihan level untuk semua level
 LevelData* select_level() {
     static LevelData* level_ptrs[LEVEL_COUNT];
     for (int i = 0; i < LEVEL_COUNT; i++) {
@@ -172,6 +176,7 @@ LevelData* select_level() {
     return select_level_from_list(level_ptrs, LEVEL_COUNT);
 }
 
+// Fungsi untuk menampilkan dan memilih level tutorial (khusus tampilan)
 LevelData* tutorial_screen(){
     int ch;
     mmask_t old;
@@ -271,6 +276,7 @@ LevelData* tutorial_screen(){
     return NULL;
 }
 
+// Fungsi untuk menampilkan dan memilih level pada Chapter 1
 LevelData* chapter1_screen(){
     int ch;
     mmask_t old;
@@ -372,6 +378,7 @@ LevelData* chapter1_screen(){
     return NULL;
 }
 
+// Fungsi untuk menampilkan dan memilih level pada Chapter 2
 LevelData* chapter2_screen(){
     int ch;
     mmask_t old;
@@ -500,6 +507,7 @@ LevelData* chapter2_screen(){
     return NULL;
 }
 
+// Fungsi untuk menampilkan dan memilih level pada Chapter 3
 LevelData* chapter3_screen(){
     int ch;
     mmask_t old;
@@ -634,6 +642,7 @@ LevelData* chapter3_screen(){
     return NULL;
 }
 
+// Fungsi untuk menampilkan dan memilih level pada Chapter 4
 LevelData* chapter4_screen(){
     int ch;
     mmask_t old;
@@ -774,6 +783,7 @@ LevelData* chapter4_screen(){
     return NULL;
 }
 
+// Fungsi untuk menampilkan dan memilih level pada Chapter 5
 LevelData* chapter5_screen(){
     int ch;
     mmask_t old;
@@ -918,6 +928,7 @@ LevelData* chapter5_screen(){
     return NULL;
 }
 
+// Fungsi untuk menampilkan informasi level secara singkat
 void display_level_info(LevelData* level) {
     clear();
     mvprintw(1, 2, "Level: %s", level->level_name);
@@ -925,6 +936,7 @@ void display_level_info(LevelData* level) {
     napms(1000);
 }
 
+// Fungsi untuk menjalankan level yang dipilih
 void run_level(LevelData* selected_level, ChapterData* current_chapter, const char* username) {
     if (selected_level == NULL) return;
 

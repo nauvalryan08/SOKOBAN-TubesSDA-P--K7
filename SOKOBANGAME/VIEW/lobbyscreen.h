@@ -15,9 +15,13 @@ typedef struct {
   int direction;
 } Animation;
 
+// Fungsi untuk menampilkan layar lobby
 int show_lobby_screen();
+// Fungsi untuk menggambar animasi sokoban
 void draw_sokoban_animation(Animation *anim, int frame);
-int show_menu(int selected, int start_y); // Fixed declaration
+// Fungsi untuk menampilkan menu
+int show_menu(int selected, int start_y); // Deklarasi diperbaiki
+// Fungsi untuk menampilkan judul sokoban
 void print_sokoban_title();
 
 #endif

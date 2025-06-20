@@ -1,6 +1,7 @@
 #include "viewtoolkit.h"
 #include "../UTILS/include/curses.h"
 
+// Fungsi untuk menggambar tombol pada layar
 void draw_btn(Button *btn) {
   // Pengecekan koordinat valid
   if (btn->y < 0 || btn->x < 0 || btn->y + btn->height >= LINES ||
@@ -44,11 +45,13 @@ void draw_btn(Button *btn) {
   mvprintw(label_y, label_x, "%s", btn->label);
 }
 
+// Fungsi untuk mengecek apakah koordinat mouse berada di area tombol
 int isbtnarea(Button *btn, int mouse_x, int mouse_y) {
   return (mouse_x >= btn->x && mouse_x < btn->x + btn->width &&
           mouse_y >= btn->y && mouse_y < btn->y + btn->height);
 }
 
+// Fungsi untuk menangani perubahan ukuran terminal
 void handle_resize(int *prev_lines, int *prev_cols){
   if (LINES != *prev_lines || COLS != *prev_cols) {
     resize_term(0, 0);
@@ -58,6 +61,7 @@ void handle_resize(int *prev_lines, int *prev_cols){
   }
 }
 
+// Fungsi untuk menampilkan pesan jika ukuran terminal tidak sesuai
 void termsize_check(){
       const char *msg = "Ubah ukuran terminal anda menjadi 190x47 agar dapat bermain!";
       int msg_y = LINES / 2;
@@ -69,6 +73,7 @@ void termsize_check(){
       refresh();
 }
 
+// Fungsi untuk menggambar kotak pada layar
 void draw_box(int x, int y, int width, int height) {
   // Sudut-sudut
   mvaddch(y, x, ACS_ULCORNER);
@@ -104,6 +109,7 @@ void draw_box(int x, int y, int width, int height) {
   }
 }
 
+// Fungsi untuk menggambar textbox pada layar
 void draw_txtbox(Txtbox *textbox){
   // Pengecekan koordinat valid
   if (textbox->y < 0 || textbox->x < 0 || textbox->y + textbox->height >= LINES ||
@@ -168,6 +174,7 @@ void draw_txtbox(Txtbox *textbox){
   }
 }
 
+// Fungsi untuk menggambar teks yang dipusatkan pada area tertentu
 void draw_centered_text(int y, int x, int width, const char* text) {
   int text_x = x + (width - strlen(text)) / 2;
   if (text_x >= 0 && y >= 0 && y < LINES) {
@@ -175,6 +182,7 @@ void draw_centered_text(int y, int x, int width, const char* text) {
   }
 }
 
+// Fungsi untuk menggambar garis horizontal
 void draw_horizontal_line(int y, int x, int width) {
   for (int i = 0; i < width; i++) {
     if (x + i < COLS && y >= 0 && y < LINES) {
@@ -183,7 +191,7 @@ void draw_horizontal_line(int y, int x, int width) {
   }
 }
 
-// Draw a single connection between two points
+// Fungsi untuk menggambar koneksi antara dua tombol
 void draw_connection(Button *from, Button *to, ConnectionType type) {
     int from_x = from->x + from->width / 2;
     int from_y = from->y + from->height;
@@ -250,7 +258,7 @@ void draw_connection(Button *from, Button *to, ConnectionType type) {
     }
 }
 
-// Draw a tree connection between parent and child buttons
+// Fungsi untuk menggambar koneksi pohon antara parent dan child
 void draw_tree_connection(Button *parent, Button *child, ConnectionType type) {
     if (!parent || !child) return;
 
@@ -270,7 +278,7 @@ void draw_tree_connection(Button *parent, Button *child, ConnectionType type) {
     // }
 }
 
-// Draw connections for an entire tree structure
+// Fungsi untuk menggambar semua koneksi pohon pada struktur tombol
 void draw_tree_connections(Button *buttons, int *parent_indices, int count) {
     if (!buttons || !parent_indices || count <= 0) return;
 
@@ -299,6 +307,7 @@ void draw_tree_connections(Button *buttons, int *parent_indices, int count) {
     }
 }
 
+// Fungsi untuk menggambar grid tombol menggunakan properti grid
 void draw_button_grid(const char **labels, int n_buttons, int selected, const btngridprop *prop) {
     for (int i = 0; i < n_buttons; i++) {
         int row = i / prop->cols;

@@ -26,6 +26,7 @@ typedef enum {
 
 #define n_chapters 5
 
+// Mendapatkan judul untuk chapter dan konteks tertentu (LEADERBOARD/HISTORY)
 const char* get_chapter_title(chapter_index chapter, context option);
 void ch1_grid(context option);
 void ch2_grid(context option);

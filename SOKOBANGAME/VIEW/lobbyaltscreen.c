@@ -1,6 +1,7 @@
 #define NCURSES_MOUSE_VERSION
 #include "lobbyaltscreen.h"
 
+// Fungsi untuk menampilkan judul alternatif dengan ASCII art
 void print_alt_title() {
     // ASCII art title split into lines
 char *title[] = {
@@ -31,6 +32,7 @@ char *title[] = {
     }
 }
 
+// Fungsi untuk menampilkan menu alternatif pada lobby
 int show_alt_menu(int selected, int items, Button *btnset){
     draw_box(1, 1, 35, LINES-2);
     
@@ -56,6 +58,7 @@ int show_alt_menu(int selected, int items, Button *btnset){
     attroff(COLOR_PAIR(COLOR_YELLOW));
 }
 
+// Fungsi untuk menampilkan lobby alternatif dan menangani interaksi pengguna
 int show_alt_lobby(const char * username){
     nodelay(stdscr, TRUE);
     keypad(stdscr, TRUE);

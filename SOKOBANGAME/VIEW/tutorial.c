@@ -1,5 +1,6 @@
 #include "tutorial.h"
 
+// Fungsi untuk menampilkan layar tutorial cara bermain Sokoban
 void show_tutorial_screen() {
     // Teks tutorial dengan penomoran
     const char *tutorial[] = {

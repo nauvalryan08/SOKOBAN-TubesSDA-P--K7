@@ -22,23 +22,23 @@ typedef struct{
     int count;
 }LevelCollector;
 
-// Helper Function for display level
+// Fungsi bantu untuk menampilkan level
 void store_level_data (void* data, LevelCollector *collector);
 void store_callback_wrapper (void* data);
 
-// Function to display the level selection screen
+// Fungsi untuk menampilkan layar pemilihan level
 void show_level_selection_screen(LevelData* levels[], int count );
 
-// Function to handle level selection using arrow keys
+// Fungsi untuk menangani pemilihan level menggunakan tombol panah
 LevelData* select_level();
 
-// Generic level selection function
+// Fungsi pemilihan level generik
 LevelData* select_level_from_list(LevelData* levels[], int count);
 
-// Function to display and run the selected level
+// Fungsi untuk menampilkan dan menjalankan level yang dipilih
 void run_level(LevelData* selected_level, ChapterData* current_chapter, const char *username);
 
-// Helper function to display level information
+// Fungsi bantu untuk menampilkan informasi level
 void display_level_info(LevelData* level);
 
 LevelData* tutorial_screen();

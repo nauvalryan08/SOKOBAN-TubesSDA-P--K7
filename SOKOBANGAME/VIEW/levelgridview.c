@@ -1,7 +1,7 @@
 #define NCURSES_MOUSE_VERSION
 #include "levelgridview.h"
 
-// Returns the title string for a given chapter and context (LEADERBOARD/HISTORY)
+// Mengembalikan string judul untuk chapter dan konteks tertentu (LEADERBOARD/HISTORY)
 const char* get_chapter_title(chapter_index chapter, context option) {
     switch (chapter) {
         case CHAPTER_1:
@@ -40,6 +40,7 @@ const char* get_chapter_title(chapter_index chapter, context option) {
     return "CHAPTER LEADERBOARD";
 }
 
+// Menampilkan grid level untuk Chapter 1 sesuai konteks (LEADERBOARD/HISTORY)
 void ch1_grid(context option) {
     // Level names for Chapter 1 (adjust if you want to use level_id instead)
     pthread_t enterSound, arrowSound;    
@@ -108,6 +109,7 @@ void ch1_grid(context option) {
     }
 }
 
+// Menampilkan grid level untuk Chapter 2 sesuai konteks (LEADERBOARD/HISTORY)
 void ch2_grid(context option) {
     pthread_t enterSound, arrowSound;
     const char* level_names[] = {
@@ -208,6 +210,7 @@ void ch2_grid(context option) {
     }
 }
 
+// Menampilkan grid level untuk Chapter 3 sesuai konteks (LEADERBOARD/HISTORY)
 void ch3_grid(context option) {
     pthread_t enterSound, arrowSound;
     const char* level_names[] = {
@@ -309,6 +312,7 @@ void ch3_grid(context option) {
     }
 }
 
+// Menampilkan grid level untuk Chapter 4 sesuai konteks (LEADERBOARD/HISTORY)
 void ch4_grid(context option) {
     pthread_t enterSound, arrowSound;
     const char* level_names[] = {
@@ -413,6 +417,7 @@ void ch4_grid(context option) {
     }
 }
 
+// Menampilkan grid level untuk Chapter 5 sesuai konteks (LEADERBOARD/HISTORY)
 void ch5_grid(context option) {
     pthread_t enterSound, arrowSound;
     const char* level_names[] = {

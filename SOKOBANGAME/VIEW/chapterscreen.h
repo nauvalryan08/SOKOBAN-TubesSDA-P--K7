@@ -15,7 +15,6 @@
 #include <stdio.h>
 #include <string.h>
 
-
 // Jumlah chapter yang tersedia
 #define NUM_CHAPTERS 6
 

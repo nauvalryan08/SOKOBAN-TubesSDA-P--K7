@@ -1,6 +1,7 @@
 #define NCURSES_MOUSE_VERSION
 #include "HistoryScreen.h"
 
+// Fungsi untuk menampilkan layar history dan menangani interaksi pengguna
 void show_history(){
     mmask_t old;
     mousemask(ALL_MOUSE_EVENTS | REPORT_MOUSE_POSITION, &old);
