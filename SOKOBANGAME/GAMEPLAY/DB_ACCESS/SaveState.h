@@ -20,7 +20,7 @@ typedef struct {
 
 //==> struct definision
 typedef struct {
-    char* username;
+    char username[20];
     char ID_level[20];
     int ID_data;
     ScoreData scoreData;
@@ -58,6 +58,13 @@ void save_temp_play_data(const char* username, const char* ID_level, int ID_data
 Boolean load_temp_play_data(const char* username, int ID_data, ScoreData* out, Queue* replay);
 
 void remove_temp_play_data_entry(const char* username, int ID_data, const char* ID_level);
+
+
+// ======================== //
+// > History & leaderBoard //
+//========================//
+
+int load_all_play_data_by_level(const char* id_level, PlayData** outData);
 
 
 #endif

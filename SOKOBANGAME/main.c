@@ -25,7 +25,6 @@ int main() {
     int menu_choice = 0;
     RoomLayout room;
     LevelData *selected_level;
-    Ptree PlayData = initDataHierarki();
     pthread_t enterSound;
 
     initAllChapters();

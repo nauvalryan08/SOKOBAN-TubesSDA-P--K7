@@ -3,6 +3,7 @@
 
 #include "../DB_ACCESS/SaveState.h"
 #include "../../DATABASE/Player.h"
+#include "../../DATABASE/PlayDataManager.h"
 
 #include "../../UTILS/include/boolean.h"
 #include "../../UTILS/include/curses.h"

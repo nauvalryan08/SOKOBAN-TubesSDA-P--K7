@@ -202,6 +202,10 @@ int game_finished(RoomLayout *room, LevelData *level, ChapterData *current_chapt
     int data_id = (int)time(NULL);
     save_data_to_database(username, level->level_id, data_id, scoreData, replayQueue);
 
+    // => simpan ke sorting file
+    save_sorted_play_data_by_score();
+    save_sorted_play_data_by_name();
+    //===================
     char dataIDStr[64];
     sprintf(dataIDStr, "%d", data_id);
 
@@ -230,12 +234,10 @@ int game_finished(RoomLayout *room, LevelData *level, ChapterData *current_chapt
             }
             clearQueue(&q);
         } else if (ch == '2') {
-            clear();
             print_chapter_screen(username);
             refresh();
             break;
         } else if (ch == '3' || ch == 27) {
-            clear();
             refresh();
             break;
         }

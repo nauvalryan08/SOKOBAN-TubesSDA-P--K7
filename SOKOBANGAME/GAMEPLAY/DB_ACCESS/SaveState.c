@@ -304,3 +304,29 @@ void remove_temp_play_data_entry(const char* username, int ID_data, const char* 
     rename(TEMP_INDEX_PATH, TEMP_PLAYDATA_PATH);
 }
 
+
+
+// ======================== //
+// > History & leaderBoard //
+//========================//
+
+
+int load_all_play_data_by_level(const char* id_level, PlayData** outData) {
+    FILE* file = fopen(PLAY_DATA_PATH, "r");
+    if (!file) return 0;
+
+    int capacity = 10, count = 0;
+    *outData = malloc(capacity * sizeof(PlayData));
+    PlayData temp;
+    while (fread(&temp, sizeof(PlayData), 1, file)) {
+        if (strcmp(temp.ID_level, id_level) == 0) {
+            if (count >= capacity) {
+                capacity *= 2;
+                *outData = realloc(*outData, capacity * sizeof(PlayData));
+            }
+            (*outData)[count++] = temp;
+        }
+    }
+    fclose(file);
+    return count;
+}

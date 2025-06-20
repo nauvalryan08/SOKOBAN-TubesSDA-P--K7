@@ -11,4 +11,9 @@
 
 #define TEMP_PLAYDATA_PATH "./SOKOBANGAME/DATABASE/temp_PlayData.txt"
 
+#define PLAY_DATA_BY_SCORE_PATH "./SOKOBANGAME/DATABASE/PlayData_sortedScore.txt"
+
+#define PLAY_DATA_BY_NAME_PATH "./SOKOBANGAME/DATABASE/PlayData_sortedName.txt"
+
+
 #endif // DATABASEPATH_H
