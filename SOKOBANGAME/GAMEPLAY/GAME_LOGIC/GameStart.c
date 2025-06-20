@@ -199,9 +199,6 @@ int game_finished(RoomLayout *room, LevelData *level, ChapterData *current_chapt
     int data_id = (int)time(NULL);
     save_data_to_database(username, level->level_id, data_id, scoreData, replayQueue);
 
-    // => simpan ke sorting file
-    save_sorted_play_data_by_score();
-    save_sorted_play_data_by_name();
     //===================
     char dataIDStr[64];
     sprintf(dataIDStr, "%d", data_id);
@@ -276,7 +273,8 @@ bool ask_continue_save() {
     mvprintw(max_y / 2, (max_x - strlen(msg)) / 2, "%s", msg);
     attroff(COLOR_PAIR(9) | A_BOLD);
     refresh();
-
+	
+	nodelay(stdscr, FALSE);
     char ch = getch();
     ch = tolower(ch);
     if (ch == 'y') {
@@ -284,5 +282,6 @@ bool ask_continue_save() {
     } else if (ch == 'n') {
         return 0;
     }
+    nodelay(stdscr, TRUE);
 }
 

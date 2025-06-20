@@ -2,7 +2,7 @@
 #include "leaderboard.h"
 
 // Fungsi untuk menampilkan layar leaderboard dan menangani interaksi pengguna
-void show_leaderboard(){
+void show_leaderboard(const char username[20]){
     mmask_t old;
     mousemask(ALL_MOUSE_EVENTS | REPORT_MOUSE_POSITION, &old);
     keypad(stdscr, TRUE);
@@ -40,23 +40,23 @@ void show_leaderboard(){
                 switch (selected){
                     case 0: // Chapter 1
                         pthread_create(&enterSound, NULL, playEnterSound, NULL);
-                        ch1_grid(LEADERBOARD);
+                        ch1_grid(LEADERBOARD, username);
                         break;
                     case 1: // Chapter 2
                         pthread_create(&enterSound, NULL, playEnterSound, NULL);
-                        ch2_grid(LEADERBOARD);
+                        ch2_grid(LEADERBOARD, username);
                         break;
                     case 2: // Chapter 3
                         pthread_create(&enterSound, NULL, playEnterSound, NULL);
-                        ch3_grid(LEADERBOARD);
+                        ch3_grid(LEADERBOARD, username);
                         break;
                     case 3: // Chapter 4
                         pthread_create(&enterSound, NULL, playEnterSound, NULL);
-                        ch4_grid(LEADERBOARD);
+                        ch4_grid(LEADERBOARD, username);
                         break;
                     case 4: // Chapter 5
                         pthread_create(&enterSound, NULL, playEnterSound, NULL);
-                        ch5_grid(LEADERBOARD);
+                        ch5_grid(LEADERBOARD, username);
                         break;
                     }
             case KEY_MOUSE:
@@ -76,19 +76,19 @@ void show_leaderboard(){
                             pthread_create(&enterSound, NULL, playEnterSound, NULL);
                                 switch (selected){
                                     case 0: // Chapter 1
-                                    ch1_grid(LEADERBOARD);
+                                    ch1_grid(LEADERBOARD, username);
                                     break;
                                     case 1: // Chapter 2
-                                    ch2_grid(LEADERBOARD);
+                                    ch2_grid(LEADERBOARD, username);
                                     break;
                                     case 2: // Chapter 3
-                                    ch3_grid(LEADERBOARD);
+                                    ch3_grid(LEADERBOARD, username);
                                     break;
                                     case 3: // Chapter 4
-                                    ch4_grid(LEADERBOARD);
+                                    ch4_grid(LEADERBOARD, username);
                                     break;
                                     case 4: // Chapter 5
-                                    ch5_grid(LEADERBOARD);
+                                    ch5_grid(LEADERBOARD, username);
                                     break;
                                 }
                         }

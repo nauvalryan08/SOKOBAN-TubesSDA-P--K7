@@ -1,9 +1,5 @@
 #define NCURSES_MOUSE_VERSION
 #include "levelgridview.h"
-#include "../GAMEPLAY/DB_ACCESS/SaveState.h"
-#include "../GAMEPLAY/GAME_LOGIC/ScoreGame.h"
-#include "../GAMEPLAY/REPLAY_LOGIC/ReplayGame.h"
-#include "../GAMEPLAY/ARENA_LOGIC/RoomFactory.h"
 
 // digunakan unutk parsing level pertama agar dapat dihubungkan dengan integer selected
 LevelID get_chapter_start_level(chapter_index chapter) {
@@ -18,24 +14,37 @@ LevelID get_chapter_start_level(chapter_index chapter) {
 }
 
 //dibuat agar lebih modular
-void display_leaderboard_or_history(context option, chapter_index chapter, int selected_level_offset) {
+void display_leaderboard_or_history(context option, chapter_index chapter, int selected_level_offset, const char username[20]) {
     LevelID start_level = get_chapter_start_level(chapter);
     LevelData current_level = ALL_LEVELS[start_level + selected_level_offset];
 
-    // Dummy data untuk percobaan display field level tidak digunakan hanya di deklarasikan saja
-    // Namun untuk playdata yang nyata akan di load berserta dengan replaynya juga yang bukan dummy.
-    PlayData dummy_data[10] = {
-        {"Player1", "LEVEL_1C1", 1, {1000, 120, 50, 5}},
-        {"Player2", "LEVEL_1C1", 2, {950, 130, 55, 6}},
-        {"Player3", "LEVEL_1C1", 3, {900, 140, 60, 7}},
-        {"Player4", "LEVEL_1C1", 4, {850, 150, 65, 8}},
-        {"Player5", "LEVEL_1C1", 5, {800, 160, 70, 9}},
-        {"Player6", "LEVEL_1C1", 6, {750, 170, 75, 10}},
-        {"Player7", "LEVEL_1C1", 7, {700, 180, 80, 11}},
-        {"Player8", "LEVEL_1C1", 8, {650, 190, 85, 12}},
-        {"Player9", "LEVEL_1C1", 9, {600, 200, 90, 13}},
-        {"Player10", "LEVEL_1C1", 10, {550, 210, 95, 14}}
-    };
+    // // Dummy data untuk percobaan display field level tidak digunakan hanya di deklarasikan saja
+    // // Namun untuk playdata yang nyata akan di load berserta dengan replaynya juga yang bukan dummy.
+    // PlayData dummy_data[10] = {
+    //     {"Player1", "LEVEL_1C1", 1, {1000, 120, 50, 5}},
+    //     {"Player2", "LEVEL_1C1", 2, {950, 130, 55, 6}},
+    //     {"Player3", "LEVEL_1C1", 3, {900, 140, 60, 7}},
+    //     {"Player4", "LEVEL_1C1", 4, {850, 150, 65, 8}},
+    //     {"Player5", "LEVEL_1C1", 5, {800, 160, 70, 9}},
+    //     {"Player6", "LEVEL_1C1", 6, {750, 170, 75, 10}},
+    //     {"Player7", "LEVEL_1C1", 7, {700, 180, 80, 11}},
+    //     {"Player8", "LEVEL_1C1", 8, {650, 190, 85, 12}},
+    //     {"Player9", "LEVEL_1C1", 9, {600, 200, 90, 13}},
+    //     {"Player10", "LEVEL_1C1", 10, {550, 210, 95, 14}}
+    // };
+
+    PlayData display[10];
+    char levelid[20];
+    switch (option)
+    {
+    case HISTORY:
+        load_data_filter_by_name(display, current_level.level_id, username);
+        break;
+    
+    case LEADERBOARD:
+        load_data_filter_by_score(display, current_level.level_id);
+        break;
+    }
 
     int ch;
     int prev_lines = LINES;
@@ -81,11 +90,11 @@ void display_leaderboard_or_history(context option, chapter_index chapter, int s
         for (int i = 0; i < 10; i++) {
             int row_y = start_y + 3 + i;
             mvprintw(row_y, rank_x, "%d", i + 1);
-            mvprintw(row_y, user_x, "%s", dummy_data[i].username);
-            mvprintw(row_y, score_x, "%d", dummy_data[i].scoreData.score);
-            mvprintw(row_y, moves_x, "%d", dummy_data[i].scoreData.TotalMove);
-            mvprintw(row_y, time_x, "%ds", dummy_data[i].scoreData.time);
-            mvprintw(row_y, undo_x, "%d", dummy_data[i].scoreData.TotalUndo);
+            mvprintw(row_y, user_x, "%s", display[i].username);
+            mvprintw(row_y, score_x, "%d", display[i].scoreData.score);
+            mvprintw(row_y, moves_x, "%d", display[i].scoreData.TotalMove);
+            mvprintw(row_y, time_x, "%ds", display[i].scoreData.time);
+            mvprintw(row_y, undo_x, "%d", display[i].scoreData.TotalUndo);
 
             if (i == selected_row) {
                 attron(A_REVERSE);
@@ -110,23 +119,37 @@ void display_leaderboard_or_history(context option, chapter_index chapter, int s
             case KEY_ENTER:
                 if (selected_row >= 0 && selected_row < 10) {
                     //parsing ruangan agar sesuai
+                    char dataIDStr[64];
                     RoomLayout room;
                     parse_room(&room, current_level.map);
-                    // data dummy juga... replaynya dummy (bisa works di semua level)
-                    Queue replay_queue;
-                    initQueue(&replay_queue);
-                    enqueue(&replay_queue, createStep('R'));
-                    enqueue(&replay_queue, createStep('R'));
-                    enqueue(&replay_queue, createStep('D'));
-                    enqueue(&replay_queue, createStep('D'));
-                    enqueue(&replay_queue, createStep('L'));
-                    enqueue(&replay_queue, createStep('L'));
-                    enqueue(&replay_queue, createStep('U'));
-                    enqueue(&replay_queue, createStep('U'));
-                    enqueue(&replay_queue, createStep('Z'));
+                    sprintf(dataIDStr, "%d", display[selected_row].ID_data);
+                    Queue tempqueue;
+                    switch (option)
+                    {
+                    case HISTORY:
+                        loadReplayRecord(&tempqueue, username, dataIDStr);
+                        break;
+                    
+                    case LEADERBOARD:
+                        loadReplayRecord(&tempqueue, display[selected_row].username, dataIDStr);
+                        break;
+                    }
+                    
+                    // // data dummy juga... replaynya dummy (bisa works di semua level)
+                    // Queue replay_queue;
+                    // initQueue(&replay_queue);
+                    // enqueue(&replay_queue, createStep('R'));
+                    // enqueue(&replay_queue, createStep('R'));
+                    // enqueue(&replay_queue, createStep('D'));
+                    // enqueue(&replay_queue, createStep('D'));
+                    // enqueue(&replay_queue, createStep('L'));
+                    // enqueue(&replay_queue, createStep('L'));
+                    // enqueue(&replay_queue, createStep('U'));
+                    // enqueue(&replay_queue, createStep('U'));
+                    // enqueue(&replay_queue, createStep('Z'));
 
-                    playReplay(&room, current_level, &replay_queue);
-                    clearReplayQueue(&replay_queue);
+                    playReplay(&room, current_level, &tempqueue);
+                    clearReplayQueue(&tempqueue);
                 }
                 break;
         }
@@ -173,7 +196,7 @@ const char* get_chapter_title(chapter_index chapter, context option) {
 }
 
 // Menampilkan grid level untuk Chapter 1 sesuai konteks (LEADERBOARD/HISTORY)
-void ch1_grid(context option) {
+void ch1_grid(context option, const char username[20]) {
     // Level names for Chapter 1 (adjust if you want to use level_id instead)
     pthread_t enterSound, arrowSound;    
     const char* level_names[] = {
@@ -232,10 +255,10 @@ void ch1_grid(context option) {
                 pthread_create(&enterSound, NULL, playEnterSound, NULL);
                 switch(option){
                     case HISTORY:
-                        display_leaderboard_or_history(option, CHAPTER_1, selected);
+                        display_leaderboard_or_history(option, CHAPTER_1, selected, username);
                         break;
                     case LEADERBOARD:
-                        display_leaderboard_or_history(option, CHAPTER_1, selected);
+                        display_leaderboard_or_history(option, CHAPTER_1, selected, username);
                         break;
                 }
                 break;
@@ -246,7 +269,7 @@ void ch1_grid(context option) {
 }
 
 // Menampilkan grid level untuk Chapter 2 sesuai konteks (LEADERBOARD/HISTORY)
-void ch2_grid(context option) {
+void ch2_grid(context option, const char username[20]) {
     pthread_t enterSound, arrowSound;
     const char* level_names[] = {
         ALL_LEVELS[LEVEL_2C1].level_name,
@@ -338,7 +361,7 @@ void ch2_grid(context option) {
                 switch(option){
                     case HISTORY:
                     case LEADERBOARD:
-                        display_leaderboard_or_history(option, CHAPTER_2, selected);
+                        display_leaderboard_or_history(option, CHAPTER_2, selected, username);
                         break;
                 }
                 break;
@@ -349,7 +372,7 @@ void ch2_grid(context option) {
 }
 
 // Menampilkan grid level untuk Chapter 3 sesuai konteks (LEADERBOARD/HISTORY)
-void ch3_grid(context option) {
+void ch3_grid(context option, const char username[20]) {
     pthread_t enterSound, arrowSound;
     const char* level_names[] = {
         ALL_LEVELS[LEVEL_3C1].level_name,
@@ -442,7 +465,7 @@ void ch3_grid(context option) {
                 switch(option){
                     case HISTORY:
                     case LEADERBOARD:
-                        display_leaderboard_or_history(option, CHAPTER_3, selected);
+                        display_leaderboard_or_history(option, CHAPTER_3, selected, username);
                         break;
                 }
                 break;
@@ -453,7 +476,7 @@ void ch3_grid(context option) {
 }
 
 // Menampilkan grid level untuk Chapter 4 sesuai konteks (LEADERBOARD/HISTORY)
-void ch4_grid(context option) {
+void ch4_grid(context option, const char username[20]) {
     pthread_t enterSound, arrowSound;
     const char* level_names[] = {
         ALL_LEVELS[LEVEL_4C1].level_name,
@@ -549,7 +572,7 @@ void ch4_grid(context option) {
                 switch(option){
                     case HISTORY:
                     case LEADERBOARD:
-                        display_leaderboard_or_history(option, CHAPTER_4, selected);
+                        display_leaderboard_or_history(option, CHAPTER_4, selected, username);
                         break;
                 }
                 break;
@@ -560,7 +583,7 @@ void ch4_grid(context option) {
 }
 
 // Menampilkan grid level untuk Chapter 5 sesuai konteks (LEADERBOARD/HISTORY)
-void ch5_grid(context option) {
+void ch5_grid(context option, const char username[20]) {
     pthread_t enterSound, arrowSound;
     const char* level_names[] = {
         ALL_LEVELS[LEVEL_5C1].level_name,
@@ -658,7 +681,7 @@ void ch5_grid(context option) {
                 switch(option){
                     case HISTORY:
                     case LEADERBOARD:
-                        display_leaderboard_or_history(option, CHAPTER_5, selected);
+                        display_leaderboard_or_history(option, CHAPTER_5, selected, username);
                         break;
                 }
                 break;

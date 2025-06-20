@@ -2,7 +2,7 @@
 #include "HistoryScreen.h"
 
 // Fungsi untuk menampilkan layar history dan menangani interaksi pengguna
-void show_history(){
+void show_history(const char username[20]){
     mmask_t old;
     mousemask(ALL_MOUSE_EVENTS | REPORT_MOUSE_POSITION, &old);
     keypad(stdscr, TRUE);
@@ -40,23 +40,23 @@ void show_history(){
                 switch (selected){
                     case 0: // Chapter 1
                         pthread_create(&enterSound, NULL, playEnterSound, NULL);
-                        ch1_grid(HISTORY);
+                        ch1_grid(HISTORY, username);
                         break;
                     case 1: // Chapter 2
                         pthread_create(&enterSound, NULL, playEnterSound, NULL);
-                        ch2_grid(HISTORY);
+                        ch2_grid(HISTORY, username);
                         break;
                     case 2: // Chapter 3
                         pthread_create(&enterSound, NULL, playEnterSound, NULL);
-                        ch3_grid(HISTORY);
+                        ch3_grid(HISTORY, username);
                         break;
                     case 3: // Chapter 4
                         pthread_create(&enterSound, NULL, playEnterSound, NULL);
-                        ch4_grid(HISTORY);
+                        ch4_grid(HISTORY, username);
                         break;
                     case 4: // Chapter 5
                         pthread_create(&enterSound, NULL, playEnterSound, NULL);
-                        ch5_grid(HISTORY);
+                        ch5_grid(HISTORY, username);
                         break;
                 }
                 break;
@@ -76,11 +76,11 @@ void show_history(){
                                 selected = i;
                                 pthread_create(&enterSound, NULL, playEnterSound, NULL);
                                 switch (selected){
-                                    case 0: ch1_grid(HISTORY); break;
-                                    case 1: ch2_grid(HISTORY); break;
-                                    case 2: ch3_grid(HISTORY); break;
-                                    case 3: ch4_grid(HISTORY); break;
-                                    case 4: ch5_grid(HISTORY); break;
+                                    case 0: ch1_grid(HISTORY, username); break;
+                                    case 1: ch2_grid(HISTORY, username); break;
+                                    case 2: ch3_grid(HISTORY, username); break;
+                                    case 3: ch4_grid(HISTORY, username); break;
+                                    case 4: ch5_grid(HISTORY, username); break;
                                 }
                             }
                         }
