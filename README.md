@@ -53,7 +53,7 @@ cd .\UTILS\compilewithoutcmake.bat
 - make
 - gcc
 
-## Instalasi [![Dev C++](https://img.shields.io/badge/Dev%20C++-FF2BE2)](#)
+## Instalasi [![Dev C++](https://img.shields.io/badge/Dev%20C++-FF2B22)](#)
 
 ## Tim Pengembang
 - **[Johan Muhammad Avicenna]** dengan NIM 241524013
